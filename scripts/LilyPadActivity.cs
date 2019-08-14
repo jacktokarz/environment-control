@@ -53,15 +53,15 @@ public class LilyPadActivity : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col)
     {
-    	if (col.CompareTag("fan"))
+    	if (col.CompareTag("wind"))
     	{
-			inFan = col.gameObject.transform.rotation.eulerAngles.z;
+			inFan = col.transform.parent.transform.rotation.eulerAngles.z;
     	}
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
-    	if (col.CompareTag("fan"))
+    	if (col.CompareTag("wind"))
     	{
 			inFan = Mathf.PI;
     	}

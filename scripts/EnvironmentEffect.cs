@@ -96,8 +96,15 @@ public class EnvironmentEffect : MonoBehaviour
         Collider2D overlapper= Physics2D.OverlapBox(newPos, vineSize, parentVine.transform.rotation.eulerAngles.z, PersistentManager.Instance.whatBlocksVines);
         if(overlapper)
         {
-            Debug.Log("overlapping with "+overlapper);
-            return;
+            if (overlapper.CompareTag("wind"))
+            {   WindDirection wd = overlapper.gameObject.GetComponent(typeof(WindDirection)) as WindDirection;
+                newPos.x = newPos.x + (PersistentManager.Instance.windLevel * PersistentManager.Instance.vineWindAffect * wd.direction);
+            }
+            else
+            {
+                Debug.Log("overlapping with "+overlapper);
+                return;
+            }
         }
         Instantiate(topVinePiece, newPos, parentVine.transform.rotation, parentVine.transform);
         vecArray= addElement(vecArray, new Vector2(PersistentManager.Instance.vinePieceWidth / 2, topVinePiece.localPosition.y + PersistentManager.Instance.vinePieceHeight * 3/2));

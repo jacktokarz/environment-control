@@ -23,6 +23,7 @@ public class PersistentManager : MonoBehaviour
     public float vineMaxHeight;
     public float vinePieceHeight;
     public float vinePieceWidth;
+    public float vineWindAffect;
     public LayerMask whatBlocksVines;
 
     public float waterChangeSpeed;
