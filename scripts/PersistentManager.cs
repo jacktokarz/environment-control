@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 public class PersistentManager : MonoBehaviour
 {
@@ -42,7 +44,9 @@ public class PersistentManager : MonoBehaviour
 	public int lastCheckpoint;
 
 	//[HideInInspector] 
+	public Dictionary<string, bool> playerProgress = new Dictionary<string, bool>();
 	public List<int> Checkpoints = new List<int>();
+
 
 	private void Awake()
 	{
@@ -94,5 +98,27 @@ public class PersistentManager : MonoBehaviour
     {
         textObj.text = value.ToString();
     }
+
+    private GameData createGameData()
+    {
+    	GameData gd = new GameData();
+    	gd.playerProgress = new Dictionary<string, bool>(playerProgress);
+    	gd.lastCheckpoint = lastCheckpoint;
+    	gd.Checkpoints = new List<int>(Checkpoints);
+    	return gd;
+    }
+
+    public bool Save()
+    {
+    	GameData data = createGameData();
+    	Debug.Log("data to be saved: "+data);
+    	Debug.Log("specifically the lastcp: "+data.lastCheckpoint);
+	    BinaryFormatter bf = new BinaryFormatter();
+	    FileStream file = File.Create (Application.persistentDataPath + "/save.gd");
+	    bf.Serialize(file, data);
+	    file.Close();
+	    return true;
+    }
+
 
 }

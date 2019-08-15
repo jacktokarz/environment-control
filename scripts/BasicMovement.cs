@@ -32,7 +32,11 @@ public class BasicMovement : MonoBehaviour
 
         if (PersistentManager.Instance.lastDoorId == "Respawn")
         {
-            GameObject checkpoint = GameObject.FindGameObjectWithTag("checkpoint");
+            GameObject checkpoint = GameObject.FindWithTag("checkpoint");
+            if (checkpoint == null)
+            {
+                checkpoint = GameObject.FindWithTag("hub");
+            }
             spawnPoint = new Vector3(checkpoint.transform.position.x, checkpoint.transform.position.y + 0.55f);
         }
         else {

@@ -25,11 +25,18 @@ public class CheckpointActivity : MonoBehaviour
     {
     	if(col.CompareTag("Player") && !alreadyChecked)
     	{
-    		flowerGrowAnim.SetBool("grow", true);
-    		PersistentManager.Instance.Checkpoints.Add(SceneManager.GetActiveScene().buildIndex);
-    		PersistentManager.Instance.lastCheckpoint = SceneManager.GetActiveScene().buildIndex;
-    		alreadyChecked = true;
+    		activateCheckpoint();
     	}
+    }
+
+    void activateCheckpoint()
+    {
+		flowerGrowAnim.SetBool("grow", true);
+		PersistentManager.Instance.Checkpoints.Add(SceneManager.GetActiveScene().buildIndex);
+		PersistentManager.Instance.lastCheckpoint = SceneManager.GetActiveScene().buildIndex;
+		bool saved = PersistentManager.Instance.Save();
+		Debug.Log("saved ? "+saved);
+		alreadyChecked = true;
     }
 
 }
