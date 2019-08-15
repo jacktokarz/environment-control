@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class ChangeScene : MonoBehaviour
 {
@@ -11,11 +10,7 @@ public class ChangeScene : MonoBehaviour
 		if (col.gameObject.CompareTag("Player")) {
 			OpenDoor od = this.GetComponentInParent<OpenDoor>();
 			PersistentManager.Instance.lastDoorId = od.doorId;
-			GoToScene(OtherSideOfDoor);
+			PersistentManager.GoToScene(OtherSideOfDoor);
 		}
 	}
-
-    static void GoToScene(int sceneNumber) {
-    	SceneManager.LoadScene(sceneNumber, LoadSceneMode.Single);
-    }
 }

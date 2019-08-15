@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PersistentManager : MonoBehaviour
 {
@@ -38,6 +39,10 @@ public class PersistentManager : MonoBehaviour
 	public int windLevel;
 	public int humidityLevel;
 	public string lastDoorId;
+	public int lastCheckpoint;
+
+	//[HideInInspector] 
+	public List<int> Checkpoints = new List<int>();
 
 	private void Awake()
 	{
@@ -79,6 +84,10 @@ public class PersistentManager : MonoBehaviour
         	return true;
         }
         return false;
+    }
+
+	public static void GoToScene(int sceneNumber) {
+    	SceneManager.LoadScene(sceneNumber, LoadSceneMode.Single);
     }
 
     public void updateText(Text textObj, int value)

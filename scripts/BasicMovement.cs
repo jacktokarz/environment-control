@@ -10,13 +10,13 @@ public class BasicMovement : MonoBehaviour
 
     public float topHSpeed;
     public float climbSpeed;
-    public float defaultGravity = 3f;
-
+    
     public Transform gripCheck;
     public float gripCheckRadius;
     public LayerMask whatIsGrippable;
     public LayerMask whatIsDeadly;
 
+    float defaultGravity;
     float h;
     float v;
     bool gripping;
@@ -28,21 +28,31 @@ public class BasicMovement : MonoBehaviour
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
-        
-        GameObject[] doors = GameObject.FindGameObjectsWithTag("door");
-        foreach(GameObject door in doors)
+        defaultGravity = rigid.gravityScale;
+
+        if (PersistentManager.Instance.lastDoorId == "Respawn")
         {
-            OpenDoor od = door.GetComponent(typeof (OpenDoor)) as OpenDoor;
-            if(od.doorId == PersistentManager.Instance.lastDoorId)
+            GameObject checkpoint = GameObject.FindGameObjectWithTag("checkpoint");
+            spawnPoint = new Vector3(checkpoint.transform.position.x, checkpoint.transform.position.y + 0.55f);
+        }
+        else {
+            GameObject[] doors = GameObject.FindGameObjectsWithTag("door");
+            foreach(GameObject door in doors)
             {
-                spawnPoint = new Vector3(door.transform.position.x - od.flipped * 1.0f, door.transform.position.y - 0.7f, 0);
+                OpenDoor od = door.GetComponent(typeof (OpenDoor)) as OpenDoor;
+                if(od.doorId == PersistentManager.Instance.lastDoorId)
+                {
+                    spawnPoint = new Vector3(door.transform.position.x - od.flipped * 1.0f, door.transform.position.y - 0.7f, 0);
+                }
             }
             if (spawnPoint==null)
             {
+                Debug.Log("ERRRORRRR!!!!");
+                OpenDoor od = doors[0].GetComponent(typeof (OpenDoor)) as OpenDoor;
                 spawnPoint = new Vector3(doors[0].transform.position.x - od.flipped * 1.0f, doors[0].transform.position.y - 0.7f, 0);
             }
-            this.transform.position = spawnPoint;
         }
+        this.transform.position = spawnPoint;
     }
 
     void Update()
@@ -118,7 +128,8 @@ public class BasicMovement : MonoBehaviour
     }
 
     void death() {
-        this.transform.position= spawnPoint;
+        PersistentManager.Instance.lastDoorId = "Respawn";
+        PersistentManager.GoToScene(PersistentManager.Instance.lastCheckpoint);
     }
 
     void gripOff()
