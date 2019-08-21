@@ -53,7 +53,7 @@ public class MainMenu : MonoBehaviour
 
     void putLoadInManager()
     {
-        PersistentManager.Instance.playerProgress = new Dictionary<string, bool>(loadGame.playerProgress);
+        PersistentManager.Instance.TreasureList = new List<string>(loadGame.TreasureList);
         PersistentManager.Instance.lastCheckpoint = loadGame.lastCheckpoint;
         PersistentManager.Instance.Checkpoints = new List<int>(loadGame.Checkpoints);
         PersistentManager.Instance.lastDoorId = "Respawn";

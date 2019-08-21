@@ -86,9 +86,16 @@ public class EnvironmentEffect : MonoBehaviour
 
     void growVine(GameObject parentVine, PolygonCollider2D pc, Transform topVinePiece) {
         Vector2[] vecArray = pc.GetPath(0);
-        Vector2 newPos= new Vector2();
-        if (parentVine.transform.rotation.eulerAngles.z == 90) {
+        Vector2 newPos = new Vector2();
+        float zRot = parentVine.transform.rotation.eulerAngles.z;
+        if (zRot == 90) {
             newPos= new Vector2(topVinePiece.position.x - PersistentManager.Instance.vinePieceHeight, topVinePiece.position.y);
+        }
+        else if (zRot == 270) {
+            newPos= new Vector2(topVinePiece.position.x + PersistentManager.Instance.vinePieceHeight, topVinePiece.position.y);
+        }
+        else if (zRot == 180) {
+            newPos= new Vector2(topVinePiece.position.x, topVinePiece.position.y - PersistentManager.Instance.vinePieceHeight);
         }
         else {
             newPos= new Vector2(topVinePiece.position.x, topVinePiece.position.y + PersistentManager.Instance.vinePieceHeight);

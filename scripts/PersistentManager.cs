@@ -44,7 +44,7 @@ public class PersistentManager : MonoBehaviour
 	public int lastCheckpoint;
 
 	//[HideInInspector] 
-	public Dictionary<string, bool> playerProgress = new Dictionary<string, bool>();
+	public List<string> TreasureList = new List<string>();
 	public List<int> Checkpoints = new List<int>();
 
 
@@ -63,8 +63,17 @@ public class PersistentManager : MonoBehaviour
 
 	private void Start()
 	{
-        updateText(Humidity, humidityLevel);
-        updateText(Wind, windLevel);
+		if (TreasureList.Contains("humidity"))
+		{
+			Humidity.gameObject.SetActive(true);
+	        updateText(Humidity, humidityLevel);
+		}
+
+		if (TreasureList.Contains("wind"))
+		{
+			Wind.gameObject.SetActive(true);
+	        updateText(Wind, windLevel);
+		}
 	}
 
 
@@ -96,13 +105,13 @@ public class PersistentManager : MonoBehaviour
 
     public void updateText(Text textObj, int value)
     {
-        textObj.text = value.ToString();
+        textObj.transform.GetChild(0).GetComponent<Text>().text = value.ToString();
     }
 
     private GameData createGameData()
     {
     	GameData gd = new GameData();
-    	gd.playerProgress = new Dictionary<string, bool>(playerProgress);
+    	gd.TreasureList = new List<string>(TreasureList);
     	gd.lastCheckpoint = lastCheckpoint;
     	gd.Checkpoints = new List<int>(Checkpoints);
     	return gd;

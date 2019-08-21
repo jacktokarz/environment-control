@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 
 public class EnvironmentChange : MonoBehaviour
@@ -8,7 +9,8 @@ public class EnvironmentChange : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Input.GetKey("1"))
+        List<string> tl = PersistentManager.Instance.TreasureList;
+        if (tl.Contains("humidity") && Input.GetKey("1"))
         {
             if (Input.GetKeyDown("up"))
             {
@@ -25,7 +27,7 @@ public class EnvironmentChange : MonoBehaviour
                 }
             }
         }
-        if (Input.GetKey("2"))
+        if (tl.Contains("wind") && Input.GetKey("2"))
         {
             if (Input.GetKeyDown("up"))
             {
