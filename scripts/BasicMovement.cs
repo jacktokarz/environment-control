@@ -4,17 +4,19 @@ using System;
 
 public class BasicMovement : MonoBehaviour
 {
+    public BrackeysMovement bm;
     public EnvironmentChange envChange;
-    public BrackeysMovement controller;
     public Vector3 spawnPoint;
 
     public float topHSpeed;
     public float climbSpeed;
     
     public Transform gripCheck;
+    public Transform groundCheck;
     public float gripCheckRadius;
     public LayerMask whatIsGrippable;
     public LayerMask whatIsDeadly;
+    public LayerMask whatIsPlatform;
 
     float defaultGravity;
     float h;
@@ -47,6 +49,10 @@ public class BasicMovement : MonoBehaviour
                 if(od.doorId == PersistentManager.Instance.lastDoorId)
                 {
                     spawnPoint = new Vector3(door.transform.position.x - od.flipped * 1.0f, door.transform.position.y - 0.7f, 0);
+                    if(od.flipped == 1)
+                    {
+                        bm.Flip();
+                    }
                 }
             }
             if (spawnPoint==null)
@@ -54,6 +60,10 @@ public class BasicMovement : MonoBehaviour
                 Debug.Log("ERRRORRRR!!!!");
                 OpenDoor od = doors[0].GetComponent(typeof (OpenDoor)) as OpenDoor;
                 spawnPoint = new Vector3(doors[0].transform.position.x - od.flipped * 1.0f, doors[0].transform.position.y - 0.7f, 0);
+                if(od.flipped == 1)
+                {
+                    bm.Flip();
+                }
             }
         }
         this.transform.position = spawnPoint;
@@ -62,6 +72,8 @@ public class BasicMovement : MonoBehaviour
     void Update()
     {
         h = gripping ? Input.GetAxis("Horizontal") * climbSpeed : Input.GetAxis("Horizontal") * topHSpeed;
+        
+        checkFlip();
 
         if (gripping && !(Input.GetKey("1") || Input.GetKey("2")))
         {
@@ -75,6 +87,17 @@ public class BasicMovement : MonoBehaviour
         {
             jumping = true;
         }
+            //if on a lily pad, add that velocity too
+        Collider2D platCollider = Physics2D.OverlapCircle(groundCheck.position, 0.1f, whatIsPlatform);
+        if (platCollider != null)
+        {
+            Rigidbody2D groundRig = platCollider.gameObject.GetComponent<Rigidbody2D>();
+            if (groundRig != null)
+            {
+                h += groundRig.velocity.x * Mathf.Clamp(PersistentManager.Instance.windLevel, 1, 3);
+            }
+        }
+
     }
 
     // Update is called once per frame
@@ -116,13 +139,13 @@ public class BasicMovement : MonoBehaviour
 
         if (gripping && !jumping)
         {
-            controller.VerticalMove(v * Time.fixedDeltaTime);
+            bm.VerticalMove(v * Time.fixedDeltaTime);
         }
-        controller.Move(h * Time.fixedDeltaTime);
+        bm.Move(h * Time.fixedDeltaTime);
 
         if(jumping) {
             Debug.Log("gripping? "+gripping);
-            bool jumped= controller.Jump(gripping);
+            bool jumped= bm.Jump(gripping);
             Debug.Log("so they jumped? "+jumped);
             if (jumped) {
                 gripOff();
@@ -145,6 +168,21 @@ public class BasicMovement : MonoBehaviour
     {
         gripping = true;
         rigid.gravityScale = 0f;
+    }
+
+    void checkFlip()
+    {
+        if (h > 0 && !bm.m_FacingRight)
+        {
+            // ... flip the player.
+            bm.Flip();
+        }
+        // Otherwise if the input is moving the player left and the player is facing right...
+        else if (h < 0 && bm.m_FacingRight)
+        {
+            // ... flip the player.
+            bm.Flip();
+        }
     }
 
 }

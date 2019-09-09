@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TreasureActivity : MonoBehaviour
 {
@@ -29,17 +30,26 @@ public class TreasureActivity : MonoBehaviour
     void getTreasure()
     {
 		openChestAnim.SetBool("opening", true);
+		string messageText = "";
+		MessageScript ms = PersistentManager.Instance.Message.GetComponent(typeof (MessageScript)) as MessageScript;
 		PersistentManager.Instance.TreasureList.Add(treasureId);
 		switch (treasureId)
 		{
 		case "humidity":
 			PersistentManager.Instance.Humidity.gameObject.SetActive(true);
+			messageText = "Hold 1 + Press Up / Down\nto Alter the Humidity Level";
+			ms.escapeKey = "1";
+			ms.secondaryKey = "up";
 			break;
 		case "wind":
 			PersistentManager.Instance.Wind.gameObject.SetActive(true);
+			messageText = "Hold 2 + Press up / down\nto Alter the Wind Level";
+			ms.escapeKey = "2";
+			ms.secondaryKey = "up";
 			break;
 		}
-
+		PersistentManager.Instance.Message.GetComponent<Text>().text = messageText;
+		PersistentManager.Instance.Message.GetComponent<Animator>().SetBool("visible", true);
 		bool saved = PersistentManager.Instance.Save();
 		Debug.Log("saved ? "+saved);
 		alreadyGotten = true;

@@ -10,17 +10,19 @@ public class PersistentManager : MonoBehaviour
 {
 	public static PersistentManager Instance { get; private set; }
 
-
+		//UI
     public Text Humidity;
     public Text Wind;
-
-    
+    public GameObject Message;
+    	//humidity
     public int maxHumidity;
     public int minHumidity;
-
+    	//wind
     public int maxWind;
     public int minWind;
-	
+    	//get wind room
+    public int getWindRoomChangeDelay;
+		//vines
 	public float vineGrowDefaultSpeed;
     public float vineMinHeight;
     public float vineMaxHeight;
@@ -28,16 +30,21 @@ public class PersistentManager : MonoBehaviour
     public float vinePieceWidth;
     public float vineWindAffect;
     public LayerMask whatBlocksVines;
-
+    	//water
     public float waterChangeSpeed;
     public float waterChangeDistance;
-    
+    	//lily pad
     public float lilyPadTravelSpeed;
-
+    	//enemies & projectiles
+    public float dumbEnemyFireRate;
+    public float dumbEnemyVision;
+    public float dumbProjectileSpeed;
+    public LayerMask blocksProjectiles;
+    	//door
 	public float doorMoveSpeed;
 	public float doorMoveDistance;
 
-
+		//changes in gameplay
 	public int windLevel;
 	public int humidityLevel;
 	public string lastDoorId;
@@ -63,17 +70,7 @@ public class PersistentManager : MonoBehaviour
 
 	private void Start()
 	{
-		if (TreasureList.Contains("humidity"))
-		{
-			Humidity.gameObject.SetActive(true);
-	        updateText(Humidity, humidityLevel);
-		}
-
-		if (TreasureList.Contains("wind"))
-		{
-			Wind.gameObject.SetActive(true);
-	        updateText(Wind, windLevel);
-		}
+		checkTextVis();
 	}
 
 
@@ -94,9 +91,35 @@ public class PersistentManager : MonoBehaviour
         {
             windLevel+=value;
             updateText(Wind, windLevel);
+            changeWindAnimation();
         	return true;
         }
         return false;
+    }
+    private void changeWindAnimation()
+    {
+    	GameObject[] winds = GameObject.FindGameObjectsWithTag("wind");
+    	foreach (GameObject win in winds)
+    	{
+    		Animator winAm = win.GetComponent<Animator>();
+    		winAm.SetFloat("windSpeed", windLevel);
+    	}
+    }
+
+    public void checkTextVis()
+    {
+    	if (TreasureList.Contains("humidity"))
+		{
+			Debug.Log("humidity!");
+			Humidity.gameObject.SetActive(true);
+	        updateText(Humidity, humidityLevel);
+		}
+
+		if (TreasureList.Contains("wind"))
+		{
+			Wind.gameObject.SetActive(true);
+	        updateText(Wind, windLevel);
+		}
     }
 
 	public static void GoToScene(int sceneNumber) {

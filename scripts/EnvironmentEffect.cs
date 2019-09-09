@@ -15,6 +15,9 @@ public class EnvironmentEffect : MonoBehaviour
     Vector3[] waterStartPoints;
     Vector2 vineSize;
 
+    bool firstWind = false;
+    bool windy = false;
+
     void Start()
     {
         vineSize = new Vector2(PersistentManager.Instance.vinePieceWidth, PersistentManager.Instance.vinePieceHeight);
@@ -78,7 +81,7 @@ public class EnvironmentEffect : MonoBehaviour
             {
                 if (childCount > PersistentManager.Instance.vineMinHeight)
                 {
-                    shrinkVine(pc, topVinePiece);
+                    shrinkVine(vin, pc, topVinePiece);
                 }
             }
         }
@@ -104,25 +107,58 @@ public class EnvironmentEffect : MonoBehaviour
         if(overlapper)
         {
             if (overlapper.CompareTag("wind"))
-            {   WindDirection wd = overlapper.gameObject.GetComponent(typeof(WindDirection)) as WindDirection;
-                newPos.x = newPos.x + (PersistentManager.Instance.windLevel * PersistentManager.Instance.vineWindAffect * wd.direction);
+            {
+                WindDirection wd = overlapper.gameObject.GetComponent(typeof(WindDirection)) as WindDirection;
+                if(wd.direction == 0)
+                {
+                    newPos.y = newPos.y + (PersistentManager.Instance.windLevel * PersistentManager.Instance.vineWindAffect);
+                }
+                else
+                {
+                    newPos.x = newPos.x + (PersistentManager.Instance.windLevel * PersistentManager.Instance.vineWindAffect * wd.direction);
+                }
+                if (firstWind == true)
+                {
+                    firstWind = false;
+                }
+                else
+                {
+                    vecArray = addFirstElement(vecArray, vecArray[vecArray.Length - 1]);
+                    VineActivity va = parentVine.GetComponent<VineActivity>();
+                    va.turningPoints.Push(vecArray.Length);
+                    firstWind = true;
+                }
+                windy = true;
             }
             else
             {
-                Debug.Log("overlapping with "+overlapper);
+                vecArray = windOff(vecArray);
                 return;
             }
         }
-        Instantiate(topVinePiece, newPos, parentVine.transform.rotation, parentVine.transform);
-        vecArray= addElement(vecArray, new Vector2(PersistentManager.Instance.vinePieceWidth / 2, topVinePiece.localPosition.y + PersistentManager.Instance.vinePieceHeight * 3/2));
-        vecArray= addElement(vecArray, new Vector2(-PersistentManager.Instance.vinePieceWidth / 2, topVinePiece.localPosition.y + PersistentManager.Instance.vinePieceHeight * 3/2));
+        else
+        {
+            vecArray = windOff(vecArray);
+        }
+        Transform newPiece = Instantiate(topVinePiece, newPos, parentVine.transform.rotation, parentVine.transform);
+        vecArray= addElement(vecArray, new Vector2(newPiece.localPosition.x + (PersistentManager.Instance.vinePieceWidth / 2), newPiece.localPosition.y + ( PersistentManager.Instance.vinePieceHeight/2)));
+        vecArray= addElement(vecArray, new Vector2(newPiece.localPosition.x - (PersistentManager.Instance.vinePieceWidth / 2), newPiece.localPosition.y + (PersistentManager.Instance.vinePieceHeight/2)));
         pc.SetPath(0, vecArray);
     }
-    void shrinkVine(PolygonCollider2D pc, Transform topVinePiece) {
+    void shrinkVine(GameObject parentVine, PolygonCollider2D pc, Transform topVinePiece) {
         Destroy(topVinePiece.gameObject);
-        Vector2[] vecArray = pc.GetPath(0);
-        Vector2[] vecArrayToo = removeLastElement(vecArray);
+
+        VineActivity va = parentVine.GetComponent<VineActivity>();
+        Vector2[] delArray = pc.GetPath(0);
+        Vector2[] vecArrayToo = removeLastElement(delArray);
         Vector2[] vecArrayFinal = removeLastElement(vecArrayToo);
+        if((va.turningPoints.Count > 0) && (vecArrayFinal.Length <= va.turningPoints.Peek()))
+        {
+            Vector2[] actualFinal = removeFirstElement(vecArrayFinal);
+            va.turningPoints.Pop();
+            pc.SetPath(0, actualFinal);
+            return;
+        }
         pc.SetPath(0, vecArrayFinal);
     }
 
@@ -148,6 +184,15 @@ public class EnvironmentEffect : MonoBehaviour
         waterStartTime= Time.time;
     }
 
+    Vector2[] windOff(Vector2[] vecArray)
+    {
+        if (windy == true)
+        {
+            vecArray = addFirstElement(vecArray, vecArray[vecArray.Length - 1]);
+            windy = false;
+        }
+        return vecArray;
+    }
 
 
     public T[] addElement<T>(T[] array, T element)
@@ -158,6 +203,15 @@ public class EnvironmentEffect : MonoBehaviour
         System.Array.Reverse(arr);
         return arr;
     }
+    public T[] addFirstElement<T>(T[] array, T element)
+    {
+        System.Array.Reverse(array);
+        var stack = new Stack<T>(array);
+        stack.Push(element);
+        T[] arr = stack.ToArray();
+        Debug.Log("added to bottom?");
+        return arr;
+    }
 
     public Vector2[] removeLastElement(Vector2[] array)
     {
@@ -166,5 +220,13 @@ public class EnvironmentEffect : MonoBehaviour
         Vector2[] arr = stack.ToArray();
         System.Array.Reverse(arr);
         return arr;
+    }
+    public Vector2[] removeFirstElement(Vector2[] array)
+    {
+        System.Array.Reverse(array);
+        var stack = new Stack<Vector2>(array);
+        stack.Pop();
+        Vector2[] arr = stack.ToArray();
+        return arr;   
     }
 }
