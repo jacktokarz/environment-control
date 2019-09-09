@@ -109,13 +109,9 @@ public class EnvironmentEffect : MonoBehaviour
             if (overlapper.CompareTag("wind"))
             {
                 WindDirection wd = overlapper.gameObject.GetComponent(typeof(WindDirection)) as WindDirection;
-                if(wd.direction == 0)
+                if(wd.direction != new Vector2(0,0))
                 {
-                    newPos.y = newPos.y + (PersistentManager.Instance.windLevel * PersistentManager.Instance.vineWindAffect);
-                }
-                else
-                {
-                    newPos.x = newPos.x + (PersistentManager.Instance.windLevel * PersistentManager.Instance.vineWindAffect * wd.direction);
+                    newPos = newPos + (PersistentManager.Instance.windLevel * PersistentManager.Instance.vineWindAffect * wd.direction);
                 }
                 if (firstWind == true)
                 {

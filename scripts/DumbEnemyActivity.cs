@@ -12,7 +12,7 @@ public class DumbEnemyActivity : MonoBehaviour
 	public bool canSee;
     void Start()
     {
-    	originalRotation = 180 - this.transform.rotation.eulerAngles.z;
+    	originalRotation = this.transform.rotation.eulerAngles.z > 180 ? this.transform.rotation.eulerAngles.z - 360 : this.transform.rotation.eulerAngles.z;
     	Debug.Log("first rot "+originalRotation);
         counter = (int)PersistentManager.Instance.dumbEnemyFireRate / 2;
         playerObject = GameObject.FindGameObjectWithTag("Player");
@@ -22,8 +22,9 @@ public class DumbEnemyActivity : MonoBehaviour
     {
         Vector3 vectorToTarget = playerObject.transform.position - this.transform.position;
 		float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg + 90;
-		Debug.Log("pre-clamp angle "+angle);
+		Debug.Log("angle is: "+angle);
 		float clampAngle = Mathf.Clamp(angle, originalRotation - 90, originalRotation + 90);
+		Debug.Log("clamp angle is: "+clampAngle);
 		if(clampAngle == angle)
 		{
 			RaycastHit2D hit = Physics2D.Raycast(transform.position, (playerObject.transform.position - this.transform.position).normalized, PersistentManager.Instance.dumbEnemyVision, PersistentManager.Instance.blocksProjectiles);

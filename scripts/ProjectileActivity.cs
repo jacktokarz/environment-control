@@ -22,8 +22,8 @@ public class ProjectileActivity : MonoBehaviour
     	{
     		Debug.Log("hitting wind");
     		WindDirection wd = coll.gameObject.GetComponent<WindDirection>();
-    		float xVal = wd.direction == 0 ? rigid.velocity.x : wd.direction + PersistentManager.Instance.windLevel;
-    		float yVal = wd.direction == 0 ? (int)transform.parent.transform.rotation.eulerAngles.z/90 + PersistentManager.Instance.windLevel : rigid.velocity.y;
+            float xVal = wd.direction.x == 0 ? rigid.velocity.x : wd.direction.x * PersistentManager.Instance.windLevel;
+    		float yVal = wd.direction.y == 0 ? rigid.velocity.y : wd.direction.y * PersistentManager.Instance.windLevel;
     		Vector3 blowing = new Vector3(xVal, yVal, 0);
     		rigid.velocity = Vector3.Lerp(rigid.velocity, blowing, 0.1f);
     		return;
