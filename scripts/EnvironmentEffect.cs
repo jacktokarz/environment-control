@@ -175,7 +175,7 @@ public class EnvironmentEffect : MonoBehaviour
         {
             waterStartPoints[i] = waterLines[i].transform.position;
             waterEndPoints[i].y += value * PersistentManager.Instance.waterChangeDistance;
-            Debug.Log("NEW end points: " + waterEndPoints[i].ToString());
+            //Debug.Log("NEW end points: " + waterEndPoints[i].ToString());
         }
         waterStartTime= Time.time;
     }
@@ -205,7 +205,7 @@ public class EnvironmentEffect : MonoBehaviour
         var stack = new Stack<T>(array);
         stack.Push(element);
         T[] arr = stack.ToArray();
-        Debug.Log("added to bottom?");
+        //Debug.Log("added to bottom?");
         return arr;
     }
 

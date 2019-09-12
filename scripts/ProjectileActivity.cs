@@ -17,10 +17,8 @@ public class ProjectileActivity : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D coll)
     {
-    	Debug.Log("hitting");
     	if(coll.gameObject.CompareTag("wind"))
     	{
-    		Debug.Log("hitting wind");
     		WindDirection wd = coll.gameObject.GetComponent<WindDirection>();
             float xVal = wd.direction.x == 0 ? rigid.velocity.x : wd.direction.x * PersistentManager.Instance.windLevel;
     		float yVal = wd.direction.y == 0 ? rigid.velocity.y : wd.direction.y * PersistentManager.Instance.windLevel;

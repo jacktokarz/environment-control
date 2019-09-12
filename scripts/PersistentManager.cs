@@ -96,9 +96,10 @@ public class PersistentManager : MonoBehaviour
         }
         return false;
     }
-    private void changeWindAnimation()
+    public void changeWindAnimation()
     {
     	GameObject[] winds = GameObject.FindGameObjectsWithTag("wind");
+        Debug.Log("setting wind anim level to "+windLevel);
     	foreach (GameObject win in winds)
     	{
     		Animator winAm = win.GetComponent<Animator>();
@@ -110,13 +111,14 @@ public class PersistentManager : MonoBehaviour
     {
     	if (TreasureList.Contains("humidity"))
 		{
-			Debug.Log("humidity!");
+			Debug.Log("has humidity!");
 			Humidity.gameObject.SetActive(true);
 	        updateText(Humidity, humidityLevel);
 		}
 
 		if (TreasureList.Contains("wind"))
 		{
+			Debug.Log("has wind!");
 			Wind.gameObject.SetActive(true);
 	        updateText(Wind, windLevel);
 		}

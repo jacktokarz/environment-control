@@ -10,7 +10,6 @@ public class WindDirection : MonoBehaviour
 	void Awake()
     {
     	float zRot = this.transform.parent.transform.rotation.eulerAngles.z;
-        Debug.Log("z rot is "+zRot);
     	if (zRot == 0)
     	{
     		direction = new Vector2(1, 0);

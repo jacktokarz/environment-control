@@ -9,7 +9,7 @@ public class GetWindRoom : MonoBehaviour
 
     void Start()
     {
-    	PersistentManager.Instance.changeWind(1);
+    	PersistentManager.Instance.changeWind(0);
     	PersistentManager.Instance.Wind.gameObject.SetActive(true);
     }
 

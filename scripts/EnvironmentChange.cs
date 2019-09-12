@@ -6,6 +6,10 @@ public class EnvironmentChange : MonoBehaviour
 {
     public EnvironmentEffect envEffect;
 
+    void Start()
+    {
+        PersistentManager.Instance.changeWindAnimation();
+    }
 
     void FixedUpdate()
     {
