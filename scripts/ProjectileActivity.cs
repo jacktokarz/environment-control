@@ -12,7 +12,9 @@ public class ProjectileActivity : MonoBehaviour
     {
     	playerObject = GameObject.FindGameObjectWithTag("Player"); 
 		rigid = this.GetComponent<Rigidbody2D>();
-		rigid.velocity = (playerObject.transform.position - this.transform.position).normalized * speed;
+
+        Vector3 randomOff = new Vector3(Random.Range(-1.5f, 1.5f), Random.Range(-1.5f, 1.5f));
+		rigid.velocity = (playerObject.transform.position - this.transform.position + randomOff).normalized * speed;
     }
 
     void OnTriggerStay2D(Collider2D coll)

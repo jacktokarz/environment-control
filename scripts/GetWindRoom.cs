@@ -6,9 +6,11 @@ public class GetWindRoom : MonoBehaviour
 {
 	private int changeDir = 1;
 	private int counter = 0;
+    private int state;
 
     void Start()
     {
+        state = 1;
     	PersistentManager.Instance.changeWind(0);
     	PersistentManager.Instance.Wind.gameObject.SetActive(true);
     }
@@ -17,7 +19,11 @@ public class GetWindRoom : MonoBehaviour
     void FixedUpdate()
     {
 		List<string> tl = PersistentManager.Instance.TreasureList;
-        if (!tl.Contains("wind"))
+        if (tl.Contains("wind")) {
+            state = 3;
+        }
+
+        if (state == 1)
         {
         	if (counter >= PersistentManager.Instance.getWindRoomChangeDelay)
         	{
@@ -34,5 +40,13 @@ public class GetWindRoom : MonoBehaviour
         		counter++;
         	}
         }        
+    }
+
+    void OnTriggerEnter2D(Collider2D coll) {
+        if(coll.gameObject.CompareTag("Player")) {
+            state = 2;
+
+            PersistentManager.Instance.changeWind(PersistentManager.Instance.maxWind - PersistentManager.Instance.windLevel);
+        }
     }
 }

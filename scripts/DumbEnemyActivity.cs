@@ -14,7 +14,8 @@ public class DumbEnemyActivity : MonoBehaviour
     {
     	originalRotation = this.transform.rotation.eulerAngles.z > 180 ? this.transform.rotation.eulerAngles.z - 360 : this.transform.rotation.eulerAngles.z;
     	//Debug.Log("first rot "+originalRotation);
-        counter = (int)PersistentManager.Instance.dumbEnemyFireRate / 2;
+        int rate = (int)PersistentManager.Instance.dumbEnemyFireRate;
+        counter = Random.Range(rate/8, rate*5/8);
         playerObject = GameObject.FindGameObjectWithTag("Player");
     }
 
