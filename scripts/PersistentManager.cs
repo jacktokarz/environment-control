@@ -72,14 +72,52 @@ public class PersistentManager : MonoBehaviour
 
     public bool changeWind(int value)
     {
+        Debug.Log("changing wind by "+value);
         if ((value<0)?(windLevel > minWind):(windLevel < maxWind))
         {
             windLevel+=value;
+<<<<<<< Updated upstream
+=======
+            changeWindAnimation();
+>>>>>>> Stashed changes
             updateText(Wind, windLevel);
         	return true;
         }
+        updateText(Wind, windLevel);
         return false;
     }
+<<<<<<< Updated upstream
+=======
+    public void changeWindAnimation()
+    {
+    	GameObject[] winds = GameObject.FindGameObjectsWithTag("wind");
+        Debug.Log("setting wind anim level to "+windLevel);
+    	foreach (GameObject win in winds)
+    	{
+    		Animator winAm = win.GetComponent<Animator>();
+    		winAm.SetFloat("windSpeed", windLevel);
+    	}
+    }
+
+    public void checkTextVis()
+    {
+    	if (TreasureList.Contains("humidity"))
+		{
+			Humidity.gameObject.SetActive(true);
+	        updateText(Humidity, humidityLevel);
+		}
+
+		if (TreasureList.Contains("wind"))
+		{
+			Wind.gameObject.SetActive(true);
+	        updateText(Wind, windLevel);
+		}
+    }
+
+	public static void GoToScene(int sceneNumber) {
+    	SceneManager.LoadScene(sceneNumber, LoadSceneMode.Single);
+    }
+>>>>>>> Stashed changes
 
     public void updateText(Text textObj, int value)
     {
