@@ -88,6 +88,7 @@ public class PersistentManager : MonoBehaviour
 
     public bool changeWind(int value)
     {
+        Debug.Log("changing wind by "+value);
         if ((value<0)?(windLevel > minWind):(windLevel < maxWind))
         {
             windLevel+=value;
@@ -95,6 +96,7 @@ public class PersistentManager : MonoBehaviour
             changeWindAnimation();
         	return true;
         }
+        updateText(Wind, windLevel);
         return false;
     }
     public void changeWindAnimation()
@@ -112,14 +114,12 @@ public class PersistentManager : MonoBehaviour
     {
     	if (TreasureList.Contains("humidity"))
 		{
-			Debug.Log("has humidity!");
 			Humidity.gameObject.SetActive(true);
 	        updateText(Humidity, humidityLevel);
 		}
 
 		if (TreasureList.Contains("wind"))
 		{
-			Debug.Log("has wind!");
 			Wind.gameObject.SetActive(true);
 	        updateText(Wind, windLevel);
 		}

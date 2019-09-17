@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GetWindRoom : MonoBehaviour
 {
@@ -10,8 +11,16 @@ public class GetWindRoom : MonoBehaviour
 
     void Start()
     {
-        state = 1;
-    	PersistentManager.Instance.changeWind(0);
+        state = (SceneManager.GetActiveScene().buildIndex == 5) ? 1 : 2;
+        if (state == 2) {
+            bool keepGoing = true;
+            while (keepGoing == true) {
+                keepGoing = PersistentManager.Instance.changeWind(1);
+            }
+        }
+        else {
+            PersistentManager.Instance.changeWind(0);
+        }
     	PersistentManager.Instance.Wind.gameObject.SetActive(true);
     }
 
@@ -40,13 +49,5 @@ public class GetWindRoom : MonoBehaviour
         		counter++;
         	}
         }        
-    }
-
-    void OnTriggerEnter2D(Collider2D coll) {
-        if(coll.gameObject.CompareTag("Player")) {
-            state = 2;
-
-            PersistentManager.Instance.changeWind(PersistentManager.Instance.maxWind - PersistentManager.Instance.windLevel);
-        }
     }
 }
