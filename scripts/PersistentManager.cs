@@ -53,6 +53,7 @@ public class PersistentManager : MonoBehaviour
 	//[HideInInspector] 
 	public List<string> TreasureList = new List<string>();
 	public List<int> Checkpoints = new List<int>();
+    public List<int> Collectibles = new List<int>();
 
 
 	private void Awake()

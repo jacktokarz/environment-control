@@ -23,9 +23,14 @@ public class CheckpointActivity : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-    	if(col.CompareTag("Player") && !alreadyChecked)
+    	if(col.CompareTag("Player"))
     	{
-    		activateCheckpoint();
+            if (!alreadyChecked) {
+        		activateCheckpoint();
+            }
+            else {
+                setCheckpoint();
+            }
     	}
     }
 
@@ -37,6 +42,11 @@ public class CheckpointActivity : MonoBehaviour
 		bool saved = PersistentManager.Instance.Save();
 		Debug.Log("saved ? "+saved);
 		alreadyChecked = true;
+    }
+
+    void setCheckpoint() {
+        PersistentManager.Instance.lastCheckpoint = SceneManager.GetActiveScene().buildIndex;
+        bool saved = PersistentManager.Instance.Save();
     }
 
 }
