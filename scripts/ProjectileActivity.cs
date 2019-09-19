@@ -19,7 +19,7 @@ public class ProjectileActivity : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D coll)
     {
-    	if(coll.gameObject.CompareTag("wind"))
+    	if(coll.gameObject.CompareTag("wind") && PersistentManager.Instance.windLevel > 0)
     	{
     		WindDirection wd = coll.gameObject.GetComponent<WindDirection>();
             float xVal = wd.direction.x == 0 ? rigid.velocity.x : wd.direction.x * PersistentManager.Instance.windLevel;

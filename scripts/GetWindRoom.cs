@@ -13,10 +13,7 @@ public class GetWindRoom : MonoBehaviour
     {
         state = (SceneManager.GetActiveScene().buildIndex == 5) ? 1 : 2;
         if (state == 2) {
-            bool keepGoing = true;
-            while (keepGoing == true) {
-                keepGoing = PersistentManager.Instance.changeWind(1);
-            }
+            PersistentManager.Instance.setWind(3);
         }
         else {
             PersistentManager.Instance.changeWind(0);
@@ -27,8 +24,7 @@ public class GetWindRoom : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-		List<string> tl = PersistentManager.Instance.TreasureList;
-        if (tl.Contains("wind")) {
+        if (PersistentManager.Instance.TreasureList.Contains("wind")) {
             state = 3;
         }
 

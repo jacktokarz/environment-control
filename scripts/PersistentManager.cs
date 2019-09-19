@@ -85,6 +85,11 @@ public class PersistentManager : MonoBehaviour
         }
         return false;
     }
+    public void setHumidity(int value)
+    {
+        humidityLevel = value;
+        updateText(Humidity, humidityLevel);
+    }
 
     public bool changeWind(int value)
     {
@@ -98,6 +103,12 @@ public class PersistentManager : MonoBehaviour
         }
         updateText(Wind, windLevel);
         return false;
+    }
+    public void setWind (int value)
+    {
+        windLevel = value;
+        updateText(Wind, windLevel);
+        changeWindAnimation();
     }
     public void changeWindAnimation()
     {
