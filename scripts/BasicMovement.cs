@@ -10,19 +10,26 @@ public class BasicMovement : MonoBehaviour
 
     public float topHSpeed;
     public float climbSpeed;
+    public float maxJumpForce;
+    public float decayRate;
     
     public Transform gripCheck;
     public Transform groundCheck;
     public float gripCheckRadius;
+    public float groundCheckRadius;
     public LayerMask whatIsGrippable;
     public LayerMask whatIsDeadly;
     public LayerMask whatIsPlatform;
-
+    [SerializeField] public LayerMask whatIsGround;
+    
+    
     float defaultGravity;
     float h;
     float v;
-    bool gripping;
-    bool jumping = false;
+    float jumpForce;
+    private bool gripping;
+    private bool grounded;
+    private bool jumping = false;
 
     Rigidbody2D rigid;
 
@@ -83,9 +90,20 @@ public class BasicMovement : MonoBehaviour
             v = 0;
         }
 
-        if (Input.GetButtonDown("Jump"))
+        checkGrounded();
+
+        if (Input.GetButtonDown("Jump") && grounded)
+        {
+            jumpForce = maxJumpForce;
+        }
+        
+        if (Input.GetButton("Jump") && (jumpForce > 0.05f))
         {
             jumping = true;
+        }
+        else
+        {
+            jumping = false;
         }
             //if on a lily pad, add that velocity too
         Collider2D platCollider = Physics2D.OverlapCircle(groundCheck.position, 0.1f, whatIsPlatform);
@@ -98,20 +116,6 @@ public class BasicMovement : MonoBehaviour
             }
         }
 
-    }
-
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        Collider2D[] deadlyColliders = Physics2D.OverlapCircleAll(gripCheck.position, gripCheckRadius, whatIsDeadly);
-        for (int i = 0; i < deadlyColliders.Length; i++)
-        {
-            if (deadlyColliders[i].gameObject != gameObject)
-            {
-                death();
-            }
-        }
-
         bool canGrip= false;
         Collider2D[] grippableColliders = Physics2D.OverlapCircleAll(gripCheck.position, gripCheckRadius, whatIsGrippable);
         for (int i = 0; i < grippableColliders.Length; i++)
@@ -121,36 +125,114 @@ public class BasicMovement : MonoBehaviour
                 canGrip= true;
             }
         }
+            // if they can grip
         if(canGrip) {
-            if (Input.GetButton("Grip"))
+                // and press the button, they do it
+            if (Input.GetButtonDown("Grip"))
             {
                 if (gripping == false)
-                {
+                {   // which makes them stop moving
+                    Debug.Log("STOP!");
                     rigid.velocity = new Vector2(0, 0);
+                    gripOn();
+                }   
+                else
+                {       // if they were already gripping, they let go now.
+                    gripOff();
                 }
-                gripOn();
             }
         }
-        else {
-            if(gripping) {
-                gripOff();
-            }
-        }
+    }
 
-        if (gripping && !jumping)
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        checkDeath();
+
+        checkMove();
+
+        checkJump();
+    }
+
+    void checkDeath()
+    {
+        Collider2D[] deadlyColliders = Physics2D.OverlapCircleAll(gripCheck.position, gripCheckRadius, whatIsDeadly);
+        for (int i = 0; i < deadlyColliders.Length; i++)
+        {
+            if (deadlyColliders[i].gameObject != gameObject)
+            {
+                death();
+            }
+        }
+    }
+
+    void checkGrounded()
+    {
+        bool wasGrounded = grounded;
+        grounded = false;
+
+        // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
+        // This can be done using layers instead but Sample Assets will not overwrite your project settings.
+        Collider2D[] groundColls = Physics2D.OverlapCircleAll(groundCheck.position, groundCheckRadius, whatIsGround);
+        for (int i = 0; i < groundColls.Length; i++)
+        {
+            if (groundColls[i].gameObject != gameObject)
+            {
+                grounded = true;
+                // if (!wasGrounded)
+                // {
+                //     OnLandEvent.Invoke();
+                // }
+            }
+        }
+    }
+
+    void checkJump()
+    {
+        if(jumping)
+        {
+            Debug.Log("jumping");
+            bm.VerticalMove(jumpForce * Time.fixedDeltaTime);
+            jumpForce = jumpForce - decayRate * Time.fixedDeltaTime;
+            gripOff();
+        }
+        else
+        {
+            jumping = false;
+        }
+    }
+
+    void checkMove()
+    {
+        bool moveH = true;
+        bool moveY = false;
+        if (gripping)
+        {
+            moveY = true;
+            Vector3 newHPos = gripCheck.position + bm.predictMove(new Vector3(h * Time.fixedDeltaTime, 0));
+            Collider2D[] grippableColliders = Physics2D.OverlapCircleAll(newHPos, gripCheckRadius, whatIsGrippable);
+            //Debug.Log("grippable colls 1 - "+grippableColliders.Length);
+            if (grippableColliders.Length == 0)
+            {
+                rigid.velocity = new Vector2(0, rigid.velocity.y);
+                moveH = false;        
+            }
+            Vector3 newYPos = gripCheck.position + bm.predictMove(new Vector3(0, v * Time.fixedDeltaTime));
+            grippableColliders = Physics2D.OverlapCircleAll(newYPos, gripCheckRadius, whatIsGrippable);
+            //Debug.Log("grippable colls 2 - "+grippableColliders.Length);
+            if (grippableColliders.Length == 0)
+            {
+                rigid.velocity = new Vector2(rigid.velocity.x, 0);
+                moveY = false;
+            }            
+        }
+        if (moveH)
+        {
+            bm.Move(h * Time.fixedDeltaTime);
+        }
+        if (moveY)
         {
             bm.VerticalMove(v * Time.fixedDeltaTime);
-        }
-        bm.Move(h * Time.fixedDeltaTime);
-
-        if(jumping) {
-            Debug.Log("gripping? "+gripping);
-            bool jumped= bm.Jump(gripping);
-            Debug.Log("so they jumped? "+jumped);
-            if (jumped) {
-                gripOff();
-            }
-            jumping = false;
         }
     }
 

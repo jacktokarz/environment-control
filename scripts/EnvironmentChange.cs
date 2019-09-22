@@ -11,7 +11,7 @@ public class EnvironmentChange : MonoBehaviour
         PersistentManager.Instance.changeWindAnimation();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         List<string> tl = PersistentManager.Instance.TreasureList;
         if (tl.Contains("humidity") && Input.GetKey("1"))

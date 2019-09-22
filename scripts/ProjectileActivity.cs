@@ -32,7 +32,9 @@ public class ProjectileActivity : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-		Destroy(this.gameObject);
+        if(coll.gameObject != playerObject) {
+    		Destroy(this.gameObject);
+        }
     }
 
  }
