@@ -4,14 +4,13 @@ using System.Collections.Generic;
 
 public class EnvironmentChange : MonoBehaviour
 {
-    public EnvironmentEffect envEffect;
-
-    void Start()
+    
+    private void Start()
     {
         PersistentManager.Instance.changeWindAnimation();
     }
 
-    void Update()
+    private void Update()
     {
         List<string> tl = PersistentManager.Instance.TreasureList;
         if (tl.Contains("humidity") && Input.GetKey("1"))
@@ -20,14 +19,14 @@ public class EnvironmentChange : MonoBehaviour
             {
                 if (PersistentManager.Instance.changeHumidity(1))
                 {
-                    envEffect.humidityChange(1);
+                    EnvironmentEffect.Instance.humidityChange(1);
                 }
             }
             else if (Input.GetKeyDown("down"))
             {
                 if (PersistentManager.Instance.changeHumidity(-1))
                 {
-                    envEffect.humidityChange(-1);
+                    EnvironmentEffect.Instance.humidityChange(-1);
                 }
             }
         }
@@ -42,7 +41,16 @@ public class EnvironmentChange : MonoBehaviour
                 PersistentManager.Instance.changeWind(-1);
             }
         }
+        if (tl.Contains("temperature") && Input.GetKey("3"))
+        {
+            if (Input.GetKeyDown("up"))
+            {
+                EnvironmentEffect.Instance.setTemp(PersistentManager.Instance.tempLevel + 1);
+            }
+            else if (Input.GetKeyDown("down"))
+            {
+                EnvironmentEffect.Instance.setTemp(PersistentManager.Instance.tempLevel - 1);
+            }
+        }
     }
-
-
 }

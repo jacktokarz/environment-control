@@ -13,6 +13,7 @@ public class PersistentManager : MonoBehaviour
 		//UI
     public Text Humidity;
     public Text Wind;
+    public Text Temperature;
     public GameObject Message;
     	//humidity
     public int maxHumidity;
@@ -20,6 +21,9 @@ public class PersistentManager : MonoBehaviour
     	//wind
     public int maxWind;
     public int minWind;
+        // temp
+    public int maxTemp;
+    public int minTemp;
     	//get wind room
     public int getWindRoomChangeDelay;
 		//vines
@@ -47,6 +51,7 @@ public class PersistentManager : MonoBehaviour
 		//changes in gameplay
 	public int windLevel;
 	public int humidityLevel;
+    public int tempLevel;
 	public string lastDoorId;
 	public int lastCheckpoint;
 
@@ -134,6 +139,12 @@ public class PersistentManager : MonoBehaviour
 			Wind.gameObject.SetActive(true);
 	        updateText(Wind, windLevel);
 		}
+
+        if (TreasureList.Contains("temperature"))
+        {
+            Temperature.gameObject.SetActive(true);
+            updateText(Temperature, tempLevel);
+        }
     }
 
 	public static void GoToScene(int sceneNumber) {

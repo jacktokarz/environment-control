@@ -5,13 +5,12 @@ using System;
 public class BasicMovement : MonoBehaviour
 {
     public BrackeysMovement bm;
-    public EnvironmentChange envChange;
     public Vector3 spawnPoint;
 
-    public float topHSpeed;
+    public float defaultTopSpeed;
     public float climbSpeed;
     public float maxJumpForce;
-    public float decayRate;
+    public float defaultDecay;
     
     public Transform gripCheck;
     public Transform groundCheck;
@@ -23,6 +22,14 @@ public class BasicMovement : MonoBehaviour
     [SerializeField] public LayerMask whatIsGround;
     
     
+    public float topHSpeed;
+    public float decayRate;
+    
+    float coolTopSpeed;
+    float coldTopSpeed;
+    float coolDecay;
+    float coldDecay;
+
     float defaultGravity;
     float h;
     float v;
@@ -36,6 +43,12 @@ public class BasicMovement : MonoBehaviour
 
     void Start()
     {
+        coolDecay = defaultDecay * 1.15f;
+        coldDecay = defaultDecay * 1.35f;
+        coolTopSpeed = defaultTopSpeed * 0.85f;
+        coldTopSpeed = defaultTopSpeed * 0.65f;
+        changePlayerStats();
+
         rigid = GetComponent<Rigidbody2D>();
         defaultGravity = rigid.gravityScale;
 
@@ -92,7 +105,7 @@ public class BasicMovement : MonoBehaviour
 
         checkGrounded();
 
-        if (Input.GetButtonDown("Jump") && grounded)
+        if (Input.GetButtonDown("Jump") && (grounded || gripping))
         {
             jumpForce = maxJumpForce;
         }
@@ -131,9 +144,7 @@ public class BasicMovement : MonoBehaviour
             if (Input.GetButtonDown("Grip"))
             {
                 if (gripping == false)
-                {   // which makes them stop moving
-                    Debug.Log("STOP!");
-                    rigid.velocity = new Vector2(0, 0);
+                {
                     gripOn();
                 }   
                 else
@@ -147,22 +158,30 @@ public class BasicMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        checkDeath();
+        //checkDeath();
 
         checkMove();
 
         checkJump();
     }
 
-    void checkDeath()
+    // void checkDeath()
+    // {
+    //     Collider2D[] deadlyColliders = Physics2D.OverlapCircleAll(gripCheck.position, gripCheckRadius, whatIsDeadly);
+    //     for (int i = 0; i < deadlyColliders.Length; i++)
+    //     {
+    //         if (deadlyColliders[i].gameObject != gameObject)
+    //         {
+    //             death();
+    //         }
+    //     }
+    // }
+
+    void OnCollisionEnter2D(Collision2D coll)
     {
-        Collider2D[] deadlyColliders = Physics2D.OverlapCircleAll(gripCheck.position, gripCheckRadius, whatIsDeadly);
-        for (int i = 0; i < deadlyColliders.Length; i++)
+        if((whatIsDeadly.value & 1<<coll.gameObject.layer) != 0)
         {
-            if (deadlyColliders[i].gameObject != gameObject)
-            {
-                death();
-            }
+            death();
         }
     }
 
@@ -191,10 +210,12 @@ public class BasicMovement : MonoBehaviour
     {
         if(jumping)
         {
-            Debug.Log("jumping");
             bm.VerticalMove(jumpForce * Time.fixedDeltaTime);
             jumpForce = jumpForce - decayRate * Time.fixedDeltaTime;
-            gripOff();
+            if(gripping)
+            {
+                gripOff();
+            }
         }
         else
         {
@@ -243,13 +264,18 @@ public class BasicMovement : MonoBehaviour
 
     void gripOff()
     {
+        Debug.Log("Let go");
         gripping = false;
         rigid.gravityScale = defaultGravity;
     }
     void gripOn()
     {
+        Debug.Log("grab");
         gripping = true;
-        rigid.gravityScale = 0f;
+        rigid.gravityScale = 0f;                    
+        rigid.velocity = new Vector2(0, 0);
+        jumping = false;
+        jumpForce = 0;
     }
 
     void checkFlip()
@@ -264,6 +290,26 @@ public class BasicMovement : MonoBehaviour
         {
             // ... flip the player.
             bm.Flip();
+        }
+    }
+
+    public void changePlayerStats()
+    {
+        int currTemp = PersistentManager.Instance.tempLevel;
+        if(currTemp == -2)
+        {
+            topHSpeed = coldTopSpeed;
+            decayRate = coldDecay;
+        }
+        else if(currTemp == -1)
+        {
+            topHSpeed = coolTopSpeed;
+            decayRate = coolDecay;
+        }
+        else
+        {
+            topHSpeed = defaultTopSpeed;
+            decayRate = defaultDecay;
         }
     }
 
