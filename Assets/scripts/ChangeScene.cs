@@ -11,12 +11,6 @@ public class ChangeScene : MonoBehaviour
 			OpenDoor od = this.GetComponentInParent<OpenDoor>();
 			PersistentManager.Instance.lastDoorId = od.doorId;
 			PersistentManager.GoToScene(OtherSideOfDoor);
-			// if (PersistentManager.Instance.TreasureList.Contains("humidity")) {
-			// 	PersistentManager.Instance.setHumidity(0);
-			// }
-			// if (PersistentManager.Instance.TreasureList.Contains("wind")) {
-			// 	PersistentManager.Instance.setWind(0);
-			// }
 		}
 	}
 }

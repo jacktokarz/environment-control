@@ -13,10 +13,10 @@ public class GetWindRoom : MonoBehaviour
     {
         state = (SceneManager.GetActiveScene().buildIndex == 5) ? 1 : 2;
         if (state == 2) {
-            PersistentManager.Instance.setWind(3);
+            EnvironmentEffect.Instance.setWind(3);
         }
         else {
-            PersistentManager.Instance.changeWind(0);
+            EnvironmentEffect.Instance.setWind(0);
         }
     	PersistentManager.Instance.Wind.gameObject.SetActive(true);
     }
@@ -32,12 +32,8 @@ public class GetWindRoom : MonoBehaviour
         {
         	if (counter >= PersistentManager.Instance.getWindRoomChangeDelay)
         	{
-	        	bool changed = PersistentManager.Instance.changeWind(changeDir);
-	        	if (changed == false)
-	        	{
-	        		changeDir = changeDir * -1;
-	        		PersistentManager.Instance.changeWind(changeDir);
-	        	}
+	        	changeDir = ((PersistentManager.Instance.windLevel == PersistentManager.Instance.maxWind) || (PersistentManager.Instance.windLevel == PersistentManager.Instance.maxWind)) ? changeDir * -1 : changeDir;
+                EnvironmentEffect.Instance.setWind(PersistentManager.Instance.windLevel + changeDir);
 	        	counter = 0;
         	}
         	else

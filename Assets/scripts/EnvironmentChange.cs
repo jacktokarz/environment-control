@@ -7,7 +7,6 @@ public class EnvironmentChange : MonoBehaviour
     
     private void Start()
     {
-        PersistentManager.Instance.changeWindAnimation();
     }
 
     private void Update()
@@ -17,28 +16,22 @@ public class EnvironmentChange : MonoBehaviour
         {
             if (Input.GetKeyDown("up"))
             {
-                if (PersistentManager.Instance.changeHumidity(1))
-                {
-                    EnvironmentEffect.Instance.humidityChange(1);
-                }
+                EnvironmentEffect.Instance.setHumidity(PersistentManager.Instance.humidityLevel + 1);
             }
             else if (Input.GetKeyDown("down"))
             {
-                if (PersistentManager.Instance.changeHumidity(-1))
-                {
-                    EnvironmentEffect.Instance.humidityChange(-1);
-                }
+                EnvironmentEffect.Instance.setHumidity(PersistentManager.Instance.humidityLevel - 1);
             }
         }
         if (tl.Contains("wind") && Input.GetKey("2"))
         {
             if (Input.GetKeyDown("up"))
             {
-                PersistentManager.Instance.changeWind(1);
+                EnvironmentEffect.Instance.setWind(PersistentManager.Instance.windLevel + 1);
             }
             else if (Input.GetKeyDown("down"))
             {
-                PersistentManager.Instance.changeWind(-1);
+                EnvironmentEffect.Instance.setWind(PersistentManager.Instance.windLevel - 1);
             }
         }
         if (tl.Contains("temperature") && Input.GetKey("3"))

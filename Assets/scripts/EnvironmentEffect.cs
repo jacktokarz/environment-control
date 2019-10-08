@@ -15,12 +15,13 @@ public class EnvironmentEffect : MonoBehaviour
     GameObject[] vines;
     GameObject[] waterLines;
     GameObject[] bushes;
+    GameObject[] winds;
+    GameObject[] fronds;
+    GameObject[] mosses;
     Vector3[] waterEndPoints;
     Vector3[] waterStartPoints;
+    Vector3[] waterOriginalPoints;
     Vector2 vineSize;
-
-    bool firstWind = false;
-    bool windy = false;
 
     public LayerMask playerLayer;
 
@@ -34,43 +35,49 @@ public class EnvironmentEffect : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
     }
     private void Start()
     {
         BasMov = GameObject.FindGameObjectWithTag("Player").GetComponent<BasicMovement>();
         playerLayer = LayerMask.GetMask("Player");
-        vineSize = new Vector2(PersistentManager.Instance.vinePieceWidth, PersistentManager.Instance.vinePieceHeight);
-
         vines = GameObject.FindGameObjectsWithTag("vine");
-        waterLines = GameObject.FindGameObjectsWithTag("waterLine");
+        vineSize = new Vector2(PersistentManager.Instance.vinePieceWidth, PersistentManager.Instance.vinePieceHeight);
         bushes = GameObject.FindGameObjectsWithTag("bush");
+        winds = GameObject.FindGameObjectsWithTag("wind");
+        fronds = GameObject.FindGameObjectsWithTag("frond");
+        mosses = GameObject.FindGameObjectsWithTag("moss");
+        waterLines = GameObject.FindGameObjectsWithTag("waterLine");
         if (waterLines.Length > 0)
         {
             Debug.Log("water lines length: "+waterLines.Length);
             waterEndPoints = new Vector3[waterLines.Length];
             waterStartPoints = new Vector3[waterLines.Length];
+            waterOriginalPoints = new Vector3[waterLines.Length];
             for (int i = 0; i < waterLines.Length; i++) {
                 waterEndPoints[i]= waterLines[i].transform.position;
                 waterStartPoints[i]= waterLines[i].transform.position;
+                waterOriginalPoints[i] = waterLines[i].transform.position;
             }
             if (PersistentManager.Instance.humidityLevel != 0)
             {
                 changeWaterLevel(PersistentManager.Instance.humidityLevel);
             }
         }
+
+        RoomValues rv = this.GetComponent<RoomValues>();
+        rv.setInitialValues();
         updateVineGrowWait();
+        changeWindAnimation();
     }
 
     private void FixedUpdate()
     {
-        if (PersistentManager.Instance.humidityLevel != 0)
+        vineCounter++;
+        if (vineCounter >= vineGrowWait)
         {
-            vineCounter++;
-            if (vineCounter >= vineGrowWait)
-            {
-                checkVines();
-                vineCounter = 0f;
-            }
+            checkVines();
+            vineCounter = 0f;
         }
         for (int i= 0; i< waterLines.Length; i++)
         {
@@ -84,10 +91,20 @@ public class EnvironmentEffect : MonoBehaviour
         }
     }
 
-    public void humidityChange(int value)
+
+    public bool setHumidity(int value)
     {
-        updateVineGrowWait();
-        changeWaterLevel(value);
+        Debug.Log("trying to set humidity to "+value);
+        if ((value>=PersistentManager.Instance.minHumidity) && (value<=PersistentManager.Instance.maxHumidity))
+        {
+            PersistentManager.Instance.humidityLevel = value;
+            updateVineGrowWait();
+            changeWaterLevel(value);
+            changeFrondWidth();
+            PersistentManager.Instance.updateText(PersistentManager.Instance.Humidity, value);
+            return true;
+        }
+        return false;
     }
 
 
@@ -96,26 +113,24 @@ public class EnvironmentEffect : MonoBehaviour
         {
             int childCount = vin.transform.childCount;
             Transform topVinePiece = vin.transform.GetChild(childCount - 1);
-            PolygonCollider2D pc = vin.GetComponent(typeof(PolygonCollider2D)) as PolygonCollider2D;
             if (PersistentManager.Instance.humidityLevel > 0)
             {
-                if (childCount < PersistentManager.Instance.vineMaxHeight)
+                if (childCount < PersistentManager.Instance.vineMaxHeight && PersistentManager.Instance.tempLevel < 2)
                 {
-                    growVine(vin, pc, topVinePiece);
+                    growVine(vin, topVinePiece);
                 }
             }
-            else
+            if (PersistentManager.Instance.humidityLevel < 0 || PersistentManager.Instance.tempLevel == 2)
             {
                 if (childCount > PersistentManager.Instance.vineMinHeight)
                 {
-                    shrinkVine(vin, pc, topVinePiece);
+                    shrinkVine(topVinePiece);
                 }
             }
         }
     }
 
-    void growVine(GameObject parentVine, PolygonCollider2D pc, Transform topVinePiece) {
-        Vector2[] vecArray = pc.GetPath(0);
+    void growVine(GameObject parentVine, Transform topVinePiece) {
         Vector2 newPos = new Vector2();
         float zRot = parentVine.transform.rotation.eulerAngles.z;
         if (zRot == 90) {
@@ -140,54 +155,19 @@ public class EnvironmentEffect : MonoBehaviour
                 {
                     newPos = newPos + (PersistentManager.Instance.windLevel * PersistentManager.Instance.vineWindAffect * wd.direction);
                 }
-                if (firstWind == true)
-                {
-                    firstWind = false;
-                }
-                else
-                {
-                    vecArray = addFirstElement(vecArray, vecArray[vecArray.Length - 1]);
-                    VineActivity va = parentVine.GetComponent<VineActivity>();
-                    va.turningPoints.Push(vecArray.Length);
-                    firstWind = true;
-                }
-                windy = true;
             }
-            else
-            {
-                vecArray = windOff(vecArray);
-                return;
-            }
-        }
-        else
-        {
-            vecArray = windOff(vecArray);
         }
         Transform newPiece = Instantiate(topVinePiece, newPos, parentVine.transform.rotation, parentVine.transform);
-        vecArray= addElement(vecArray, new Vector2(newPiece.localPosition.x + (PersistentManager.Instance.vinePieceWidth / 2), newPiece.localPosition.y + ( PersistentManager.Instance.vinePieceHeight/2)));
-        vecArray= addElement(vecArray, new Vector2(newPiece.localPosition.x - (PersistentManager.Instance.vinePieceWidth / 2), newPiece.localPosition.y + (PersistentManager.Instance.vinePieceHeight/2)));
-        pc.SetPath(0, vecArray);
     }
-    void shrinkVine(GameObject parentVine, PolygonCollider2D pc, Transform topVinePiece) {
+    void shrinkVine(Transform topVinePiece) {
         Destroy(topVinePiece.gameObject);
-
-        VineActivity va = parentVine.GetComponent<VineActivity>();
-        Vector2[] delArray = pc.GetPath(0);
-        Vector2[] vecArrayToo = removeLastElement(delArray);
-        Vector2[] vecArrayFinal = removeLastElement(vecArrayToo);
-        if((va.turningPoints.Count > 0) && (vecArrayFinal.Length <= va.turningPoints.Peek()))
-        {
-            Vector2[] actualFinal = removeFirstElement(vecArrayFinal);
-            va.turningPoints.Pop();
-            pc.SetPath(0, actualFinal);
-            return;
-        }
-        pc.SetPath(0, vecArrayFinal);
     }
 
     void updateVineGrowWait()
     {
-        vineGrowWait= PersistentManager.Instance.humidityLevel == 0 ? 0f : Mathf.Abs(PersistentManager.Instance.vineGrowDefaultSpeed / (PersistentManager.Instance.humidityLevel));
+        int hum = PersistentManager.Instance.humidityLevel;
+        int dividend = ((hum == 0 || (PersistentManager.Instance.tempLevel == 2 && hum > -2)) ? 1 : Mathf.Abs(hum));
+        vineGrowWait= PersistentManager.Instance.vineGrowDefaultSpeed / dividend;
     }
 
     void changeWaterLevel(int value)
@@ -195,21 +175,45 @@ public class EnvironmentEffect : MonoBehaviour
         for (int i = 0; i < waterLines.Length; i++)
         {
             waterStartPoints[i] = waterLines[i].transform.position;
-            waterEndPoints[i].y += value * PersistentManager.Instance.waterChangeDistance;
+            waterEndPoints[i].y = value * PersistentManager.Instance.waterChangeDistance + waterOriginalPoints[i].y;
             //Debug.Log("NEW end points: " + waterEndPoints[i].ToString());
         }
         waterStartTime= Time.time;
     }
 
-    Vector2[] windOff(Vector2[] vecArray)
+    void changeFrondWidth()
     {
-        if (windy == true)
+        foreach (GameObject frond in fronds)
         {
-            vecArray = addFirstElement(vecArray, vecArray[vecArray.Length - 1]);
-            windy = false;
+            frond.transform.localScale = new Vector3(PersistentManager.Instance.humidityLevel * 0.4f + 2.7f, frond.transform.localScale.y, 0);
         }
-        return vecArray;
     }
+
+
+
+    public bool setWind(int value)
+    {
+        Debug.Log("changing wind by "+value);
+        if ((value >= PersistentManager.Instance.minWind) && (value <= PersistentManager.Instance.maxWind))
+        {
+            PersistentManager.Instance.windLevel = value;
+            PersistentManager.Instance.updateText(PersistentManager.Instance.Wind, value);
+            changeWindAnimation();
+            return true;
+        }
+        return false;
+    }
+
+    public void changeWindAnimation()
+    {
+        foreach (GameObject win in winds)
+        {
+            Animator winAm = win.GetComponent<Animator>();
+            winAm.SetFloat("windSpeed", PersistentManager.Instance.windLevel);
+        }
+    }
+
+
 
 
     public void setTemp(int value)
@@ -221,19 +225,27 @@ public class EnvironmentEffect : MonoBehaviour
                 PersistentManager.Instance.tempLevel = value;
                 PersistentManager.Instance.updateText(PersistentManager.Instance.Temperature, PersistentManager.Instance.tempLevel);
 
-                if(PersistentManager.Instance.tempLevel == 2)
+                if(value >= 0)
                 {
+                    thawBushes();
+                    BasMov.changePlayerStats();
+                }
+                else if(value == -1)
+                {
+                    //thawBushes();
+                    BasMov.changePlayerStats();
+                }
+
+                if(value == 2)
+                {
+                    updateVineGrowWait();
                     //burnBushes();
                 }
-                else if(PersistentManager.Instance.tempLevel == 0)
+                if (value > -2)
                 {
-                    thawBushes();
-                    BasMov.changePlayerStats();
-                }
-                else if(PersistentManager.Instance.tempLevel == -1)
-                {
-                    thawBushes();
-                    BasMov.changePlayerStats();
+                    thawWater();
+                    thawVines();
+                    thawMoss();
                 }
             }
         }
@@ -243,9 +255,12 @@ public class EnvironmentEffect : MonoBehaviour
             {
                 PersistentManager.Instance.tempLevel = value;
                 PersistentManager.Instance.updateText(PersistentManager.Instance.Temperature, PersistentManager.Instance.tempLevel);
+
                 if(PersistentManager.Instance.tempLevel == -2)
                 {
-                    freezeBushes();
+                    freezeVines();
+                    freezeMoss();
+                    freezeWater();
                     BasMov.changePlayerStats();
                 }
                 else if(PersistentManager.Instance.tempLevel == -1)
@@ -254,7 +269,13 @@ public class EnvironmentEffect : MonoBehaviour
                 }
                 else if(PersistentManager.Instance.tempLevel == 1)
                 {
+                    updateVineGrowWait();
                     //extinguishBushes();
+                }
+
+                if(PersistentManager.Instance.tempLevel < 0)
+                {
+                    freezeBushes();
                 }
             }
         }
@@ -299,6 +320,123 @@ public class EnvironmentEffect : MonoBehaviour
             bush.layer = LayerMask.NameToLayer("Grounding");
         }
     }
+
+    void freezeMoss()
+    {
+        foreach (GameObject moss in mosses)
+        {
+            changeChildCollider(moss.transform, false);
+        }
+    }
+    void thawMoss()
+    {
+        foreach (GameObject moss in mosses)
+        {
+            changeChildCollider(moss.transform, true);
+        }
+    }
+    void freezeVines()
+    {
+        foreach (GameObject vine in vines)
+        {
+            changeChildLayer(vine.transform, "Grounding");
+            changeChildCollider(vine.transform, false);
+        }
+    }
+    void thawVines()
+    {
+        foreach (GameObject vine in vines)
+        {
+            changeChildLayer(vine.transform, "Grippable");
+            changeChildCollider(vine.transform, true);
+        }
+    }
+    void freezeWater()
+    {
+        foreach (GameObject line in waterLines)
+        {
+            //stop lily pads somehow
+            changeChildLayer(line.transform, "Grounding");
+        }
+    }
+    void thawWater()
+    {
+        foreach (GameObject line in waterLines)
+        {
+            if (PersistentManager.Instance.toxicLevel >= 2)
+            {
+                changeChildLayer(line.transform, "Deadly");
+            }
+            else
+            {
+                changeChildLayer(line.transform, "Ignore-Player");
+            }
+        }
+    }
+
+    void changeChildLayer(Transform trans, string change)
+     {
+         if (trans.childCount > 0 )
+         {
+             foreach(Transform child in trans)
+             {            
+                 changeChildLayer(child, change);
+             }
+         }
+         else {
+            Debug.Log("changing "+change);
+             trans.gameObject.layer = LayerMask.NameToLayer(change);
+         }
+     }
+     void changeChildCollider(Transform trans, bool change)
+     {
+        if (trans.childCount > 0 )
+         {
+             foreach(Transform child in trans)
+             {            
+                 changeChildCollider(child, change);
+             }
+         }
+         else {
+            Debug.Log("changing "+change);
+             trans.gameObject.GetComponent<BoxCollider2D>().isTrigger = change;
+         }
+     }
+
+
+    public void setToxicity(int toxicLevel)
+    {
+        PersistentManager.Instance.toxicLevel = toxicLevel;
+        Debug.Log("toxic set to "+toxicLevel);
+        if (PersistentManager.Instance.tempLevel > -2)
+        {
+            if (toxicLevel >= 2)
+            {
+                infectWater();
+            }
+            else
+            {
+                Debug.Log("cleaning");
+                cleanWater();
+            }
+        }
+    }
+
+    void infectWater()
+    {
+        foreach (GameObject line in waterLines)
+        {
+            changeChildLayer(line.transform, "Deadly");
+        }
+    }
+    void cleanWater()
+    {
+        foreach (GameObject line in waterLines)
+        {
+            changeChildLayer(line.transform, "Ignore-Player");
+        }
+    }
+
 
 
     public T[] addElement<T>(T[] array, T element)

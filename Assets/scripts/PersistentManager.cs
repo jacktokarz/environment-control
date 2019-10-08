@@ -52,6 +52,7 @@ public class PersistentManager : MonoBehaviour
 	public int windLevel;
 	public int humidityLevel;
     public int tempLevel;
+    public int toxicLevel;
 	public string lastDoorId;
 	public int lastCheckpoint;
 
@@ -79,52 +80,6 @@ public class PersistentManager : MonoBehaviour
 		checkTextVis();
 	}
 
-
-    public bool changeHumidity(int value)
-    {
-        if ((value<0)?(humidityLevel>minHumidity):(humidityLevel<maxHumidity))
-        {
-            humidityLevel += value;
-            updateText(Humidity, humidityLevel);
-            return true;
-        }
-        return false;
-    }
-    public void setHumidity(int value)
-    {
-        humidityLevel = value;
-        updateText(Humidity, humidityLevel);
-    }
-
-    public bool changeWind(int value)
-    {
-        Debug.Log("changing wind by "+value);
-        if ((value<0)?(windLevel > minWind):(windLevel < maxWind))
-        {
-            windLevel+=value;
-            updateText(Wind, windLevel);
-            changeWindAnimation();
-        	return true;
-        }
-        updateText(Wind, windLevel);
-        return false;
-    }
-    public void setWind (int value)
-    {
-        windLevel = value;
-        updateText(Wind, windLevel);
-        changeWindAnimation();
-    }
-    public void changeWindAnimation()
-    {
-    	GameObject[] winds = GameObject.FindGameObjectsWithTag("wind");
-        Debug.Log("setting wind anim level to "+windLevel);
-    	foreach (GameObject win in winds)
-    	{
-    		Animator winAm = win.GetComponent<Animator>();
-    		winAm.SetFloat("windSpeed", windLevel);
-    	}
-    }
 
     public void checkTextVis()
     {

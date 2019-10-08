@@ -7,10 +7,13 @@ public class RoomValues : MonoBehaviour
 	public int startingHumidity = 0;
 	public int startingWind = 0;
 	public int startingTemperature = 0;
-    void Start()
+	public int startingToxicity;
+    
+    public void setInitialValues()
     {
-		PersistentManager.Instance.setHumidity(startingHumidity);
-        PersistentManager.Instance.setWind(startingWind);
+		EnvironmentEffect.Instance.setHumidity(startingHumidity);
+        EnvironmentEffect.Instance.setWind(startingWind);
         EnvironmentEffect.Instance.setTemp(startingTemperature);
+        EnvironmentEffect.Instance.setToxicity(startingToxicity);
     }
 }
