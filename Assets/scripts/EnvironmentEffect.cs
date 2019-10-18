@@ -145,17 +145,20 @@ public class EnvironmentEffect : MonoBehaviour
         else {
             newPos= new Vector2(topVinePiece.position.x, topVinePiece.position.y + PersistentManager.Instance.vinePieceHeight);
         }
-        Collider2D overlapper= Physics2D.OverlapBox(newPos, vineSize, parentVine.transform.rotation.eulerAngles.z, PersistentManager.Instance.whatBlocksVines);
-        if(overlapper)
+        Collider2D[] overlapper= Physics2D.OverlapBoxAll(newPos, vineSize, parentVine.transform.rotation.eulerAngles.z, PersistentManager.Instance.whatBlocksVines);
+        if(overlapper.Length > 0)
         {
-            if (overlapper.CompareTag("wind"))
-            {
-                WindDirection wd = overlapper.gameObject.GetComponent(typeof(WindDirection)) as WindDirection;
-                if(wd.direction != new Vector2(0,0))
-                {
-                    newPos = newPos + (PersistentManager.Instance.windLevel * PersistentManager.Instance.vineWindAffect * wd.direction);
-                }
-            }
+        	foreach (Collider2D overlap in overlapper)
+        	{
+	            if (overlap.CompareTag("wind"))
+	            {
+	                WindDirection wd = overlap.gameObject.GetComponent(typeof(WindDirection)) as WindDirection;
+	                if(wd.direction != new Vector2(0,0))
+	                {
+	                    newPos = newPos + (PersistentManager.Instance.windLevel * PersistentManager.Instance.vineWindAffect * wd.direction);
+	                }
+	            }
+        	}
         }
         Transform newPiece = Instantiate(topVinePiece, newPos, parentVine.transform.rotation, parentVine.transform);
     }

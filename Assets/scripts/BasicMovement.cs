@@ -21,7 +21,6 @@ public class BasicMovement : MonoBehaviour
     public LayerMask whatIsPlatform;
     [SerializeField] public LayerMask whatIsGround;
     
-    
     public float topHSpeed;
     public float decayRate;
     
