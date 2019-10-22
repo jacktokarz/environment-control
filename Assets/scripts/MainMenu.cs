@@ -19,6 +19,7 @@ public class MainMenu : MonoBehaviour
         }
 
         PersistentUI = PersistentManager.Instance.transform.GetChild(0);
+        PersistentUI.gameObject.SetActive(false);
     }
 
     public GameData Load() 

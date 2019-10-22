@@ -14,6 +14,7 @@ public class PersistentManager : MonoBehaviour
     public Text Humidity;
     public Text Wind;
     public Text Temperature;
+    public GameObject GameOver;
     public GameObject Message;
     	//humidity
     public int maxHumidity;

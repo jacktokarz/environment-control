@@ -366,7 +366,7 @@ public class EnvironmentEffect : MonoBehaviour
     {
         foreach (GameObject line in waterLines)
         {
-            if (PersistentManager.Instance.toxicLevel >= 2)
+            if (PersistentManager.Instance.toxicLevel >= 1)
             {
                 changeChildLayer(line.transform, "Deadly");
             }
@@ -413,7 +413,7 @@ public class EnvironmentEffect : MonoBehaviour
         Debug.Log("toxic set to "+toxicLevel);
         if (PersistentManager.Instance.tempLevel > -2)
         {
-            if (toxicLevel >= 2)
+            if (toxicLevel >= 1)
             {
                 infectWater();
             }

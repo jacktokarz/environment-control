@@ -256,9 +256,9 @@ public class BasicMovement : MonoBehaviour
         }
     }
 
-    void death() {
-        PersistentManager.Instance.lastDoorId = "Respawn";
-        PersistentManager.GoToScene(PersistentManager.Instance.lastCheckpoint);
+    void death() 
+    {
+        PersistentManager.Instance.GameOver.SetActive(true);
     }
 
     void gripOff()
