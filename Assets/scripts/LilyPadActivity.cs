@@ -22,6 +22,11 @@ public class LilyPadActivity : MonoBehaviour
 
     void Update()
     {
+    	if (PersistentManager.Instance.tempLevel == -2)
+    	{
+    		return;
+    	}
+    	
     	float vMove = rigid.velocity.y;
     	float currX = this.transform.position.x;
     	move = 0;

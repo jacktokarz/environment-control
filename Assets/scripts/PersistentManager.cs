@@ -41,9 +41,14 @@ public class PersistentManager : MonoBehaviour
     	//lily pad
     public float lilyPadTravelSpeed;
     	//enemies & projectiles
+            //dumb
     public float dumbEnemyFireRate;
     public float dumbEnemyVision;
     public float dumbProjectileSpeed;
+            //ice
+    public float iceEnemyFireRate;
+    public float iceEnemyVision;
+    public float iceProjectileSpeed;
     public LayerMask blocksProjectiles;
     	//door
 	public float doorMoveSpeed;
