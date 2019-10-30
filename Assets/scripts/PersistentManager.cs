@@ -89,23 +89,19 @@ public class PersistentManager : MonoBehaviour
 
     public void checkTextVis()
     {
-    	if (TreasureList.Contains("humidity"))
-		{
-			Humidity.gameObject.SetActive(true);
-	        updateText(Humidity, humidityLevel);
-		}
+    	bool seeHum = TreasureList.Contains("humidity") ? true : false;
+		Humidity.gameObject.SetActive(seeHum);
+        updateText(Humidity, humidityLevel);
 
-		if (TreasureList.Contains("wind"))
-		{
-			Wind.gameObject.SetActive(true);
-	        updateText(Wind, windLevel);
-		}
+		bool seeWind = TreasureList.Contains("wind") ? true : false;
+		Wind.gameObject.SetActive(seeWind);
+        updateText(Wind, windLevel);
 
-        if (TreasureList.Contains("temperature"))
-        {
-            Temperature.gameObject.SetActive(true);
-            updateText(Temperature, tempLevel);
-        }
+        bool seeTemp = TreasureList.Contains("temperature") ? true : false;
+        Temperature.gameObject.SetActive(true);
+        updateText(Temperature, tempLevel);
+
+        //bool seeToxic = TreasureList.Contains("toxicity") ? true : false;
     }
 
 	public static void GoToScene(int sceneNumber) {
