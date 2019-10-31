@@ -98,7 +98,7 @@ public class PersistentManager : MonoBehaviour
         updateText(Wind, windLevel);
 
         bool seeTemp = TreasureList.Contains("temperature") ? true : false;
-        Temperature.gameObject.SetActive(true);
+        Temperature.gameObject.SetActive(seeTemp);
         updateText(Temperature, tempLevel);
 
         //bool seeToxic = TreasureList.Contains("toxicity") ? true : false;
