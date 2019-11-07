@@ -6,6 +6,16 @@ public class EnvironmentEffect : MonoBehaviour
 {
     public static EnvironmentEffect Instance { get; private set; }
 
+    public AudioClip humN3;
+    public AudioClip humN2;
+    public AudioClip humN1;
+    public AudioClip hum0;
+    public AudioClip hum1;
+    public AudioClip hum2;
+    public AudioClip hum3;
+
+    private AudioSource source;
+
     BasicMovement BasMov;
     float vineGrowWait;
     float vineCounter= -1f;
@@ -23,7 +33,7 @@ public class EnvironmentEffect : MonoBehaviour
     Vector3[] waterOriginalPoints;
     Vector2 vineSize;
 
-    public LayerMask playerLayer;
+    LayerMask playerLayer;
 
     private void Awake()
     {
@@ -39,6 +49,8 @@ public class EnvironmentEffect : MonoBehaviour
     }
     private void Start()
     {
+        source = GetComponent<AudioSource>();
+
         BasMov = GameObject.FindGameObjectWithTag("Player").GetComponent<BasicMovement>();
         playerLayer = LayerMask.GetMask("Player");
         vines = GameObject.FindGameObjectsWithTag("vine");
@@ -98,6 +110,7 @@ public class EnvironmentEffect : MonoBehaviour
         if ((value>=PersistentManager.Instance.minHumidity) && (value<=PersistentManager.Instance.maxHumidity))
         {
             PersistentManager.Instance.humidityLevel = value;
+            playHumiditySound(value);
             updateVineGrowWait();
             changeWaterLevel(value);
             changeFrondWidth();
@@ -164,6 +177,20 @@ public class EnvironmentEffect : MonoBehaviour
     }
     void shrinkVine(Transform topVinePiece) {
         Destroy(topVinePiece.gameObject);
+    }
+
+    private void playHumiditySound(int humValue)
+    {
+        source.Stop();
+        if (humValue == -3) {source.clip = humN3;}
+        else if (humValue == -2) {source.clip = humN2;}
+        else if (humValue == -1) {source.clip = humN1;}
+        else if (humValue == 0) {source.clip = hum0;}
+        else if (humValue == 1) {source.clip = hum1;}
+        else if (humValue == 2) {source.clip = hum2;}
+        else if (humValue == 3){source.clip = hum3;}
+        else { return; }
+        source.Play();
     }
 
     void updateVineGrowWait()

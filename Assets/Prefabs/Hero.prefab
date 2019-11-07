@@ -483,7 +483,7 @@ MonoBehaviour:
   gripCheck: {fileID: 226270825}
   groundCheck: {fileID: 3517635606081753182}
   gripCheckRadius: 0.5
-  groundCheckRadius: 0
+  groundCheckRadius: 0.1
   whatIsGrippable:
     serializedVersion: 2
     m_Bits: 1024

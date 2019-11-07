@@ -210,7 +210,6 @@ public class BasicMovement : MonoBehaviour
                 
                  if (!wasGrounded)
                  {
-             //     OnLandEvent.Invoke();
                     playLandSound();
                 }
             }
