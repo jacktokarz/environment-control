@@ -5,12 +5,16 @@ using UnityEngine.UI;
 
 public class TreasureActivity : MonoBehaviour
 {
+    public AudioClip treasureSound;
 	public string treasureId;
 	private Animator openChestAnim;
 	public bool alreadyGotten;
+    private AudioSource source;
+
 
     void Start()
     {
+        source = GetComponent<AudioSource>();
         openChestAnim = this.GetComponent(typeof (Animator)) as Animator;
     	if( PersistentManager.Instance.TreasureList.Contains(treasureId))
     	{
@@ -29,6 +33,7 @@ public class TreasureActivity : MonoBehaviour
 
     void getTreasure()
     {
+        source.PlayOneShot(treasureSound);
 		openChestAnim.SetBool("opening", true);
 		string messageText = "";
 		MessageScript ms = PersistentManager.Instance.Message.GetComponent(typeof (MessageScript)) as MessageScript;

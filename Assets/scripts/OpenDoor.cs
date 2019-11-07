@@ -14,13 +14,13 @@ public class OpenDoor : MonoBehaviour
 	Transform childObj;
 	float doorStartTime;
     Vector3 defaultPos;
-    private AudioSource speaker;
+    private AudioSource source;
 
 
     void Awake()
     {
     	flipped= this.transform.rotation.eulerAngles.z > 180 ? -1 : 1;
-        speaker = GetComponent<AudioSource>();
+        source = GetComponent<AudioSource>();
 
     }
     // Start is called before the first frame update
@@ -61,7 +61,7 @@ public class OpenDoor : MonoBehaviour
 
     void openDoor()
     {
-        speaker.PlayOneShot(openDoorSound);
+        source.PlayOneShot(openDoorSound);
         //if (speaker.time == 0.3) { speaker.Stop();}
     	doorStartPos = childObj.localPosition;
     	doorEndPos= childObj.localPosition + new Vector3(PersistentManager.Instance.doorMoveDistance * flipped, 0, 0);
@@ -71,7 +71,7 @@ public class OpenDoor : MonoBehaviour
 
     void closeDoor()
     {
-        speaker.PlayOneShot(closeDoorSound);
+        source.PlayOneShot(closeDoorSound);
         doorStartPos = childObj.localPosition;
     	doorEndPos= defaultPos;
     	doorStartTime= Time.time;
