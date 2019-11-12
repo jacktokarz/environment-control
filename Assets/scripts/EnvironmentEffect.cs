@@ -6,6 +6,16 @@ public class EnvironmentEffect : MonoBehaviour
 {
     public static EnvironmentEffect Instance { get; private set; }
 
+    public AudioClip humN3;
+    public AudioClip humN2;
+    public AudioClip humN1;
+    public AudioClip hum0;
+    public AudioClip hum1;
+    public AudioClip hum2;
+    public AudioClip hum3;
+
+    private AudioSource source;
+
     BasicMovement BasMov;
     float vineGrowWait;
     float vineCounter= -1f;
@@ -23,7 +33,7 @@ public class EnvironmentEffect : MonoBehaviour
     Vector3[] waterOriginalPoints;
     Vector2 vineSize;
 
-    public LayerMask playerLayer;
+    LayerMask playerLayer;
 
     private void Awake()
     {
@@ -39,10 +49,11 @@ public class EnvironmentEffect : MonoBehaviour
     }
     private void Start()
     {
+        source = GetComponent<AudioSource>();
+
         BasMov = GameObject.FindGameObjectWithTag("Player").GetComponent<BasicMovement>();
         playerLayer = LayerMask.GetMask("Player");
         vines = GameObject.FindGameObjectsWithTag("vine");
-        vineSize = new Vector2(PersistentManager.Instance.vinePieceWidth, PersistentManager.Instance.vinePieceHeight);
         bushes = GameObject.FindGameObjectsWithTag("bush");
         winds = GameObject.FindGameObjectsWithTag("wind");
         fronds = GameObject.FindGameObjectsWithTag("frond");
@@ -76,7 +87,10 @@ public class EnvironmentEffect : MonoBehaviour
         vineCounter++;
         if (vineCounter >= vineGrowWait)
         {
-            checkVines();
+            foreach (GameObject vine in vines)
+            {
+                vine.GetComponent<VineActivity>().changeVine();
+            }
             vineCounter = 0f;
         }
         for (int i= 0; i< waterLines.Length; i++)
@@ -98,6 +112,7 @@ public class EnvironmentEffect : MonoBehaviour
         if ((value>=PersistentManager.Instance.minHumidity) && (value<=PersistentManager.Instance.maxHumidity))
         {
             PersistentManager.Instance.humidityLevel = value;
+            playHumiditySound(value);
             updateVineGrowWait();
             changeWaterLevel(value);
             changeFrondWidth();
@@ -108,62 +123,18 @@ public class EnvironmentEffect : MonoBehaviour
     }
 
 
-    void checkVines() {
-        foreach (GameObject vin in vines)
-        {
-            int childCount = vin.transform.childCount;
-            Transform topVinePiece = vin.transform.GetChild(childCount - 1);
-            if (PersistentManager.Instance.humidityLevel > 0)
-            {
-                if (childCount < PersistentManager.Instance.vineMaxHeight && PersistentManager.Instance.tempLevel < 2)
-                {
-                    growVine(vin, topVinePiece);
-                }
-            }
-            if (PersistentManager.Instance.humidityLevel < 0 || PersistentManager.Instance.tempLevel == 2)
-            {
-                if (childCount > PersistentManager.Instance.vineMinHeight)
-                {
-                    shrinkVine(topVinePiece);
-                }
-            }
-        }
-    }
-
-    void growVine(GameObject parentVine, Transform topVinePiece) {
-        Vector2 newPos = new Vector2();
-        float zRot = parentVine.transform.rotation.eulerAngles.z;
-        if (zRot == 90) {
-            newPos= new Vector2(topVinePiece.position.x - PersistentManager.Instance.vinePieceHeight, topVinePiece.position.y);
-        }
-        else if (zRot == 270) {
-            newPos= new Vector2(topVinePiece.position.x + PersistentManager.Instance.vinePieceHeight, topVinePiece.position.y);
-        }
-        else if (zRot == 180) {
-            newPos= new Vector2(topVinePiece.position.x, topVinePiece.position.y - PersistentManager.Instance.vinePieceHeight);
-        }
-        else {
-            newPos= new Vector2(topVinePiece.position.x, topVinePiece.position.y + PersistentManager.Instance.vinePieceHeight);
-        }
-        Collider2D[] overlapper= Physics2D.OverlapBoxAll(newPos, vineSize, parentVine.transform.rotation.eulerAngles.z, PersistentManager.Instance.whatBlocksVines);
-        if(overlapper.Length > 0)
-        {
-        	foreach (Collider2D overlap in overlapper)
-        	{
-	            if (overlap.CompareTag("wind"))
-	            {
-	                WindDirection wd = overlap.gameObject.GetComponent(typeof(WindDirection)) as WindDirection;
-	                if(wd.direction != new Vector2(0,0))
-	                {
-	                    newPos = newPos + (PersistentManager.Instance.windLevel * PersistentManager.Instance.vineWindAffect * wd.direction);
-	                }
-	            }
-        	}
-        }
-        Transform newPiece = Instantiate(topVinePiece, newPos, parentVine.transform.rotation, parentVine.transform);
-    }
-    void shrinkVine(Transform topVinePiece) {
-        Destroy(topVinePiece.gameObject);
+    private void playHumiditySound(int humValue)
+    {
+        source.Stop();
+        if (humValue == -3) {source.clip = humN3;}
+        else if (humValue == -2) {source.clip = humN2;}
+        else if (humValue == -1) {source.clip = humN1;}
+        else if (humValue == 0) {source.clip = hum0;}
+        else if (humValue == 1) {source.clip = hum1;}
+        else if (humValue == 2) {source.clip = hum2;}
+        else if (humValue == 3){source.clip = hum3;}
+        else { return; }
+        source.Play();
     }
 
     void updateVineGrowWait()

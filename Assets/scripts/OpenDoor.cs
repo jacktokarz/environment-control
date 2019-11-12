@@ -5,17 +5,23 @@ using UnityEngine;
 public class OpenDoor : MonoBehaviour
 {
 	public string doorId;
+    public AudioClip openDoorSound;
+    public AudioClip closeDoorSound;
 
-	public int flipped;
+    public int flipped;
     Vector3 doorStartPos;
 	Vector3 doorEndPos;
 	Transform childObj;
 	float doorStartTime;
     Vector3 defaultPos;
+    private AudioSource source;
+
 
     void Awake()
     {
     	flipped= this.transform.rotation.eulerAngles.z > 180 ? -1 : 1;
+        source = GetComponent<AudioSource>();
+
     }
     // Start is called before the first frame update
     void Start()
@@ -55,14 +61,18 @@ public class OpenDoor : MonoBehaviour
 
     void openDoor()
     {
-    	doorStartPos= childObj.localPosition;
+        source.PlayOneShot(openDoorSound);
+        //if (speaker.time == 0.3) { speaker.Stop();}
+    	doorStartPos = childObj.localPosition;
     	doorEndPos= childObj.localPosition + new Vector3(PersistentManager.Instance.doorMoveDistance * flipped, 0, 0);
     	doorStartTime= Time.time;
+       // if (childObj.localPosition == doorEndPos) { speaker.Stop(); }
     }
 
     void closeDoor()
     {
-    	doorStartPos= childObj.localPosition;
+        source.PlayOneShot(closeDoorSound);
+        doorStartPos = childObj.localPosition;
     	doorEndPos= defaultPos;
     	doorStartTime= Time.time;
     }

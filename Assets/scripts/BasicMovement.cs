@@ -23,7 +23,10 @@ public class BasicMovement : MonoBehaviour
     
     public float topHSpeed;
     public float decayRate;
-    
+
+    public AudioClip jumpSound;
+    public AudioClip landSound;
+
     float coolTopSpeed;
     float coldTopSpeed;
     float coolDecay;
@@ -36,7 +39,7 @@ public class BasicMovement : MonoBehaviour
     private bool gripping;
     private bool grounded;
     private bool jumping = false;
-
+    private AudioSource source;
     Rigidbody2D rigid;
 
 
@@ -50,6 +53,8 @@ public class BasicMovement : MonoBehaviour
 
         rigid = GetComponent<Rigidbody2D>();
         defaultGravity = rigid.gravityScale;
+
+        source = GetComponent<AudioSource>();
 
         if (PersistentManager.Instance.lastDoorId == "Respawn")
         {
@@ -107,11 +112,13 @@ public class BasicMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && (grounded || gripping))
         {
             jumpForce = maxJumpForce;
+            playJumpSound();
         }
         
         if (Input.GetButton("Jump") && (jumpForce > 0.05f))
         {
             jumping = true;
+
         }
         else
         {
@@ -127,6 +134,8 @@ public class BasicMovement : MonoBehaviour
                 h += groundRig.velocity.x * Mathf.Clamp(PersistentManager.Instance.windLevel, 1, 3);
             }
         }
+
+
 
         bool canGrip= false;
         Collider2D[] grippableColliders = Physics2D.OverlapCircleAll(gripCheck.position, gripCheckRadius, whatIsGrippable);
@@ -153,6 +162,7 @@ public class BasicMovement : MonoBehaviour
             }
         }
     }
+
 
     // Update is called once per frame
     void FixedUpdate()
@@ -197,13 +207,16 @@ public class BasicMovement : MonoBehaviour
             if (groundColls[i].gameObject != gameObject)
             {
                 grounded = true;
-                // if (!wasGrounded)
-                // {
-                //     OnLandEvent.Invoke();
-                // }
+                
+                 if (!wasGrounded)
+                 {
+                    playLandSound();
+                }
             }
         }
     }
+
+    
 
     void checkJump()
     {
@@ -311,5 +324,16 @@ public class BasicMovement : MonoBehaviour
             decayRate = defaultDecay;
         }
     }
+
+    void playJumpSound()
+    {
+        source.PlayOneShot(jumpSound);
+    }
+
+    void playLandSound()
+    {
+        source.PlayOneShot(landSound);
+    }
+
 
 }
