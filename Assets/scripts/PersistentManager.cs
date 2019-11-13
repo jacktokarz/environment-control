@@ -27,6 +27,7 @@ public class PersistentManager : MonoBehaviour
     public int minTemp;
     	//get wind room
     public int getWindRoomChangeDelay;
+    
 		//vines
 	public float vineGrowDefaultSpeed;
     public float vineMinHeight;
@@ -40,6 +41,9 @@ public class PersistentManager : MonoBehaviour
     public float waterChangeDistance;
     	//lily pad
     public float lilyPadTravelSpeed;
+        //balloon
+    public float balloonTravelSpeed;
+
     	//enemies & projectiles
             //dumb
     public float dumbEnemyFireRate;

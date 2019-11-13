@@ -8,7 +8,6 @@ public class LilyPadActivity : MonoBehaviour
 	private float startX;
 	private float move;
 	private Rigidbody2D rigid;
-	public Vector2 velo;
 
 	private Vector3 m_Velocity = Vector3.zero;
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;
@@ -56,7 +55,6 @@ public class LilyPadActivity : MonoBehaviour
 		Vector3 targetVelocity = new Vector2(move, vMove);
         // And then smoothing it out and applying it to the character
         rigid.velocity = Vector3.SmoothDamp(rigid.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
-        velo = rigid.velocity;
     }
 
     void OnTriggerStay2D(Collider2D col)
