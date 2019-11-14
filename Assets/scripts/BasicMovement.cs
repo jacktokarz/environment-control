@@ -26,6 +26,10 @@ public class BasicMovement : MonoBehaviour
 
     public AudioClip jumpSound;
     public AudioClip landSound;
+    public AudioClip grabVine;
+    public AudioClip letgoVine;
+    public AudioClip stepA;
+    public AudioClip stepB;
 
     float coolTopSpeed;
     float coldTopSpeed;
@@ -262,12 +266,25 @@ public class BasicMovement : MonoBehaviour
         if (moveH)
         {
             bm.Move(h * Time.fixedDeltaTime);
+            walksound(h);
         }
         if (moveY)
         {
             bm.VerticalMove(v * Time.fixedDeltaTime);
         }
     }
+
+    void walksound(float walking)
+    {
+        source.clip = stepA;
+        if (source.isPlaying != true)
+        {
+            if (walking != 0 ){ source.Play(); }
+            else { source.Stop(); }
+        }
+        
+    }
+    
 
     void death() 
     {
@@ -278,12 +295,14 @@ public class BasicMovement : MonoBehaviour
     {
         Debug.Log("Let go");
         gripping = false;
+        source.PlayOneShot(letgoVine);
         rigid.gravityScale = defaultGravity;
     }
     void gripOn()
     {
         Debug.Log("grab");
         gripping = true;
+        source.PlayOneShot(grabVine);
         rigid.gravityScale = 0f;                    
         rigid.velocity = new Vector2(0, 0);
         jumping = false;

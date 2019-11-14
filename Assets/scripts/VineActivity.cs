@@ -40,7 +40,9 @@ public class VineActivity : MonoBehaviour
             {
                 growVine(topVinePiece, activeChildCount);
                 // !! Justin put sound triggers here...
-                source.pitch = 1;
+                if (PersistentManager.Instance.humidityLevel == 1) { source.pitch = 1.0F; }
+                if (PersistentManager.Instance.humidityLevel == 2) { source.pitch = 1.2F; }
+                if (PersistentManager.Instance.humidityLevel == 3) { source.pitch = 1.4F; }
                 if (source.isPlaying != true) { source.Play(); }
                 //source.enabled = true;
                 //source.loop = true;
@@ -54,8 +56,10 @@ public class VineActivity : MonoBehaviour
             {
                 shrinkVine(topVinePiece);
                 // and HERE :)
-                
-                source.pitch = 0.65F;
+
+                if (PersistentManager.Instance.humidityLevel == -1 ) {source.pitch = 0.75F;}
+                if (PersistentManager.Instance.humidityLevel == -2) { source.pitch = 0.55F; }
+                if (PersistentManager.Instance.humidityLevel == -3) { source.pitch = 0.35F; }
                 if (source.isPlaying != true) { source.Play(); }
                 
             }

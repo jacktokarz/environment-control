@@ -371,6 +371,7 @@ GameObject:
   - component: {fileID: 5586110174633710968}
   - component: {fileID: 3955542510501940194}
   - component: {fileID: 5531946100506200246}
+  - component: {fileID: 6827852417253111687}
   m_Layer: 8
   m_Name: Hero
   m_TagString: Player
@@ -500,6 +501,10 @@ MonoBehaviour:
   decayRate: 0
   jumpSound: {fileID: 8300000, guid: 23ec4e63c33c34aa1ae09031b8a71527, type: 3}
   landSound: {fileID: 8300000, guid: 5b7e0002ae1614ca6a110a8caf2cf386, type: 3}
+  grabVine: {fileID: 8300000, guid: 031313200578645368289a765cc1d349, type: 3}
+  letgoVine: {fileID: 8300000, guid: befade0d904d34b19a5b3878b603cdf4, type: 3}
+  stepA: {fileID: 8300000, guid: dc3a2d5d115c04b97b123bb5553ad2a1, type: 3}
+  stepB: {fileID: 0}
 --- !u!82 &5531946100506200246
 AudioSource:
   m_ObjectHideFlags: 0
@@ -596,6 +601,14 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!81 &6827852417253111687
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4508517035754910516}
+  m_Enabled: 1
 --- !u!1 &4705795030012111419
 GameObject:
   m_ObjectHideFlags: 0

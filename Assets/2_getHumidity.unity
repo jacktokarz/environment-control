@@ -130,7 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 41932921}
   - component: {fileID: 41932922}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SecondBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   m_Component:
   - component: {fileID: 69616448}
   - component: {fileID: 69616449}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LabCeiling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -727,7 +727,7 @@ GameObject:
   m_Component:
   - component: {fileID: 142568839}
   - component: {fileID: 142568840}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SixthBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -886,7 +886,7 @@ GameObject:
   m_Component:
   - component: {fileID: 166943117}
   - component: {fileID: 166943118}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Entry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1297,7 +1297,7 @@ PrefabInstance:
     - target: {fileID: 752841098730972291, guid: 99cddb3c6861bab498e3cca9c94e5cd8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.5
+      value: -4.1042614
       objectReference: {fileID: 0}
     - target: {fileID: 752841098730972291, guid: 99cddb3c6861bab498e3cca9c94e5cd8,
         type: 3}
@@ -1418,6 +1418,11 @@ PrefabInstance:
         type: 3}
       propertyPath: startingToxicity
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 752841098730972303, guid: 99cddb3c6861bab498e3cca9c94e5cd8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99cddb3c6861bab498e3cca9c94e5cd8, type: 3}
@@ -1648,7 +1653,7 @@ GameObject:
   m_Component:
   - component: {fileID: 219613289}
   - component: {fileID: 219613290}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1891,7 +1896,7 @@ GameObject:
   m_Component:
   - component: {fileID: 239043544}
   - component: {fileID: 239043545}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FirstBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2399,7 +2404,7 @@ GameObject:
   m_Component:
   - component: {fileID: 279961529}
   - component: {fileID: 279961530}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FifthBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2664,7 +2669,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 392432964}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GetHumidityColliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4194,7 +4199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 758085749}
   - component: {fileID: 758085750}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FourthBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4471,7 +4476,7 @@ GameObject:
   m_Component:
   - component: {fileID: 800597775}
   - component: {fileID: 800597776}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LabFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7500,16 +7505,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7743583419454270700, guid: 9f4e2a697802d524f8aa7e63e0a8cfe4,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7743583420245515619, guid: 9f4e2a697802d524f8aa7e63e0a8cfe4,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 577076995628096828, guid: 9f4e2a697802d524f8aa7e63e0a8cfe4,
         type: 3}
       propertyPath: m_Enabled
@@ -7519,6 +7514,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7743583419454270700, guid: 9f4e2a697802d524f8aa7e63e0a8cfe4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7743583420245515619, guid: 9f4e2a697802d524f8aa7e63e0a8cfe4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f4e2a697802d524f8aa7e63e0a8cfe4, type: 3}
@@ -9094,6 +9099,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4539477876451533186, guid: 60cd1613217c9204bb4b1f5c05b70de7,
+        type: 3}
+      propertyPath: BypassEffects
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60cd1613217c9204bb4b1f5c05b70de7, type: 3}
 --- !u!4 &1694591134 stripped
@@ -9777,7 +9787,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1922259388}
   - component: {fileID: 1922259389}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SeventhBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9829,7 +9839,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1942405472}
   - component: {fileID: 1942405473}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ThirdBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
