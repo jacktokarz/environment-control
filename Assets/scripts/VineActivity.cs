@@ -8,10 +8,16 @@ public class VineActivity : MonoBehaviour
 	public int activeChildCount;
 	Vector2 vineSize;
 
+    public AudioClip vineGrowsound;
+    //public AudioClip vineShrinksound;
+
+    private AudioSource source;
+
     void Start()
     {
         vineSize = new Vector2(PersistentManager.Instance.vinePieceWidth, PersistentManager.Instance.vinePieceHeight);
-
+        source = GetComponent<AudioSource>();
+        source.clip = vineGrowsound;
     }
 
     // Update is called once per frame
@@ -33,17 +39,30 @@ public class VineActivity : MonoBehaviour
             if (activeChildCount < PersistentManager.Instance.vineMaxHeight && PersistentManager.Instance.tempLevel < 2)
             {
                 growVine(topVinePiece, activeChildCount);
-            	// !! Justin put sound triggers here...
+                // !! Justin put sound triggers here...
+                source.pitch = 1;
+                if (source.isPlaying != true) { source.Play(); }
+                //source.enabled = true;
+                //source.loop = true;
             }
+            else { source.Stop(); }
+            
         }
         if (PersistentManager.Instance.humidityLevel < 0 || PersistentManager.Instance.tempLevel == 2)
         {
             if (activeChildCount > PersistentManager.Instance.vineMinHeight)
             {
                 shrinkVine(topVinePiece);
-            	// and HERE :)
+                // and HERE :)
+                
+                source.pitch = 0.65F;
+                if (source.isPlaying != true) { source.Play(); }
+                
             }
+            else { source.Stop(); }
+
         }
+        else if (PersistentManager.Instance.humidityLevel == 0) { source.Stop(); }
     }
 
     void growVine(Transform topVinePiece, int activeChildCount) {
