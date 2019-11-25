@@ -44,8 +44,15 @@ public class BasicMovement : MonoBehaviour
     private bool grounded;
     private bool jumping = false;
     private AudioSource source;
-    Rigidbody2D rigid;
 
+    Rigidbody2D rigid;
+    GameObject body;
+
+    void Awake()
+    {
+        body = this.transform.GetChild(0).gameObject;
+        body.SetActive(false);
+    }
 
     void Start()
     {
@@ -71,7 +78,7 @@ public class BasicMovement : MonoBehaviour
             this.transform.position = new Vector3(checkpoint.transform.position.x, checkpoint.transform.position.y + 0.55f);
             CheckpointActivity ca = checkpoint.GetComponent(typeof (CheckpointActivity)) as CheckpointActivity;
             Debug.Log("calling spawn anim"+ca);
-            ca.spawn(this.transform.GetChild(0).gameObject);
+            ca.spawn(body);
             return;
         }
         else {
@@ -87,12 +94,11 @@ public class BasicMovement : MonoBehaviour
                         bm.Flip();
                     }
                     this.transform.position = spawnPoint;
-                    od.spawn(this.transform.GetChild(0).gameObject);
+                    od.spawn(body);
                     Debug.Log("spawned?");
                     break;
                 }
             }
-            Debug.Log("AAAAAAAAAAAAAAAAAAA"+spawnPoint);
             if(spawnPoint == Vector3.zero) {
                 Debug.Log("ERRRORRRR!!!!");
                 OpenDoor od = doors[0].GetComponent(typeof (OpenDoor)) as OpenDoor;
@@ -101,6 +107,7 @@ public class BasicMovement : MonoBehaviour
                 {
                     bm.Flip();
                 }
+                body.SetActive(true);
             }
         }
     }
