@@ -76,4 +76,9 @@ public class OpenDoor : MonoBehaviour
     	doorEndPos= defaultPos;
     	doorStartTime= Time.time;
     }
+
+    public void spawn(GameObject player) {
+        player.SetActive(true);
+        Debug.Log("door makes player");
+    }
 }
