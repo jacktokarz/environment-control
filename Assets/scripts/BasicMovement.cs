@@ -30,6 +30,7 @@ public class BasicMovement : MonoBehaviour
     public AudioClip letgoVine;
     public AudioClip stepA;
     public AudioClip stepB;
+    private AudioClip crntStep;
 
     float coolTopSpeed;
     float coldTopSpeed;
@@ -59,6 +60,7 @@ public class BasicMovement : MonoBehaviour
         defaultGravity = rigid.gravityScale;
 
         source = GetComponent<AudioSource>();
+        crntStep = stepA;
 
         if (PersistentManager.Instance.lastDoorId == "Respawn")
         {
@@ -276,13 +278,30 @@ public class BasicMovement : MonoBehaviour
 
     void walksound(float walking)
     {
-        source.clip = stepA;
-        if (source.isPlaying != true)
-        {
-            if (walking != 0 ){ source.Play(); }
-            else { source.Stop(); }
-        }
+
+//        source.clip = crntStep;
         
+//        if (walking != 0 ) // if movement is happening... Jack I'm sure there's a less clunky way of doing this
+//        {
+//            if (source.isPlaying != true)
+//            {
+//                source.pitch = UnityEngine.Random.Range(0.75F, 1.25F);
+//                if (crntStep == stepA) { source.PlayOneShot(stepA); }
+//                //if (crntStep == stepB) { source.PlayOneShot(stepB); }
+//                // alternate steps
+
+//            }
+////            else if (crntStep == stepA)
+////            { crntStep = stepB; }
+////            else if (crntStep == stepB)
+////            { crntStep = stepA; }
+            
+
+//        }
+//        else { source.Stop(); }
+
+
+
     }
     
 
