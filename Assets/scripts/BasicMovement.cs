@@ -45,8 +45,15 @@ public class BasicMovement : MonoBehaviour
     private bool grounded;
     private bool jumping = false;
     private AudioSource source;
-    Rigidbody2D rigid;
 
+    Rigidbody2D rigid;
+    GameObject body;
+
+    void Awake()
+    {
+        body = this.transform.GetChild(0).gameObject;
+        body.SetActive(false);
+    }
 
     void Start()
     {
@@ -64,12 +71,17 @@ public class BasicMovement : MonoBehaviour
 
         if (PersistentManager.Instance.lastDoorId == "Respawn")
         {
+            Debug.Log("respawning");
             GameObject checkpoint = GameObject.FindWithTag("checkpoint");
             if (checkpoint == null)
             {
                 checkpoint = GameObject.FindWithTag("hub");
             }
-            spawnPoint = new Vector3(checkpoint.transform.position.x, checkpoint.transform.position.y + 0.55f);
+            this.transform.position = new Vector3(checkpoint.transform.position.x, checkpoint.transform.position.y + 0.55f);
+            CheckpointActivity ca = checkpoint.GetComponent(typeof (CheckpointActivity)) as CheckpointActivity;
+            Debug.Log("calling spawn anim"+ca);
+            ca.spawn(body);
+            return;
         }
         else {
             GameObject[] doors = GameObject.FindGameObjectsWithTag("door");
@@ -83,24 +95,29 @@ public class BasicMovement : MonoBehaviour
                     {
                         bm.Flip();
                     }
+                    this.transform.position = spawnPoint;
+                    od.spawn(body);
+                    Debug.Log("spawned?");
+                    break;
                 }
             }
-            if (spawnPoint==null)
-            {
+            if(spawnPoint == Vector3.zero) {
                 Debug.Log("ERRRORRRR!!!!");
                 OpenDoor od = doors[0].GetComponent(typeof (OpenDoor)) as OpenDoor;
-                spawnPoint = new Vector3(doors[0].transform.position.x - od.flipped * 1.0f, doors[0].transform.position.y - 0.7f, 0);
+                this.transform.position = new Vector3(doors[0].transform.position.x - od.flipped * 1.0f, doors[0].transform.position.y - 0.7f, 0);
                 if(od.flipped == 1)
                 {
                     bm.Flip();
                 }
+                body.SetActive(true);
             }
         }
-        this.transform.position = spawnPoint;
     }
 
     void Update()
     {
+        if(PersistentManager.Instance.immobile) { return; }
+
         h = gripping ? Input.GetAxis("Horizontal") * climbSpeed : Input.GetAxis("Horizontal") * topHSpeed;
         
         checkFlip();

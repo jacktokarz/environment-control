@@ -6,21 +6,28 @@ using UnityEngine.SceneManagement;
 public class CheckpointActivity : MonoBehaviour
 {
     private AudioSource source;
+    private Animator spawnAnim;
 	private Animator flowerGrowAnim;
 	public bool alreadyChecked;
     public AudioClip flowerGrowSound;
 
-    void Start()
+    void Awake()
     {
         source = GetComponent<AudioSource>();
+        spawnAnim = this.transform.GetChild(0).GetComponent(typeof (Animator)) as Animator;
+        Debug.Log("spawn "+spawnAnim);
+        flowerGrowAnim = this.transform.GetChild(1).GetComponent(typeof (Animator)) as Animator;
+
+    }
+
+    void Start()
+    {
         Debug.Log("this scene is: "+SceneManager.GetActiveScene().buildIndex);
-        flowerGrowAnim = this.transform.GetChild(0).GetComponent(typeof (Animator)) as Animator;
     	if( PersistentManager.Instance.Checkpoints.Contains(SceneManager.GetActiveScene().buildIndex))
     	{
     		alreadyChecked = true;
     		flowerGrowAnim.SetBool("grown", true);
     	}
-
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -50,6 +57,22 @@ public class CheckpointActivity : MonoBehaviour
     void setCheckpoint() {
         PersistentManager.Instance.lastCheckpoint = SceneManager.GetActiveScene().buildIndex;
         bool saved = PersistentManager.Instance.Save();
+    }
+
+    public void spawn(GameObject player)
+    {
+        Debug.Log("checkpoint makes player");
+        spawnAnim.SetTrigger("Spawn");
+        StartCoroutine(stallPlayerActivation(player, 4.5f));
+    }
+
+    IEnumerator stallPlayerActivation(GameObject obj, float sec)
+    {
+        PersistentManager.Instance.immobile = true;
+        Debug.Log("Started Coroutine at timestamp : " + Time.time);
+        yield return new WaitForSeconds(sec);
+        obj.SetActive(true);
+        PersistentManager.Instance.immobile = false;
     }
 
 }

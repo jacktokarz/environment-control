@@ -66,6 +66,9 @@ public class PersistentManager : MonoBehaviour
 	public string lastDoorId;
 	public int lastCheckpoint;
 
+        // internal stuff
+    public bool immobile = false;
+
 	//[HideInInspector] 
 	public List<string> TreasureList = new List<string>();
 	public List<int> Checkpoints = new List<int>();
