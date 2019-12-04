@@ -38,6 +38,7 @@ public class VineActivity : MonoBehaviour
         {
             if (activeChildCount < PersistentManager.Instance.vineMaxHeight && PersistentManager.Instance.tempLevel < 2)
             {
+                Debug.Log("we growing?");
                 growVine(topVinePiece, activeChildCount);
                 // !! Justin put sound triggers here...
                 if (PersistentManager.Instance.humidityLevel == 1) { source.pitch = 1.0F; }
@@ -108,6 +109,7 @@ public class VineActivity : MonoBehaviour
         if (blocked) {return;}
         Transform newPiece = this.transform.GetChild(activeChildCount);
         newPiece.position = newPos;
+        Debug.Log("growinf!");
         newPiece.gameObject.SetActive(true);
     }
     void shrinkVine(Transform topVinePiece) {
