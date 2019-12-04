@@ -15,9 +15,8 @@ public class CheckpointActivity : MonoBehaviour
     {
         source = GetComponent<AudioSource>();
         spawnAnim = this.transform.GetChild(0).GetComponent(typeof (Animator)) as Animator;
-        Debug.Log("spawn "+spawnAnim);
+        spawnAnim.SetBool("active", false);
         flowerGrowAnim = this.transform.GetChild(1).GetComponent(typeof (Animator)) as Animator;
-
     }
 
     void Start()
@@ -27,6 +26,10 @@ public class CheckpointActivity : MonoBehaviour
     	{
     		alreadyChecked = true;
     		flowerGrowAnim.SetBool("grown", true);
+            if (PersistentManager.Instance.lastCheckpoint == SceneManager.GetActiveScene().buildIndex)
+            {
+                spawnAnim.SetBool("active", true);
+            }
     	}
     }
 
@@ -48,20 +51,20 @@ public class CheckpointActivity : MonoBehaviour
 		flowerGrowAnim.SetBool("grow", true);
         source.PlayOneShot(flowerGrowSound);
 		PersistentManager.Instance.Checkpoints.Add(SceneManager.GetActiveScene().buildIndex);
-		PersistentManager.Instance.lastCheckpoint = SceneManager.GetActiveScene().buildIndex;
-		bool saved = PersistentManager.Instance.Save();
-		Debug.Log("saved ? "+saved);
+		setCheckpoint();
 		alreadyChecked = true;
     }
 
     void setCheckpoint() {
         PersistentManager.Instance.lastCheckpoint = SceneManager.GetActiveScene().buildIndex;
         bool saved = PersistentManager.Instance.Save();
+        spawnAnim.SetBool("active", true);
     }
 
     public void spawn(GameObject player)
     {
         Debug.Log("checkpoint makes player");
+        spawnAnim.SetBool("active", true);
         spawnAnim.SetTrigger("Spawn");
         StartCoroutine(stallPlayerActivation(player, 4.5f));
     }
