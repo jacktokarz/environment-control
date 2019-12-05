@@ -106,13 +106,16 @@ public class EnvironmentEffect : MonoBehaviour
     }
 
 
-    public bool setHumidity(int value)
+    public bool setHumidity(int value, bool muted = false)
     {
         Debug.Log("trying to set humidity to "+value);
         if ((value>=PersistentManager.Instance.minHumidity) && (value<=PersistentManager.Instance.maxHumidity))
         {
+            if (!muted)
+            {
+                playHumiditySound(value);
+            }
             PersistentManager.Instance.humidityLevel = value;
-            playHumiditySound(value);
             updateVineGrowWait();
             changeWaterLevel(value);
             changeFrondWidth();

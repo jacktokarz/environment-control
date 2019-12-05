@@ -11,7 +11,7 @@ public class RoomValues : MonoBehaviour
     
     public void setInitialValues()
     {
-		EnvironmentEffect.Instance.setHumidity(startingHumidity);
+		EnvironmentEffect.Instance.setHumidity(startingHumidity, true);
         EnvironmentEffect.Instance.setWind(startingWind);
         EnvironmentEffect.Instance.setTemp(startingTemperature);
         EnvironmentEffect.Instance.setToxicity(startingToxicity);
