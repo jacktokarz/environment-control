@@ -10,7 +10,7 @@ public class TreasureActivity : MonoBehaviour
 	private Animator openChestAnim;
 	public bool alreadyGotten;
     private AudioSource source;
-
+    public AudioClip labsounds;
 
     void Start()
     {
@@ -33,7 +33,7 @@ public class TreasureActivity : MonoBehaviour
 
     void getTreasure()
     {
-        source.PlayOneShot(treasureSound);
+        source.PlayOneShot(treasureSound, 2.0f);
 		openChestAnim.SetBool("opening", true);
 		string messageText = "";
 		MessageScript ms = PersistentManager.Instance.Message.GetComponent(typeof (MessageScript)) as MessageScript;

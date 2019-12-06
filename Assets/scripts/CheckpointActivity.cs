@@ -10,6 +10,7 @@ public class CheckpointActivity : MonoBehaviour
 	private Animator flowerGrowAnim;
 	public bool alreadyChecked;
     public AudioClip flowerGrowSound;
+    public AudioClip spawnsound;
 
     void Awake()
     {
@@ -66,7 +67,9 @@ public class CheckpointActivity : MonoBehaviour
         Debug.Log("checkpoint makes player");
         spawnAnim.SetBool("active", true);
         spawnAnim.SetTrigger("Spawn");
+       
         StartCoroutine(stallPlayerActivation(player, 4.5f));
+        source.PlayOneShot(spawnsound);
     }
 
     IEnumerator stallPlayerActivation(GameObject obj, float sec)

@@ -118,6 +118,7 @@ MonoBehaviour:
   treasureSound: {fileID: 8300000, guid: 4775cd6f446ae4447accd170fb241d9f, type: 3}
   treasureId: humidity
   alreadyGotten: 0
+  labsounds: {fileID: 8300000, guid: 19d890e1358b84af2ab050e1c480266b, type: 3}
 --- !u!61 &3173667599411508276
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -154,20 +155,20 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
+  m_audioClip: {fileID: 8300000, guid: 19d890e1358b84af2ab050e1c480266b, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.28
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
+  Priority: 90
+  DopplerLevel: 0
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 15.959354
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -200,7 +201,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -215,7 +216,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.56666666
       inSlope: 0
       outSlope: 0
       tangentMode: 0

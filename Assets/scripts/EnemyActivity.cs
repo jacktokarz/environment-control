@@ -6,7 +6,11 @@ public class EnemyActivity : MonoBehaviour
 {
 	public GameObject enemyProjectile;
 	public string enemyType;
+    public AudioClip slowbeep;
+    public AudioClip fastbeep;
+    public AudioClip shoot;
 
+    private AudioSource source;
 	private GameObject playerObject;
 	
 	int rate;
@@ -20,6 +24,7 @@ public class EnemyActivity : MonoBehaviour
 
     void Start()
     {
+        source = GetComponent<AudioSource>();
     	originalRotation = this.transform.rotation.eulerAngles.z > 180 ? this.transform.rotation.eulerAngles.z - 360 : this.transform.rotation.eulerAngles.z;
     	//Debug.Log("first rot "+originalRotation);
         if(enemyType == "dumb")
@@ -50,7 +55,12 @@ public class EnemyActivity : MonoBehaviour
 		{
 			RaycastHit2D hit = Physics2D.Raycast(transform.position, (playerObject.transform.position - this.transform.position).normalized, vision, PersistentManager.Instance.blocksProjectiles);
 			if (hit.transform!=null && hit.transform.CompareTag("Player"))
-			{
+			{ //if cansee == false then activates sound
+                if (canSee == false)
+                {
+                source.clip = fastbeep;
+                source.Play();
+                }
 				canSee = true;
 				Quaternion q = Quaternion.AngleAxis(clampAngle, Vector3.forward);
 				this.transform.rotation = Quaternion.Slerp(this.transform.rotation, q, Time.deltaTime * 2);
@@ -59,12 +69,19 @@ public class EnemyActivity : MonoBehaviour
 		}
 		else
 		{
-			canSee = false;
+			canSee = false; //== true deactivate
+            source.clip = slowbeep;
+            if (!source.isPlaying)
+            {
+                source.Play();
+            }
+            
 		}
 
         if (counter >= rate && canSee)
         {
-        	GameObject projectile = Instantiate(enemyProjectile, transform.position, Quaternion.identity);
+            source.PlayOneShot(shoot, 1f);
+        	GameObject projectile = Instantiate(enemyProjectile, transform.position, Quaternion.identity);// projectile sound
         	ProjectileActivity pa = projectile.GetComponent<ProjectileActivity>();
         	pa.speed = projectileSpeed;
 
