@@ -42,14 +42,14 @@ public class MainMenu : MonoBehaviour
     {
     	Debug.Log("clicked load game");
     	putLoadInManager();
-    	PersistentManager.GoToScene(PersistentManager.Instance.lastCheckpoint);
+    	PersistentManager.Instance.GoToScene(PersistentManager.Instance.lastCheckpoint);
     	PersistentUI.gameObject.SetActive(true);
     }
 
     public void newClicked()
     {
     	PersistentUI.gameObject.SetActive(true);
-    	PersistentManager.GoToScene(1);
+    	PersistentManager.Instance.GoToScene(1);
     }
 
     void putLoadInManager()

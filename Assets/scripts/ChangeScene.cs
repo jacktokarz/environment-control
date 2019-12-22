@@ -10,7 +10,7 @@ public class ChangeScene : MonoBehaviour
 		if (col.gameObject.CompareTag("Player")) {
 			OpenDoor od = this.GetComponentInParent<OpenDoor>();
 			PersistentManager.Instance.lastDoorId = od.doorId;
-			PersistentManager.GoToScene(OtherSideOfDoor);
+			PersistentManager.Instance.GoToScene(OtherSideOfDoor);
 		}
 	}
 }

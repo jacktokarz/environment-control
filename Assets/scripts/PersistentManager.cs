@@ -69,6 +69,12 @@ public class PersistentManager : MonoBehaviour
         // internal stuff
     public bool immobile = false;
 
+        // Audio
+    private GameObject AudioChild;
+    private AudioSource musicPlayer;
+    public AudioClip motherPlantSong;
+    public AudioClip elevatorSong;
+
 	//[HideInInspector] 
 	public List<string> TreasureList = new List<string>();
 	public List<int> Checkpoints = new List<int>();
@@ -91,6 +97,9 @@ public class PersistentManager : MonoBehaviour
 	private void Start()
 	{
 		checkTextVis();
+        AudioChild = this.transform.Find("Audio").gameObject;
+        musicPlayer = AudioChild.GetComponent<AudioSource>();
+        SelectMusic(SceneManager.GetActiveScene().buildIndex);
 	}
 
 
@@ -111,7 +120,9 @@ public class PersistentManager : MonoBehaviour
         //bool seeToxic = TreasureList.Contains("toxicity") ? true : false;
     }
 
-	public static void GoToScene(int sceneNumber) {
+	public void GoToScene(int sceneNumber)
+    {
+        SelectMusic(sceneNumber);
     	SceneManager.LoadScene(sceneNumber, LoadSceneMode.Single);
     }
 
@@ -139,6 +150,31 @@ public class PersistentManager : MonoBehaviour
 	    bf.Serialize(file, data);
 	    file.Close();
 	    return true;
+    }
+
+    public void SelectMusic(int sn)
+    {
+        Debug.Log("selecting");
+        Debug.Log("musical scene is "+sn);
+        List<int> motherPlantScenes = new List<int>() {0, 1, 2};
+        List<int> elevatorScenes = new List<int>() {3, 4, 8};
+        if (motherPlantScenes.Contains(sn))
+        {
+            if (musicPlayer.clip == motherPlantSong) { return; }
+            musicPlayer.clip = motherPlantSong;
+        }
+        else if (elevatorScenes.Contains(sn))
+        {
+            if (musicPlayer.clip == elevatorSong) { return; }
+            musicPlayer.clip = elevatorSong;
+        }
+        else 
+        {
+            musicPlayer.clip = null;
+            musicPlayer.Stop(); 
+            return;
+        }
+        musicPlayer.Play();
     }
 
 

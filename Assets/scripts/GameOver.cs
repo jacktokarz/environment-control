@@ -55,13 +55,13 @@ public class GameOver : MonoBehaviour
     public void Respawn()
     {
     	PersistentManager.Instance.lastDoorId = "Respawn";
-        PersistentManager.GoToScene(PersistentManager.Instance.lastCheckpoint);
+        PersistentManager.Instance.GoToScene(PersistentManager.Instance.lastCheckpoint);
 	    this.gameObject.SetActive(false);
     }
     public void Quit()
     {
     	PersistentManager.Instance.lastDoorId = "Respawn";
-        PersistentManager.GoToScene(0);
+        PersistentManager.Instance.GoToScene(0);
         this.gameObject.SetActive(false);
     }
 }
