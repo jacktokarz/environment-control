@@ -137,6 +137,10 @@ public class BasicMovement : MonoBehaviour
             jumpForce = maxJumpForce;
             playJumpSound();
         }
+        if (Input.GetButtonUp("Jump"))
+        {
+            jumpForce = 0;
+        }
         
         if (Input.GetButton("Jump") && (jumpForce > 0.05f))
         {
