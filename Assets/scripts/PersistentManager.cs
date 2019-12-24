@@ -75,10 +75,13 @@ public class PersistentManager : MonoBehaviour
     public AudioClip motherPlantSong;
     public AudioClip elevatorSong;
 
-	//[HideInInspector] 
 	public List<string> TreasureList = new List<string>();
 	public List<int> Checkpoints = new List<int>();
     public List<int> Collectibles = new List<int>();
+
+	[HideInInspector] 
+    public KeyCode JumpKey = KeyCode.Space;
+    public KeyCode GrabKey = KeyCode.G;
 
 
 	private void Awake()
@@ -96,6 +99,7 @@ public class PersistentManager : MonoBehaviour
 
 	private void Start()
 	{
+        setKeys();
 		checkTextVis();
         AudioChild = this.transform.Find("Audio").gameObject;
         musicPlayer = AudioChild.GetComponent<AudioSource>();
@@ -150,6 +154,18 @@ public class PersistentManager : MonoBehaviour
 	    bf.Serialize(file, data);
 	    file.Close();
 	    return true;
+    }
+
+    public void setKeys()
+    {
+        if (PlayerPrefs.GetString("JumpButton").Length > 0)
+        {
+            JumpKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("JumpButton", "Space"));
+        }
+        if (PlayerPrefs.GetString("GrabButton").Length > 0)
+        {
+            GrabKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("GrabButton", "G"));
+        }
     }
 
     public void SelectMusic(int sn)

@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Pause : MonoBehaviour
 {
-	
 	void Start () {
 		Time.timeScale = 1;
-		hidePaused();
+		unPause();
 	}
 
 	void Update ()
@@ -19,17 +18,17 @@ public class Pause : MonoBehaviour
 			Debug.Log("Time scale is "+Time.timeScale);
 			if(Time.timeScale == 1)
 			{
-				Time.timeScale = 0;
-				showPaused();
+				pause();
 			} else if (Time.timeScale == 0){
-				Time.timeScale = 1;
-				hidePaused();
+				unPause();
 			}
 		}
 	}
 
 	//shows objects with ShowOnPause tag
-	public void showPaused(){
+	public void pause()
+	{
+		Time.timeScale = 0;
 		for (int childIndex = 0; childIndex < this.transform.childCount; childIndex++)
 		{
 			this.transform.GetChild(childIndex).gameObject.SetActive(true);
@@ -37,7 +36,9 @@ public class Pause : MonoBehaviour
 	}
 
 	//hides objects with ShowOnPause tag
-	public void hidePaused(){
+	public void unPause()
+	{
+		Time.timeScale = 1;
 		for (int childIndex = 0; childIndex < this.transform.childCount; childIndex++)
 		{
 			this.transform.GetChild(childIndex).gameObject.SetActive(false);

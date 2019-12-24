@@ -132,17 +132,17 @@ public class BasicMovement : MonoBehaviour
 
         checkGrounded();
 
-        if (Input.GetButtonDown("Jump") && (grounded || gripping))
+        if (Input.GetKeyDown(PersistentManager.Instance.JumpKey) && (grounded || gripping))
         {
             jumpForce = maxJumpForce;
             playJumpSound();
         }
-        if (Input.GetButtonUp("Jump"))
+        if (Input.GetKeyUp(PersistentManager.Instance.JumpKey))
         {
             jumpForce = 0;
         }
         
-        if (Input.GetButton("Jump") && (jumpForce > 0.05f))
+        if (Input.GetKey(PersistentManager.Instance.JumpKey) && (jumpForce > 0.05f))
         {
             jumping = true;
 
@@ -176,7 +176,7 @@ public class BasicMovement : MonoBehaviour
             // if they can grip
         if(canGrip) {
                 // and press the button, they do it
-            if (Input.GetButtonDown("Grip"))
+            if (Input.GetKeyDown(PersistentManager.Instance.GrabKey))
             {
                 if (gripping == false)
                 {
