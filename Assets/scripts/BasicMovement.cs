@@ -122,7 +122,7 @@ public class BasicMovement : MonoBehaviour
         
         checkFlip();
 
-        if (gripping && !(Input.GetKey("1") || Input.GetKey("2")))
+        if (gripping && !(Input.GetKey(PersistentManager.Instance.HumidityKey) || Input.GetKey("2")))
         {
             v = Input.GetAxis("Vertical") * climbSpeed;
         }

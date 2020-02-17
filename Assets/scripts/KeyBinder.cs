@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class KeyBinder : MonoBehaviour
 {
 	public Pause pauseScript;
-	public Text left, right, jump, grab;
+	public Text left, right, jump, grab, humidity, wind;
 
 	private Dictionary<string, KeyCode> keys = new Dictionary<string, KeyCode>();
 	private GameObject currentKey;
@@ -15,22 +15,26 @@ public class KeyBinder : MonoBehaviour
 
     void Start()
     {
+        List<string> tl = PersistentManager.Instance.TreasureList;
+
 		keys.Add("LeftButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("LeftButton", "LeftArrow")));
+		// left.text = keys["LeftButton"].ToString();
 		keys.Add("RightButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("RightButton", "RightArrow")));
+		// right.text = keys["RightButton"].ToString();
 		keys.Add("JumpButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("JumpButton", "Space")));
-		keys.Add("GrabButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("GrabButton", "G")));
-
-		left.text = keys["LeftButton"].ToString();
-		right.text = keys["RightButton"].ToString();
 		jump.text = keys["JumpButton"].ToString();
+		keys.Add("GrabButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("GrabButton", "G")));
 		grab.text = keys["GrabButton"].ToString();
+		if(tl.Contains("humidity")) {
+			keys.Add("HumidityButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("HumidityButton", "1")));
+			humidity.text = keys["HumidityButton"].ToString();
+		}
+		if(tl.Contains("wind")) {
+			keys.Add("WindButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("WindButton", "2")));
+			wind.text = keys["WindButton"].ToString();			
+		}
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     void OnGUI()
     {
@@ -54,10 +58,9 @@ public class KeyBinder : MonoBehaviour
     	{
     		currentKey.GetComponent<Image>().color = normal;
 		}
-
-    		currentKey = clicked;
-    		currentKey.GetComponent<Image>().color = selected;
-    }
+		currentKey = clicked;
+		currentKey.GetComponent<Image>().color = selected;
+}
 
     public void SaveKeys()
     {

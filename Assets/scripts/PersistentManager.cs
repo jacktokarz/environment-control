@@ -11,9 +11,8 @@ public class PersistentManager : MonoBehaviour
 	public static PersistentManager Instance { get; private set; }
 
 		//UI
-    public Text Humidity;
-    public Text Wind;
-    public Text Temperature;
+    public Text Humidity, Wind, Temperature;
+    public GameObject PauseHumidity, PauseWind;
     public GameObject GameOver;
     public GameObject Message;
     	//humidity
@@ -82,6 +81,7 @@ public class PersistentManager : MonoBehaviour
 	[HideInInspector] 
     public KeyCode JumpKey = KeyCode.Space;
     public KeyCode GrabKey = KeyCode.G;
+    public KeyCode HumidityKey = KeyCode.Alpha1;
 
 
 	private void Awake()
@@ -112,10 +112,12 @@ public class PersistentManager : MonoBehaviour
     	bool seeHum = TreasureList.Contains("humidity") ? true : false;
 		Humidity.gameObject.SetActive(seeHum);
         updateText(Humidity, humidityLevel);
+        PauseHumidity.SetActive(seeHum);
 
 		bool seeWind = TreasureList.Contains("wind") ? true : false;
 		Wind.gameObject.SetActive(seeWind);
         updateText(Wind, windLevel);
+        PauseWind.SetActive(seeWind);
 
         bool seeTemp = TreasureList.Contains("temperature") ? true : false;
         Temperature.gameObject.SetActive(seeTemp);
@@ -165,6 +167,10 @@ public class PersistentManager : MonoBehaviour
         if (PlayerPrefs.GetString("GrabButton").Length > 0)
         {
             GrabKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("GrabButton", "G"));
+        }
+        if (PlayerPrefs.GetString("HumidityButton").Length > 0)
+        {
+            HumidityKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("HumidityButton", "Alpha1"));
         }
     }
 

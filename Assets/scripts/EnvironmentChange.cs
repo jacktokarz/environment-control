@@ -9,7 +9,7 @@ public class EnvironmentChange : MonoBehaviour
     {
         List<string> tl = PersistentManager.Instance.TreasureList;
 
-        if (tl.Contains("humidity") && Input.GetKey("1"))
+        if (tl.Contains("humidity") && Input.GetKey(PersistentManager.Instance.HumidityKey))
         {
             if (Input.GetKeyDown("up"))
             {
