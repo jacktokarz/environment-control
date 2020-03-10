@@ -58,8 +58,12 @@ public class EnemyActivity : MonoBehaviour
 			{ //if cansee == false then activates sound
                 if (canSee == false)
                 {
-                source.clip = fastbeep;
-                source.Play();
+                    if(source)
+                    {
+                        source.clip = fastbeep;
+                        source.volume = 0.5f;
+                        source.Play();                        
+                    }
                 }
 				canSee = true;
 				Quaternion q = Quaternion.AngleAxis(clampAngle, Vector3.forward);
@@ -70,17 +74,21 @@ public class EnemyActivity : MonoBehaviour
 		else
 		{
 			canSee = false; //== true deactivate
-            source.clip = slowbeep;
-            if (!source.isPlaying)
-            {
-                source.Play();
+            if(source) {
+                source.clip = slowbeep;
+                if (!source.isPlaying)
+                {
+                    source.volume=0.05f;
+                    source.Play();
+                }           
             }
-            
 		}
 
         if (counter >= rate && canSee)
         {
-            source.PlayOneShot(shoot, 1f);
+            if(source) {
+                source.PlayOneShot(shoot, 1f);
+            }
         	GameObject projectile = Instantiate(enemyProjectile, transform.position, Quaternion.identity);// projectile sound
         	ProjectileActivity pa = projectile.GetComponent<ProjectileActivity>();
         	pa.speed = projectileSpeed;

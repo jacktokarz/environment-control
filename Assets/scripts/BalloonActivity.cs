@@ -11,6 +11,8 @@ public class BalloonActivity : MonoBehaviour
 	private Rigidbody2D rigid;
 	private Vector3 m_Velocity = Vector3.zero;
 
+	private bool tethered = true;
+
     void Start()
     {
     	rigid = GetComponent<Rigidbody2D>();
@@ -20,7 +22,7 @@ public class BalloonActivity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    	Collider2D[] overlapper= Physics2D.OverlapBoxAll(this.transform.position, this.transform.localScale, this.transform.rotation.eulerAngles.z);
+    	Collider2D[] overlapper= Physics2D.OverlapBoxAll(this.transform.position, this.transform.localScale/2, this.transform.rotation.eulerAngles.z);
         if(overlapper.Length > 0)
         {
         	foreach (Collider2D coll in overlapper)
@@ -31,7 +33,7 @@ public class BalloonActivity : MonoBehaviour
         		}
         		else if(coll.CompareTag("Player"))
         		{
-        			//moveHero();
+        			tethered=false;
         		}
         	}
         }
@@ -39,6 +41,10 @@ public class BalloonActivity : MonoBehaviour
 
     void getBlown(float windAngle)
     {
+    	if(tethered) {
+    		return;
+    	}
+
     	if (PersistentManager.Instance.windLevel > 0)
 		{
 			Vector3 blow = Vector3.zero;

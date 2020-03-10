@@ -100,8 +100,10 @@ public class VineActivity : MonoBehaviour
 	            }
 	            else
 	            {
-	            	blocked = true;
-	            	break;
+                    if(!overlap.CompareTag("vine") && (!overlap.CompareTag("vinePiece"))) {
+    	            	blocked = true;
+    	            	break;
+                    }
 	            }
         	}
         }

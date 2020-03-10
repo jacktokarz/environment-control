@@ -378,7 +378,6 @@ public class EnvironmentEffect : MonoBehaviour
              }
          }
          else {
-            Debug.Log("changing "+change);
              trans.gameObject.layer = LayerMask.NameToLayer(change);
          }
      }
@@ -392,7 +391,6 @@ public class EnvironmentEffect : MonoBehaviour
              }
          }
          else {
-            Debug.Log("changing "+change);
              trans.gameObject.GetComponent<BoxCollider2D>().isTrigger = change;
          }
      }
