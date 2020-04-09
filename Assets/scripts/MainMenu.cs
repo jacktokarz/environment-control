@@ -49,6 +49,7 @@ public class MainMenu : MonoBehaviour
     public void newClicked()
     {
     	PersistentUI.gameObject.SetActive(true);
+        PersistentManager.Instance.lastDoorId="NewGame";
     	PersistentManager.Instance.GoToScene(1);
     }
 

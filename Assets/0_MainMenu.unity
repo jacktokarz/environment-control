@@ -834,6 +834,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3477365879915599186, guid: ac94d165cebaf4a488f3bb1f3a64f9af,
         type: 3}
+      propertyPath: TreasureList.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477365879915599186, guid: ac94d165cebaf4a488f3bb1f3a64f9af,
+        type: 3}
       propertyPath: lastDoorId
       value: Respawn
       objectReference: {fileID: 0}

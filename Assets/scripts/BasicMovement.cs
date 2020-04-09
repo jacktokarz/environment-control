@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 
 public class BasicMovement : MonoBehaviour
@@ -68,7 +70,16 @@ public class BasicMovement : MonoBehaviour
 
         source = GetComponent<AudioSource>();
         crntStep = stepA;
-
+        if (PersistentManager.Instance.lastDoorId == "NewGame")
+        {
+            Debug.Log("showing cutscene");
+            GameObject checkpoint = GameObject.FindWithTag("hub");
+            this.transform.position = new Vector3(checkpoint.transform.position.x, checkpoint.transform.position.y + 0.55f);
+            CheckpointActivity ca = checkpoint.GetComponent(typeof (CheckpointActivity)) as CheckpointActivity;
+            StartCoroutine(stallHubSpawn(ca, 13f));
+            Debug.Log("beneath the coroutine");
+            return;
+        }
         if (PersistentManager.Instance.lastDoorId == "Respawn")
         {
             Debug.Log("respawning");
@@ -382,6 +393,14 @@ public class BasicMovement : MonoBehaviour
             topHSpeed = defaultTopSpeed;
             decayRate = defaultDecay;
         }
+    }
+
+    IEnumerator stallHubSpawn(CheckpointActivity ca, float sec)
+    {
+        Debug.Log("Started Coroutine at timestamp : " + Time.time);
+        yield return new WaitForSeconds(sec);
+        ca.spawn(body);
+        Debug.Log("done with co routine");
     }
 
     void playJumpSound()
