@@ -73,6 +73,7 @@ public class PersistentManager : MonoBehaviour
     private AudioSource musicPlayer;
     public AudioClip motherPlantSong;
     public AudioClip elevatorSong;
+    public AudioClip waterSong;
 
 	public List<string> TreasureList = new List<string>();
 	public List<int> Checkpoints = new List<int>();
@@ -180,6 +181,7 @@ public class PersistentManager : MonoBehaviour
         Debug.Log("musical scene is "+sn);
         List<int> motherPlantScenes = new List<int>() {0, 1, 2};
         List<int> elevatorScenes = new List<int>() {3, 4, 8};
+        List<int> waterScenes = new List<int>() { 5, 6, 7 };
         if (motherPlantScenes.Contains(sn))
         {
             if (musicPlayer.clip == motherPlantSong) { return; }
@@ -189,6 +191,11 @@ public class PersistentManager : MonoBehaviour
         {
             if (musicPlayer.clip == elevatorSong) { return; }
             musicPlayer.clip = elevatorSong;
+        }
+        else if (waterScenes.Contains(sn))
+        {
+            if (musicPlayer.clip == waterSong) { return; }
+            musicPlayer.clip = waterSong;
         }
         else 
         {
