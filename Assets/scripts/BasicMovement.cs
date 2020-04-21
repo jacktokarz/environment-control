@@ -121,6 +121,8 @@ public class BasicMovement : MonoBehaviour
                     bm.Flip();
                 }
                 body.SetActive(true);
+                od.spawn(body);
+                
             }
         }
     }
