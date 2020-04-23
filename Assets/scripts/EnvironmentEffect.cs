@@ -123,6 +123,7 @@ public class EnvironmentEffect : MonoBehaviour
             updateVineGrowWait();
             changeWaterLevel(value);
             changeFrondWidth();
+            changeMossSize();
             PersistentManager.Instance.updateText(PersistentManager.Instance.Humidity, value);
             return true;
         }
@@ -327,6 +328,35 @@ public class EnvironmentEffect : MonoBehaviour
         foreach (GameObject moss in mosses)
         {
             changeChildCollider(moss.transform, true);
+        }
+    }
+    void changeMossSize()
+    {
+        int hum = PersistentManager.Instance.humidityLevel;
+        List<string> inactive = new List<string>();
+        if(hum < 2) {
+            inactive.Add("PlusTwo");
+        }
+        if(hum < 1) {
+            inactive.Add("PlusOne");
+        }
+        if(hum < 0) {
+            inactive.Add("Neutral");
+        }
+        if(hum < -1) {
+            inactive.Add("MinusOne");
+        }
+        foreach (GameObject moss in mosses)
+        {
+            for (int j = 0; j < moss.transform.childCount; j++)
+            {
+                GameObject mossling = moss.transform.GetChild(j).gameObject;
+                bool wantActive = !inactive.Contains(mossling.name);
+                if (mossling.activeInHierarchy != wantActive)
+                {
+                    mossling.SetActive(wantActive);
+                }
+            }
         }
     }
     void freezeVines()
