@@ -15,6 +15,8 @@ public class PersistentManager : MonoBehaviour
     public GameObject PauseHumidity, PauseWind;
     public GameObject GameOver;
     public GameObject Message;
+    public CanvasGroup blackCover;
+    public string difficulty;
     	//humidity
     public int maxHumidity;
     public int minHumidity;
@@ -127,10 +129,16 @@ public class PersistentManager : MonoBehaviour
         //bool seeToxic = TreasureList.Contains("toxicity") ? true : false;
     }
 
-	public void GoToScene(int sceneNumber)
+	public IEnumerator GoToScene(int sceneNumber)
     {
+        UIFader uiFader = this.GetComponent(typeof (UIFader)) as UIFader;
+        SelectMusic(-1);
+        uiFader.fadeIn(blackCover);
+        yield return new WaitForSeconds(1);
         SelectMusic(sceneNumber);
+        yield return new WaitForSeconds(1);
     	SceneManager.LoadScene(sceneNumber, LoadSceneMode.Single);
+        uiFader.fadeOut(blackCover);
     }
 
     public void updateText(Text textObj, int value)
@@ -177,7 +185,6 @@ public class PersistentManager : MonoBehaviour
 
     public void SelectMusic(int sn)
     {
-        Debug.Log("selecting");
         Debug.Log("musical scene is "+sn);
         List<int> motherPlantScenes = new List<int>() {0, 1, 2};
         List<int> elevatorScenes = new List<int>() {3, 4, 8};

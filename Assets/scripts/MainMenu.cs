@@ -8,6 +8,9 @@ public class MainMenu : MonoBehaviour
 {
 	private Transform PersistentUI;
 	private GameData loadGame;
+    private UIFader uiFader;
+
+    public CanvasGroup blackBG;
 
     void Start()
     {
@@ -20,6 +23,8 @@ public class MainMenu : MonoBehaviour
 
         PersistentUI = PersistentManager.Instance.transform.GetChild(0);
         PersistentUI.gameObject.SetActive(false);
+
+        uiFader = this.GetComponent(typeof (UIFader)) as UIFader;
     }
 
     public GameData Load() 
@@ -42,15 +47,17 @@ public class MainMenu : MonoBehaviour
     {
     	Debug.Log("clicked load game");
     	putLoadInManager();
-    	PersistentManager.Instance.GoToScene(PersistentManager.Instance.lastCheckpoint);
+    	StartCoroutine(PersistentManager.Instance.GoToScene(PersistentManager.Instance.lastCheckpoint));
     	PersistentUI.gameObject.SetActive(true);
     }
 
-    public void newClicked()
+    public void newClicked(string difficulty)
     {
+        Debug.Log("clicked new with "+difficulty);
     	PersistentUI.gameObject.SetActive(true);
+        PersistentManager.Instance.difficulty=difficulty;
         PersistentManager.Instance.lastDoorId="NewGame";
-    	PersistentManager.Instance.GoToScene(1);
+    	StartCoroutine(PersistentManager.Instance.GoToScene(1));
     }
 
     void putLoadInManager()
