@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using Cinemachine;
 
 public class PersistentManager : MonoBehaviour
 {
@@ -17,6 +18,19 @@ public class PersistentManager : MonoBehaviour
     public GameObject Message;
     public CanvasGroup blackCover;
     public string difficulty;
+    	//Camera
+    public CinemachineVirtualCamera vcam;
+    public List<float> zoomOptions = new List<float>() {6.5f, 8f, 5f};
+    [HideInInspector] 
+    public float currentZoom;
+    public bool zooming = false;
+
+    public KeyCode ZoomKey = KeyCode.Z;
+    public KeyCode JumpKey = KeyCode.Space;
+    public KeyCode GrabKey = KeyCode.G;
+    public KeyCode HumidityKey = KeyCode.Alpha1;
+    public float fadeSpeed = .5f;
+    
     	//humidity
     public int maxHumidity;
     public int minHumidity;
@@ -71,20 +85,21 @@ public class PersistentManager : MonoBehaviour
     public bool immobile = false;
 
         // Audio
+    [HideInInspector] 
+    public List<int> motherPlantSongScenes = new List<int>() {0, 1, 2};
+    public List<int> elevatorSongScenes = new List<int>() {3, 4, 8};
+    public List<int> windSongScenes = new List<int>() { 5, 6, 7 };
     private GameObject AudioChild;
     private AudioSource musicPlayer;
     public AudioClip motherPlantSong;
     public AudioClip elevatorSong;
-    public AudioClip waterSong;
+    public AudioClip windSong;
 
 	public List<string> TreasureList = new List<string>();
 	public List<int> Checkpoints = new List<int>();
     public List<int> Collectibles = new List<int>();
 
-	[HideInInspector] 
-    public KeyCode JumpKey = KeyCode.Space;
-    public KeyCode GrabKey = KeyCode.G;
-    public KeyCode HumidityKey = KeyCode.Alpha1;
+
 
 
 	private void Awake()
@@ -98,6 +113,12 @@ public class PersistentManager : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
+        vcam = GameObject.FindGameObjectsWithTag("primaryVirtualCamera")[0].GetComponent<CinemachineVirtualCamera>();
+        currentZoom = vcam.m_Lens.OrthographicSize;
+        if (currentZoom!=zoomOptions[0])
+        {
+            StartCoroutine(ChangeZoom(zoomOptions[0], fadeSpeed));
+        }
 	}
 
 	private void Start()
@@ -129,16 +150,55 @@ public class PersistentManager : MonoBehaviour
         //bool seeToxic = TreasureList.Contains("toxicity") ? true : false;
     }
 
+    public IEnumerator WaitToActivate(GameObject go, bool setting, float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        go.SetActive(setting);
+    }
+
 	public IEnumerator GoToScene(int sceneNumber)
     {
+        Camera camera = Camera.main;
+        CinemachineBrain brain = (camera == null) ? null : camera.GetComponent<CinemachineBrain>();
+        vcam = (brain == null) ? null : brain.ActiveVirtualCamera as CinemachineVirtualCamera;
+        currentZoom = vcam.m_Lens.OrthographicSize;
+
         UIFader uiFader = this.GetComponent(typeof (UIFader)) as UIFader;
-        SelectMusic(-1);
+        if (!getSongList(SceneManager.GetActiveScene().buildIndex).Contains(sceneNumber)) {
+            SelectMusic(-1);
+        }
         uiFader.fadeIn(blackCover);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.3f);
         SelectMusic(sceneNumber);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.7f);
     	SceneManager.LoadScene(sceneNumber, LoadSceneMode.Single);
         uiFader.fadeOut(blackCover);
+    }
+
+    // re-using fadeSpeed here, might not be good?
+    public IEnumerator ChangeZoom(float end, float lerpTime)
+    {
+        float _timeStartedLerping = Time.time;
+        float timeSinceStarted = Time.time - _timeStartedLerping;
+        float percentageComplete = timeSinceStarted / lerpTime;
+        float start = vcam.m_Lens.OrthographicSize;
+
+        zooming = true;
+        while (true)
+        {
+            timeSinceStarted = Time.time - _timeStartedLerping;
+            percentageComplete = timeSinceStarted / lerpTime;
+
+            float currentValue = Mathf.Lerp(start, end, percentageComplete);
+
+            vcam.m_Lens.OrthographicSize = currentValue;
+
+            if (percentageComplete >= 1) break;
+
+            yield return new WaitForFixedUpdate();
+        }
+        zooming = false;
+        currentZoom = vcam.m_Lens.OrthographicSize;
     }
 
     public void updateText(Text textObj, int value)
@@ -183,33 +243,51 @@ public class PersistentManager : MonoBehaviour
         }
     }
 
+    public List<int> getSongList(int sn)
+    {
+        if (motherPlantSongScenes.Contains(sn))
+        {
+            return motherPlantSongScenes;
+        }
+        else if (elevatorSongScenes.Contains(sn))
+        {
+            return elevatorSongScenes;
+        }
+        else if (windSongScenes.Contains(sn))
+        {
+            return windSongScenes;
+        }
+
+        return new List<int>();
+    }
+
     public void SelectMusic(int sn)
     {
         Debug.Log("musical scene is "+sn);
-        List<int> motherPlantScenes = new List<int>() {0, 1, 2};
-        List<int> elevatorScenes = new List<int>() {3, 4, 8};
-        List<int> waterScenes = new List<int>() { 5, 6, 7 };
-        if (motherPlantScenes.Contains(sn))
+        List<int> songList = getSongList(sn);
+        if (motherPlantSongScenes == songList)
         {
             if (musicPlayer.clip == motherPlantSong) { return; }
             musicPlayer.clip = motherPlantSong;
         }
-        else if (elevatorScenes.Contains(sn))
+        else if (elevatorSongScenes == songList)
         {
             if (musicPlayer.clip == elevatorSong) { return; }
             musicPlayer.clip = elevatorSong;
         }
-        else if (waterScenes.Contains(sn))
+        else if (windSongScenes == songList)
         {
-            if (musicPlayer.clip == waterSong) { return; }
-            musicPlayer.clip = waterSong;
+            if (musicPlayer.clip == windSong) { return; }
+            musicPlayer.clip = windSong;
         }
         else 
         {
+            Debug.Log("playing nothing");
             musicPlayer.clip = null;
             musicPlayer.Stop(); 
             return;
         }
+        Debug.Log("playing something");
         musicPlayer.Play();
     }
 

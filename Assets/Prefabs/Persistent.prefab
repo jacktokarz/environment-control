@@ -1745,7 +1745,7 @@ MonoBehaviour:
   PauseWind: {fileID: 1104734950}
   GameOver: {fileID: 4448823486320371735}
   Message: {fileID: 1849706844}
-  blackCover: {fileID: 0}
+  blackCover: {fileID: 1601072234570824128}
   difficulty: 
   maxHumidity: 3
   minHumidity: -3
@@ -1787,7 +1787,7 @@ MonoBehaviour:
   immobile: 0
   motherPlantSong: {fileID: 8300000, guid: 48768eee707ad489cb94269f07f35edf, type: 3}
   elevatorSong: {fileID: 8300000, guid: d6972b375e6d644dba2483fb87dee038, type: 3}
-  waterSong: {fileID: 8300000, guid: 47920c7ceac8f4f9aae67a7f05a63174, type: 3}
+  windSong: {fileID: 0}
   TreasureList: []
   Checkpoints: 010000000200000003000000
   Collectibles: 
@@ -3395,7 +3395,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2970951254315108724
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3405,7 +3405,7 @@ RectTransform:
   m_GameObject: {fileID: 8175876950749708047}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1851852, y: 1.1851852, z: 1.1851852}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_Children: []
   m_Father: {fileID: 2643593006296515363}
   m_RootOrder: 4

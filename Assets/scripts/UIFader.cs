@@ -9,12 +9,12 @@ public class UIFader : MonoBehaviour {
     public void fadeIn(CanvasGroup selectedElement)
     {
         selectedElement.alpha = 0;
-        StartCoroutine(FadeCanvasGroup(selectedElement, selectedElement.alpha, 1, .5f));
+        StartCoroutine(FadeCanvasGroup(selectedElement, selectedElement.alpha, 1, PersistentManager.Instance.fadeSpeed));
     }
 
     public void fadeOut(CanvasGroup uiElement)
     {
-        StartCoroutine(FadeCanvasGroup(uiElement, uiElement.alpha, 0, .5f));
+        StartCoroutine(FadeCanvasGroup(uiElement, uiElement.alpha, 0, PersistentManager.Instance.fadeSpeed));
     }
 
     public IEnumerator FadeCanvasGroup(CanvasGroup cg, float start, float end, float lerpTime = 1)

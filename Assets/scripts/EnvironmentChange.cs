@@ -7,6 +7,19 @@ public class EnvironmentChange : MonoBehaviour
 
     private void Update()
     {
+        if (!PersistentManager.Instance.zooming && Input.GetKey(PersistentManager.Instance.ZoomKey))
+        {
+            List<float> zoomO = new List<float>(PersistentManager.Instance.zoomOptions);
+            int currentIndex = zoomO.IndexOf(PersistentManager.Instance.currentZoom);
+            if(currentIndex==zoomO.Count-1) {
+                StartCoroutine(PersistentManager.Instance.ChangeZoom(zoomO[0], PersistentManager.Instance.fadeSpeed));
+            }
+            else
+            {
+                StartCoroutine(PersistentManager.Instance.ChangeZoom(zoomO[currentIndex+1], PersistentManager.Instance.fadeSpeed));
+            }
+        }
+
         List<string> tl = PersistentManager.Instance.TreasureList;
 
         if (tl.Contains("humidity") && Input.GetKey(PersistentManager.Instance.HumidityKey))

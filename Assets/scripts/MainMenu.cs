@@ -46,9 +46,16 @@ public class MainMenu : MonoBehaviour
     public void loadClicked()
     {
     	Debug.Log("clicked load game");
-    	putLoadInManager();
-    	StartCoroutine(PersistentManager.Instance.GoToScene(PersistentManager.Instance.lastCheckpoint));
-    	PersistentUI.gameObject.SetActive(true);
+        PersistentManager.Instance.TreasureList = new List<string>(loadGame.TreasureList);
+        PersistentManager.Instance.checkTextVis();
+        PersistentManager.Instance.lastCheckpoint = loadGame.lastCheckpoint;
+        PersistentManager.Instance.Checkpoints = new List<int>(loadGame.Checkpoints);
+        PersistentManager.Instance.lastDoorId = "Respawn";
+        GameObject propertyValues = PersistentUI.Find("PropertyValues").gameObject;
+        propertyValues.SetActive(false);
+        PersistentUI.gameObject.SetActive(true);
+        StartCoroutine(PersistentManager.Instance.GoToScene(PersistentManager.Instance.lastCheckpoint));
+    	StartCoroutine(PersistentManager.Instance.WaitToActivate(propertyValues, true, PersistentManager.Instance.fadeSpeed * 1.5f));
     }
 
     public void newClicked(string difficulty)
@@ -58,14 +65,5 @@ public class MainMenu : MonoBehaviour
         PersistentManager.Instance.difficulty=difficulty;
         PersistentManager.Instance.lastDoorId="NewGame";
     	StartCoroutine(PersistentManager.Instance.GoToScene(1));
-    }
-
-    void putLoadInManager()
-    {
-        PersistentManager.Instance.TreasureList = new List<string>(loadGame.TreasureList);
-        PersistentManager.Instance.checkTextVis();
-        PersistentManager.Instance.lastCheckpoint = loadGame.lastCheckpoint;
-        PersistentManager.Instance.Checkpoints = new List<int>(loadGame.Checkpoints);
-        PersistentManager.Instance.lastDoorId = "Respawn";
     }
 }
