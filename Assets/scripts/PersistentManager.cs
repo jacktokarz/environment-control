@@ -113,11 +113,13 @@ public class PersistentManager : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
-        vcam = GameObject.FindGameObjectsWithTag("primaryVirtualCamera")[0].GetComponent<CinemachineVirtualCamera>();
-        currentZoom = vcam.m_Lens.OrthographicSize;
-        if (currentZoom!=zoomOptions[0])
-        {
-            StartCoroutine(ChangeZoom(zoomOptions[0], fadeSpeed));
+        if (GameObject.FindGameObjectsWithTag("primaryVirtualCamera").Length > 0) {
+            vcam = GameObject.FindGameObjectsWithTag("primaryVirtualCamera")[0].GetComponent<CinemachineVirtualCamera>();
+            currentZoom = vcam.m_Lens.OrthographicSize;
+            if (currentZoom!=zoomOptions[0])
+            {
+                StartCoroutine(ChangeZoom(zoomOptions[0], fadeSpeed));
+            }
         }
 	}
 
@@ -158,21 +160,21 @@ public class PersistentManager : MonoBehaviour
 
 	public IEnumerator GoToScene(int sceneNumber)
     {
-        Camera camera = Camera.main;
-        CinemachineBrain brain = (camera == null) ? null : camera.GetComponent<CinemachineBrain>();
-        vcam = (brain == null) ? null : brain.ActiveVirtualCamera as CinemachineVirtualCamera;
-        currentZoom = vcam.m_Lens.OrthographicSize;
-
         UIFader uiFader = this.GetComponent(typeof (UIFader)) as UIFader;
         if (!getSongList(SceneManager.GetActiveScene().buildIndex).Contains(sceneNumber)) {
             SelectMusic(-1);
         }
         uiFader.fadeIn(blackCover);
-        yield return new WaitForSeconds(1.3f);
+        yield return new WaitForSeconds(0.75f);
         SelectMusic(sceneNumber);
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(0.75f);
     	SceneManager.LoadScene(sceneNumber, LoadSceneMode.Single);
         uiFader.fadeOut(blackCover);
+
+        Camera camera = Camera.main;
+        CinemachineBrain brain = (camera == null) ? null : camera.GetComponent<CinemachineBrain>();
+        vcam = (brain == null) ? null : brain.ActiveVirtualCamera as CinemachineVirtualCamera;
+        currentZoom = vcam.m_Lens.OrthographicSize;
     }
 
     // re-using fadeSpeed here, might not be good?

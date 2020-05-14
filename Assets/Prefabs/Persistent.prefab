@@ -1747,6 +1747,18 @@ MonoBehaviour:
   Message: {fileID: 1849706844}
   blackCover: {fileID: 1601072234570824128}
   difficulty: 
+  vcam: {fileID: 0}
+  zoomOptions:
+  - 6.5
+  - 8
+  - 5
+  currentZoom: 0
+  zooming: 0
+  ZoomKey: 122
+  JumpKey: 32
+  GrabKey: 103
+  HumidityKey: 49
+  fadeSpeed: 0.5
   maxHumidity: 3
   minHumidity: -3
   maxWind: 3
@@ -1785,15 +1797,15 @@ MonoBehaviour:
   lastDoorId: opening/elevator-bottom
   lastCheckpoint: 1
   immobile: 0
+  motherPlantSongScenes: 000000000100000002000000
+  elevatorSongScenes: 030000000400000008000000
+  windSongScenes: 050000000600000007000000
   motherPlantSong: {fileID: 8300000, guid: 48768eee707ad489cb94269f07f35edf, type: 3}
   elevatorSong: {fileID: 8300000, guid: d6972b375e6d644dba2483fb87dee038, type: 3}
-  windSong: {fileID: 0}
+  windSong: {fileID: 8300000, guid: 47920c7ceac8f4f9aae67a7f05a63174, type: 3}
   TreasureList: []
   Checkpoints: 010000000200000003000000
   Collectibles: 
-  JumpKey: 32
-  GrabKey: 103
-  HumidityKey: 49
 --- !u!114 &7611123234840613665
 MonoBehaviour:
   m_ObjectHideFlags: 0
