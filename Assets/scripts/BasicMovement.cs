@@ -9,6 +9,7 @@ public class BasicMovement : MonoBehaviour
     public BrackeysMovement bm;
     public Vector3 spawnPoint;
 
+    public float defaultGravity;
     public float defaultTopSpeed;
     public float climbSpeed;
     public float maxJumpForce;
@@ -39,7 +40,6 @@ public class BasicMovement : MonoBehaviour
     float coolDecay;
     float coldDecay;
 
-    float defaultGravity;
     float h;
     float v;
     float jumpForce;
@@ -55,19 +55,24 @@ public class BasicMovement : MonoBehaviour
     {
         body = this.transform.GetChild(0).gameObject;
         body.SetActive(false);
-    }
-
-    void Start()
-    {
+        bool difficult = PersistentManager.Instance.difficulty=="challenging"; //otherwise, "relaxed"
+        Debug.Log("is it difficult? "+difficult);
+        defaultGravity = difficult ? 5f : 2.5f;
+        rigid = GetComponent<Rigidbody2D>();
+        rigid.gravityScale = defaultGravity;
+        defaultTopSpeed = difficult ? 40f : 32f;
+        climbSpeed = difficult ? 20f : 18f;
+        maxJumpForce = difficult ? 100f : 78f;
+        defaultDecay = difficult ? 200f : 130f;
         coolDecay = defaultDecay * 1.15f;
         coldDecay = defaultDecay * 1.35f;
         coolTopSpeed = defaultTopSpeed * 0.85f;
         coldTopSpeed = defaultTopSpeed * 0.65f;
+    }
+
+    void Start()
+    {
         changePlayerStats();
-
-        rigid = GetComponent<Rigidbody2D>();
-        defaultGravity = rigid.gravityScale;
-
         source = GetComponent<AudioSource>();
         crntStep = stepA;
         if (PersistentManager.Instance.lastDoorId == "NewGame")
