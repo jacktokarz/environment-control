@@ -55,6 +55,11 @@ public class BasicMovement : MonoBehaviour
     {
         body = this.transform.GetChild(0).gameObject;
         body.SetActive(false);
+        PersistentManager.Instance.immobile = true;
+    }
+
+    void Start()
+    {
         bool difficult = PersistentManager.Instance.difficulty=="challenging"; //otherwise, "relaxed"
         Debug.Log("is it difficult? "+difficult);
         defaultGravity = difficult ? 5f : 2.5f;
@@ -68,13 +73,10 @@ public class BasicMovement : MonoBehaviour
         coldDecay = defaultDecay * 1.35f;
         coolTopSpeed = defaultTopSpeed * 0.85f;
         coldTopSpeed = defaultTopSpeed * 0.65f;
-    }
-
-    void Start()
-    {
         changePlayerStats();
         source = GetComponent<AudioSource>();
         crntStep = stepA;
+
         if (PersistentManager.Instance.lastDoorId == "NewGame")
         {
             Debug.Log("showing cutscene");
@@ -82,7 +84,6 @@ public class BasicMovement : MonoBehaviour
             this.transform.position = new Vector3(checkpoint.transform.position.x, checkpoint.transform.position.y + 0.55f);
             CheckpointActivity ca = checkpoint.GetComponent(typeof (CheckpointActivity)) as CheckpointActivity;
             StartCoroutine(stallHubSpawn(ca, 13f));
-            Debug.Log("beneath the coroutine");
             return;
         }
         if (PersistentManager.Instance.lastDoorId == "Respawn")
@@ -95,8 +96,8 @@ public class BasicMovement : MonoBehaviour
             }
             this.transform.position = new Vector3(checkpoint.transform.position.x, checkpoint.transform.position.y + 0.55f);
             CheckpointActivity ca = checkpoint.GetComponent(typeof (CheckpointActivity)) as CheckpointActivity;
-            Debug.Log("calling spawn anim"+ca);
-            ca.spawn(body);
+            Debug.Log("calling spawn anim "+ca);
+            ca.spawn();
             return;
         }
         else {
@@ -113,7 +114,6 @@ public class BasicMovement : MonoBehaviour
                     }
                     this.transform.position = spawnPoint;
                     od.spawn(body);
-                    Debug.Log("spawned?");
                     break;
                 }
             }
@@ -125,9 +125,7 @@ public class BasicMovement : MonoBehaviour
                 {
                     bm.Flip();
                 }
-                body.SetActive(true);
-                od.spawn(body);
-                
+                od.spawn(body);                
             }
         }
     }
@@ -212,11 +210,11 @@ public class BasicMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //checkDeath();
-
-        checkMove();
-
-        checkJump();
+        if(!PersistentManager.Instance.immobile)
+        {
+            checkMove();
+            checkJump();
+        }
     }
 
     // void checkDeath()
@@ -346,6 +344,8 @@ public class BasicMovement : MonoBehaviour
 
     void death() 
     {
+        rigid.velocity= new Vector2(0,0);
+        PersistentManager.Instance.immobile = true;
         PersistentManager.Instance.GameOver.SetActive(true);
     }
 
@@ -405,8 +405,9 @@ public class BasicMovement : MonoBehaviour
     IEnumerator stallHubSpawn(CheckpointActivity ca, float sec)
     {
         Debug.Log("Started Coroutine at timestamp : " + Time.time);
+
         yield return new WaitForSeconds(sec);
-        ca.spawn(body);
+        ca.spawn();
         Debug.Log("done with co routine");
     }
 

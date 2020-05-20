@@ -62,23 +62,11 @@ public class CheckpointActivity : MonoBehaviour
         spawnAnim.SetBool("active", true);
     }
 
-    public void spawn(GameObject player)
+    public void spawn()
     {
         Debug.Log("checkpoint makes player");
         spawnAnim.SetBool("active", true);
         spawnAnim.SetTrigger("Spawn");
-       
-        StartCoroutine(stallPlayerActivation(player, 4.5f));
         source.PlayOneShot(spawnsound);
     }
-
-    IEnumerator stallPlayerActivation(GameObject obj, float sec)
-    {
-        PersistentManager.Instance.immobile = true;
-        Debug.Log("Started Coroutine at timestamp : " + Time.time);
-        yield return new WaitForSeconds(sec);
-        obj.SetActive(true);
-        PersistentManager.Instance.immobile = false;
-    }
-
 }

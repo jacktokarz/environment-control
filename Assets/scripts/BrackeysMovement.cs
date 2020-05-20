@@ -20,7 +20,7 @@ public class BrackeysMovement : MonoBehaviour
 
     public Vector3 predictMove(Vector3 move)
     {
-        return Vector3.SmoothDamp(m_Rigidbody2D.velocity, move * 10f, ref m_Velocity, m_MovementSmoothing) * Time.fixedDeltaTime;
+        return Vector3.SmoothDamp(m_Rigidbody2D.velocity, move * 10f, ref m_Velocity, m_MovementSmoothing) * 2 * Time.fixedDeltaTime;
     }
 
     public void Move(float move)

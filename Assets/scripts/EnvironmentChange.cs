@@ -9,6 +9,11 @@ public class EnvironmentChange : MonoBehaviour
     {
         if (!PersistentManager.Instance.zooming && Input.GetKey(PersistentManager.Instance.ZoomKey))
         {
+            if (PersistentManager.Instance.vcam == null)
+            {
+                PersistentManager.Instance.GetCameraAndZoom();
+            }
+            Debug.Log("vcam "+PersistentManager.Instance.vcam);
             List<float> zoomO = new List<float>(PersistentManager.Instance.zoomOptions);
             int currentIndex = zoomO.IndexOf(PersistentManager.Instance.currentZoom);
             if(currentIndex==zoomO.Count-1) {

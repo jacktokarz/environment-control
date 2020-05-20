@@ -113,14 +113,7 @@ public class PersistentManager : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
-        if (GameObject.FindGameObjectsWithTag("primaryVirtualCamera").Length > 0) {
-            vcam = GameObject.FindGameObjectsWithTag("primaryVirtualCamera")[0].GetComponent<CinemachineVirtualCamera>();
-            currentZoom = vcam.m_Lens.OrthographicSize;
-            if (currentZoom!=zoomOptions[0])
-            {
-                StartCoroutine(ChangeZoom(zoomOptions[0], fadeSpeed));
-            }
-        }
+        GetCameraAndZoom();
 	}
 
 	private void Start()
@@ -161,6 +154,7 @@ public class PersistentManager : MonoBehaviour
 	public IEnumerator GoToScene(int sceneNumber)
     {
         UIFader uiFader = this.GetComponent(typeof (UIFader)) as UIFader;
+        Debug.Log("going to scene "+sceneNumber);
         if (!getSongList(SceneManager.GetActiveScene().buildIndex).Contains(sceneNumber)) {
             SelectMusic(-1);
         }
@@ -169,12 +163,11 @@ public class PersistentManager : MonoBehaviour
         SelectMusic(sceneNumber);
         yield return new WaitForSeconds(0.75f);
     	SceneManager.LoadScene(sceneNumber, LoadSceneMode.Single);
+        if (GameOver.activeSelf)
+        {
+            GameOver.SetActive(false);
+        }
         uiFader.fadeOut(blackCover);
-
-        Camera camera = Camera.main;
-        CinemachineBrain brain = (camera == null) ? null : camera.GetComponent<CinemachineBrain>();
-        vcam = (brain == null) ? null : brain.ActiveVirtualCamera as CinemachineVirtualCamera;
-        currentZoom = vcam.m_Lens.OrthographicSize;
     }
 
     // re-using fadeSpeed here, might not be good?
@@ -293,5 +286,19 @@ public class PersistentManager : MonoBehaviour
         musicPlayer.Play();
     }
 
+    public void GetCameraAndZoom()
+    {
+        if (GameObject.FindGameObjectsWithTag("primaryVirtualCamera").Length > 0) {
+            vcam = GameObject.FindGameObjectsWithTag("primaryVirtualCamera")[0].GetComponent<CinemachineVirtualCamera>();
+            currentZoom = vcam.m_Lens.OrthographicSize;
+            if (currentZoom!=zoomOptions[0])
+            {
+                StartCoroutine(ChangeZoom(zoomOptions[0], fadeSpeed));
+            }
+        }
+        else {
+            Debug.Log("no primary camera");
+        }
+    }
 
 }

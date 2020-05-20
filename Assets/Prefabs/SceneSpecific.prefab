@@ -313,7 +313,12 @@ PrefabInstance:
     - target: {fileID: 4716485986572984656, guid: 8c194b5a0e2527446850355bc5e4b7ef,
         type: 3}
       propertyPath: m_TagString
-      value: PrimaryVirtualCamera
+      value: primaryVirtualCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
+        type: 3}
+      propertyPath: m_Lens.OrthographicSize
+      value: 6.5
       objectReference: {fileID: 0}
     - target: {fileID: 4716485986572984658, guid: 8c194b5a0e2527446850355bc5e4b7ef,
         type: 3}
@@ -370,11 +375,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
-        type: 3}
-      propertyPath: m_Lens.OrthographicSize
-      value: 6.5
-      objectReference: {fileID: 0}
     - target: {fileID: 4716485986572984659, guid: 8c194b5a0e2527446850355bc5e4b7ef,
         type: 3}
       propertyPath: m_BoundingShape2D
@@ -428,7 +428,7 @@ PrefabInstance:
     - target: {fileID: 2816837758856372780, guid: 70fa60af300ffce4494aa3afe26ff477,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2
+      value: 2.000001
       objectReference: {fileID: 0}
     - target: {fileID: 2816837758856372780, guid: 70fa60af300ffce4494aa3afe26ff477,
         type: 3}

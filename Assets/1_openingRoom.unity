@@ -5823,6 +5823,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: vcam TopShot
       objectReference: {fileID: 0}
+    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
+        type: 3}
+      propertyPath: m_Follow
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
+        type: 3}
+      propertyPath: m_ComponentOwner
+      value: 
+      objectReference: {fileID: 1774476935}
+    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
+        type: 3}
+      propertyPath: m_Lens.OrthographicSize
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
+        type: 3}
+      propertyPath: m_Priority
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4716485986572984658, guid: 8c194b5a0e2527446850355bc5e4b7ef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5877,26 +5897,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
-        type: 3}
-      propertyPath: m_Follow
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
-        type: 3}
-      propertyPath: m_ComponentOwner
-      value: 
-      objectReference: {fileID: 1774476935}
-    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
-        type: 3}
-      propertyPath: m_Lens.OrthographicSize
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
-        type: 3}
-      propertyPath: m_Priority
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4716485986572984659, guid: 8c194b5a0e2527446850355bc5e4b7ef,
         type: 3}
@@ -6510,6 +6510,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: vcam MiddleShot
       objectReference: {fileID: 0}
+    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
+        type: 3}
+      propertyPath: m_Follow
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
+        type: 3}
+      propertyPath: m_ComponentOwner
+      value: 
+      objectReference: {fileID: 1595094548}
+    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
+        type: 3}
+      propertyPath: m_Lens.OrthographicSize
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
+        type: 3}
+      propertyPath: m_Priority
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4716485986572984658, guid: 8c194b5a0e2527446850355bc5e4b7ef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6564,26 +6584,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
-        type: 3}
-      propertyPath: m_Follow
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
-        type: 3}
-      propertyPath: m_ComponentOwner
-      value: 
-      objectReference: {fileID: 1595094548}
-    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
-        type: 3}
-      propertyPath: m_Lens.OrthographicSize
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
-        type: 3}
-      propertyPath: m_Priority
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4716485986572984659, guid: 8c194b5a0e2527446850355bc5e4b7ef,
         type: 3}
@@ -7723,6 +7723,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: CM vcam1
       objectReference: {fileID: 0}
+    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
+        type: 3}
+      propertyPath: m_Follow
+      value: 
+      objectReference: {fileID: 87637799}
+    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
+        type: 3}
+      propertyPath: m_ComponentOwner
+      value: 
+      objectReference: {fileID: 370297684}
+    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
+        type: 3}
+      propertyPath: m_Lens.OrthographicSize
+      value: 6.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4716485986572984658, guid: 8c194b5a0e2527446850355bc5e4b7ef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7777,21 +7792,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
-        type: 3}
-      propertyPath: m_Follow
-      value: 
-      objectReference: {fileID: 87637799}
-    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
-        type: 3}
-      propertyPath: m_ComponentOwner
-      value: 
-      objectReference: {fileID: 370297684}
-    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
-        type: 3}
-      propertyPath: m_Lens.OrthographicSize
-      value: 6.5
       objectReference: {fileID: 0}
     - target: {fileID: 4716485986572984659, guid: 8c194b5a0e2527446850355bc5e4b7ef,
         type: 3}
@@ -18370,6 +18370,11 @@ PrefabInstance:
         type: 3}
       propertyPath: lastDoorId
       value: Respawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477365879915599186, guid: ac94d165cebaf4a488f3bb1f3a64f9af,
+        type: 3}
+      propertyPath: difficulty
+      value: challenging
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 536044750, guid: ac94d165cebaf4a488f3bb1f3a64f9af, type: 3}

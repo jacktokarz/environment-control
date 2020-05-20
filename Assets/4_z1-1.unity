@@ -685,6 +685,26 @@ PrefabInstance:
       propertyPath: m_CompositePaths.m_Paths.Array.data[0].Array.data[3].y
       value: -5.375
       objectReference: {fileID: 0}
+    - target: {fileID: 6016086577764918613, guid: 99cddb3c6861bab498e3cca9c94e5cd8,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6016086577764918613, guid: 99cddb3c6861bab498e3cca9c94e5cd8,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 44.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6016086577764918613, guid: 99cddb3c6861bab498e3cca9c94e5cd8,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6016086577764918613, guid: 99cddb3c6861bab498e3cca9c94e5cd8,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 28.75
+      objectReference: {fileID: 0}
     - target: {fileID: 5173708742008825185, guid: 99cddb3c6861bab498e3cca9c94e5cd8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -740,6 +760,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5826518459625912661, guid: 99cddb3c6861bab498e3cca9c94e5cd8,
+        type: 3}
+      propertyPath: startingToxicity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4725931401052551771, guid: 99cddb3c6861bab498e3cca9c94e5cd8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -758,37 +783,12 @@ PrefabInstance:
     - target: {fileID: 752841098730972291, guid: 99cddb3c6861bab498e3cca9c94e5cd8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.67
+      value: 10.329546
       objectReference: {fileID: 0}
     - target: {fileID: 752841098730972291, guid: 99cddb3c6861bab498e3cca9c94e5cd8,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6016086577764918613, guid: 99cddb3c6861bab498e3cca9c94e5cd8,
-        type: 3}
-      propertyPath: m_Offset.x
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6016086577764918613, guid: 99cddb3c6861bab498e3cca9c94e5cd8,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 44.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 6016086577764918613, guid: 99cddb3c6861bab498e3cca9c94e5cd8,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 6016086577764918613, guid: 99cddb3c6861bab498e3cca9c94e5cd8,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 28.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 5826518459625912661, guid: 99cddb3c6861bab498e3cca9c94e5cd8,
-        type: 3}
-      propertyPath: startingToxicity
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 752841098730972290, guid: 99cddb3c6861bab498e3cca9c94e5cd8,
         type: 3}
