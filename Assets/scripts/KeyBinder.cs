@@ -70,6 +70,6 @@ public class KeyBinder : MonoBehaviour
     	}
     	PlayerPrefs.Save();
     	PersistentManager.Instance.setKeys();
-    	pauseScript.unPause();
+    	pauseScript.UnPause();
     }
 }
