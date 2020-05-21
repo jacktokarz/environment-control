@@ -17,14 +17,14 @@ public class KeyBinder : MonoBehaviour
     {
         List<string> tl = PersistentManager.Instance.TreasureList;
 
-		keys.Add("LeftButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("LeftButton", "LeftArrow")));
-		// left.text = keys["LeftButton"].ToString();
-		keys.Add("RightButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("RightButton", "RightArrow")));
-		// right.text = keys["RightButton"].ToString();
-		keys.Add("JumpButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("JumpButton", "Space")));
-		jump.text = keys["JumpButton"].ToString();
+		// keys.Add("LeftButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("LeftButton", "LeftArrow")));
+		// // left.text = keys["LeftButton"].ToString();
+		// keys.Add("RightButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("RightButton", "RightArrow")));
+		// // right.text = keys["RightButton"].ToString();
 		keys.Add("GrabButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("GrabButton", "G")));
 		grab.text = keys["GrabButton"].ToString();
+		keys.Add("JumpButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("JumpButton", "Space")));
+		jump.text = keys["JumpButton"].ToString();
 		if(tl.Contains("humidity")) {
 			keys.Add("HumidityButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("HumidityButton", "1")));
 			humidity.text = keys["HumidityButton"].ToString();
@@ -69,7 +69,7 @@ public class KeyBinder : MonoBehaviour
     		PlayerPrefs.SetString(key.Key, key.Value.ToString());
     	}
     	PlayerPrefs.Save();
-    	PersistentManager.Instance.setKeys();
+    	PersistentManager.Instance.SetKeys();
     	pauseScript.UnPause();
     }
 }

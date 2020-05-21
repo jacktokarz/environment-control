@@ -62,6 +62,7 @@ public class MainMenu : MonoBehaviour
     {
         Debug.Log("clicked new with "+difficulty);
         PlayerPrefs.DeleteAll();
+        PersistentManager.Instance.SetKeys();
     	PersistentUI.gameObject.SetActive(true);
         PersistentManager.Instance.difficulty=difficulty;
         PersistentManager.Instance.lastDoorId="NewGame";

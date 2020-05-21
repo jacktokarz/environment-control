@@ -29,6 +29,7 @@ public class PersistentManager : MonoBehaviour
     public KeyCode JumpKey = KeyCode.Space;
     public KeyCode GrabKey = KeyCode.G;
     public KeyCode HumidityKey = KeyCode.Alpha1;
+    public KeyCode WindKey = KeyCode.Alpha2;
     public float fadeSpeed = .5f;
     
     	//humidity
@@ -118,7 +119,7 @@ public class PersistentManager : MonoBehaviour
 
 	private void Start()
 	{
-        setKeys();
+        SetKeys();
 		checkTextVis();
         AudioChild = this.transform.Find("Audio").gameObject;
         musicPlayer = AudioChild.GetComponent<AudioSource>();
@@ -222,7 +223,15 @@ public class PersistentManager : MonoBehaviour
 	    return true;
     }
 
-    public void setKeys()
+    // public void ResetKeys()
+    // {
+    //     PlayerPrefs.SetString("JumpButton", );
+    //     PlayerPrefs.SetString("GrabButton", "G");
+    //     PlayerPrefs.SetString("HumidityButton", "Alpha1");
+    //     PlayerPrefs.SetString("WindButton", "Alpha2");
+    // }
+
+    public void SetKeys()
     {
         if (PlayerPrefs.GetString("JumpButton").Length > 0)
         {
@@ -234,7 +243,11 @@ public class PersistentManager : MonoBehaviour
         }
         if (PlayerPrefs.GetString("HumidityButton").Length > 0)
         {
-            HumidityKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("HumidityButton", "Alpha1"));
+            HumidityKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("HumidityButton", "1"));
+        }
+        if (PlayerPrefs.GetString("WindButton").Length > 0)
+        {
+            WindKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("WindButton", "2"));
         }
     }
 
