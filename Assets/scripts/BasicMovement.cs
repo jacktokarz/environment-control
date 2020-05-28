@@ -49,12 +49,14 @@ public class BasicMovement : MonoBehaviour
     private AudioSource source;
 
     Rigidbody2D rigid;
-    GameObject body;
+    GameObject bodyObject;
+    Animator bodyAnimator;
 
     void Awake()
     {
-        body = this.transform.GetChild(0).gameObject;
-        body.SetActive(false);
+        bodyObject = this.transform.GetChild(0).gameObject;
+        bodyObject.SetActive(false);
+        bodyAnimator = this.transform.GetChild(0).GetComponent(typeof (Animator)) as Animator;
         PersistentManager.Instance.immobile = true;
     }
 
@@ -113,7 +115,7 @@ public class BasicMovement : MonoBehaviour
                         bm.Flip();
                     }
                     this.transform.position = spawnPoint;
-                    od.spawn(body);
+                    od.spawn(bodyObject);
                     break;
                 }
             }
@@ -125,7 +127,7 @@ public class BasicMovement : MonoBehaviour
                 {
                     bm.Flip();
                 }
-                od.spawn(body);                
+                od.spawn(bodyObject);                
             }
         }
     }
@@ -215,6 +217,7 @@ public class BasicMovement : MonoBehaviour
             checkMove();
             checkJump();
         }
+        bodyAnimator.SetFloat("velocity", Math.Abs(rigid.velocity.x));
     }
 
     // void checkDeath()

@@ -478,6 +478,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bm: {fileID: 5586110174633710968}
   spawnPoint: {x: 0, y: 0, z: 0}
+  defaultGravity: 0
   defaultTopSpeed: 40
   climbSpeed: 20
   maxJumpForce: 100
@@ -780,6 +781,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4339542757749410462}
   - component: {fileID: 1804366128065332839}
+  - component: {fileID: 2280618482057325861}
   m_Layer: 8
   m_Name: Florauna_Character-Test1
   m_TagString: Untagged
@@ -850,6 +852,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &2280618482057325861
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7314378629631497187}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c9b239482ef463447a9a2be160c19f68, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8047040104731696039
 GameObject:
   m_ObjectHideFlags: 0
