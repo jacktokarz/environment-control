@@ -35,28 +35,26 @@ public class TreasureActivity : MonoBehaviour
     {
         source.PlayOneShot(treasureSound, 2.0f);
 		openChestAnim.SetBool("opening", true);
-		string messageText = "";
-		MessageScript ms = PersistentManager.Instance.Message.GetComponent(typeof (MessageScript)) as MessageScript;
 		PersistentManager.Instance.TreasureList.Add(treasureId);
+		Queue<string> nextMessages = new Queue<string>();
 		switch (treasureId)
 		{
 		case "humidity":
 			PersistentManager.Instance.Humidity.gameObject.SetActive(true);
-			messageText = "Hold 1 + Press Up / Down\nto Alter the Humidity Level";
-			ms.escapeKey = "1";
-			ms.secondaryKey = "up";
+			nextMessages.Enqueue("Hold 1 + Press Up / Down\nto Alter the Humidity Level");
+			nextMessages.Enqueue("1");
+			nextMessages.Enqueue("up");
 			break;
 		case "wind":
-			PersistentManager.Instance.Wind.gameObject.SetActive(true);
-			messageText = "Hold 2 + Press up / down\nto Alter the Wind Level";
-			ms.escapeKey = "2";
-			ms.secondaryKey = "up";
+			nextMessages.Enqueue("Hold 2 + Press up / down\nto Alter the Wind Level");
+			nextMessages.Enqueue("2");
+			nextMessages.Enqueue("up");
 			break;
 		}
-		PersistentManager.Instance.Message.GetComponent<Text>().text = messageText;
-		PersistentManager.Instance.Message.GetComponent<Animator>().SetBool("visible", true);
+        Debug.Log("passing a message from "+nextMessages.Count);
+
+		StartCoroutine(PersistentManager.Instance.MakeMessage(nextMessages));
 		bool saved = PersistentManager.Instance.Save();
-		Debug.Log("saved ? "+saved);
 		alreadyGotten = true;
     }
 

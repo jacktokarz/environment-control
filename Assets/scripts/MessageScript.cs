@@ -6,11 +6,15 @@ public class MessageScript : MonoBehaviour
 {
 	[HideInInspector] public string escapeKey;
 	[HideInInspector] public string secondaryKey;
+	public Queue<string> nextMessages;
+	public CanvasGroup cg;
 
 	void Start()
 	{
 		escapeKey = null;
 		secondaryKey = null;
+		nextMessages = new Queue<string>();
+		cg = this.GetComponent<CanvasGroup>();
 	}
 
     void FixedUpdate()
@@ -19,25 +23,35 @@ public class MessageScript : MonoBehaviour
         {
         	if(Input.GetKey(escapeKey))
         	{
-        		if(secondaryKey != null)
+        		if(secondaryKey != null && secondaryKey != "")
         		{
         			if(Input.GetKey(secondaryKey))
         			{
-        				disappear();
+        				StartCoroutine(disappear());
         			}
         		}
         		else
         		{
-        			disappear();
+        			StartCoroutine(disappear());
         		}
         	}
         }
     }
 
-    void disappear()
+    public IEnumerator disappear()
     {
-		this.GetComponent<Animator>().SetBool("visible", false);
-		escapeKey = null;
-		secondaryKey = null;
+		PersistentManager.Instance.uiFader.fadeOut(cg);
+    	if(nextMessages.Count==0)
+    	{
+    		PersistentManager.Instance.immobile=false;
+			escapeKey = null;
+			secondaryKey = null;
+    	}
+    	else
+    	{
+	    	yield return new WaitForSeconds(PersistentManager.Instance.fadeSpeed);
+
+	        StartCoroutine(PersistentManager.Instance.MakeMessage(nextMessages));
+    	}
     }
 }

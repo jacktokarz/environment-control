@@ -20,10 +20,12 @@ public class PersistentManager : MonoBehaviour
     public string difficulty;
     	//Camera
     public CinemachineVirtualCamera vcam;
+    public UIFader uiFader;
     public List<float> zoomOptions = new List<float>() {6.5f, 8f, 5f};
     [HideInInspector] 
     public float currentZoom;
     public bool zooming = false;
+    public float openingCutsceneLength = 13f;
 
     public KeyCode ZoomKey = KeyCode.Z;
     public KeyCode JumpKey = KeyCode.Space;
@@ -115,6 +117,7 @@ public class PersistentManager : MonoBehaviour
 			Destroy(gameObject);
 		}
         GetCameraAndZoom();
+        uiFader = this.GetComponent(typeof (UIFader)) as UIFader;
 	}
 
 	private void Start()
@@ -154,7 +157,6 @@ public class PersistentManager : MonoBehaviour
 
 	public IEnumerator GoToScene(int sceneNumber)
     {
-        UIFader uiFader = this.GetComponent(typeof (UIFader)) as UIFader;
         Debug.Log("going to scene "+sceneNumber);
         if (!getSongList(SceneManager.GetActiveScene().buildIndex).Contains(sceneNumber)) {
             SelectMusic(-1);
@@ -200,6 +202,21 @@ public class PersistentManager : MonoBehaviour
     public void updateText(Text textObj, int value)
     {
         textObj.transform.GetChild(0).GetComponent<Text>().text = value.ToString();
+    }
+
+    public IEnumerator MakeMessage(Queue<string> nextMessages)
+    {
+        Debug.Log("making a message from "+nextMessages.Count);
+        immobile = true;
+        Message.GetComponent<Text>().text = nextMessages.Dequeue();
+        MessageScript ms = Message.GetComponent(typeof (MessageScript)) as MessageScript;
+        uiFader.fadeIn(ms.cg);
+
+        yield return new WaitForSeconds(fadeSpeed);
+        ms.escapeKey = nextMessages.Dequeue();
+        ms.secondaryKey = nextMessages.Dequeue();
+
+        ms.nextMessages = nextMessages;
     }
 
     private GameData createGameData()

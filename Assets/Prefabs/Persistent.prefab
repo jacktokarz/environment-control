@@ -732,6 +732,7 @@ GameObject:
   - component: {fileID: 1849706849}
   - component: {fileID: 1849706848}
   - component: {fileID: 741797625016361759}
+  - component: {fileID: 5301849128686396467}
   m_Layer: 5
   m_Name: Message
   m_TagString: Untagged
@@ -846,6 +847,18 @@ MonoBehaviour:
   m_EffectColor: {r: 0.110270575, g: 0.13207549, b: 0.11253712, a: 0.5}
   m_EffectDistance: {x: -1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!225 &5301849128686396467
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849706844}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &2048511954
 GameObject:
   m_ObjectHideFlags: 0
@@ -2132,16 +2145,19 @@ MonoBehaviour:
   blackCover: {fileID: 1601072234570824128}
   difficulty: challenging
   vcam: {fileID: 0}
+  uiFader: {fileID: 0}
   zoomOptions:
   - 6.5
   - 8
   - 5
   currentZoom: 0
   zooming: 0
+  openingCutsceneLength: 13
   ZoomKey: 122
   JumpKey: 32
   GrabKey: 103
   HumidityKey: 49
+  WindKey: 50
   fadeSpeed: 0.5
   maxHumidity: 3
   minHumidity: -3

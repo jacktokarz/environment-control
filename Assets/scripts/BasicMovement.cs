@@ -57,11 +57,11 @@ public class BasicMovement : MonoBehaviour
         bodyObject = this.transform.GetChild(0).gameObject;
         bodyObject.SetActive(false);
         bodyAnimator = this.transform.GetChild(0).GetComponent(typeof (Animator)) as Animator;
-        PersistentManager.Instance.immobile = true;
     }
 
     void Start()
     {
+        PersistentManager.Instance.immobile = true;
         bool difficult = PersistentManager.Instance.difficulty=="challenging"; //otherwise, "relaxed"
         Debug.Log("is it difficult? "+difficult);
         defaultGravity = difficult ? 5f : 2.5f;
@@ -85,7 +85,7 @@ public class BasicMovement : MonoBehaviour
             GameObject checkpoint = GameObject.FindWithTag("hub");
             this.transform.position = new Vector3(checkpoint.transform.position.x, checkpoint.transform.position.y + 0.55f);
             CheckpointActivity ca = checkpoint.GetComponent(typeof (CheckpointActivity)) as CheckpointActivity;
-            StartCoroutine(stallHubSpawn(ca, 13f));
+            StartCoroutine(stallHubSpawn(ca, PersistentManager.Instance.openingCutsceneLength));
             return;
         }
         if (PersistentManager.Instance.lastDoorId == "Respawn")
