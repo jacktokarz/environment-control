@@ -209,10 +209,12 @@ public class PersistentManager : MonoBehaviour
         Debug.Log("making a message from "+nextMessages.Count);
         immobile = true;
         Message.GetComponent<Text>().text = nextMessages.Dequeue();
+        Debug.Log("doing a message from "+nextMessages.Count);
         MessageScript ms = Message.GetComponent(typeof (MessageScript)) as MessageScript;
         uiFader.fadeIn(ms.cg);
 
         yield return new WaitForSeconds(fadeSpeed);
+        Debug.Log("done waiting");
         ms.escapeKey = nextMessages.Dequeue();
         ms.secondaryKey = nextMessages.Dequeue();
 

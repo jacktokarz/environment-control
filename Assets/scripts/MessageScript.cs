@@ -21,37 +21,43 @@ public class MessageScript : MonoBehaviour
     {
         if(escapeKey != null)
         {
-        	if(Input.GetKey(escapeKey))
+        	if(Input.GetButton(escapeKey))
         	{
         		if(secondaryKey != null && secondaryKey != "")
         		{
-        			if(Input.GetKey(secondaryKey))
+        			if(Input.GetButton(secondaryKey))
         			{
-        				StartCoroutine(disappear());
+        				disappear();
         			}
         		}
         		else
         		{
-        			StartCoroutine(disappear());
+        			Debug.Log("calling prim dis");
+        			disappear();
         		}
         	}
         }
     }
 
-    public IEnumerator disappear()
+    public void disappear()
     {
+    	escapeKey = null;
+		secondaryKey = null;
 		PersistentManager.Instance.uiFader.fadeOut(cg);
     	if(nextMessages.Count==0)
     	{
     		PersistentManager.Instance.immobile=false;
-			escapeKey = null;
-			secondaryKey = null;
     	}
     	else
     	{
-	    	yield return new WaitForSeconds(PersistentManager.Instance.fadeSpeed);
-
-	        StartCoroutine(PersistentManager.Instance.MakeMessage(nextMessages));
+    		StartCoroutine(WaitForTheMessage());
     	}
+    }
+
+    IEnumerator WaitForTheMessage() {
+    	Debug.Log("waiting");
+    	yield return new WaitForSeconds(PersistentManager.Instance.fadeSpeed);
+        Debug.Log("messaging");
+        StartCoroutine(PersistentManager.Instance.MakeMessage(nextMessages));
     }
 }
