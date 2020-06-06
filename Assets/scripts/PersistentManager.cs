@@ -233,8 +233,6 @@ public class PersistentManager : MonoBehaviour
     public bool Save()
     {
     	GameData data = createGameData();
-    	Debug.Log("data to be saved: "+data);
-    	Debug.Log("specifically the lastcp: "+data.lastCheckpoint);
 	    BinaryFormatter bf = new BinaryFormatter();
 	    FileStream file = File.Create (Application.persistentDataPath + "/save.gd");
 	    bf.Serialize(file, data);

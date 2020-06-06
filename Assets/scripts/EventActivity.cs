@@ -27,6 +27,10 @@ public class EventActivity : MonoBehaviour
 
     public void SetFirstCutsceneMessage()
     {
+        if (PersistentManager.Instance.lastDoorId != "NewGame") {
+            Mobilize(1);
+            return;
+        }
         Queue<string> firstCutsceneMessages = new Queue<string>();
         firstCutsceneMessages.Enqueue("I had something really good here... I swear.");
         firstCutsceneMessages.Enqueue("Jump");

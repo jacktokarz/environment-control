@@ -163,7 +163,6 @@ public class BasicMovement : MonoBehaviour
         if (Input.GetKey(PersistentManager.Instance.JumpKey) && (jumpForce > 0.05f))
         {
             jumping = true;
-
         }
         else
         {
@@ -244,7 +243,7 @@ public class BasicMovement : MonoBehaviour
     {
         bool wasGrounded = grounded;
         grounded = false;
-
+        bodyAnimator.SetBool("grounded", false);
         // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
         // This can be done using layers instead but Sample Assets will not overwrite your project settings.
         Collider2D[] groundColls = Physics2D.OverlapCircleAll(groundCheck.position, groundCheckRadius, whatIsGround);
@@ -253,6 +252,7 @@ public class BasicMovement : MonoBehaviour
             if (groundColls[i].gameObject != gameObject)
             {
                 grounded = true;
+                bodyAnimator.SetBool("grounded", true);
                 
                  if (!wasGrounded)
                  {
