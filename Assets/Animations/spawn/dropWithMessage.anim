@@ -371,9 +371,9 @@ AnimationClip:
     intParameter: 1
     messageOptions: 0
   - time: 4.75
-    functionName: SetFirstCutsceneMessage
+    functionName: SetMessage
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 0
+    intParameter: 1
     messageOptions: 0

@@ -42,13 +42,11 @@ public class TreasureActivity : MonoBehaviour
 		case "humidity":
 			PersistentManager.Instance.Humidity.gameObject.SetActive(true);
 			nextMessages.Enqueue("Hold 1 + Press Up / Down\nto Alter the Humidity Level");
-			nextMessages.Enqueue("1");
-			nextMessages.Enqueue("up");
+			nextMessages.Enqueue("humidity");
 			break;
 		case "wind":
 			nextMessages.Enqueue("Hold 2 + Press up / down\nto Alter the Wind Level");
-			nextMessages.Enqueue("2");
-			nextMessages.Enqueue("up");
+			nextMessages.Enqueue("wind");
 			break;
 		}
         Debug.Log("passing a message from "+nextMessages.Count);

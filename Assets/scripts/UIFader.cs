@@ -44,9 +44,5 @@ public class UIFader : MonoBehaviour {
 			yield return new WaitForFixedUpdate();
 		}
         Debug.Log("done fading");
-
-        if (end == 0) {
-            cg.gameObject.SetActive(false);
-        }
 	}
 }
