@@ -5,44 +5,48 @@ using UnityEngine;
 public class MessageScript : MonoBehaviour
 {
 	[HideInInspector] public string escapeKey;
-	[HideInInspector] public string secondaryKey;
 	public Queue<string> nextMessages;
 	public CanvasGroup cg;
 
 	void Start()
 	{
 		escapeKey = null;
-		secondaryKey = null;
 		nextMessages = new Queue<string>();
-		cg = this.GetComponent<CanvasGroup>();
 	}
 
     void FixedUpdate()
     {
+    	bool doIt = false;
         if(escapeKey != null)
         {
-        	if(Input.GetButton(escapeKey))
+        	if(escapeKey == "humidity")
         	{
-        		if(secondaryKey != null && secondaryKey != "")
+        		if(PersistentManager.Instance.humidityLevel > 0)
         		{
-        			if(Input.GetButton(secondaryKey))
-        			{
-        				disappear();
-        			}
-        		}
-        		else
-        		{
-        			Debug.Log("calling prim dis");
-        			disappear();
+    				doIt = true;
         		}
         	}
+        	else if(escapeKey == "wind")
+        	{
+        		if(PersistentManager.Instance.windLevel < 3)
+        		{
+        			doIt = true;
+        		}
+        	}
+        	else if(Input.GetButton(escapeKey))
+        	{
+    			doIt = true;
+        	}
+        }
+        if (doIt)
+        {
+        	StartCoroutine(disappear());
         }
     }
 
-    public void disappear()
+    public IEnumerator disappear()
     {
     	escapeKey = null;
-		secondaryKey = null;
 		PersistentManager.Instance.uiFader.fadeOut(cg);
     	if(nextMessages.Count==0)
     	{
@@ -50,14 +54,8 @@ public class MessageScript : MonoBehaviour
     	}
     	else
     	{
-    		StartCoroutine(WaitForTheMessage());
+	    	yield return new WaitForSeconds(PersistentManager.Instance.fadeSpeed + 0.5f);
+	        StartCoroutine(PersistentManager.Instance.MakeMessage(nextMessages));
     	}
-    }
-
-    IEnumerator WaitForTheMessage() {
-    	Debug.Log("waiting");
-    	yield return new WaitForSeconds(PersistentManager.Instance.fadeSpeed);
-        Debug.Log("messaging");
-        StartCoroutine(PersistentManager.Instance.MakeMessage(nextMessages));
     }
 }

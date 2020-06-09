@@ -216,7 +216,6 @@ public class PersistentManager : MonoBehaviour
         yield return new WaitForSeconds(fadeSpeed);
         Debug.Log("done waiting");
         ms.escapeKey = nextMessages.Dequeue();
-        ms.secondaryKey = nextMessages.Dequeue();
 
         ms.nextMessages = nextMessages;
     }

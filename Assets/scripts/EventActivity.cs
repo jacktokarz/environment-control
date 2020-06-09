@@ -25,19 +25,23 @@ public class EventActivity : MonoBehaviour
         PersistentManager.Instance.immobile = mobile==0;
     }
 
-    public void SetFirstCutsceneMessage()
+    public void SetMessage(int room)
     {
-        if (PersistentManager.Instance.lastDoorId != "NewGame") {
+        Queue<string> messages = new Queue<string>();
+        switch (room) {
+            case 1:
+                if (PersistentManager.Instance.lastDoorId == "NewGame") {
+                    messages.Enqueue("Are we heard?\nWe can no longer sense ourselves in this body we've grown in their image.\nIf we are still aware in this body, jump.");
+                    messages.Enqueue("Jump");
+                    messages.Enqueue("We are relieved to know we are conscious in this new form, but troubled that we are no longer mentally connected.\nRemember, our purpose is to find and re-connect the other parts of ourself that are severed.\nWe sense the first one to our left.");
+                    messages.Enqueue("Horizontal");
+                }
+                break;
+        }
+        if (messages.Count == 0) {
             Mobilize(1);
             return;
         }
-        Queue<string> firstCutsceneMessages = new Queue<string>();
-        firstCutsceneMessages.Enqueue("I had something really good here... I swear.");
-        firstCutsceneMessages.Enqueue("Jump");
-        firstCutsceneMessages.Enqueue("");
-        firstCutsceneMessages.Enqueue("Another great message.");
-        firstCutsceneMessages.Enqueue("Horizontal");
-        firstCutsceneMessages.Enqueue("");
-        StartCoroutine(PersistentManager.Instance.MakeMessage(firstCutsceneMessages));
+        StartCoroutine(PersistentManager.Instance.MakeMessage(messages));
     }
 }
