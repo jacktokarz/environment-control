@@ -29,7 +29,7 @@ public class EnvironmentEffect : MonoBehaviour
     GameObject[] vines;
     GameObject[] waterLines;
     GameObject[] bushes;
-    GameObject[] winds;
+    GameObject[] fans;
     GameObject[] fronds;
     GameObject[] mosses;
     Vector3[] waterEndPoints;
@@ -59,7 +59,7 @@ public class EnvironmentEffect : MonoBehaviour
         playerLayer = LayerMask.GetMask("Player");
         vines = GameObject.FindGameObjectsWithTag("vine");
         bushes = GameObject.FindGameObjectsWithTag("bush");
-        winds = GameObject.FindGameObjectsWithTag("wind");
+        fans = GameObject.FindGameObjectsWithTag("fan");
         fronds = GameObject.FindGameObjectsWithTag("frond");
         mosses = GameObject.FindGameObjectsWithTag("moss");
         waterLines = GameObject.FindGameObjectsWithTag("waterLine");
@@ -188,23 +188,45 @@ public class EnvironmentEffect : MonoBehaviour
 
     public void changeWindAnimation()
     {
-        foreach (GameObject win in winds)
+        foreach (GameObject fan in fans)
         {
-            fansource = win.transform.parent.gameObject.GetComponent<AudioSource>();
-            //Debug.Log("wind's Parent: " + win.transform.parent.name);
-            //fansource = fanparent.GetComponent<AudioSource>();
-            fansource.clip = fanSound;
-            //fansource.pitch = UnityEngine.Random.Range(0.25F, 1.25F);
-            if (PersistentManager.Instance.windLevel > 0)
+            GameObject win = null;
+            GameObject blade = null;
+            for (int i = 0; i < fan.transform.childCount; i++)
             {
-                fansource.Play();
+                GameObject child = fan.transform.GetChild(i).gameObject;
+                if (child.tag == "wind")
+                {
+                    win = child;
+                }
+                if (child.tag == "fanBlade")
+                {
+                    blade = child;
+                }
             }
-            else
+            if (win!=null)
             {
-                fansource.Stop();
+                fansource = win.transform.parent.gameObject.GetComponent<AudioSource>();
+                //Debug.Log("wind's Parent: " + win.transform.parent.name);
+                //fansource = fanparent.GetComponent<AudioSource>();
+                fansource.clip = fanSound;
+                //fansource.pitch = UnityEngine.Random.Range(0.25F, 1.25F);
+                if (PersistentManager.Instance.windLevel > 0)
+                {
+                    fansource.Play();
+                }
+                else
+                {
+                    fansource.Stop();
+                }
+                Animator winAm = win.GetComponent<Animator>();
+                winAm.SetFloat("windSpeed", PersistentManager.Instance.windLevel);                
             }
-            Animator winAm = win.GetComponent<Animator>();
-            winAm.SetFloat("windSpeed", PersistentManager.Instance.windLevel);
+            if (blade!=null)
+            {
+                Animator bladeAnim = blade.GetComponent<Animator>();
+                bladeAnim.SetFloat("windSpeed", PersistentManager.Instance.windLevel);
+            }
         }
     }
 
