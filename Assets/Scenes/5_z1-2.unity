@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2015,9 +2015,8 @@ Transform:
   - {fileID: 225196647}
   - {fileID: 499634154}
   - {fileID: 1696768890}
-  - {fileID: 266827664}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &232046537
 PrefabInstance:
@@ -2348,7 +2347,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 266827663}
   m_LocalRotation: {x: -0, y: -0, z: -0.01984555, w: 0.99980307}
-  m_LocalPosition: {x: -13.647499, y: 2.7, z: 0}
+  m_LocalPosition: {x: 15.35, y: 0.70000005, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 275009417}
@@ -2358,8 +2357,9 @@ Transform:
   - {fileID: 950159946}
   - {fileID: 191889254}
   - {fileID: 1995113974}
-  m_Father: {fileID: 227206427}
-  m_RootOrder: 22
+  - {fileID: 314302601}
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &270485362
 PrefabInstance:
@@ -2845,12 +2845,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 314302599}
-  m_LocalRotation: {x: -0, y: -0, z: -0.9999902, w: -0.004416198}
-  m_LocalPosition: {x: -10.48, y: 6.77, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.99988097, w: 0.01543003}
+  m_LocalPosition: {x: -26.050531, y: 5.0401993, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_Father: {fileID: 266827664}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180.506}
 --- !u!1 &315289005
 GameObject:
@@ -13946,11 +13946,6 @@ PrefabInstance:
       propertyPath: m_Lens.OrthographicSize
       value: 6.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4725931401052551770, guid: 99cddb3c6861bab498e3cca9c94e5cd8,
-        type: 3}
-      propertyPath: m_BoundingShape2D
-      value: 
-      objectReference: {fileID: 1330638244}
     - target: {fileID: 6016086577764918613, guid: 99cddb3c6861bab498e3cca9c94e5cd8,
         type: 3}
       propertyPath: m_Offset.x
@@ -13971,6 +13966,11 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 70
       objectReference: {fileID: 0}
+    - target: {fileID: 4725931401052551770, guid: 99cddb3c6861bab498e3cca9c94e5cd8,
+        type: 3}
+      propertyPath: m_BoundingShape2D
+      value: 
+      objectReference: {fileID: 1330638244}
     - target: {fileID: 5308446762268608511, guid: 99cddb3c6861bab498e3cca9c94e5cd8,
         type: 3}
       propertyPath: m_UnlimitedSoftZone
