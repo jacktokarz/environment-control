@@ -10,14 +10,14 @@ public class VineActivity : MonoBehaviour
 
     public AudioClip vineGrowsound;
     //public AudioClip vineShrinksound;
-
     private AudioSource source;
-
+    private Animator baseAnim;
     void Start()
     {
         vineSize = new Vector2(PersistentManager.Instance.vinePieceWidth, PersistentManager.Instance.vinePieceHeight);
         source = GetComponent<AudioSource>();
         source.clip = vineGrowsound;
+        baseAnim = this.transform.GetChild(0).GetComponent(typeof (Animator)) as Animator;
     }
 
     // Update is called once per frame
@@ -70,6 +70,10 @@ public class VineActivity : MonoBehaviour
     }
 
     void growVine(Transform topVinePiece, int activeChildCount) {
+        if (activeChildCount == PersistentManager.Instance.vineMinHeight) {
+            baseAnim.SetBool("open", true);
+        }
+
         Vector2 newPos = new Vector2();
         float zRot = this.transform.rotation.eulerAngles.z;
         if (zRot == 90) {
@@ -113,6 +117,9 @@ public class VineActivity : MonoBehaviour
         newPiece.gameObject.SetActive(true);
     }
     void shrinkVine(Transform topVinePiece) {
+        if (activeChildCount == PersistentManager.Instance.vineMinHeight + 1) {
+            baseAnim.SetBool("open", false);
+        }
         topVinePiece.gameObject.SetActive(false);
     }
 }

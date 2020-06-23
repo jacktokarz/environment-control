@@ -201,6 +201,7 @@ public class BasicMovement : MonoBehaviour
                 }   
                 else
                 {       // if they were already gripping, they let go now.
+                    bodyAnimator.SetTrigger("LetGo");
                     gripOff();
                 }
             }
@@ -216,7 +217,12 @@ public class BasicMovement : MonoBehaviour
             checkMove();
             checkJump();
         }
-        bodyAnimator.SetFloat("velocity", Math.Abs(rigid.velocity.x));
+        if (gripping) {
+            bodyAnimator.SetFloat("climbSpeed", Mathf.Abs(h + v) > 0 ? 1 : 0);
+        }
+        else {
+            bodyAnimator.SetFloat("velocity", Math.Abs(rigid.velocity.x));
+        }
     }
 
     // void checkDeath()
@@ -272,6 +278,7 @@ public class BasicMovement : MonoBehaviour
             jumpForce = jumpForce - decayRate * Time.fixedDeltaTime;
             if(gripping)
             {
+                bodyAnimator.SetTrigger("JumpOff");
                 gripOff();
             }
         }
@@ -356,6 +363,7 @@ public class BasicMovement : MonoBehaviour
     {
         Debug.Log("Let go");
         gripping = false;
+        bodyAnimator.SetBool("gripping", false);
         source.PlayOneShot(letgoVine);
         rigid.gravityScale = defaultGravity;
     }
@@ -363,6 +371,7 @@ public class BasicMovement : MonoBehaviour
     {
         Debug.Log("grab");
         gripping = true;
+        bodyAnimator.SetBool("gripping", true);
         source.PlayOneShot(grabVine);
         rigid.gravityScale = 0f;                    
         rigid.velocity = new Vector2(0, 0);
