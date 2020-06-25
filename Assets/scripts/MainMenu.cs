@@ -47,7 +47,7 @@ public class MainMenu : MonoBehaviour
     {
     	Debug.Log("clicked load game");
         PersistentManager.Instance.TreasureList = new List<string>(loadGame.TreasureList);
-        PersistentManager.Instance.checkTextVis();
+        PersistentManager.Instance.CheckTextVis();
         PersistentManager.Instance.lastCheckpoint = loadGame.lastCheckpoint;
         PersistentManager.Instance.Checkpoints = new List<int>(loadGame.Checkpoints);
         PersistentManager.Instance.lastDoorId = "Respawn";

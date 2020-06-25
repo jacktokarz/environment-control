@@ -9,7 +9,11 @@ public class SeeTemperature : MonoBehaviour
     {
     	if(coll.gameObject.CompareTag("Player"))
     	{
-    		PersistentManager.Instance.Temperature.gameObject.SetActive(true);
+    		if(!PersistentManager.Instance.TreasureList.Contains("temperatureVision"))
+    		{
+	    		PersistentManager.Instance.TreasureList.Add("temperatureVision");
+	    		PersistentManager.Instance.CheckTextVis();
+    		}
     	}
     }
 }

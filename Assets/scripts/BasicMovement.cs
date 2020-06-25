@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 
 public class BasicMovement : MonoBehaviour
@@ -91,6 +92,11 @@ public class BasicMovement : MonoBehaviour
         if (PersistentManager.Instance.lastDoorId == "Respawn")
         {
             Debug.Log("respawning");
+            if (!PersistentManager.Instance.Checkpoints.Contains(SceneManager.GetActiveScene().buildIndex))
+            {
+                SceneManager.LoadScene(PersistentManager.Instance.lastCheckpoint, LoadSceneMode.Single);
+                return;
+            }
             GameObject checkpoint = GameObject.FindWithTag("checkpoint");
             if (checkpoint == null)
             {

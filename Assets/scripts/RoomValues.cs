@@ -13,6 +13,7 @@ public class RoomValues : MonoBehaviour
     {
 		EnvironmentEffect.Instance.setHumidity(startingHumidity, true);
         EnvironmentEffect.Instance.setWind(startingWind);
+        PersistentManager.Instance.tempLevel = 0;
         EnvironmentEffect.Instance.setTemp(startingTemperature);
         EnvironmentEffect.Instance.setToxicity(startingToxicity);
     }

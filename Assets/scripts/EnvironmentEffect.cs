@@ -124,6 +124,17 @@ public class EnvironmentEffect : MonoBehaviour
             changeWaterLevel(value);
             changeFrondWidth();
             changeMossSize();
+            if (PersistentManager.Instance.tempLevel == 2)
+            {
+                if (value == 2 || value == 3)
+                {
+                    extinguishBushes();
+                }
+                else
+                {
+                    burnBushes();
+                }
+            }
             PersistentManager.Instance.updateText(PersistentManager.Instance.Humidity, value);
             return true;
         }
@@ -242,27 +253,24 @@ public class EnvironmentEffect : MonoBehaviour
                 PersistentManager.Instance.tempLevel = value;
                 PersistentManager.Instance.updateText(PersistentManager.Instance.Temperature, PersistentManager.Instance.tempLevel);
 
-                if(value >= 0)
+                if(value == -1)
                 {
                     thawBushes();
                     BasMov.changePlayerStats();
+                    thawMoss();
                 }
-                else if(value == -1)
+                else if(value == 0)
                 {
-                    //thawBushes();
-                    BasMov.changePlayerStats();
-                }
-
-                if(value == 2)
-                {
-                    updateVineGrowWait();
-                    //burnBushes();
-                }
-                if (value > -2)
-                {
+                    thawBushes();
                     thawWater();
                     thawVines();
-                    thawMoss();
+                    BasMov.changePlayerStats();
+                }
+                else if(value == 2)
+                {
+                    updateVineGrowWait();
+                    burnBushes();
+                    burnMoss();
                 }
             }
         }
@@ -278,6 +286,7 @@ public class EnvironmentEffect : MonoBehaviour
                     freezeVines();
                     freezeMoss();
                     freezeWater();
+                    freezeBushes();
                     BasMov.changePlayerStats();
                 }
                 else if(PersistentManager.Instance.tempLevel == -1)
@@ -287,12 +296,8 @@ public class EnvironmentEffect : MonoBehaviour
                 else if(PersistentManager.Instance.tempLevel == 1)
                 {
                     updateVineGrowWait();
-                    //extinguishBushes();
-                }
-
-                if(PersistentManager.Instance.tempLevel < 0)
-                {
-                    freezeBushes();
+                    extinguishBushes();
+                    extinguishMoss();
                 }
             }
         }
@@ -302,17 +307,26 @@ public class EnvironmentEffect : MonoBehaviour
     {
         foreach (GameObject bush in bushes)
         {
-            //SpriteRenderer sr = bush.GetComponent<SpriteRenderer>();
-            //sr.color = new Color(100f, 1f, 1f, 1f);
+            SpriteRenderer sr = bush.GetComponent<SpriteRenderer>();
+            sr.color = new Color(255f, 0f, 3f, 200f);
             bush.layer = LayerMask.NameToLayer("Deadly");
         } 
+    }
+    void extinguishBushes()
+    {
+        foreach (GameObject bush in bushes)
+        {
+            SpriteRenderer sr = bush.GetComponent<SpriteRenderer>();
+            sr.color = new Color(1f, 1f, 1f, 255f);
+            bush.layer = LayerMask.NameToLayer("Grounding");
+        }
     }
     void freezeBushes()
     {
         foreach (GameObject bush in bushes)
         {
             SpriteRenderer sr = bush.GetComponent<SpriteRenderer>();
-            sr.color = new Color(1f, 1f, 1f, 0.4f);
+            sr.color = new Color(100f, 1f, 1f, 1f);
             BoxCollider2D bc = bush.GetComponent<BoxCollider2D>();
             bc.isTrigger = true;
         }
@@ -330,26 +344,35 @@ public class EnvironmentEffect : MonoBehaviour
             }
         }
     }
-    void extinguishBushes()
+
+    void burnMoss()
     {
-        foreach (GameObject bush in bushes)
+        foreach (GameObject moss in mosses)
         {
-            bush.layer = LayerMask.NameToLayer("Grounding");
+            changeChildLayer(moss.transform, "Deadly");
+            changeChildColliderToTrigger(moss.transform, false);
         }
     }
-
+    void extinguishMoss()
+    {
+        foreach (GameObject moss in mosses)
+        {
+            changeChildLayer(moss.transform, "Grounding");
+            changeChildColliderToTrigger(moss.transform, true);
+        }
+    }
     void freezeMoss()
     {
         foreach (GameObject moss in mosses)
         {
-            changeChildCollider(moss.transform, false);
+            changeChildColliderToTrigger(moss.transform, false);
         }
     }
     void thawMoss()
     {
         foreach (GameObject moss in mosses)
         {
-            changeChildCollider(moss.transform, true);
+            changeChildColliderToTrigger(moss.transform, true);
         }
     }
     void changeMossSize()
@@ -386,7 +409,7 @@ public class EnvironmentEffect : MonoBehaviour
         foreach (GameObject vine in vines)
         {
             changeChildLayer(vine.transform, "Grounding");
-            changeChildCollider(vine.transform, false);
+            changeChildColliderToTrigger(vine.transform, false);
         }
     }
     void thawVines()
@@ -394,7 +417,7 @@ public class EnvironmentEffect : MonoBehaviour
         foreach (GameObject vine in vines)
         {
             changeChildLayer(vine.transform, "Grippable");
-            changeChildCollider(vine.transform, true);
+            changeChildColliderToTrigger(vine.transform, true);
         }
     }
     void freezeWater()
@@ -433,13 +456,13 @@ public class EnvironmentEffect : MonoBehaviour
              trans.gameObject.layer = LayerMask.NameToLayer(change);
          }
      }
-     void changeChildCollider(Transform trans, bool change)
+     void changeChildColliderToTrigger(Transform trans, bool change)
      {
         if (trans.childCount > 0 )
          {
              foreach(Transform child in trans)
              {            
-                 changeChildCollider(child, change);
+                 changeChildColliderToTrigger(child, change);
              }
          }
          else {

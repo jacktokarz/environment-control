@@ -123,26 +123,26 @@ public class PersistentManager : MonoBehaviour
 	private void Start()
 	{
         SetKeys();
-		checkTextVis();
+		CheckTextVis();
         AudioChild = this.transform.Find("Audio").gameObject;
         musicPlayer = AudioChild.GetComponent<AudioSource>();
         SelectMusic(SceneManager.GetActiveScene().buildIndex);
 	}
 
 
-    public void checkTextVis()
+    public void CheckTextVis()
     {
     	bool seeHum = TreasureList.Contains("humidity") ? true : false;
 		Humidity.gameObject.SetActive(seeHum);
         updateText(Humidity, humidityLevel);
         PauseHumidity.SetActive(seeHum);
 
-		bool seeWind = TreasureList.Contains("wind") ? true : false;
+		bool seeWind = TreasureList.Contains("windVision") ? true : false;
 		Wind.gameObject.SetActive(seeWind);
         updateText(Wind, windLevel);
         PauseWind.SetActive(seeWind);
 
-        bool seeTemp = TreasureList.Contains("temperature") ? true : false;
+        bool seeTemp = TreasureList.Contains("temperatureVision") ? true : false;
         Temperature.gameObject.SetActive(seeTemp);
         updateText(Temperature, tempLevel);
 
@@ -220,7 +220,7 @@ public class PersistentManager : MonoBehaviour
         ms.nextMessages = nextMessages;
     }
 
-    private GameData createGameData()
+    private GameData CreateGameData()
     {
     	GameData gd = new GameData();
     	gd.TreasureList = new List<string>(TreasureList);
@@ -231,7 +231,7 @@ public class PersistentManager : MonoBehaviour
 
     public bool Save()
     {
-    	GameData data = createGameData();
+    	GameData data = CreateGameData();
 	    BinaryFormatter bf = new BinaryFormatter();
 	    FileStream file = File.Create (Application.persistentDataPath + "/save.gd");
 	    bf.Serialize(file, data);

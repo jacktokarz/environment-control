@@ -10,7 +10,10 @@ public class GetWindRoom : MonoBehaviour
 
     void Start()
     {
-    	PersistentManager.Instance.Wind.gameObject.SetActive(true);
+        if (!PersistentManager.Instance.TreasureList.Contains("windVision"))
+        {
+            PersistentManager.Instance.TreasureList.Add("windVision");
+        }
     }
 
     // Update is called once per frame
