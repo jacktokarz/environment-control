@@ -25,8 +25,8 @@ public class EnemyActivity : MonoBehaviour
     void Start()
     {
         source = GetComponent<AudioSource>();
-    	originalRotation = this.transform.rotation.eulerAngles.z > 180 ? this.transform.rotation.eulerAngles.z - 360 : this.transform.rotation.eulerAngles.z;
-    	//Debug.Log("first rot "+originalRotation);
+    	originalRotation = this.transform.rotation.eulerAngles.z;
+    	Debug.Log("first rot "+originalRotation);
         if(enemyType == "dumb")
         {
         	rate = (int)PersistentManager.Instance.dumbEnemyFireRate;
@@ -47,10 +47,10 @@ public class EnemyActivity : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 vectorToTarget = playerObject.transform.position - this.transform.position;
-		float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg + 90;
-		//Debug.Log("angle is: "+angle);
+		float angle = (Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg + 270) % 360;
+		Debug.Log("angle is: "+angle);
 		float clampAngle = Mathf.Clamp(angle, originalRotation - 90, originalRotation + 90);
-		//Debug.Log("clamp angle is: "+clampAngle);
+		Debug.Log("clamp angle is: "+clampAngle);
 		if(clampAngle == angle)
 		{
 			RaycastHit2D hit = Physics2D.Raycast(transform.position, (playerObject.transform.position - this.transform.position).normalized, vision, PersistentManager.Instance.blocksProjectiles);
@@ -67,7 +67,11 @@ public class EnemyActivity : MonoBehaviour
                 }
 				canSee = true;
 				Quaternion q = Quaternion.AngleAxis(clampAngle, Vector3.forward);
-				this.transform.rotation = Quaternion.Slerp(this.transform.rotation, q, Time.deltaTime * 2);
+                for (int i = 0; i < this.transform.childCount; i++)
+                {
+                    Transform childTransform = this.transform.GetChild(i).transform;
+                    childTransform.rotation = Quaternion.Slerp(childTransform.rotation, q, Time.deltaTime * 2);
+                }
 		    	counter ++;
 			}
 		}
