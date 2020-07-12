@@ -5,20 +5,19 @@ using UnityEngine;
 public class LineGrow : MonoBehaviour
 {
 
-    public float growRate = 1;
+    public float defaultGrowRate;
+    private float growRate;
     public Vector3 growDirection = Vector3.up;
 
     public float turbulenceStrength = .5f;
     public float turbulenceWavelength = 1.5f;
 
-
-    public float MaxHeight;
-
+    public float maxHeight;
     public float distancePerLine;
+    public float currentHeight;
 
     private LineCollision lineCollision;
     private LineRenderer lineRenderer;
-
 
 
     // Start is called before the first frame update
@@ -26,29 +25,27 @@ public class LineGrow : MonoBehaviour
     {
         lineCollision = GetComponent<LineCollision>();
         lineRenderer = GetComponent<LineRenderer>();
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        float currentHeight = (lineRenderer.GetPosition(lineRenderer.positionCount - 1).y);
-
+        growRate = PersistentManager.Instance.humidityLevel * defaultGrowRate;
+        currentHeight = (lineRenderer.GetPosition(lineRenderer.positionCount - 1).y);
 
         if (growRate > 0)
         {
-            if (currentHeight < MaxHeight)
+            if (currentHeight < maxHeight)
             {
                 GrowLine();
             }
         }else if(growRate < 0)
         {
-            if(currentHeight > 0)
+            if(currentHeight > 0.1)
             {
                 ShrinkLine();
             }
         }
-
     }
 
     void GrowLine()
