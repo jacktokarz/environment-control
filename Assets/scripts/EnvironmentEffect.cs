@@ -21,8 +21,6 @@ public class EnvironmentEffect : MonoBehaviour
     //private GameObject fanparent;
 
     BasicMovement BasMov;
-    float vineGrowWait;
-    float vineCounter= -1f;
 
     float waterStartTime;
     
@@ -82,21 +80,11 @@ public class EnvironmentEffect : MonoBehaviour
 
         RoomValues rv = this.GetComponent<RoomValues>();
         rv.setInitialValues();
-        updateVineGrowWait();
         changeWindAnimation();
     }
 
     private void FixedUpdate()
     {
-        vineCounter++;
-        if (vineCounter >= vineGrowWait)
-        {
-            foreach (GameObject vine in vines)
-            {
-                vine.GetComponent<VineActivity>().changeVine();
-            }
-            vineCounter = 0f;
-        }
         for (int i= 0; i< waterLines.Length; i++)
         {
             GameObject wat= waterLines[i];
@@ -120,7 +108,6 @@ public class EnvironmentEffect : MonoBehaviour
                 playHumiditySound(value);
             }
             PersistentManager.Instance.humidityLevel = value;
-            updateVineGrowWait();
             changeWaterLevel(value);
             changeFrondWidth();
             changeMossSize();
@@ -154,13 +141,6 @@ public class EnvironmentEffect : MonoBehaviour
         else if (humValue == 3){source.clip = hum3;}
         else { return; }
         source.Play();
-    }
-
-    void updateVineGrowWait()
-    {
-        int hum = PersistentManager.Instance.humidityLevel;
-        int dividend = ((hum == 0 || (PersistentManager.Instance.tempLevel == 2 && hum > -2)) ? 1 : Mathf.Abs(hum));
-        vineGrowWait= PersistentManager.Instance.vineGrowDefaultSpeed / dividend;
     }
 
     void changeWaterLevel(int value)
@@ -268,7 +248,6 @@ public class EnvironmentEffect : MonoBehaviour
                 }
                 else if(value == 2)
                 {
-                    updateVineGrowWait();
                     burnBushes();
                     burnMoss();
                 }
@@ -295,7 +274,6 @@ public class EnvironmentEffect : MonoBehaviour
                 }
                 else if(PersistentManager.Instance.tempLevel == 1)
                 {
-                    updateVineGrowWait();
                     extinguishBushes();
                     extinguishMoss();
                 }

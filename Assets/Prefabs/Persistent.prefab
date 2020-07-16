@@ -814,7 +814,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   escapeKey: 
-  secondaryKey: 
   cg: {fileID: 6281281461953695151}
 --- !u!114 &741797625016361759
 MonoBehaviour:
@@ -2143,7 +2142,7 @@ MonoBehaviour:
   vineMaxHeight: 100
   vinePieceHeight: 0.09
   vinePieceWidth: 1
-  vineWindAffect: 0.05
+  vineWindAffect: 0.005
   whatBlocksVines:
     serializedVersion: 2
     m_Bits: 10769
