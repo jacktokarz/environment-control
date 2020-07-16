@@ -65,7 +65,10 @@ public class LineGrow : MonoBehaviour
 
         //colliders: wind and more
         Vector2 windFlow = new Vector2(0,0);
-        Vector2 worldPosition = new Vector2(currentPosition.x * (this.transform.rotation.y==0 ? 1 : -1), currentPosition.y)
+        bool sideways = Mathf.Abs(this.transform.parent.rotation.eulerAngles.z)==90;
+        int xSkew = sideways || this.transform.rotation.eulerAngles.y==180 ? -1 : 1;
+        int ySkew = sideways && this.transform.rotation.eulerAngles.y==180 ? -1 : 1;
+        Vector2 worldPosition = new Vector2((sideways ? currentPosition.y : currentPosition.x) * xSkew, (sideways ? currentPosition.x : currentPosition.y) * ySkew)
             + new Vector2(this.transform.position.x, this.transform.position.y);
         bool blocked = false;
         Collider2D[] overlapper= Physics2D.OverlapBoxAll(
@@ -74,7 +77,8 @@ public class LineGrow : MonoBehaviour
             this.transform.rotation.eulerAngles.z,
             PersistentManager.Instance.whatBlocksVines
         );
-        Debug.Log("world pos of "+this.name+" is "+worldPosition);
+        Debug.Log("world pos of "+this.name+" is "+worldPosition+" with x "+xSkew+" y "+ySkew);
+        Debug.Log(" angle y "+this.transform.rotation.eulerAngles.y+" angle z "+this.transform.parent.transform.rotation.eulerAngles.z);
         if(overlapper.Length > 0)
         {
             foreach (Collider2D overlap in overlapper)
