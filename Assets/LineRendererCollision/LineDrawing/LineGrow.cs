@@ -67,9 +67,10 @@ public class LineGrow : MonoBehaviour
         Vector2 windFlow = new Vector2(0,0);
         bool sideways = this.transform.parent.rotation.eulerAngles.z==90;
         bool inverseSideways = this.transform.parent.rotation.eulerAngles.z == 270;
+        bool upsideDown = this.transform.parent.rotation.eulerAngles.z == 180;
         bool flipped = this.transform.rotation.eulerAngles.y==180;
-        int xSkew = sideways || (flipped && !inverseSideways) ? -1 : 1;
-        int ySkew = (sideways && flipped) || (inverseSideways && !flipped) ? -1 : 1;
+        int xSkew = sideways || (flipped&&!inverseSideways&&!upsideDown) || (!flipped&&upsideDown) ? -1 : 1;
+        int ySkew = (sideways && flipped) || (inverseSideways && !flipped) || upsideDown ? -1 : 1;
         Vector2 worldPosition = new Vector2(
             (sideways||inverseSideways ? currentPosition.y : currentPosition.x) * xSkew,
             (sideways||inverseSideways ? currentPosition.x : currentPosition.y) * ySkew
@@ -81,7 +82,7 @@ public class LineGrow : MonoBehaviour
             this.transform.rotation.eulerAngles.z,
             PersistentManager.Instance.whatBlocksVines
         );
-        // Debug.Log("world pos of "+this.name+" is "+worldPosition+" with x "+xSkew+" y "+ySkew);
+        Debug.Log("world pos of "+this.name+" is "+worldPosition+" with x "+xSkew+" y "+ySkew);
         // Debug.Log(" overlapping "+overlapper.Length);
         if(overlapper.Length > 0)
         {
@@ -98,7 +99,7 @@ public class LineGrow : MonoBehaviour
                             (actualWDDir *
                                 PersistentManager.Instance.windLevel *
                                 PersistentManager.Instance.vineWindAffect *
-                                ((!inverseSideways&&flipped) || (inverseSideways&&!flipped) ? -1 : 1)
+                                (((!inverseSideways&&!upsideDown)&&flipped) || ((inverseSideways||upsideDown)&&!flipped) ? -1 : 1)
                             );
                     }
                 }
