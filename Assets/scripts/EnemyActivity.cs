@@ -48,9 +48,7 @@ public class EnemyActivity : MonoBehaviour
     {
         Vector3 vectorToTarget = playerObject.transform.position - this.transform.position;
 		float angle = (Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg + 270) % 360;
-		Debug.Log("angle is: "+angle);
 		float clampAngle = Mathf.Clamp(angle, originalRotation - 90, originalRotation + 90);
-		Debug.Log("clamp angle is: "+clampAngle);
 		if(clampAngle == angle)
 		{
 			RaycastHit2D hit = Physics2D.Raycast(transform.position, (playerObject.transform.position - this.transform.position).normalized, vision, PersistentManager.Instance.blocksProjectiles);
