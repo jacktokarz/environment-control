@@ -362,6 +362,7 @@ public class BasicMovement : MonoBehaviour
     {
         rigid.velocity= new Vector2(0,0);
         PersistentManager.Instance.immobile = true;
+        bodyAnimator.SetBool("dead", true);
         PersistentManager.Instance.GameOver.SetActive(true);
     }
 

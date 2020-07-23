@@ -65,11 +65,16 @@ public class LineGrow : MonoBehaviour
 
         //colliders: wind and more
         Vector2 windFlow = new Vector2(0,0);
-        bool sideways = Mathf.Abs(this.transform.parent.rotation.eulerAngles.z)==90;
-        int xSkew = sideways || this.transform.rotation.eulerAngles.y==180 ? -1 : 1;
-        int ySkew = sideways && this.transform.rotation.eulerAngles.y==180 ? -1 : 1;
-        Vector2 worldPosition = new Vector2((sideways ? currentPosition.y : currentPosition.x) * xSkew, (sideways ? currentPosition.x : currentPosition.y) * ySkew)
-            + new Vector2(this.transform.position.x, this.transform.position.y);
+        bool sideways = this.transform.parent.rotation.eulerAngles.z==90;
+        bool inverseSideways = this.transform.parent.rotation.eulerAngles.z == 270;
+        bool upsideDown = this.transform.parent.rotation.eulerAngles.z == 180;
+        bool flipped = this.transform.rotation.eulerAngles.y==180;
+        int xSkew = sideways || (flipped&&!inverseSideways&&!upsideDown) || (!flipped&&upsideDown) ? -1 : 1;
+        int ySkew = (sideways && flipped) || (inverseSideways && !flipped) || upsideDown ? -1 : 1;
+        Vector2 worldPosition = new Vector2(
+            (sideways||inverseSideways ? currentPosition.y : currentPosition.x) * xSkew,
+            (sideways||inverseSideways ? currentPosition.x : currentPosition.y) * ySkew
+        ) + new Vector2(this.transform.position.x, this.transform.position.y);
         bool blocked = false;
         Collider2D[] overlapper= Physics2D.OverlapBoxAll(
             worldPosition,
@@ -78,7 +83,7 @@ public class LineGrow : MonoBehaviour
             PersistentManager.Instance.whatBlocksVines
         );
         Debug.Log("world pos of "+this.name+" is "+worldPosition+" with x "+xSkew+" y "+ySkew);
-        Debug.Log(" angle y "+this.transform.rotation.eulerAngles.y+" angle z "+this.transform.parent.transform.rotation.eulerAngles.z);
+        // Debug.Log(" overlapping "+overlapper.Length);
         if(overlapper.Length > 0)
         {
             foreach (Collider2D overlap in overlapper)
@@ -88,11 +93,13 @@ public class LineGrow : MonoBehaviour
                     WindDirection wd = overlap.gameObject.GetComponent(typeof(WindDirection)) as WindDirection;
                     if(wd.direction != new Vector2(0,0))
                     {
+                        Vector2 actualWDDir = sideways || inverseSideways ?
+                            new Vector2(wd.direction.y, wd.direction.x) : wd.direction;
                         newPosition = newPosition +
-                            (PersistentManager.Instance.windLevel *
+                            (actualWDDir *
+                                PersistentManager.Instance.windLevel *
                                 PersistentManager.Instance.vineWindAffect *
-                                wd.direction *
-                                (this.transform.rotation.y==0 ? 1 : -1)
+                                (((!inverseSideways&&!upsideDown)&&flipped) || ((inverseSideways||upsideDown)&&!flipped) ? -1 : 1)
                             );
                     }
                 }

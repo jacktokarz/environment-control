@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: 02b61ec0a95048c47832f67fe1142a06
+guid: 435ff36cb41659b44a010b006d614035
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2190877580666504509
-    second: FloraunaJump_SpriteSheet_0
+      213: -134899309198497600
+    second: CharacterFilledJump_0
   - first:
-      213: 2653253550429165517
-    second: FloraunaJump_SpriteSheet_1
+      213: -5451317384113797369
+    second: CharacterFilledJump_1
   - first:
-      213: -3490140145493458725
-    second: FloraunaJump_SpriteSheet_2
+      213: -5940123508408000411
+    second: CharacterFilledJump_2
   - first:
-      213: 4302249727616123434
-    second: FloraunaJump_SpriteSheet_3
+      213: -848932743568738151
+    second: CharacterFilledJump_3
   - first:
-      213: 8907084441201505333
-    second: FloraunaJump_SpriteSheet_4
+      213: -7088396078467187168
+    second: CharacterFilledJump_4
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -101,7 +101,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FloraunaJump_SpriteSheet_0
+      name: CharacterFilledJump_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,14 +115,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 904dfdbb427c0df4fb3f93bf3a5d4670
-      internalID: 2190877580666504509
+      spriteID: 3c7550c5918e27a43842720931969dee
+      internalID: -134899309198497600
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FloraunaJump_SpriteSheet_1
+      name: CharacterFilledJump_1
       rect:
         serializedVersion: 2
         x: 1080
@@ -136,14 +136,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f92550ee9cb7864f99ba4833f5cc16c
-      internalID: 2653253550429165517
+      spriteID: 5644b3415a149d347812b87a013005f4
+      internalID: -5451317384113797369
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FloraunaJump_SpriteSheet_2
+      name: CharacterFilledJump_2
       rect:
         serializedVersion: 2
         x: 2160
@@ -157,14 +157,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b81d69aa3777cad4daa8800b6c0a4e7a
-      internalID: -3490140145493458725
+      spriteID: 8029888d9aa4b2e4ea3449d58186dd01
+      internalID: -5940123508408000411
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FloraunaJump_SpriteSheet_3
+      name: CharacterFilledJump_3
       rect:
         serializedVersion: 2
         x: 3240
@@ -178,14 +178,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0a2f9e3177d1d1d47af8dd9c142b931a
-      internalID: 4302249727616123434
+      spriteID: 0ffa9e9d56cd43549a1efd5de896949b
+      internalID: -848932743568738151
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FloraunaJump_SpriteSheet_4
+      name: CharacterFilledJump_4
       rect:
         serializedVersion: 2
         x: 4320
@@ -199,8 +199,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a3dc9be88f8514b468273649308d5724
-      internalID: 8907084441201505333
+      spriteID: 7cd3b837c8572484299feee1acbfca9d
+      internalID: -7088396078467187168
       vertices: []
       indices: 
       edges: []
