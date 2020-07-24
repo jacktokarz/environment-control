@@ -82,7 +82,7 @@ public class LineGrow : MonoBehaviour
             this.transform.rotation.eulerAngles.z,
             PersistentManager.Instance.whatBlocksVines
         );
-        Debug.Log("world pos of "+this.name+" is "+worldPosition+" with x "+xSkew+" y "+ySkew);
+        // Debug.Log("world pos of "+this.name+" is "+worldPosition+" with x "+xSkew+" y "+ySkew);
         // Debug.Log(" overlapping "+overlapper.Length);
         if(overlapper.Length > 0)
         {
@@ -105,7 +105,7 @@ public class LineGrow : MonoBehaviour
                 }
                 else {
                     if(!overlap.CompareTag("vine") && (!overlap.CompareTag("vinePiece"))) {
-                        Debug.Log("running into "+overlap.name+" at "+worldPosition);
+                        // Debug.Log("running into "+overlap.name+" at "+worldPosition);
                         blocked = true;
                         break;
                     }

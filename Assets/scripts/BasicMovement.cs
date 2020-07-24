@@ -250,6 +250,16 @@ public class BasicMovement : MonoBehaviour
             death();
         }
     }
+    void OnTriggerEnter2D(Collider2D col)
+    {
+    	if(col.CompareTag("checkpoint") || col.CompareTag("hub"))
+    	{
+    		CheckpointActivity ca = col.GetComponent<CheckpointActivity>();
+            if (!ca.alreadyChecked) {
+				bodyAnimator.SetBool("activating", true);
+            }
+    	}
+    }
 
     void checkGrounded()
     {

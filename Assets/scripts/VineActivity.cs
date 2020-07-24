@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +8,7 @@ public class VineActivity : MonoBehaviour
 	public int activeChildCount;
 	Vector2 vineSize;
 
-    public AudioClip vineGrowsound;
+    public AudioClip vineGrowSound;
     //public AudioClip vineShrinksound;
     private AudioSource source;
     private Animator baseAnim;
@@ -16,7 +16,7 @@ public class VineActivity : MonoBehaviour
     {
         vineSize = new Vector2(PersistentManager.Instance.vinePieceWidth, PersistentManager.Instance.vinePieceHeight);
         source = GetComponent<AudioSource>();
-        source.clip = vineGrowsound;
+        source.clip = vineGrowSound;
         baseAnim = this.transform.GetChild(0).GetComponent(typeof (Animator)) as Animator;
     }
 
