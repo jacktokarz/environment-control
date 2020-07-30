@@ -16,6 +16,7 @@ public class KeyBinder : MonoBehaviour
     void Start()
     {
         List<string> tl = PersistentManager.Instance.TreasureList;
+        Debug.Log("setting keys "+PlayerPrefs.GetString("HumidityButton"));
 
 		// keys.Add("LeftButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("LeftButton", "LeftArrow")));
 		// // left.text = keys["LeftButton"].ToString();
@@ -26,11 +27,11 @@ public class KeyBinder : MonoBehaviour
 		keys.Add("JumpButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("JumpButton", "Space")));
 		jump.text = keys["JumpButton"].ToString();
 		if(tl.Contains("humidity")) {
-			keys.Add("HumidityButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("HumidityButton", "1")));
-			humidity.text = keys["HumidityButton"].ToString();
+			keys.Add("HumidityButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("HumidityButton", "Alpha1")));
+            humidity.text = keys["HumidityButton"].ToString();
 		}
 		if(tl.Contains("wind")) {
-			keys.Add("WindButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("WindButton", "2")));
+			keys.Add("WindButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("WindButton", "Alpha2")));
 			wind.text = keys["WindButton"].ToString();			
 		}
     }

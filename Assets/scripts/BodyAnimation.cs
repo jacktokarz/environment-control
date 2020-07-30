@@ -13,6 +13,7 @@ public class BodyAnimation : MonoBehaviour
 
     void endActivationAnimation()
     {
+    	PersistentManager.Instance.immobile = false;
 		playerAnim.SetBool("activating", false);
     }
 }

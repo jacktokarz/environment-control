@@ -36,6 +36,7 @@ public class TreasureActivity : MonoBehaviour
         source.PlayOneShot(treasureSound, 2.0f);
 		openChestAnim.SetBool("opening", true);
 		PersistentManager.Instance.TreasureList.Add(treasureId);
+		PersistentManager.Instance.CheckTextVis();
 		Queue<string> nextMessages = new Queue<string>();
 		switch (treasureId)
 		{

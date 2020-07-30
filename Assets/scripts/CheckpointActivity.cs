@@ -51,6 +51,8 @@ public class CheckpointActivity : MonoBehaviour
     void activateCheckpoint()
     {
 		flowerGrowAnim.SetBool("grow", true);
+        spawnAnim.SetBool("active", true);
+        PersistentManager.Instance.immobile = true;
         source.PlayOneShot(flowerGrowSound);
 		PersistentManager.Instance.Checkpoints.Add(SceneManager.GetActiveScene().buildIndex);
 		setCheckpoint();
@@ -60,7 +62,6 @@ public class CheckpointActivity : MonoBehaviour
     void setCheckpoint() {
         PersistentManager.Instance.lastCheckpoint = SceneManager.GetActiveScene().buildIndex;
         bool saved = PersistentManager.Instance.Save();
-        spawnAnim.SetBool("active", true);
     }
 
     public void spawn()
