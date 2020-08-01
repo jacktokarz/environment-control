@@ -1,31 +1,25 @@
 fileFormatVersion: 2
-guid: 230f82284fbfd0e46b8f9c8428de796c
+guid: a066f0d9f63c42e44904a1a1cc75c08a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4722973013096572895
-    second: Character-Climb_0
+      213: 7560930691746923959
+    second: CharacterFilledIdle_0
   - first:
-      213: -4897086299871840691
-    second: Character-Climb_1
+      213: -2302350322862921666
+    second: CharacterFilledIdle_1
   - first:
-      213: 1646625138299088869
-    second: Character-Climb_2
+      213: -3927763497734170961
+    second: CharacterFilledIdle_2
   - first:
-      213: -3264230558271353736
-    second: Character-Climb_3
+      213: -1665468565152332981
+    second: CharacterFilledIdle_3
   - first:
-      213: -7428462302387014465
-    second: Character-Climb_4
+      213: -7977261081028169108
+    second: CharacterFilledIdle_4
   - first:
-      213: 5466662594733956989
-    second: Character-Climb_5
-  - first:
-      213: -6880496474967458046
-    second: Character-Climb_6
-  - first:
-      213: 8494868439708145935
-    second: Character-Climb_7
+      213: 8266263797074448892
+    second: CharacterFilledIdle_5
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -110,13 +104,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Character-Climb_0
+      name: CharacterFilledIdle_0
       rect:
         serializedVersion: 2
-        x: 254
-        y: 78
-        width: 499
-        height: 845
+        x: 0
+        y: 0
+        width: 1080
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +118,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b22e1897e8ab7ae44b3b420f83711524
-      internalID: -4722973013096572895
+      spriteID: 095220fca2ccdd94da86f08ae31515b9
+      internalID: 7560930691746923959
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character-Climb_1
+      name: CharacterFilledIdle_1
       rect:
         serializedVersion: 2
-        x: 1125
-        y: 463
-        width: 10
-        height: 9
+        x: 1080
+        y: 0
+        width: 1080
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +139,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b04cf27cab2f6934c98b6dd7ba1e2223
-      internalID: -4897086299871840691
+      spriteID: 41f243c812211ad459aeb6c35a3eb366
+      internalID: -2302350322862921666
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character-Climb_2
+      name: CharacterFilledIdle_2
       rect:
         serializedVersion: 2
-        x: 1140
-        y: 75
-        width: 509
-        height: 852
+        x: 2160
+        y: 0
+        width: 1080
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +160,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59d288c88acb6b94aa98c90a5107165e
-      internalID: 1646625138299088869
+      spriteID: d66e69305de195846b75479d7eb33398
+      internalID: -3927763497734170961
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character-Climb_3
+      name: CharacterFilledIdle_3
       rect:
         serializedVersion: 2
-        x: 2021
-        y: 99
-        width: 496
-        height: 806
+        x: 3240
+        y: 0
+        width: 1080
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +181,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a68f84e843c51204299f98a795fc48aa
-      internalID: -3264230558271353736
+      spriteID: cb4d30315f0f30a4ea2f198567258053
+      internalID: -1665468565152332981
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character-Climb_4
+      name: CharacterFilledIdle_4
       rect:
         serializedVersion: 2
-        x: 2889
-        y: 74
-        width: 510
-        height: 853
+        x: 4320
+        y: 0
+        width: 1080
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,20 +202,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ec82ecfedfc3ac4ea89da9647d73026
-      internalID: -7428462302387014465
+      spriteID: d0cc632d69a9a3b4a8d0fb8b4065a696
+      internalID: -7977261081028169108
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character-Climb_5
+      name: CharacterFilledIdle_5
       rect:
         serializedVersion: 2
-        x: 3403
-        y: 463
-        width: 10
-        height: 9
+        x: 5400
+        y: 0
+        width: 1080
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,50 +223,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c241182df49890a4992f8c439f206235
-      internalID: 5466662594733956989
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Character-Climb_6
-      rect:
-        serializedVersion: 2
-        x: 3785
-        y: 78
-        width: 498
-        height: 845
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3ff09f1e13b811f49819388cadc34436
-      internalID: -6880496474967458046
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Character-Climb_7
-      rect:
-        serializedVersion: 2
-        x: 4655
-        y: 99
-        width: 496
-        height: 806
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8feb1352dfd792943b3ed07bb671c5e9
-      internalID: 8494868439708145935
+      spriteID: 93003a134a49a1c408a3032b2269739c
+      internalID: 8266263797074448892
       vertices: []
       indices: 
       edges: []
