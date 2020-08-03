@@ -31,9 +31,11 @@ public class EventActivity : MonoBehaviour
         switch (room) {
             case 1:
                 if (PersistentManager.Instance.lastDoorId == "NewGame") {
-                    messages.Enqueue("Are we heard?\nWe can no longer sense ourselves in this body we've grown in their image.\nIf we are still aware in this body, jump.");
+                    messages.Enqueue("Are we heard?\nWe can no longer sense ourselves in this body we've grown in their image. Attempt to Jump if we hear us.");
                     messages.Enqueue("Jump");
-                    messages.Enqueue("We are relieved to know we are conscious in this new form, but troubled that we are no longer mentally connected.\nRemember, our purpose is to find and re-connect the other parts of ourself that are severed.\nWe sense the first one to our left.");
+                    messages.Enqueue("We are relieved to know we are conscious in this new form, but troubled that we are no longer mentally connected.");
+                    messages.Enqueue("Jump");
+                    messages.Enqueue("Remember, our purpose is to find and re-connect the other parts of ourself that are severed.\nWe sense the first one to our left.");
                     messages.Enqueue("Horizontal");
                 }
                 break;

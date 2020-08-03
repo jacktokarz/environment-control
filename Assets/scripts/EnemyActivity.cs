@@ -26,7 +26,6 @@ public class EnemyActivity : MonoBehaviour
     {
         source = GetComponent<AudioSource>();
     	originalRotation = this.transform.rotation.eulerAngles.z;
-    	Debug.Log("first rot "+originalRotation);
         if(enemyType == "dumb")
         {
         	rate = (int)PersistentManager.Instance.dumbEnemyFireRate;

@@ -24,7 +24,6 @@ public class WindDirection : MonoBehaviour
     	}
         else if (zRot == 270)
         {
-            Debug.Log("facing down");
             direction = new Vector2(0, -1);
         }
         else

@@ -8,6 +8,7 @@ public class CheckpointActivity : MonoBehaviour
     private AudioSource source;
     private Animator spawnAnim;
 	private Animator flowerGrowAnim;
+    private Animator playerAnim;
 	public bool alreadyChecked;
     public AudioClip flowerGrowSound;
     public AudioClip spawnsound;
@@ -18,6 +19,7 @@ public class CheckpointActivity : MonoBehaviour
         spawnAnim = this.transform.GetChild(0).GetComponent(typeof (Animator)) as Animator;
         spawnAnim.SetBool("active", false);
         flowerGrowAnim = this.transform.GetChild(1).GetComponent(typeof (Animator)) as Animator;
+        playerAnim = GameObject.FindGameObjectWithTag("Player").transform.GetChild(0).GetComponent(typeof (Animator)) as Animator;
     }
 
     void Start()
@@ -51,6 +53,10 @@ public class CheckpointActivity : MonoBehaviour
     void activateCheckpoint()
     {
 		flowerGrowAnim.SetBool("grow", true);
+        spawnAnim.SetBool("active", true);
+        playerAnim.SetBool("activating", true);
+        Debug.Log("freezing body");
+        PersistentManager.Instance.immobile = true;
         source.PlayOneShot(flowerGrowSound);
 		PersistentManager.Instance.Checkpoints.Add(SceneManager.GetActiveScene().buildIndex);
 		setCheckpoint();
@@ -60,7 +66,6 @@ public class CheckpointActivity : MonoBehaviour
     void setCheckpoint() {
         PersistentManager.Instance.lastCheckpoint = SceneManager.GetActiveScene().buildIndex;
         bool saved = PersistentManager.Instance.Save();
-        spawnAnim.SetBool("active", true);
     }
 
     public void spawn()
