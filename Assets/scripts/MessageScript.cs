@@ -28,7 +28,7 @@ public class MessageScript : MonoBehaviour
         	}
         	else if(escapeKey == "wind")
         	{
-        		if(PersistentManager.Instance.windLevel < 3)
+        		if(PersistentManager.Instance.windLevel < 1)
         		{
         			doIt = true;
         		}

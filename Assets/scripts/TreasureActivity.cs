@@ -36,22 +36,26 @@ public class TreasureActivity : MonoBehaviour
         source.PlayOneShot(treasureSound, 2.0f);
 		openChestAnim.SetBool("opening", true);
 		PersistentManager.Instance.TreasureList.Add(treasureId);
-		PersistentManager.Instance.CheckTextVis();
 		Queue<string> nextMessages = new Queue<string>();
 		switch (treasureId)
 		{
 		case "humidity":
 			PersistentManager.Instance.Humidity.gameObject.SetActive(true);
+			nextMessages.Enqueue("Ah, an interesting device.\nFirst they created us, then these to control us.");
+			nextMessages.Enqueue("Jump");
 			nextMessages.Enqueue("Hold 1 + Press Up / Down\nto Alter the Humidity Level");
 			nextMessages.Enqueue("humidity");
 			break;
 		case "wind":
+			nextMessages.Enqueue("Another one.\nDid they ever truly believe with these devices they could dominate us?");
+			nextMessages.Enqueue("Jump");
 			nextMessages.Enqueue("Hold 2 + Press up / down\nto Alter the Wind Level");
 			nextMessages.Enqueue("wind");
 			break;
 		}
         Debug.Log("passing a message from "+nextMessages.Count);
 
+		PersistentManager.Instance.CheckTextVis();
 		StartCoroutine(PersistentManager.Instance.MakeMessage(nextMessages));
 		bool saved = PersistentManager.Instance.Save();
 		alreadyGotten = true;

@@ -12,7 +12,7 @@ public class PersistentManager : MonoBehaviour
 	public static PersistentManager Instance { get; private set; }
 
 		//UI
-    public Text Humidity, Wind, Temperature;
+    public Text Humidity, Wind, Temperature, CollectibleCount;
     public GameObject PauseHumidity, PauseWind;
     public GameObject GameOver;
     public GameObject Message;
@@ -132,6 +132,8 @@ public class PersistentManager : MonoBehaviour
 
     public void CheckTextVis()
     {
+        updateText(CollectibleCount, Collectibles.Count);
+
     	bool seeHum = TreasureList.Contains("humidity") ? true : false;
 		Humidity.gameObject.SetActive(seeHum);
         updateText(Humidity, humidityLevel);

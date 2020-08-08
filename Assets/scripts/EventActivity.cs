@@ -31,11 +31,11 @@ public class EventActivity : MonoBehaviour
         switch (room) {
             case 1:
                 if (PersistentManager.Instance.lastDoorId == "NewGame") {
-                    messages.Enqueue("Are we heard?\nWe can no longer sense ourselves in this body we've grown in their image. Attempt to Jump if we hear us.");
+                    messages.Enqueue("Are we heard?\nWe can no longer sense ourselves in this body we've grown in their image.");
                     messages.Enqueue("Jump");
-                    messages.Enqueue("We are relieved to know we are conscious in this new form, but troubled that we are no longer mentally connected.");
+                    messages.Enqueue("Ah, good, we are conscious in this new form. It is troubling that our thoughts are no longer connected.");
                     messages.Enqueue("Jump");
-                    messages.Enqueue("Remember, our purpose is to find and re-connect the other parts of ourself that are severed.\nWe sense the first one to our left.");
+                    messages.Enqueue("Remember, our purpose is to find and re-connect the other parts of ourself that they severed.\nWe sense the first one to our left...");
                     messages.Enqueue("Horizontal");
                 }
                 break;

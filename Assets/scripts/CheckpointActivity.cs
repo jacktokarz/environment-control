@@ -40,7 +40,7 @@ public class CheckpointActivity : MonoBehaviour
     {
     	if(col.CompareTag("Player"))
     	{
-            Debug.Log("checkopint hit player");
+            Debug.Log("checkpoint hit player");
             if (!alreadyChecked) {
         		activateCheckpoint();
             }

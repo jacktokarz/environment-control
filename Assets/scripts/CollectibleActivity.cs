@@ -31,8 +31,8 @@ public class CollectibleActivity : MonoBehaviour
 
     void collect()
     {
-        
 		PersistentManager.Instance.Collectibles.Add(SceneManager.GetActiveScene().buildIndex);
 		this.gameObject.SetActive(false);
+        PersistentManager.Instance.CheckTextVis();
     }
 }
