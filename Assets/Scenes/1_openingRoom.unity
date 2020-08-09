@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -477,7 +477,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &46519390
 Transform:
   m_ObjectHideFlags: 0
@@ -2651,7 +2651,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 249926268}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 64.5, z: 0}
+  m_LocalPosition: {x: 0, y: 66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 556454224}
@@ -11757,7 +11757,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 1
-  m_Offset: {x: -3.5, y: 30}
+  m_Offset: {x: -3.5, y: 33}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -11768,7 +11768,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 53.75, y: 62}
+  m_Size: {x: 53.75, y: 68}
   m_EdgeRadius: 0
 --- !u!66 &699577984
 CompositeCollider2D:
@@ -11793,16 +11793,16 @@ CompositeCollider2D:
     - - X: 233749971
         Y: -10000000
       - X: 233749971
-        Y: 610000000
+        Y: 670000000
       - X: -303750016
-        Y: 609999971
+        Y: 669999971
       - X: -303749987
         Y: -10000000
   m_CompositePaths:
     m_Paths:
     - - {x: 23.374994, y: -1}
-      - {x: 23.374994, y: 61}
-      - {x: -30.375002, y: 60.999996}
+      - {x: 23.374994, y: 67}
+      - {x: -30.375002, y: 66.99999}
       - {x: -30.374996, y: -1}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.000005
@@ -20552,6 +20552,7 @@ Transform:
   - {fileID: 1040263290}
   - {fileID: 1851952569}
   - {fileID: 49654193}
+  - {fileID: 1327001086}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -23023,6 +23024,106 @@ Transform:
   m_Father: {fileID: 1964421954}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 6.761, y: 350.055, z: 9.629001}
+--- !u!1001 &1327001085
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1064327361}
+    m_Modifications:
+    - target: {fileID: 2328194828515570625, guid: 0cc69311cbdb69b469c1da63d5ab1a43,
+        type: 3}
+      propertyPath: m_Name
+      value: Door (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2328194828515570621, guid: 0cc69311cbdb69b469c1da63d5ab1a43,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 2328194828515570621, guid: 0cc69311cbdb69b469c1da63d5ab1a43,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 2328194828515570621, guid: 0cc69311cbdb69b469c1da63d5ab1a43,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2328194828515570621, guid: 0cc69311cbdb69b469c1da63d5ab1a43,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2328194828515570621, guid: 0cc69311cbdb69b469c1da63d5ab1a43,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2328194828515570621, guid: 0cc69311cbdb69b469c1da63d5ab1a43,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2328194828515570621, guid: 0cc69311cbdb69b469c1da63d5ab1a43,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2328194828515570621, guid: 0cc69311cbdb69b469c1da63d5ab1a43,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2328194828515570621, guid: 0cc69311cbdb69b469c1da63d5ab1a43,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2328194828515570621, guid: 0cc69311cbdb69b469c1da63d5ab1a43,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2328194828515570621, guid: 0cc69311cbdb69b469c1da63d5ab1a43,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2328194828515570621, guid: 0cc69311cbdb69b469c1da63d5ab1a43,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.0000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 2328194828515570621, guid: 0cc69311cbdb69b469c1da63d5ab1a43,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.0000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 8903210285107594173, guid: 0cc69311cbdb69b469c1da63d5ab1a43,
+        type: 3}
+      propertyPath: doorId
+      value: opening/elevator-top
+      objectReference: {fileID: 0}
+    - target: {fileID: 7368925051175267598, guid: 0cc69311cbdb69b469c1da63d5ab1a43,
+        type: 3}
+      propertyPath: OtherSideOfDoor
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8903210285212828229, guid: 0cc69311cbdb69b469c1da63d5ab1a43,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0cc69311cbdb69b469c1da63d5ab1a43, type: 3}
+--- !u!4 &1327001086 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2328194828515570621, guid: 0cc69311cbdb69b469c1da63d5ab1a43,
+    type: 3}
+  m_PrefabInstance: {fileID: 1327001085}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1340031736
 GameObject:
   m_ObjectHideFlags: 0
@@ -29169,7 +29270,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &2034745918
 SpriteRenderer:
   m_ObjectHideFlags: 0
