@@ -67,7 +67,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7586026345809687393}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.3, z: 0}
+  m_LocalPosition: {x: -0.05, y: 1.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7586026345987929056}
@@ -111,7 +111,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 2376c3cbc42f3eb4ea03078e16d67260, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 820609289040b234c87378989d922231, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -167,11 +167,11 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.75}
+  m_Offset: {x: 0, y: -0.6}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.7777777, y: 2.7777777}
+    oldSize: {x: 2.631579, y: 2.631579}
     newSize: {x: 5, y: 5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -340,7 +340,7 @@ PrefabInstance:
     - target: {fileID: 2521139619486689882, guid: 7bc9a5355f5a43a458be9a164a0b89a6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.45
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 2521139619486689882, guid: 7bc9a5355f5a43a458be9a164a0b89a6,
         type: 3}
@@ -462,6 +462,11 @@ PrefabInstance:
       propertyPath: m_Parameters.numCapVertices
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 2521139619486689880, guid: 7bc9a5355f5a43a458be9a164a0b89a6,
+        type: 3}
+      propertyPath: Generate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2521139619486689883, guid: 7bc9a5355f5a43a458be9a164a0b89a6,
         type: 3}
       propertyPath: m_Points.Array.size
@@ -495,11 +500,6 @@ PrefabInstance:
     - target: {fileID: 2521139619486689883, guid: 7bc9a5355f5a43a458be9a164a0b89a6,
         type: 3}
       propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2521139619486689880, guid: 7bc9a5355f5a43a458be9a164a0b89a6,
-        type: 3}
-      propertyPath: Generate
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -546,7 +546,7 @@ PrefabInstance:
     - target: {fileID: 2521139619486689882, guid: 7bc9a5355f5a43a458be9a164a0b89a6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.45
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 2521139619486689882, guid: 7bc9a5355f5a43a458be9a164a0b89a6,
         type: 3}
@@ -683,6 +683,11 @@ PrefabInstance:
       propertyPath: m_Parameters.numCapVertices
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 2521139619486689880, guid: 7bc9a5355f5a43a458be9a164a0b89a6,
+        type: 3}
+      propertyPath: Generate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2521139619486689883, guid: 7bc9a5355f5a43a458be9a164a0b89a6,
         type: 3}
       propertyPath: m_Points.Array.size
@@ -716,11 +721,6 @@ PrefabInstance:
     - target: {fileID: 2521139619486689883, guid: 7bc9a5355f5a43a458be9a164a0b89a6,
         type: 3}
       propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2521139619486689880, guid: 7bc9a5355f5a43a458be9a164a0b89a6,
-        type: 3}
-      propertyPath: Generate
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
