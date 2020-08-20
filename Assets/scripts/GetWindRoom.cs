@@ -13,6 +13,7 @@ public class GetWindRoom : MonoBehaviour
         if (!PersistentManager.Instance.TreasureList.Contains("windVision"))
         {
             PersistentManager.Instance.TreasureList.Add("windVision");
+            PersistentManager.Instance.CheckTextVis();
         }
     }
 

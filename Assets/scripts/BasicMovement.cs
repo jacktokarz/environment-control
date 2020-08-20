@@ -55,6 +55,7 @@ public class BasicMovement : MonoBehaviour
 
     void Awake()
     {
+        grounded = true;
         bodyObject = this.transform.GetChild(0).gameObject;
         bodyObject.SetActive(false);
         bodyAnimator = this.transform.GetChild(0).GetComponent(typeof (Animator)) as Animator;

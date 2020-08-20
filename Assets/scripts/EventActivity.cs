@@ -5,18 +5,26 @@ using UnityEngine;
 public class EventActivity : MonoBehaviour
 {
 
-    private GameObject player;
+    private GameObject playerChild;
 
 	void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        playerChild = GameObject.FindGameObjectWithTag("Player").transform.GetChild(0).gameObject;
 	}
 
+    public void Birth(int visible)
+    {
+        Debug.Log("birthing...");
+        playerChild.SetActive(visible==1);
+        Animator playerAnim = playerChild.GetComponent(typeof (Animator)) as Animator;
+        playerAnim.SetBool("grounded", true);
+        playerAnim.SetBool("birthing", true);
+    }
 
     public void Visualize(int visible)
     {
     	Debug.Log("visualizing...");
-        player.transform.GetChild(0).gameObject.SetActive(visible==1);
+        playerChild.SetActive(visible==1);
     }
 
     public void Mobilize(int mobile)

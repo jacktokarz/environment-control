@@ -48,8 +48,12 @@ public class EnemyActivity : MonoBehaviour
         Vector3 vectorToTarget = playerObject.transform.position - this.transform.position;
 		float angle = (Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg + 270) % 360;
 		float clampAngle = Mathf.Clamp(angle, originalRotation - 90, originalRotation + 90);
-		if(clampAngle == angle)
+		if(clampAngle != angle)
 		{
+			canSee = false; //== true deactivate
+        }
+        else 
+        {
 			RaycastHit2D hit = Physics2D.Raycast(transform.position, (playerObject.transform.position - this.transform.position).normalized, vision, PersistentManager.Instance.blocksProjectiles);
 			if (hit.transform!=null && hit.transform.CompareTag("Player"))
 			{ //if cansee == false then activates sound
@@ -58,7 +62,6 @@ public class EnemyActivity : MonoBehaviour
                     if(source)
                     {
                         source.clip = fastbeep;
-                        source.volume = 0.5f;
                         source.Play();                        
                     }
                 }
@@ -71,15 +74,17 @@ public class EnemyActivity : MonoBehaviour
                 }
 		    	counter ++;
 			}
+            else
+            {
+                canSee = false;
+            }
 		}
-		else
+		if (canSee == false)
 		{
-			canSee = false; //== true deactivate
             if(source) {
                 source.clip = slowbeep;
                 if (!source.isPlaying)
                 {
-                    source.volume=0.05f;
                     source.Play();
                 }           
             }

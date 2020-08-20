@@ -228,6 +228,7 @@ public class PersistentManager : MonoBehaviour
     	gd.TreasureList = new List<string>(TreasureList);
     	gd.lastCheckpoint = lastCheckpoint;
     	gd.Checkpoints = new List<int>(Checkpoints);
+        gd.Collectibles = new List<int>(Collectibles);
     	return gd;
     }
 
