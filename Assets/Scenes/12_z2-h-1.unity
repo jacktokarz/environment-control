@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2377,7 +2377,7 @@ GameObject:
   m_Component:
   - component: {fileID: 799071290}
   m_Layer: 0
-  m_Name: 12_z2-f-1Tiles
+  m_Name: 12_z2-h-1Tiles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6848,7 +6848,7 @@ PrefabInstance:
     - target: {fileID: 2816837758856372780, guid: 70fa60af300ffce4494aa3afe26ff477,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 73.49331
+      value: 78.7
       objectReference: {fileID: 0}
     - target: {fileID: 2816837758856372780, guid: 70fa60af300ffce4494aa3afe26ff477,
         type: 3}
@@ -7382,7 +7382,17 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+    - target: {fileID: 6272220073586939447, guid: a8ea3c9e92f9e904882df364ce29f41e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 6272220073873308382, guid: a8ea3c9e92f9e904882df364ce29f41e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+    - target: {fileID: 6272220073255694744, guid: a8ea3c9e92f9e904882df364ce29f41e,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -7398,16 +7408,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 6272220073801057738, guid: a8ea3c9e92f9e904882df364ce29f41e,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-    - target: {fileID: 6272220073586939447, guid: a8ea3c9e92f9e904882df364ce29f41e,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-    - target: {fileID: 6272220073255694744, guid: a8ea3c9e92f9e904882df364ce29f41e,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

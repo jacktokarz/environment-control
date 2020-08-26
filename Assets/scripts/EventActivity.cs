@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class EventActivity : MonoBehaviour
 {
-
     private GameObject playerChild;
 
 	void Awake()
     {
-        playerChild = GameObject.FindGameObjectWithTag("Player").transform.GetChild(0).gameObject;
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        playerChild = playerObj.transform.GetChild(0).gameObject;
 	}
 
     public void Birth(int visible)

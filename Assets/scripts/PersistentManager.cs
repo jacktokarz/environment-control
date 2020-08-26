@@ -333,4 +333,20 @@ public class PersistentManager : MonoBehaviour
         }
     }
 
+    // public Transform FindChildObjectByTag(Transform obj, string _tag)
+    // {
+    //     for (int i = 0; i < obj.childCount; i++)
+    //     {
+    //         Transform child = obj.GetChild(i);
+    //         Debug.Log("tag is "+child.tag);
+    //         if (child.tag == _tag)
+    //         {
+    //             Debug.Log("found it");
+    //             return child;
+    //         }
+    //     }
+    //     Debug.Log("not found");
+    //     return null;
+    // }
+
 }
