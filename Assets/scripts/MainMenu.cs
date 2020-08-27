@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
@@ -9,8 +10,11 @@ public class MainMenu : MonoBehaviour
 	private Transform PersistentUI;
 	private GameData loadGame;
     private UIFader uiFader;
-
-    public CanvasGroup blackBG;
+    public GameObject firstScreen;
+    public CanvasGroup firstCanvas;
+    public GameObject difficultyScreen;
+    public CanvasGroup difficultyCanvas;
+    public Button defaultDifficulty, newButton;
 
     void Start()
     {
@@ -58,9 +62,25 @@ public class MainMenu : MonoBehaviour
     	StartCoroutine(PersistentManager.Instance.WaitToActivate(propertyValues, true, PersistentManager.Instance.fadeSpeed * 1.5f));
     }
 
-    public void newClicked(string difficulty)
+    public void newClicked()
     {
-        Debug.Log("clicked new with "+difficulty);
+        uiFader.fadeIn(difficultyCanvas);
+        firstScreen.SetActive(false);
+        defaultDifficulty.Select();
+        defaultDifficulty.OnSelect(null);
+    }
+
+    public void backSelected()
+    {
+        uiFader.fadeIn(firstCanvas);
+        difficultyScreen.SetActive(false);
+        newButton.Select();
+        newButton.OnSelect(null);
+    }
+
+    public void difficultyClicked(string difficulty)
+    {
+        Debug.Log("clicked difficulty with "+difficulty);
         PlayerPrefs.DeleteAll();
         PersistentManager.Instance.SetKeys();
     	PersistentUI.gameObject.SetActive(true);

@@ -412,7 +412,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.8980392, g: 0.69411767, b: 0.8627451, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -929,7 +929,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.8980392, g: 0.69411767, b: 0.8627451, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -2770,7 +2770,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.8980392, g: 0.69411767, b: 0.8627451, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -3329,7 +3329,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.36209506, g: 0.745283, b: 0.47480866, a: 1}
     m_HighlightedColor: {r: 0.2710039, g: 0.5471698, b: 0.3088685, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.8980392, g: 0.69411767, b: 0.8627451, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -3572,7 +3572,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.8980392, g: 0.69411767, b: 0.8627451, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -4012,6 +4012,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screens: {fileID: 2276447135989700689}
+  initialButton: {fileID: 1562527774696965519}
 --- !u!1 &4166001952141554309
 GameObject:
   m_ObjectHideFlags: 0
@@ -5008,7 +5009,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.6260948, g: 0.5882353, b: 0.8980392, a: 1}
     m_HighlightedColor: {r: 0.23137254, g: 0.25437835, b: 0.8980392, a: 1}
     m_PressedColor: {r: 0.8693633, g: 0.8658775, b: 0.8867924, a: 1}
-    m_SelectedColor: {r: 0.627451, g: 0.5882353, b: 0.8980392, a: 1}
+    m_SelectedColor: {r: 0.8980392, g: 0.69411767, b: 0.8627451, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -5231,7 +5232,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4166001951583385066}
-        m_MethodName: UnPause
+        m_MethodName: ActivatePause
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6012,7 +6013,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.6260948, g: 0.5882353, b: 0.8980392, a: 1}
     m_HighlightedColor: {r: 0.23137254, g: 0.25437835, b: 0.8980392, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.627451, g: 0.5882353, b: 0.8980392, a: 1}
+    m_SelectedColor: {r: 0.8980392, g: 0.69411767, b: 0.8627451, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1

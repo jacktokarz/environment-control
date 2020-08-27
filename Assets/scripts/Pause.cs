@@ -1,15 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Pause : MonoBehaviour
 {
 	public GameObject screens;
+	public Button initialButton;
 	private int activeScreen = 0;
 
 	void Start () {
-		Time.timeScale = 1;
-		UnPause();
+		Time.timeScale = 0;
+		ActivatePause();
 		ScreenSwitch(0);
 	}
 
@@ -19,12 +21,7 @@ public class Pause : MonoBehaviour
 		if (Input.GetButtonDown("Pause"))
 		{
 			Debug.Log("Time scale is "+Time.timeScale);
-			if(Time.timeScale == 1)
-			{
-				ActivatePause();
-			} else if (Time.timeScale == 0){
-				UnPause();
-			}
+			ActivatePause();
 		}
 	}
 
@@ -48,20 +45,16 @@ public class Pause : MonoBehaviour
 	//shows objects with ShowOnPause tag
 	public void ActivatePause()
 	{
-		Time.timeScale = 0;
+		bool paused = Time.timeScale==0;
+		if (!paused)
+		{
+			initialButton.Select();
+			initialButton.OnSelect(null);
+		}
 		for (int childIndex = 0; childIndex < this.transform.childCount; childIndex++)
 		{
-			this.transform.GetChild(childIndex).gameObject.SetActive(true);
+			this.transform.GetChild(childIndex).gameObject.SetActive(!paused);
 		}
-	}
-
-	//hides objects with ShowOnPause tag
-	public void UnPause()
-	{
-		Time.timeScale = 1;
-		for (int childIndex = 0; childIndex < this.transform.childCount; childIndex++)
-		{
-			this.transform.GetChild(childIndex).gameObject.SetActive(false);
-		}
+		Time.timeScale = paused ? 1 : 0;
 	}
 }

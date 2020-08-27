@@ -42,7 +42,8 @@ public class KeyBinder : MonoBehaviour
     	if (currentKey != null)
     	{
     		Event e = Event.current;
-    		if (e.isKey)
+        Debug.Log("gui activated "+e.keyCode);
+    		if (e.isKey && e.keyCode.ToString()!="Return")
     		{
     			keys[currentKey.name] = e.keyCode;
     			currentKey.transform.GetChild(0).GetComponent<Text>().text = e.keyCode.ToString();
@@ -71,6 +72,6 @@ public class KeyBinder : MonoBehaviour
     	}
     	PlayerPrefs.Save();
     	PersistentManager.Instance.SetKeys();
-    	pauseScript.UnPause();
+    	pauseScript.ActivatePause();
     }
 }
