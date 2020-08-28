@@ -1,0 +1,415 @@
+fileFormatVersion: 2
+guid: 6950acbe61402d14482bddd1caa0d3b9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7892936196866192966
+    second: CharacterFilledBirthEnd_0
+  - first:
+      213: 283758035964417677
+    second: CharacterFilledBirthEnd_1
+  - first:
+      213: 8428293553036082976
+    second: CharacterFilledBirthEnd_2
+  - first:
+      213: -6779841461444312529
+    second: CharacterFilledBirthEnd_3
+  - first:
+      213: -5423777233697306834
+    second: CharacterFilledBirthEnd_4
+  - first:
+      213: -2287962114575069987
+    second: CharacterFilledBirthEnd_5
+  - first:
+      213: 5239116642017572327
+    second: CharacterFilledBirthEnd_6
+  - first:
+      213: -2033225619078306755
+    second: CharacterFilledBirthEnd_7
+  - first:
+      213: 6969089688855887269
+    second: CharacterFilledBirthEnd_8
+  - first:
+      213: 2957045032690706525
+    second: CharacterFilledBirthEnd_9
+  - first:
+      213: 4941612954748012961
+    second: CharacterFilledBirthEnd_10
+  - first:
+      213: 6310726411092705995
+    second: CharacterFilledBirthEnd_11
+  - first:
+      213: -5713605987480991314
+    second: CharacterFilledBirthEnd_12
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CharacterFilledBirthEnd_0
+      rect:
+        serializedVersion: 2
+        x: 6631
+        y: 521
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc22f2e9e2b5a4046af7790af618a832
+      internalID: 7892936196866192966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharacterFilledBirthEnd_1
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 464
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 484693cf723f73f4f8c5383d55bc6954
+      internalID: 283758035964417677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharacterFilledBirthEnd_2
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 93
+        width: 245
+        height: 283
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77f2433dfc7bf3e47b9db5677a38d952
+      internalID: 8428293553036082976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharacterFilledBirthEnd_3
+      rect:
+        serializedVersion: 2
+        x: 739
+        y: 92
+        width: 243
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95791835fa9f8314eb0df979fe2ea38d
+      internalID: -6779841461444312529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharacterFilledBirthEnd_4
+      rect:
+        serializedVersion: 2
+        x: 1393
+        y: 92
+        width: 247
+        height: 345
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b6160c4f42a44445a41d2125c0e962b
+      internalID: -5423777233697306834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharacterFilledBirthEnd_5
+      rect:
+        serializedVersion: 2
+        x: 2038
+        y: 92
+        width: 245
+        height: 346
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10fd4b114a8363840a103b6c9cbe5935
+      internalID: -2287962114575069987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharacterFilledBirthEnd_6
+      rect:
+        serializedVersion: 2
+        x: 2681
+        y: 92
+        width: 246
+        height: 339
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8df8dceba4fd83942ad245c914be558a
+      internalID: 5239116642017572327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharacterFilledBirthEnd_7
+      rect:
+        serializedVersion: 2
+        x: 3330
+        y: 92
+        width: 245
+        height: 343
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22212c39dbea5804cb4d09ac0784ac99
+      internalID: -2033225619078306755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharacterFilledBirthEnd_8
+      rect:
+        serializedVersion: 2
+        x: 3971
+        y: 93
+        width: 246
+        height: 339
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbe444c23d3b17c4a86b227a1aa96368
+      internalID: 6969089688855887269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharacterFilledBirthEnd_9
+      rect:
+        serializedVersion: 2
+        x: 4619
+        y: 92
+        width: 245
+        height: 345
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6c9473673fcdd14f8462ad2788cb7f2
+      internalID: 2957045032690706525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharacterFilledBirthEnd_10
+      rect:
+        serializedVersion: 2
+        x: 5265
+        y: 93
+        width: 245
+        height: 344
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd9f1ecbd7cedcc4fa39641b987a03f3
+      internalID: 4941612954748012961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharacterFilledBirthEnd_11
+      rect:
+        serializedVersion: 2
+        x: 5915
+        y: 92
+        width: 244
+        height: 343
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73a1a568ffa7e4f40894d9825570950b
+      internalID: 6310726411092705995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharacterFilledBirthEnd_12
+      rect:
+        serializedVersion: 2
+        x: 6558
+        y: 93
+        width: 244
+        height: 342
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 508b5c7a45452fe44999f117a170d85d
+      internalID: -5713605987480991314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
