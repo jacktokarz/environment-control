@@ -11,6 +11,8 @@ public class PersistentManager : MonoBehaviour
 {
 	public static PersistentManager Instance { get; private set; }
 
+        //objects?
+    public GameObject playerPollen;
 		//UI
     public Text Humidity, Wind, Temperature, CollectibleCount;
     public GameObject PauseHumidity, PauseWind;
@@ -33,6 +35,7 @@ public class PersistentManager : MonoBehaviour
     public KeyCode HumidityKey = KeyCode.Alpha1;
     public KeyCode WindKey = KeyCode.Alpha2;
     public float fadeSpeed = .5f;
+
     
     	//humidity
     public int maxHumidity;
@@ -331,6 +334,14 @@ public class PersistentManager : MonoBehaviour
         else {
             Debug.Log("no primary camera");
         }
+    }
+
+    public void SeePollen()
+    {
+        Vector3 playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
+        playerPollen.transform.position = new Vector3(playerPos.x, playerPos.y + 0.6f, 0);
+        playerPollen.SetActive(true);
+        StartCoroutine(WaitToActivate(playerPollen, false, 6f));
     }
 
     // public Transform FindChildObjectByTag(Transform obj, string _tag)

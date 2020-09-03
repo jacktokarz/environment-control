@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class KeyBinder : MonoBehaviour
 {
 	public Pause pauseScript;
-	public Text left, right, jump, grab, humidity, wind;
+	public Text pause, jump, grab, humidity, wind, temperature;
 
 	private Dictionary<string, KeyCode> keys = new Dictionary<string, KeyCode>();
 	private GameObject currentKey;
@@ -16,24 +16,36 @@ public class KeyBinder : MonoBehaviour
     void Start()
     {
         List<string> tl = PersistentManager.Instance.TreasureList;
-        Debug.Log("setting keys "+PlayerPrefs.GetString("HumidityButton"));
+        
+        string[] controllers = Input.GetJoystickNames();
+        bool xBox = false;
+        for (int x = 0; x < controllers.Length; x++)
+        {
+            Debug.Log("controller "+controllers[x]);
+            if (controllers[x].Contains("Xbox One"))
+            {
+                xBox = true;
+            }
+        }
+        Debug.Log("xbox? "+xBox);
 
-		// keys.Add("LeftButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("LeftButton", "LeftArrow")));
-		// // left.text = keys["LeftButton"].ToString();
-		// keys.Add("RightButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("RightButton", "RightArrow")));
-		// // right.text = keys["RightButton"].ToString();
-		keys.Add("GrabButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("GrabButton", "G")));
+		keys.Add("PauseButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("PauseButton", xBox ? "JoystickButton7" : "P")));
+        pause.text = keys["PauseButton"].ToString();
+        keys.Add("GrabButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("GrabButton", xBox ? "Joystick1Button5" : "G")));
 		grab.text = keys["GrabButton"].ToString();
-		keys.Add("JumpButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("JumpButton", "Space")));
+		keys.Add("JumpButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("JumpButton", xBox ? "Joystick1Button4" : "Space")));
 		jump.text = keys["JumpButton"].ToString();
-		if(tl.Contains("humidity")) {
-			keys.Add("HumidityButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("HumidityButton", "Alpha1")));
-            humidity.text = keys["HumidityButton"].ToString();
-		}
+		keys.Add("HumidityButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("HumidityButton", xBox ? "JoystickButton19" : "Alpha1")));
+        humidity.text = keys["HumidityButton"].ToString();
 		if(tl.Contains("wind")) {
-			keys.Add("WindButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("WindButton", "Alpha2")));
+			keys.Add("WindButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("WindButton", xBox ? "JoystickButton17" : "Alpha2")));
 			wind.text = keys["WindButton"].ToString();			
 		}
+        if(tl.Contains("temperature")) {
+            keys.Add("TemperatureButton", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("TemperatureButton", xBox ? "JoystickButton18" : "Alpha3")));
+            temperature.text = keys["TemperatureButton"].ToString();          
+        }
+
     }
 
 
@@ -41,8 +53,17 @@ public class KeyBinder : MonoBehaviour
     {
     	if (currentKey != null)
     	{
+            // KeyCode pressed = (KeyCode)System.Enum.Parse(typeof(KeyCode), "None");
+            // Debug.Log("pressed "+pressed.ToString());
+            // foreach(KeyCode vKey in System.Enum.GetValues(typeof(KeyCode))){
+            //      if(Input.GetKey(vKey)){
+            //         Debug.Log("GUI "+vKey);
+            //         pressed = vKey;
+            //         break;
+            //     }
+            // }
     		Event e = Event.current;
-        Debug.Log("gui activated "+e.keyCode);
+            Debug.Log("player pressed "+e.keyCode.ToString());
     		if (e.isKey && e.keyCode.ToString()!="Return")
     		{
     			keys[currentKey.name] = e.keyCode;
@@ -72,6 +93,5 @@ public class KeyBinder : MonoBehaviour
     	}
     	PlayerPrefs.Save();
     	PersistentManager.Instance.SetKeys();
-    	pauseScript.ActivatePause();
     }
 }

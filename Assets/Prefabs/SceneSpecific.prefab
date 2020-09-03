@@ -256,20 +256,20 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 6016086577764918613}
     m_ColliderPaths:
-    - - X: 233750000
-        Y: 153750000
-      - X: -303750016
-        Y: 153750000
-      - X: -303750016
+    - - X: 233749971
         Y: -13750000
-      - X: 233750000
+      - X: 233749971
+        Y: 153750000
+      - X: -303750016
+        Y: 153749971
+      - X: -303749987
         Y: -13750000
   m_CompositePaths:
     m_Paths:
-    - - {x: 23.375, y: 15.375}
-      - {x: -30.375002, y: 15.375}
-      - {x: -30.375002, y: -1.375}
-      - {x: 23.375, y: -1.375}
+    - - {x: 23.374994, y: -1.375}
+      - {x: 23.374994, y: 15.375}
+      - {x: -30.375002, y: 15.374993}
+      - {x: -30.374996, y: -1.375}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.000005
 --- !u!61 &6016086577764918613
@@ -314,11 +314,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: primaryVirtualCamera
-      objectReference: {fileID: 0}
-    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
-        type: 3}
-      propertyPath: m_Lens.OrthographicSize
-      value: 6.5
       objectReference: {fileID: 0}
     - target: {fileID: 4716485986572984658, guid: 8c194b5a0e2527446850355bc5e4b7ef,
         type: 3}
@@ -375,6 +370,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
+        type: 3}
+      propertyPath: m_Lens.OrthographicSize
+      value: 6.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4716485986572984659, guid: 8c194b5a0e2527446850355bc5e4b7ef,
         type: 3}
       propertyPath: m_BoundingShape2D
@@ -428,7 +428,7 @@ PrefabInstance:
     - target: {fileID: 2816837758856372780, guid: 70fa60af300ffce4494aa3afe26ff477,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.000001
+      value: 1.9999981
       objectReference: {fileID: 0}
     - target: {fileID: 2816837758856372780, guid: 70fa60af300ffce4494aa3afe26ff477,
         type: 3}
