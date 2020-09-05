@@ -40,11 +40,11 @@ public class EventActivity : MonoBehaviour
             case 1:
                 if (PersistentManager.Instance.lastDoorId == "NewGame") {
                     messages.Enqueue("Are we heard?\nWe can no longer sense ourselves in this body we've grown in their image.");
-                    messages.Enqueue("Jump");
+                    messages.Enqueue(PersistentManager.Instance.JumpKey.ToString());
                     messages.Enqueue("Ah, good, we are conscious in this new form. It is troubling that our thoughts are no longer connected.");
-                    messages.Enqueue("Jump");
+                    messages.Enqueue(PersistentManager.Instance.JumpKey.ToString());
                     messages.Enqueue("Remember, our purpose is to find and re-connect the other parts of ourself that they severed.\nWe sense the first one to our left...");
-                    messages.Enqueue("Horizontal");
+                    messages.Enqueue(PersistentManager.Instance.JumpKey.ToString());
                 }
                 break;
         }

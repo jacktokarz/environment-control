@@ -17,6 +17,7 @@ public class MainMenu : MonoBehaviour
     public GameObject setKeysScreen;
     public CanvasGroup setKeysCanvas;
     public Button defaultDifficulty, newButton, pauseButton;
+    public Text pauseText, zoomText, jumpText, grabText;
 
     void Start()
     {
@@ -68,6 +69,12 @@ public class MainMenu : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
         PersistentManager.Instance.SetKeys();
+        Debug.Log("getting keys");
+        pauseText.text = PersistentManager.Instance.PauseKey.ToString();
+        zoomText.text = PersistentManager.Instance.ZoomKey.ToString();
+        grabText.text = PersistentManager.Instance.GrabKey.ToString();
+        jumpText.text = PersistentManager.Instance.JumpKey.ToString();
+
         uiFader.fadeIn(setKeysCanvas);
         firstScreen.SetActive(false);
         pauseButton.Select();

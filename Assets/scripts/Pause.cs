@@ -18,7 +18,7 @@ public class Pause : MonoBehaviour
 	void Update ()
 	{
 		//uses the p button to pause and unpause the game
-		if (Input.GetButtonDown("Pause"))
+		if (Input.GetKeyDown(PersistentManager.Instance.PauseKey))
 		{
 			Debug.Log("Time scale is "+Time.timeScale);
 			ActivatePause();

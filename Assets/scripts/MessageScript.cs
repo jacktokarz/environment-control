@@ -33,7 +33,7 @@ public class MessageScript : MonoBehaviour
         			doIt = true;
         		}
         	}
-        	else if(Input.GetButton(escapeKey))
+        	else if(Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), escapeKey)))
         	{
     			doIt = true;
         	}

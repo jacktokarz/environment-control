@@ -15,7 +15,7 @@ public class PersistentManager : MonoBehaviour
     public GameObject playerPollen;
 		//UI
     public Text Humidity, Wind, Temperature, CollectibleCount;
-    public GameObject PauseHumidity, PauseWind;
+    public GameObject PauseHumidity, PauseWind, PauseTemperature;
     public GameObject GameOver;
     public GameObject Message;
     public CanvasGroup blackCover;
@@ -29,11 +29,13 @@ public class PersistentManager : MonoBehaviour
     public bool zooming = false;
     public float openingCutsceneLength = 13f;
 
+    public KeyCode PauseKey = KeyCode.Escape;
     public KeyCode ZoomKey = KeyCode.Z;
     public KeyCode JumpKey = KeyCode.Space;
     public KeyCode GrabKey = KeyCode.G;
     public KeyCode HumidityKey = KeyCode.Alpha1;
     public KeyCode WindKey = KeyCode.Alpha2;
+    public KeyCode TemperatureKey = KeyCode.Alpha3;
     public float fadeSpeed = .5f;
 
     
@@ -121,11 +123,11 @@ public class PersistentManager : MonoBehaviour
 		}
         GetCameraAndZoom();
         uiFader = this.GetComponent(typeof (UIFader)) as UIFader;
+        SetKeys();
 	}
 
 	private void Start()
 	{
-        SetKeys();
 		CheckTextVis();
         AudioChild = this.transform.Find("Audio").gameObject;
         musicPlayer = AudioChild.GetComponent<AudioSource>();
@@ -150,6 +152,7 @@ public class PersistentManager : MonoBehaviour
         bool seeTemp = TreasureList.Contains("temperatureVision") ? true : false;
         Temperature.gameObject.SetActive(seeTemp);
         updateText(Temperature, tempLevel);
+        PauseTemperature.SetActive(seeTemp);
 
         //bool seeToxic = TreasureList.Contains("toxicity") ? true : false;
     }
@@ -255,22 +258,27 @@ public class PersistentManager : MonoBehaviour
 
     public void SetKeys()
     {
-        if (PlayerPrefs.GetString("JumpButton").Length > 0)
+        string[] controllers = Input.GetJoystickNames();
+        bool xBox = false;
+        for (int x = 0; x < controllers.Length; x++)
         {
-            JumpKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("JumpButton", "Space"));
+            Debug.Log("controller "+controllers[x]);
+            if (controllers[x].Contains("Xbox One"))
+            {
+                xBox = true;
+            }
         }
-        if (PlayerPrefs.GetString("GrabButton").Length > 0)
-        {
-            GrabKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("GrabButton", "G"));
-        }
-        if (PlayerPrefs.GetString("HumidityButton").Length > 0)
-        {
-            HumidityKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("HumidityButton", "1"));
-        }
-        if (PlayerPrefs.GetString("WindButton").Length > 0)
-        {
-            WindKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("WindButton", "2"));
-        }
+        Debug.Log("xbox? "+xBox);
+        Debug.Log("pref? "+PlayerPrefs.GetString("PauseButton"));
+
+        PauseKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("PauseButton", xBox ? "JoystickButton7" : "L"));
+        ZoomKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ZoomButton", xBox ? "JoystickButton8" : "Z"));
+        JumpKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("JumpButton", xBox ? "JoystickButton5" : "Space"));
+        GrabKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("GrabButton", xBox ? "JoystickButton4" : "G"));
+        HumidityKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("HumidityButton", xBox ? "JoystickButton19" : "1"));
+        WindKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("WindButton", xBox ? "JoystickButton17" : "2"));
+        TemperatureKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("TemperatureButton", xBox ? "JoystickButton18" : "3"));
+        Debug.Log("pause set to "+PauseKey.ToString());
     }
 
     public List<int> getSongList(int sn)
@@ -339,7 +347,7 @@ public class PersistentManager : MonoBehaviour
     public void SeePollen()
     {
         Vector3 playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
-        playerPollen.transform.position = new Vector3(playerPos.x, playerPos.y + 0.6f, 0);
+        playerPollen.transform.position = new Vector3(playerPos.x, (playerPos.y + 0.6f), 0);
         playerPollen.SetActive(true);
         StartCoroutine(WaitToActivate(playerPollen, false, 6f));
     }
