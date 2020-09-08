@@ -14,7 +14,10 @@ public class MainMenu : MonoBehaviour
     public CanvasGroup firstCanvas;
     public GameObject difficultyScreen;
     public CanvasGroup difficultyCanvas;
-    public Button defaultDifficulty, newButton;
+    public GameObject setKeysScreen;
+    public CanvasGroup setKeysCanvas;
+    public Button defaultDifficulty, newButton, pauseButton;
+    public Text pauseText, zoomText, jumpText, grabText;
 
     void Start()
     {
@@ -64,8 +67,25 @@ public class MainMenu : MonoBehaviour
 
     public void newClicked()
     {
-        uiFader.fadeIn(difficultyCanvas);
+        PlayerPrefs.DeleteAll();
+        PersistentManager.Instance.SetKeys();
+        Debug.Log("getting keys");
+        pauseText.text = PersistentManager.Instance.PauseKey.ToString();
+        zoomText.text = PersistentManager.Instance.ZoomKey.ToString();
+        grabText.text = PersistentManager.Instance.GrabKey.ToString();
+        jumpText.text = PersistentManager.Instance.JumpKey.ToString();
+
+        uiFader.fadeIn(setKeysCanvas);
         firstScreen.SetActive(false);
+        pauseButton.Select();
+        pauseButton.OnSelect(null);
+    }
+
+    public void saveKeysClicked()
+    {
+        Debug.Log("gonna fade in difficulty");
+        uiFader.fadeIn(difficultyCanvas);
+        setKeysScreen.SetActive(false);
         defaultDifficulty.Select();
         defaultDifficulty.OnSelect(null);
     }
@@ -81,8 +101,6 @@ public class MainMenu : MonoBehaviour
     public void difficultyClicked(string difficulty)
     {
         Debug.Log("clicked difficulty with "+difficulty);
-        PlayerPrefs.DeleteAll();
-        PersistentManager.Instance.SetKeys();
     	PersistentUI.gameObject.SetActive(true);
         PersistentManager.Instance.difficulty=difficulty;
         PersistentManager.Instance.lastDoorId="NewGame";
