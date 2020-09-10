@@ -147,7 +147,6 @@ public class BasicMovement : MonoBehaviour
             }
         }
 
-
         if(PersistentManager.Instance.immobile) { return; }
 
         h = gripping ? Input.GetAxis("Horizontal") * climbSpeed : Input.GetAxis("Horizontal") * topHSpeed;
