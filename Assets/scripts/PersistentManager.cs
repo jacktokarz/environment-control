@@ -275,9 +275,9 @@ public class PersistentManager : MonoBehaviour
         ZoomKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ZoomButton", xBox ? "JoystickButton8" : "Z"));
         JumpKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("JumpButton", xBox ? "JoystickButton5" : "Space"));
         GrabKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("GrabButton", xBox ? "JoystickButton4" : "G"));
-        HumidityKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("HumidityButton", xBox ? "JoystickButton19" : "1"));
-        WindKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("WindButton", xBox ? "JoystickButton17" : "2"));
-        TemperatureKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("TemperatureButton", xBox ? "JoystickButton18" : "3"));
+        HumidityKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("HumidityButton", xBox ? "JoystickButton1" : "Alpha1"));
+        WindKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("WindButton", xBox ? "JoystickButton3" : "Alpha2"));
+        TemperatureKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("TemperatureButton", xBox ? "JoystickButton2" : "Alpha3"));
         Debug.Log("pause set to "+PauseKey.ToString());
     }
 
