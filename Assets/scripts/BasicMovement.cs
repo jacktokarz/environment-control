@@ -313,18 +313,18 @@ public class BasicMovement : MonoBehaviour
 
     void checkMove()
     {
-        bool moveH = true;
+        bool moveX = true;
         bool moveY = false;
         if (gripping)
         {
             moveY = true;
-            Vector3 newHPos = gripCheck.position + bm.predictMove(new Vector3(h * Time.fixedDeltaTime, 0));
-            Collider2D[] grippableColliders = Physics2D.OverlapCircleAll(newHPos, gripCheckRadius, whatIsGrippable);
+            Vector3 newXPos = gripCheck.position + bm.predictMove(new Vector3(h * Time.fixedDeltaTime, 0));
+            Collider2D[] grippableColliders = Physics2D.OverlapCircleAll(newXPos, gripCheckRadius, whatIsGrippable);
             //Debug.Log("grippable colls 1 - "+grippableColliders.Length);
             if (grippableColliders.Length == 0)
             {
                 rigid.velocity = new Vector2(0, rigid.velocity.y);
-                moveH = false;        
+                moveX = false;        
             }
             Vector3 newYPos = gripCheck.position + bm.predictMove(new Vector3(0, v * Time.fixedDeltaTime));
             grippableColliders = Physics2D.OverlapCircleAll(newYPos, gripCheckRadius, whatIsGrippable);
@@ -335,7 +335,7 @@ public class BasicMovement : MonoBehaviour
                 moveY = false;
             }            
         }
-        if (moveH)
+        if (moveX)
         {
             bm.Move(h * Time.fixedDeltaTime);
             walksound(h);

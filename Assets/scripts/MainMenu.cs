@@ -16,11 +16,17 @@ public class MainMenu : MonoBehaviour
     public CanvasGroup difficultyCanvas;
     public GameObject setKeysScreen;
     public CanvasGroup setKeysCanvas;
+    public GameObject background;
+    public Vector2 bgResetSpot;
     public Button defaultDifficulty, newButton, pauseButton;
     public Text pauseText, zoomText, jumpText, grabText;
+    
+    public List<Sprite> bgList = new List<Sprite>();
+    public List<Sprite> availableBgs = new List<Sprite>();
 
     void Start()
     {
+        FillAvailableBgs();
         loadGame= Load();
         if (loadGame == null)
         {
@@ -32,6 +38,47 @@ public class MainMenu : MonoBehaviour
         PersistentUI.gameObject.SetActive(false);
 
         uiFader = this.GetComponent(typeof (UIFader)) as UIFader;
+    }
+
+    void Update()
+    {
+        Collider2D platCollider = Physics2D.OverlapCircle(bgResetSpot, 0.1f);
+        if (platCollider==null)
+        {
+            GameObject newBg = Instantiate(background, transform.position, Quaternion.identity);
+            SpriteRenderer sr = newBg.GetComponent<SpriteRenderer>();
+            int rando = UnityEngine.Random.Range(0, availableBgs.Count);
+            sr.sprite = availableBgs[rando];
+            availableBgs.Remove(availableBgs[rando]);
+            if (availableBgs.Count==0)
+            {
+                FillAvailableBgs();
+            }
+            // Debug.Log("new started at "+newBg.transform.position.y);
+            // Debug.Log("went down "+bc.size.y/2);
+            Vector2 srSize = sr.bounds.size;
+            Debug.Log("and "+ srSize);
+            newBg.transform.position = new Vector3(newBg.transform.position.x,
+                newBg.transform.position.y - (srSize.y/2) + bgResetSpot.y + 0.25f,
+                newBg.transform.position.z);
+            BoxCollider2D bc = newBg.GetComponent<BoxCollider2D>();
+            bc.size = srSize;
+        }
+    }
+
+    void FillAvailableBgs()
+    {
+        if (PersistentManager.Instance.Checkpoints.Count==0)
+        {
+            availableBgs.Add(bgList[0]);
+        }
+        else
+        {
+            for(var i = 0; i<PersistentManager.Instance.Checkpoints.Count; i++)
+            {
+                availableBgs.Add(bgList[i]);
+            }
+        }
     }
 
     public GameData Load() 

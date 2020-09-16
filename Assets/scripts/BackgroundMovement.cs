@@ -6,14 +6,13 @@ public class BackgroundMovement : MonoBehaviour
 {
 
 	public float restartPoint;
-	public float startPoint;
 	public float movementRate;
     void Update()
     {
     	Vector3 pos = this.transform.position;
         if (pos.y >= restartPoint)
         {
-        	transform.position = new Vector3(pos.x, startPoint, pos.z);
+        	Destroy(this.gameObject);
         }
         else
         {

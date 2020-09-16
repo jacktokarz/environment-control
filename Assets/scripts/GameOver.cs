@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour
 {
-
+    public Button initialButton;
 	bool active = false;
 	Text GOtext;
 	Color GOcolor;
@@ -18,6 +18,8 @@ public class GameOver : MonoBehaviour
         GOcolor = GOtext.color;
         GOtext.color = new Color (GOcolor.r, GOcolor.g, GOcolor.b, 0.0f);
         GOtext.gameObject.SetActive(true);
+        initialButton.Select();
+        initialButton.OnSelect(null);
     }
 
     void OnDisable()

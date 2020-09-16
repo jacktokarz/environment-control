@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class EnvironmentChange : MonoBehaviour
 {
+    private bool needsReset;
 
     private void Update()
     {
@@ -26,40 +27,47 @@ public class EnvironmentChange : MonoBehaviour
         }
 
         List<string> tl = PersistentManager.Instance.TreasureList;
-
+        if (Input.GetAxis("Vertical") == 0)
+        {
+            needsReset = false;
+        }
         if (tl.Contains("humidity") && Input.GetKey(PersistentManager.Instance.HumidityKey))
         {
-            if (Input.GetKeyDown("up"))
+            if (Input.GetKeyDown("up") || (Input.GetAxis("Vertical") > 0.5f && !needsReset))
             {
                 EnvironmentEffect.Instance.setHumidity(PersistentManager.Instance.humidityLevel + 1);
+                needsReset = true;
             }
-            else if (Input.GetKeyDown("down"))
+            else if (Input.GetKeyDown("down") || (Input.GetAxis("Vertical") < -0.5f && !needsReset))
             {
                 EnvironmentEffect.Instance.setHumidity(PersistentManager.Instance.humidityLevel - 1);
-            }
-        }   
-
-        if (tl.Contains("wind") && Input.GetKey("2"))
-        {
-            if (Input.GetKeyDown("up"))
-            {
-                EnvironmentEffect.Instance.setWind(PersistentManager.Instance.windLevel + 1);
-            }
-            else if (Input.GetKeyDown("down"))
-            {
-                EnvironmentEffect.Instance.setWind(PersistentManager.Instance.windLevel - 1);
+                needsReset = true;
             }
         }
-
+        if (tl.Contains("wind") && Input.GetKey("2"))
+        {
+            if (Input.GetKeyDown("up") || (Input.GetAxis("Vertical") > 0.5f && !needsReset))
+            {
+                EnvironmentEffect.Instance.setWind(PersistentManager.Instance.windLevel + 1);
+                needsReset = true;
+            }
+            else if (Input.GetKeyDown("down") || (Input.GetAxis("Vertical") > 0.5f && !needsReset))
+            {
+                EnvironmentEffect.Instance.setWind(PersistentManager.Instance.windLevel - 1);
+                needsReset = true;
+            }
+        }
         if (tl.Contains("temperature") && Input.GetKey("3"))
         {
-            if (Input.GetKeyDown("up"))
+            if (Input.GetKeyDown("up") || (Input.GetAxis("Vertical") > 0.5f && !needsReset))
             {
                 EnvironmentEffect.Instance.setTemp(PersistentManager.Instance.tempLevel + 1);
+                needsReset = true;
             }
-            else if (Input.GetKeyDown("down"))
+            else if (Input.GetKeyDown("down") || (Input.GetAxis("Vertical") > 0.5f && !needsReset))
             {
                 EnvironmentEffect.Instance.setTemp(PersistentManager.Instance.tempLevel - 1);
+                needsReset = true;
             }
         }
     }
