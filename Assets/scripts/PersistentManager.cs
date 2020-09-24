@@ -109,7 +109,6 @@ public class PersistentManager : MonoBehaviour
 
 
 
-
 	private void Awake()
 	{
 		if (Instance == null)

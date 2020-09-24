@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class WaterlineActivity : MonoBehaviour
 {
-	public LayerMask justWater;
 	public AudioClip waterBubbles;
 	GameObject playerObject;
 	private AudioSource source;
@@ -13,15 +12,9 @@ public class WaterlineActivity : MonoBehaviour
     void Start()
     {
         playerObject = GameObject.FindGameObjectWithTag("Player");
-        Debug.Log("watery start "+playerObject);
         source = GetComponent<AudioSource>();
         thisColl = GetComponent<CapsuleCollider2D>();
         source.clip = waterBubbles;
-    }
-
-    void FixedUpdate()
-    {
-
     }
 
     void OnTriggerEnter2D(Collider2D coll)
@@ -34,6 +27,7 @@ public class WaterlineActivity : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D coll)
     {
+    	// dynamic loudness of bubbling sound?
     	if(coll.gameObject == playerObject)
     	{
     		float halfWaterWidth = thisColl.size.x/2 - 10;
