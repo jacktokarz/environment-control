@@ -24,9 +24,32 @@ public class BasicMovement : MonoBehaviour
     public LayerMask whatIsDeadly;
     public LayerMask whatIsPlatform;
     [SerializeField] public LayerMask whatIsGround;
+    [SerializeField] public LayerMask whatIsWater;
     
-    public float topHSpeed;
-    public float decayRate;
+    private float topHSpeed;
+    private float decayRate;
+    float coolTopSpeed;
+    float coldTopSpeed;
+    float coolDecay;
+    float coldDecay;
+    float timeStartedBurning;
+    Color startingColor;
+    Color burnedColor;
+    public float heatTolerance;
+
+    float h;
+    float v;
+    float jumpForce;
+    private bool gripping = false;
+    private bool grounded = true;
+    public bool underwater = false;
+    private bool jumping = false;
+    private AudioSource source;
+
+    Rigidbody2D rigid;
+    GameObject bodyObject;
+    Animator bodyAnimator;
+    SpriteRenderer bodySprite;
 
     public AudioClip jumpSound;
     public AudioClip landSound;
@@ -36,29 +59,14 @@ public class BasicMovement : MonoBehaviour
     public AudioClip stepB;
     private AudioClip crntStep;
 
-    float coolTopSpeed;
-    float coldTopSpeed;
-    float coolDecay;
-    float coldDecay;
-
-    float h;
-    float v;
-    float jumpForce;
-    private bool gripping;
-    private bool grounded;
-    private bool jumping = false;
-    private AudioSource source;
-
-    Rigidbody2D rigid;
-    GameObject bodyObject;
-    Animator bodyAnimator;
-
     void Awake()
     {
-        grounded = true;
         bodyObject = this.transform.GetChild(0).gameObject;
         bodyObject.SetActive(false);
-        bodyAnimator = this.transform.GetChild(0).GetComponent(typeof (Animator)) as Animator;
+        bodyAnimator = bodyObject.GetComponent(typeof (Animator)) as Animator;
+        bodySprite = bodyObject.GetComponent(typeof (SpriteRenderer)) as SpriteRenderer;
+        startingColor = Color.white;
+        burnedColor = new Color(100, 0, 0);
     }
 
     void Start()
@@ -162,6 +170,7 @@ public class BasicMovement : MonoBehaviour
         }
 
         checkGrounded();
+        checkUnderwater();
 
         if (Input.GetKeyDown(PersistentManager.Instance.JumpKey) && (grounded || gripping))
         {
@@ -219,6 +228,35 @@ public class BasicMovement : MonoBehaviour
                 }
             }
         }
+        
+        if (PersistentManager.Instance.tempLevel >= 2)
+        {
+            if (!underwater)
+            {
+                if (timeStartedBurning <= 0)
+                {
+                    timeStartedBurning = Time.time;
+                }
+                float timeSinceStarted = Time.time - timeStartedBurning;
+                float percentageComplete = timeSinceStarted / heatTolerance - heatTolerance/10;
+
+                bodySprite.color = Color.Lerp(startingColor, burnedColor, percentageComplete);
+
+                if (bodySprite.color == burnedColor)
+                {
+                    timeStartedBurning = 0;
+                    death();
+                }
+            }
+        }
+        else if (timeStartedBurning > 0)
+        {
+            timeStartedBurning = Time.time*-1;
+        }
+        else if (timeStartedBurning != 0)
+        {
+            CoolOffSprite();
+        }
     }
 
 
@@ -236,6 +274,7 @@ public class BasicMovement : MonoBehaviour
         else {
             bodyAnimator.SetFloat("velocity", Math.Abs(rigid.velocity.x));
         }
+
     }
 
     // void checkDeath()
@@ -291,7 +330,39 @@ public class BasicMovement : MonoBehaviour
         }
     }
 
-    
+    void checkUnderwater()
+    {
+        bool wasUnderwater = underwater;
+        underwater = false;
+        // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
+        // This can be done using layers instead but Sample Assets will not overwrite your project settings.
+        Collider2D[] waterColls = Physics2D.OverlapCircleAll(this.transform.position, groundCheckRadius, whatIsWater);
+        for (int i = 0; i < waterColls.Length; i++)
+        {
+            if (waterColls[i].gameObject != gameObject)
+            {
+                underwater = true;
+                if (!wasUnderwater)
+                {
+                    timeStartedBurning = Time.time*-1;
+                    //playSplashSound();
+                    topHSpeed = defaultTopSpeed * 0.85f;
+                    rigid.drag = 10;
+                    rigid.gravityScale = defaultGravity/2;
+                }
+                if (timeStartedBurning != 0)
+                {
+                    CoolOffSprite();
+                }
+            }
+        }
+        if (wasUnderwater && !underwater)
+        {
+            topHSpeed = defaultTopSpeed;
+            rigid.drag = 0;
+            rigid.gravityScale = defaultGravity;
+        }
+    }
 
     void checkJump()
     {
@@ -435,6 +506,19 @@ public class BasicMovement : MonoBehaviour
         {
             topHSpeed = defaultTopSpeed;
             decayRate = defaultDecay;
+        }
+    }
+
+    void CoolOffSprite()
+    {
+        if (bodySprite.color == startingColor)
+        {
+            timeStartedBurning = 0;
+        }
+        else 
+        {
+            bodySprite.color = Color.Lerp(bodySprite.color, startingColor,
+                (Time.time + timeStartedBurning) / 6);
         }
     }
 

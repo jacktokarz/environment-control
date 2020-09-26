@@ -499,8 +499,12 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 16896
-  topHSpeed: 0
-  decayRate: 0
+  whatIsWater:
+    serializedVersion: 2
+    m_Bits: 16
+  timeStartedBurning: 0
+  heatTolerance: 8
+  underwater: 0
   jumpSound: {fileID: 8300000, guid: 23ec4e63c33c34aa1ae09031b8a71527, type: 3}
   landSound: {fileID: 8300000, guid: 5b7e0002ae1614ca6a110a8caf2cf386, type: 3}
   grabVine: {fileID: 8300000, guid: 031313200578645368289a765cc1d349, type: 3}

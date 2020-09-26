@@ -6,7 +6,6 @@ public class EnvironmentEffect : MonoBehaviour
 {
     public static EnvironmentEffect Instance { get; private set; }
     //public AudioSource Fansource { get => fansource; set => fansource = value; }
-
     public AudioClip humN3;
     public AudioClip humN2;
     public AudioClip humN1;
@@ -25,14 +24,19 @@ public class EnvironmentEffect : MonoBehaviour
     float waterStartTime;
     
     GameObject[] vines;
-    GameObject[] waterLines;
     GameObject[] bushes;
     GameObject[] fans;
     GameObject[] fronds;
     GameObject[] mosses;
-    Vector3[] waterEndPoints;
-    Vector3[] waterStartPoints;
+    BoxCollider2D[] waterColliders;
+    Vector2[] waterColliderOffsetOriginals;
+    Vector2[] waterColliderOffsetStarts;
+    Vector2[] waterColliderSizeOriginals;
+    Vector2[] waterColliderSizeStarts;
+    GameObject[] waterLines;
     Vector3[] waterOriginalPoints;
+    Vector3[] waterStartPoints;
+    Vector3[] waterEndPoints;
     Vector2 vineSize;
 
     LayerMask playerLayer;
@@ -60,14 +64,28 @@ public class EnvironmentEffect : MonoBehaviour
         fans = GameObject.FindGameObjectsWithTag("fan");
         fronds = GameObject.FindGameObjectsWithTag("frond");
         mosses = GameObject.FindGameObjectsWithTag("moss");
+        GameObject[] waterColliderHolders = GameObject.FindGameObjectsWithTag("water");
         waterLines = GameObject.FindGameObjectsWithTag("waterLine");
         if (waterLines.Length > 0)
         {
             Debug.Log("water lines length: "+waterLines.Length);
+            waterColliders = new BoxCollider2D[waterLines.Length];
+            waterColliderSizeOriginals = new Vector2[waterLines.Length];
+            waterColliderSizeStarts = new Vector2[waterLines.Length];
+            waterColliderOffsetOriginals = new Vector2[waterLines.Length];
+            waterColliderOffsetStarts = new Vector2[waterLines.Length];
             waterEndPoints = new Vector3[waterLines.Length];
             waterStartPoints = new Vector3[waterLines.Length];
             waterOriginalPoints = new Vector3[waterLines.Length];
             for (int i = 0; i < waterLines.Length; i++) {
+                BoxCollider2D wbc = waterColliderHolders[i].GetComponent<BoxCollider2D>();
+                waterColliders[i] = wbc;
+                Debug.Log("first original "+wbc.size);
+                waterColliderSizeOriginals[i] = wbc.size;
+                waterColliderSizeStarts[i] = wbc.size;
+                waterColliderOffsetOriginals[i] = wbc.offset;
+                waterColliderOffsetStarts[i] = wbc.offset;
+
                 waterEndPoints[i]= waterLines[i].transform.position;
                 waterStartPoints[i]= waterLines[i].transform.position;
                 waterOriginalPoints[i] = waterLines[i].transform.position;
@@ -92,7 +110,18 @@ public class EnvironmentEffect : MonoBehaviour
             {
                 float journeyLength = Vector3.Distance(waterStartPoints[i], waterEndPoints[i]);
                 float distCovered = (Time.time - waterStartTime) * PersistentManager.Instance.waterChangeSpeed;
-                wat.transform.position = Vector3.Lerp(waterStartPoints[i], waterEndPoints[i], distCovered / journeyLength);
+
+
+            float parentScale = waterColliders[i].gameObject.transform.parent.transform.localScale.y;
+            BoxCollider2D coll= waterColliders[i];
+            float waterChange = (waterEndPoints[i].y - waterOriginalPoints[i].y) / parentScale;
+        
+            coll.offset = Vector2.Lerp(waterColliderOffsetStarts[i],
+                new Vector2(coll.offset.x, waterChange / 2 + waterColliderOffsetOriginals[i].y), distCovered / journeyLength);
+            coll.size = Vector2.Lerp(waterColliderSizeStarts[i],
+                new Vector2(coll.size.x, waterChange + waterColliderSizeOriginals[i].y), distCovered / journeyLength);
+
+            wat.transform.position = Vector3.Lerp(waterStartPoints[i], waterEndPoints[i], distCovered / journeyLength);
             }
         }
     }
@@ -147,9 +176,12 @@ public class EnvironmentEffect : MonoBehaviour
     {
         for (int i = 0; i < waterLines.Length; i++)
         {
+            BoxCollider2D coll= waterColliders[i];
+            waterColliderOffsetStarts[i] = coll.offset;
+            waterColliderSizeStarts[i] = coll.size;
+
             waterStartPoints[i] = waterLines[i].transform.position;
             waterEndPoints[i].y = value * PersistentManager.Instance.waterChangeDistance + waterOriginalPoints[i].y;
-            //Debug.Log("NEW end points: " + waterEndPoints[i].ToString());
         }
         waterStartTime= Time.time;
     }
@@ -235,13 +267,13 @@ public class EnvironmentEffect : MonoBehaviour
 
                 if(value == -1)
                 {
-                    thawBushes();
+                    StartCoroutine(thawBushes());
                     BasMov.changePlayerStats();
                     thawMoss();
                 }
                 else if(value == 0)
                 {
-                    thawBushes();
+                    StartCoroutine(thawBushes());
                     thawWater();
                     thawVines();
                     BasMov.changePlayerStats();
@@ -285,8 +317,7 @@ public class EnvironmentEffect : MonoBehaviour
     {
         foreach (GameObject bush in bushes)
         {
-            SpriteRenderer sr = bush.GetComponent<SpriteRenderer>();
-            sr.color = new Color(255f, 0f, 3f, 200f);
+            StartCoroutine(changeChildColor(bush.transform, new Color(1f, 0f, 0.2f, 0.8f), Time.time));
             bush.layer = LayerMask.NameToLayer("Deadly");
         } 
     }
@@ -294,8 +325,7 @@ public class EnvironmentEffect : MonoBehaviour
     {
         foreach (GameObject bush in bushes)
         {
-            SpriteRenderer sr = bush.GetComponent<SpriteRenderer>();
-            sr.color = new Color(1f, 1f, 1f, 255f);
+            StartCoroutine(changeChildColor(bush.transform, Color.white, Time.time));
             bush.layer = LayerMask.NameToLayer("Grounding");
         }
     }
@@ -303,23 +333,27 @@ public class EnvironmentEffect : MonoBehaviour
     {
         foreach (GameObject bush in bushes)
         {
-            SpriteRenderer sr = bush.GetComponent<SpriteRenderer>();
-            sr.color = new Color(100f, 1f, 1f, 1f);
+            Debug.Log("freezing");
+            StartCoroutine(changeChildColor(bush.transform, new Color(1f, 1f, 1f, 0.3f), Time.time));
             BoxCollider2D bc = bush.GetComponent<BoxCollider2D>();
             bc.isTrigger = true;
         }
     }
-    void thawBushes()
+    IEnumerator thawBushes()
     {
         foreach (GameObject bush in bushes)
         {
             BoxCollider2D bc = bush.GetComponent<BoxCollider2D>();
-            if(!bc.IsTouchingLayers(playerLayer))
+            Debug.Log("thawing...");
+            while (bc.IsTouchingLayers(playerLayer))
             {
-                bc.isTrigger = false;
-                SpriteRenderer sr = bush.GetComponent<SpriteRenderer>();
-                sr.color = new Color(1f, 1f, 1f, 1f);
+                yield return new WaitForFixedUpdate();
+                Debug.Log("..");
             }
+            // yield return new WaitForSeconds(0.1);
+            Debug.Log("done thawing");
+            bc.isTrigger = false;
+            StartCoroutine(changeChildColor(bush.transform, Color.white, Time.time));
         }
     }
 
@@ -327,6 +361,7 @@ public class EnvironmentEffect : MonoBehaviour
     {
         foreach (GameObject moss in mosses)
         {
+            StartCoroutine(changeChildColor(moss.transform, new Color(1f, 0f, 0.3f, 0.8f), Time.time));
             changeChildLayer(moss.transform, "Deadly");
             changeChildColliderToTrigger(moss.transform, false);
         }
@@ -335,6 +370,7 @@ public class EnvironmentEffect : MonoBehaviour
     {
         foreach (GameObject moss in mosses)
         {
+            StartCoroutine(changeChildColor(moss.transform, Color.white, Time.time));
             changeChildLayer(moss.transform, "Grounding");
             changeChildColliderToTrigger(moss.transform, true);
         }
@@ -400,52 +436,78 @@ public class EnvironmentEffect : MonoBehaviour
     }
     void freezeWater()
     {
-        foreach (GameObject line in waterLines)
+        foreach (BoxCollider2D box in waterColliders)
         {
             //stop lily pads somehow
-            changeChildLayer(line.transform, "Grounding");
+            box.gameObject.layer = LayerMask.NameToLayer("Grounding");
+            box.isTrigger = false;
         }
     }
     void thawWater()
     {
-        foreach (GameObject line in waterLines)
+        foreach (BoxCollider2D box in waterColliders)
         {
             if (PersistentManager.Instance.toxicLevel >= 1)
             {
-                changeChildLayer(line.transform, "Deadly");
+                box.gameObject.layer = LayerMask.NameToLayer("Deadly");
+                box.isTrigger = false;
             }
             else
             {
-                changeChildLayer(line.transform, "Ignore-Player");
+                box.gameObject.layer = LayerMask.NameToLayer("Water");
+                box.isTrigger = true;
             }
         }
     }
 
     void changeChildLayer(Transform trans, string change)
      {
-         if (trans.childCount > 0 )
-         {
-             foreach(Transform child in trans)
-             {            
-                 changeChildLayer(child, change);
-             }
-         }
-         else {
-             trans.gameObject.layer = LayerMask.NameToLayer(change);
-         }
+        if (trans.childCount > 0 )
+        {
+            foreach(Transform child in trans)
+            {            
+                changeChildLayer(child, change);
+            }
+        }
+        else {
+            trans.gameObject.layer = LayerMask.NameToLayer(change);
+        }
      }
      void changeChildColliderToTrigger(Transform trans, bool change)
      {
         if (trans.childCount > 0 )
-         {
+        {
              foreach(Transform child in trans)
-             {            
-                 changeChildColliderToTrigger(child, change);
-             }
-         }
-         else {
-             trans.gameObject.GetComponent<BoxCollider2D>().isTrigger = change;
-         }
+            {            
+                changeChildColliderToTrigger(child, change);
+            }
+        }
+        else {
+            trans.gameObject.GetComponent<BoxCollider2D>().isTrigger = change;
+        }
+     }
+     IEnumerator changeChildColor(Transform trans, Color clr, float tim)
+     {
+        if (trans.childCount > 0 )
+        {
+            foreach(Transform child in trans)
+            {
+                StartCoroutine(changeChildColor(child, clr, Time.time));
+            }
+        }
+        else {
+            while (true)
+            {
+                float percentageComplete = (Time.time - tim) / 1;
+
+                trans.gameObject.GetComponent<SpriteRenderer>().color = Color.Lerp(
+                    trans.gameObject.GetComponent<SpriteRenderer>().color, clr, percentageComplete);
+
+                if (percentageComplete >= 1) break;
+
+                yield return new WaitForFixedUpdate();
+            }
+        }
      }
 
 
@@ -469,16 +531,18 @@ public class EnvironmentEffect : MonoBehaviour
 
     void infectWater()
     {
-        foreach (GameObject line in waterLines)
+        foreach (BoxCollider2D box in waterColliders)
         {
-            changeChildLayer(line.transform, "Deadly");
+            box.gameObject.layer = LayerMask.NameToLayer("Deadly");
+            box.isTrigger = false;
         }
     }
     void cleanWater()
     {
-        foreach (GameObject line in waterLines)
+        foreach (BoxCollider2D box in waterColliders)
         {
-            changeChildLayer(line.transform, "Ignore-Player");
+            box.gameObject.layer = LayerMask.NameToLayer("Water");
+            box.isTrigger = true;
         }
     }
 
