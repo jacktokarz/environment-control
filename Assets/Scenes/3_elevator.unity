@@ -31655,9 +31655,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a11185273ee13e4d8f87e45773f00c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  justWater:
-    serializedVersion: 2
-    m_Bits: 2048
   waterBubbles: {fileID: 8300000, guid: b0006bbbc8f2a45ca903f1bb05d00616, type: 3}
 --- !u!70 &7966960769437238745
 CapsuleCollider2D:
