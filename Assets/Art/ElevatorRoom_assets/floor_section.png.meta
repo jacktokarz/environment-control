@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: 0186f9e2b25bfbc4b9ec38f5aeedc9c5
+guid: 9665e9786a6d28548aac2824509f9cec
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6369628350907311903
-    second: smallRocks_0
-  - first:
-      213: 4423490861602076597
-    second: smallRocks_1
-  - first:
-      213: -3186467869434536713
-    second: smallRocks_2
-  - first:
-      213: 3466229266618176144
-    second: smallRocks_3
+      213: -5403857218944963835
+    second: floor_section_0
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -58,7 +49,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 0, y: 24, z: 0, w: 24}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -98,85 +89,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: smallRocks_0
+      name: floor_section_0
       rect:
         serializedVersion: 2
-        x: 13
-        y: 43
-        width: 53
-        height: 33
+        x: 0
+        y: 24
+        width: 123
+        height: 905
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d1df38c4dee0c37438cc362958fe0b55
-      internalID: 6369628350907311903
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: smallRocks_1
-      rect:
-        serializedVersion: 2
-        x: 76
-        y: 51
-        width: 30
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7a3a83e7c0077c84cb1ab9589cf7035c
-      internalID: 4423490861602076597
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: smallRocks_2
-      rect:
-        serializedVersion: 2
-        x: 43
-        y: 3
-        width: 51
-        height: 41
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 276a9b032a6c7eb4b965e8614541c679
-      internalID: -3186467869434536713
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: smallRocks_3
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 42
-        width: 51
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4264da0d6d920c94781e7dd36005c20d
-      internalID: 3466229266618176144
+      spriteID: 5fdcc2e0d66bb284fb38ae4fa343b66c
+      internalID: -5403857218944963835
       vertices: []
       indices: 
       edges: []
