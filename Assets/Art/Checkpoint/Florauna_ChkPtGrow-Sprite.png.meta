@@ -1,0 +1,823 @@
+fileFormatVersion: 2
+guid: 6e9611566ee949247a70ad38f6524cbf
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7110451401040905159
+    second: Florauna_ChkPtGrow-Sprite_0
+  - first:
+      213: -9012355568700089540
+    second: Florauna_ChkPtGrow-Sprite_1
+  - first:
+      213: 400128592195780196
+    second: Florauna_ChkPtGrow-Sprite_2
+  - first:
+      213: 5757856033541184940
+    second: Florauna_ChkPtGrow-Sprite_3
+  - first:
+      213: -8532193002844035973
+    second: Florauna_ChkPtGrow-Sprite_4
+  - first:
+      213: 4831302840990108389
+    second: Florauna_ChkPtGrow-Sprite_5
+  - first:
+      213: 8470360303678424542
+    second: Florauna_ChkPtGrow-Sprite_6
+  - first:
+      213: 1168229669408386858
+    second: Florauna_ChkPtGrow-Sprite_7
+  - first:
+      213: 3228594262651691063
+    second: Florauna_ChkPtGrow-Sprite_8
+  - first:
+      213: 594967710639955839
+    second: Florauna_ChkPtGrow-Sprite_9
+  - first:
+      213: -344477457219172190
+    second: Florauna_ChkPtGrow-Sprite_10
+  - first:
+      213: -5262980624866482344
+    second: Florauna_ChkPtGrow-Sprite_11
+  - first:
+      213: -4311229908734882414
+    second: Florauna_ChkPtGrow-Sprite_12
+  - first:
+      213: 122371955605315276
+    second: Florauna_ChkPtGrow-Sprite_13
+  - first:
+      213: 2447134387168206618
+    second: Florauna_ChkPtGrow-Sprite_14
+  - first:
+      213: 2154029013504476323
+    second: Florauna_ChkPtGrow-Sprite_15
+  - first:
+      213: -3266935929480029587
+    second: Florauna_ChkPtGrow-Sprite_16
+  - first:
+      213: -940664412020805537
+    second: Florauna_ChkPtGrow-Sprite_17
+  - first:
+      213: -8869836280056524925
+    second: Florauna_ChkPtGrow-Sprite_18
+  - first:
+      213: -4615984181230913385
+    second: Florauna_ChkPtGrow-Sprite_19
+  - first:
+      213: -1408187338823703972
+    second: Florauna_ChkPtGrow-Sprite_20
+  - first:
+      213: 5105533452237461914
+    second: Florauna_ChkPtGrow-Sprite_21
+  - first:
+      213: 4790400192779039143
+    second: Florauna_ChkPtGrow-Sprite_22
+  - first:
+      213: -5786974185714084731
+    second: Florauna_ChkPtGrow-Sprite_23
+  - first:
+      213: -8677011360748715839
+    second: Florauna_ChkPtGrow-Sprite_24
+  - first:
+      213: 5350270981234463272
+    second: Florauna_ChkPtGrow-Sprite_25
+  - first:
+      213: -6726733061142267757
+    second: Florauna_ChkPtGrow-Sprite_26
+  - first:
+      213: -4300456289630061881
+    second: Florauna_ChkPtGrow-Sprite_27
+  - first:
+      213: 6016965057473001062
+    second: Florauna_ChkPtGrow-Sprite_28
+  - first:
+      213: -1503342233849500163
+    second: Florauna_ChkPtGrow-Sprite_29
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 320
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Florauna_ChkPtGrow-Sprite_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1800
+        width: 1000
+        height: 1800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f08bc743c11b5c041877ebb30d843601
+      internalID: 7110451401040905159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Florauna_ChkPtGrow-Sprite_1
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 1800
+        width: 1000
+        height: 1800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d24b06ca8f5be9b418a540c6734164b0
+      internalID: -9012355568700089540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Florauna_ChkPtGrow-Sprite_2
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 1800
+        width: 1000
+        height: 1800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70a648027e149ac4a897758095678c94
+      internalID: 400128592195780196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Florauna_ChkPtGrow-Sprite_3
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 1800
+        width: 1000
+        height: 1800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f43472cf0c662dd4f8bd44bfb8d22282
+      internalID: 5757856033541184940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Florauna_ChkPtGrow-Sprite_4
+      rect:
+        serializedVersion: 2
+        x: 4000
+        y: 1800
+        width: 1000
+        height: 1800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15927cec074f10445a62d1de83604352
+      internalID: -8532193002844035973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Florauna_ChkPtGrow-Sprite_5
+      rect:
+        serializedVersion: 2
+        x: 5000
+        y: 1800
+        width: 1000
+        height: 1800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e617f904b7149d24eb1ed6bc3e873b90
+      internalID: 4831302840990108389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Florauna_ChkPtGrow-Sprite_6
+      rect:
+        serializedVersion: 2
+        x: 6000
+        y: 1800
+        width: 1000
+        height: 1800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e407a5d990ba1d843a9d063ec49d1c03
+      internalID: 8470360303678424542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Florauna_ChkPtGrow-Sprite_7
+      rect:
+        serializedVersion: 2
+        x: 7000
+        y: 1800
+        width: 1000
+        height: 1800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41bc1691f6cd3d64c82d36d19f4e15e2
+      internalID: 1168229669408386858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Florauna_ChkPtGrow-Sprite_8
+      rect:
+        serializedVersion: 2
+        x: 8000
+        y: 1800
+        width: 1000
+        height: 1800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bbecbd8e72992a488d90fd5a041f2e1
+      internalID: 3228594262651691063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Florauna_ChkPtGrow-Sprite_9
+      rect:
+        serializedVersion: 2
+        x: 9000
+        y: 1800
+        width: 1000
+        height: 1800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d15145b549df6c44b00b57d48e59dd3
+      internalID: 594967710639955839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Florauna_ChkPtGrow-Sprite_10
+      rect:
+        serializedVersion: 2
+        x: 10000
+        y: 1800
+        width: 1000
+        height: 1800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38d692fc39c49be429cfb3ba39bad8c1
+      internalID: -344477457219172190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Florauna_ChkPtGrow-Sprite_11
+      rect:
+        serializedVersion: 2
+        x: 11000
+        y: 1800
+        width: 1000
+        height: 1800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f65bcbd64c0568347b993f412fd281d9
+      internalID: -5262980624866482344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Florauna_ChkPtGrow-Sprite_12
+      rect:
+        serializedVersion: 2
+        x: 12000
+        y: 1800
+        width: 1000
+        height: 1800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d53f67d7441044d4eac279b0b1a749c8
+      internalID: -4311229908734882414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Florauna_ChkPtGrow-Sprite_13
+      rect:
+        serializedVersion: 2
+        x: 13000
+        y: 1800
+        width: 1000
+        height: 1800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d67febe050d28b44a6b6435f77a354a
+      internalID: 122371955605315276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Florauna_ChkPtGrow-Sprite_14
+      rect:
+        serializedVersion: 2
+        x: 14000
+        y: 1800
+        width: 1000
+        height: 1800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0b6dccbbf7c20143bdbfc3452e4c7a3
+      internalID: 2447134387168206618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Florauna_ChkPtGrow-Sprite_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1000
+        height: 1800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 055479d9afbbecf478c088e3606dcde8
+      internalID: 2154029013504476323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Florauna_ChkPtGrow-Sprite_16
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 0
+        width: 1000
+        height: 1800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09882c448ef89184ab58b6b373318c68
+      internalID: -3266935929480029587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Florauna_ChkPtGrow-Sprite_17
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 0
+        width: 1000
+        height: 1800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 391c86a5a7187174f87e189881811412
+      internalID: -940664412020805537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Florauna_ChkPtGrow-Sprite_18
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 0
+        width: 1000
+        height: 1800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f642ec328b5960d46a49727720a75aa9
+      internalID: -8869836280056524925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Florauna_ChkPtGrow-Sprite_19
+      rect:
+        serializedVersion: 2
+        x: 4000
+        y: 0
+        width: 1000
+        height: 1800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b36b7989389e3f479205a36488985f4
+      internalID: -4615984181230913385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Florauna_ChkPtGrow-Sprite_20
+      rect:
+        serializedVersion: 2
+        x: 5000
+        y: 0
+        width: 1000
+        height: 1800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d943a8fa3085918459be9a4feb8793cd
+      internalID: -1408187338823703972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Florauna_ChkPtGrow-Sprite_21
+      rect:
+        serializedVersion: 2
+        x: 6000
+        y: 0
+        width: 1000
+        height: 1800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9d7bead3f669ab45b7c039b2316142f
+      internalID: 5105533452237461914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Florauna_ChkPtGrow-Sprite_22
+      rect:
+        serializedVersion: 2
+        x: 7000
+        y: 0
+        width: 1000
+        height: 1800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26aae0ed3c3451e4fb6234ecc76d68ef
+      internalID: 4790400192779039143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Florauna_ChkPtGrow-Sprite_23
+      rect:
+        serializedVersion: 2
+        x: 8000
+        y: 0
+        width: 1000
+        height: 1800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc51010f5a5af8640b19c96a931420bc
+      internalID: -5786974185714084731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Florauna_ChkPtGrow-Sprite_24
+      rect:
+        serializedVersion: 2
+        x: 9000
+        y: 0
+        width: 1000
+        height: 1800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82bd0c643f85de64d89661f5396df084
+      internalID: -8677011360748715839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Florauna_ChkPtGrow-Sprite_25
+      rect:
+        serializedVersion: 2
+        x: 10000
+        y: 0
+        width: 1000
+        height: 1800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3594da82136aef4c9175e228265d82f
+      internalID: 5350270981234463272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Florauna_ChkPtGrow-Sprite_26
+      rect:
+        serializedVersion: 2
+        x: 11000
+        y: 0
+        width: 1000
+        height: 1800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91cc6149b03c04b49a875e8c8bf8ae9f
+      internalID: -6726733061142267757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Florauna_ChkPtGrow-Sprite_27
+      rect:
+        serializedVersion: 2
+        x: 12000
+        y: 0
+        width: 1000
+        height: 1800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b7c8773ab16f5d4fac9ca192b1ef6f2
+      internalID: -4300456289630061881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Florauna_ChkPtGrow-Sprite_28
+      rect:
+        serializedVersion: 2
+        x: 13000
+        y: 0
+        width: 1000
+        height: 1800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a86e6e1307350d84aa1f0240e768eb9b
+      internalID: 6016965057473001062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Florauna_ChkPtGrow-Sprite_29
+      rect:
+        serializedVersion: 2
+        x: 14000
+        y: 0
+        width: 1000
+        height: 1800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfaf091f4ef91744aba486f18720ee06
+      internalID: -1503342233849500163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -29,10 +29,10 @@ public class CheckpointActivity : MonoBehaviour
     	{
     		alreadyChecked = true;
     		flowerGrowAnim.SetBool("grown", true);
-            if (PersistentManager.Instance.lastCheckpoint == SceneManager.GetActiveScene().buildIndex)
-            {
-                spawnAnim.SetBool("active", true);
-            }
+            // if (PersistentManager.Instance.lastCheckpoint == SceneManager.GetActiveScene().buildIndex)
+            // {
+            //     spawnAnim.SetBool("active", true);
+            // }
     	}
     }
 
@@ -53,7 +53,7 @@ public class CheckpointActivity : MonoBehaviour
     void activateCheckpoint()
     {
 		flowerGrowAnim.SetBool("grow", true);
-        spawnAnim.SetBool("active", true);
+        //spawnAnim.SetBool("active", true);
         playerAnim.SetBool("activating", true);
         Debug.Log("freezing body");
         PersistentManager.Instance.immobile = true;
