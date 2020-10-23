@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MessageScript : MonoBehaviour
 {
-	[HideInInspector] public string escapeKey;
+	public string escapeKey;
 	public Queue<string> nextMessages;
 	public CanvasGroup cg;
 

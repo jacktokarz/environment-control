@@ -32,6 +32,7 @@ public class OpenDoor : MonoBehaviour
     	doorStartPos= doorObj.localPosition;
         doorEndPos= doorObj.localPosition;
         defaultPos= doorObj.localPosition;
+        desiredColor = lightsObj.color;
     }
 
     // Update is called once per frame
@@ -41,10 +42,9 @@ public class OpenDoor : MonoBehaviour
         {
 
             float timeSinceStarted = Time.time - doorStartTime;
-            float percentageComplete = timeSinceStarted / (PersistentManager.Instance.doorMoveSpeed / 4);
-        Debug.Log("changing light "+percentageComplete);
+            float percentageComplete = timeSinceStarted / (PersistentManager.Instance.doorMoveSpeed / 30);
             lightsObj.color = Color.Lerp(startingColor, desiredColor, percentageComplete);
-            if (percentageComplete >= 95)
+            if (percentageComplete >= 1)
             {
                 doorStartTime = Time.time;
             }
@@ -53,7 +53,6 @@ public class OpenDoor : MonoBehaviour
         {
             float journeyLength = Vector3.Distance(doorStartPos, doorEndPos);
             float distCovered = (Time.time - doorStartTime) * PersistentManager.Instance.doorMoveSpeed;
-        Debug.Log("changing door "+distCovered);        
             doorObj.localPosition = Vector3.Lerp(doorStartPos, doorEndPos, distCovered / journeyLength);
         }
     }
@@ -76,7 +75,6 @@ public class OpenDoor : MonoBehaviour
 
     void openDoor()
     {
-        Debug.Log("open it");
         source.PlayOneShot(openDoorSound);
         //if (speaker.time == 0.3) { speaker.Stop();}
         doorStartTime = Time.time;
@@ -92,7 +90,7 @@ public class OpenDoor : MonoBehaviour
         source.PlayOneShot(closeDoorSound);
     	doorStartTime= Time.time;
         startingColor = lightsObj.color;
-        desiredColor = openColor;
+        desiredColor = closedColor;
         doorStartPos = doorObj.localPosition;
     	doorEndPos= defaultPos;
     }
