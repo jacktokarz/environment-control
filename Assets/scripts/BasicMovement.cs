@@ -41,7 +41,7 @@ public class BasicMovement : MonoBehaviour
     float v;
     float jumpForce;
     private bool gripping = false;
-    private bool grounded = true;
+    public bool grounded = true;
     public bool underwater = false;
     private bool jumping = false;
     private AudioSource source;
@@ -155,7 +155,9 @@ public class BasicMovement : MonoBehaviour
             }
         }
 
+        checkGrounded();
         if(PersistentManager.Instance.immobile) { return; }
+        checkUnderwater();
 
         h = gripping ? Input.GetAxis("Horizontal") * climbSpeed : Input.GetAxis("Horizontal") * topHSpeed;
         
@@ -168,9 +170,6 @@ public class BasicMovement : MonoBehaviour
         else {
             v = 0;
         }
-
-        checkGrounded();
-        checkUnderwater();
 
         if (Input.GetKeyDown(PersistentManager.Instance.JumpKey) && (grounded || gripping))
         {

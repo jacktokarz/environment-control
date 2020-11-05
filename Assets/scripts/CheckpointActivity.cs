@@ -6,8 +6,9 @@ using UnityEngine.SceneManagement;
 public class CheckpointActivity : MonoBehaviour
 {
     private AudioSource source;
-    private Animator spawnAnim;
+    private GameObject petalObj;
 	private Animator flowerGrowAnim;
+    private Animator petalAnim;
     private Animator playerAnim;
 	public bool alreadyChecked;
     public AudioClip flowerGrowSound;
@@ -16,9 +17,9 @@ public class CheckpointActivity : MonoBehaviour
     void Awake()
     {
         source = GetComponent<AudioSource>();
-        spawnAnim = this.transform.GetChild(0).GetComponent(typeof (Animator)) as Animator;
-        spawnAnim.SetBool("active", false);
-        flowerGrowAnim = this.transform.GetChild(1).GetComponent(typeof (Animator)) as Animator;
+        flowerGrowAnim = this.transform.GetChild(0).GetComponent(typeof (Animator)) as Animator;
+        petalObj = this.transform.GetChild(1).gameObject;
+        petalAnim = petalObj.GetComponent(typeof (Animator)) as Animator;
         playerAnim = GameObject.FindGameObjectWithTag("Player").transform.GetChild(0).GetComponent(typeof (Animator)) as Animator;
     }
 
@@ -29,10 +30,6 @@ public class CheckpointActivity : MonoBehaviour
     	{
     		alreadyChecked = true;
     		flowerGrowAnim.SetBool("grown", true);
-            // if (PersistentManager.Instance.lastCheckpoint == SceneManager.GetActiveScene().buildIndex)
-            // {
-            //     spawnAnim.SetBool("active", true);
-            // }
     	}
     }
 
@@ -53,9 +50,7 @@ public class CheckpointActivity : MonoBehaviour
     void activateCheckpoint()
     {
 		flowerGrowAnim.SetBool("grow", true);
-        //spawnAnim.SetBool("active", true);
         playerAnim.SetBool("activating", true);
-        Debug.Log("freezing body");
         PersistentManager.Instance.immobile = true;
         source.PlayOneShot(flowerGrowSound);
 		PersistentManager.Instance.Checkpoints.Add(SceneManager.GetActiveScene().buildIndex);
@@ -71,8 +66,10 @@ public class CheckpointActivity : MonoBehaviour
     public void spawn()
     {
         Debug.Log("checkpoint makes player");
-        spawnAnim.SetBool("active", true);
-        spawnAnim.SetTrigger("Spawn");
+        petalObj.SetActive(true);
+        petalAnim.SetBool("active", true);
+        petalAnim.SetTrigger("spawn");
+        flowerGrowAnim.SetTrigger("spawn");
         source.PlayOneShot(spawnsound);
     }
 }
