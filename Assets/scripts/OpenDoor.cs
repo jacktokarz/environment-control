@@ -81,8 +81,7 @@ public class OpenDoor : MonoBehaviour
         startingColor = lightsObj.color;
         desiredColor = openColor;
     	doorStartPos = doorObj.localPosition;
-    	doorEndPos = doorObj.localPosition + new Vector3(PersistentManager.Instance.doorMoveDistance * flipped, 0, 0);
-       // if (childObj.localPosition == doorEndPos) { speaker.Stop(); }
+    	doorEndPos = defaultPos + new Vector3(PersistentManager.Instance.doorMoveDistance * flipped, 0, 0);
     }
 
     void closeDoor()

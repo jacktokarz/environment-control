@@ -117,9 +117,9 @@ public class EnvironmentEffect : MonoBehaviour
             float waterChange = (waterEndPoints[i].y - waterOriginalPoints[i].y) / parentScale;
         
             coll.offset = Vector2.Lerp(waterColliderOffsetStarts[i],
-                new Vector2(coll.offset.x, waterChange / 2 + waterColliderOffsetOriginals[i].y), distCovered / journeyLength);
+                new Vector2(coll.offset.x, waterChange / 4 + waterColliderOffsetOriginals[i].y), distCovered / journeyLength);
             coll.size = Vector2.Lerp(waterColliderSizeStarts[i],
-                new Vector2(coll.size.x, waterChange + waterColliderSizeOriginals[i].y), distCovered / journeyLength);
+                new Vector2(coll.size.x, waterChange / 2 + waterColliderSizeOriginals[i].y), distCovered / journeyLength);
 
             wat.transform.position = Vector3.Lerp(waterStartPoints[i], waterEndPoints[i], distCovered / journeyLength);
             }
