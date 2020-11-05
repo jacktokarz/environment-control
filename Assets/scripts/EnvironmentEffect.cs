@@ -86,9 +86,9 @@ public class EnvironmentEffect : MonoBehaviour
                 waterColliderOffsetOriginals[i] = wbc.offset;
                 waterColliderOffsetStarts[i] = wbc.offset;
 
-                waterEndPoints[i]= waterLines[i].transform.position;
-                waterStartPoints[i]= waterLines[i].transform.position;
-                waterOriginalPoints[i] = waterLines[i].transform.position;
+                waterEndPoints[i]= waterLines[i].transform.localPosition;
+                waterStartPoints[i]= waterLines[i].transform.localPosition;
+                waterOriginalPoints[i] = waterLines[i].transform.localPosition;
             }
             if (PersistentManager.Instance.humidityLevel != 0)
             {
@@ -103,25 +103,24 @@ public class EnvironmentEffect : MonoBehaviour
 
     private void FixedUpdate()
     {
-        for (int i= 0; i< waterLines.Length; i++)
+        for (int i=0; i< waterLines.Length; i++)
         {
-            GameObject wat= waterLines[i];
-            if (wat.transform.position != waterEndPoints[i])
+            GameObject wat = waterLines[i];
+            if (wat.transform.localPosition != waterEndPoints[i])
             {
                 float journeyLength = Vector3.Distance(waterStartPoints[i], waterEndPoints[i]);
                 float distCovered = (Time.time - waterStartTime) * PersistentManager.Instance.waterChangeSpeed;
 
+                float parentScale = waterColliders[i].gameObject.transform.parent.transform.localScale.y;
+                BoxCollider2D coll = waterColliders[i];
+                float waterChange = (waterEndPoints[i].y - waterOriginalPoints[i].y);
+            
+                coll.offset = Vector2.Lerp(waterColliderOffsetStarts[i],
+                    new Vector2(coll.offset.x, waterChange / 2 + waterColliderOffsetOriginals[i].y), distCovered / journeyLength);
+                coll.size = Vector2.Lerp(waterColliderSizeStarts[i],
+                    new Vector2(coll.size.x, waterChange + waterColliderSizeOriginals[i].y), distCovered / journeyLength);
 
-            float parentScale = waterColliders[i].gameObject.transform.parent.transform.localScale.y;
-            BoxCollider2D coll= waterColliders[i];
-            float waterChange = (waterEndPoints[i].y - waterOriginalPoints[i].y) / parentScale;
-        
-            coll.offset = Vector2.Lerp(waterColliderOffsetStarts[i],
-                new Vector2(coll.offset.x, waterChange / 2 + waterColliderOffsetOriginals[i].y), distCovered / journeyLength);
-            coll.size = Vector2.Lerp(waterColliderSizeStarts[i],
-                new Vector2(coll.size.x, waterChange + waterColliderSizeOriginals[i].y), distCovered / journeyLength);
-
-            wat.transform.position = Vector3.Lerp(waterStartPoints[i], waterEndPoints[i], distCovered / journeyLength);
+                wat.transform.localPosition = Vector3.Lerp(waterStartPoints[i], waterEndPoints[i], distCovered / journeyLength);
             }
         }
     }
@@ -180,10 +179,12 @@ public class EnvironmentEffect : MonoBehaviour
             waterColliderOffsetStarts[i] = coll.offset;
             waterColliderSizeStarts[i] = coll.size;
 
-            waterStartPoints[i] = waterLines[i].transform.position;
+            waterStartPoints[i] = waterLines[i].transform.localPosition;
             waterEndPoints[i].y = value * PersistentManager.Instance.waterChangeDistance + waterOriginalPoints[i].y;
+            Debug.Log("water values for "+waterLines[i].name+", orig "+waterOriginalPoints[i]+", start "+waterStartPoints[i]+" and end "+waterEndPoints[i]);
         }
         waterStartTime= Time.time;
+
     }
 
     void changeFrondWidth()
