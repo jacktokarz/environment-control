@@ -11,7 +11,7 @@ public class OpenDoor : MonoBehaviour
     public SpriteRenderer lightsObj;
     public Color openColor;
     public Color closedColor;
-    public int flipped;
+    public float flipped;
     Vector3 doorStartPos;
 	Vector3 doorEndPos;
 	float doorStartTime;
@@ -23,7 +23,7 @@ public class OpenDoor : MonoBehaviour
 
     void Awake()
     {
-    	flipped= this.transform.rotation.eulerAngles.z > 180 ? -1 : 1;
+    	flipped= this.transform.localScale.y;
         source = GetComponent<AudioSource>();
     }
     // Start is called before the first frame update
@@ -81,7 +81,7 @@ public class OpenDoor : MonoBehaviour
         startingColor = lightsObj.color;
         desiredColor = openColor;
     	doorStartPos = doorObj.localPosition;
-    	doorEndPos = defaultPos + new Vector3(PersistentManager.Instance.doorMoveDistance * flipped, 0, 0);
+    	doorEndPos = defaultPos + new Vector3(PersistentManager.Instance.doorMoveDistance * -1, 0, 0);
     }
 
     void closeDoor()

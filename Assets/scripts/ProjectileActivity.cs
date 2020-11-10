@@ -22,6 +22,13 @@ public class ProjectileActivity : MonoBehaviour
         Vector3 randomOff = new Vector3(Random.Range(-1.5f, 1.5f), Random.Range(-1.5f, 1.5f));
 		rigid.velocity = (playerObject.transform.position - this.transform.position + randomOff).normalized * speed;
     }
+    void Update()
+    {
+        if (Mathf.Abs(rigid.velocity.x)+Mathf.Abs(rigid.velocity.y) > 0)
+        {
+            transform.Rotate(0,0, 1.3f);
+        }
+    }
 
     void OnTriggerStay2D(Collider2D coll)
     {
@@ -43,6 +50,10 @@ public class ProjectileActivity : MonoBehaviour
         Debug.Log("exploding");
         if (coll.gameObject != playerObject) {
             Destroy(this.gameObject);
+        }
+        else 
+        {
+            rigid.velocity = Vector3.zero;
         }
     }
 

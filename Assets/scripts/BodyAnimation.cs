@@ -5,6 +5,7 @@ using UnityEngine;
 public class BodyAnimation : MonoBehaviour
 {
 	private Animator playerAnim;
+    public AudioClip landingSound;
 
     void Start()
     {
@@ -24,4 +25,11 @@ public class BodyAnimation : MonoBehaviour
         Debug.Log("pollenating");
         PersistentManager.Instance.SeePollen();
     }
+
+    void PlayLandingSound()
+    {
+        AudioSource source = GetComponent<AudioSource>();
+        source.PlayOneShot(landingSound);
+    }
 }
+

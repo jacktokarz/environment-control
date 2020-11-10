@@ -93,7 +93,7 @@ public class BasicMovement : MonoBehaviour
         {
             Debug.Log("showing cutscene");
             GameObject checkpoint = GameObject.FindWithTag("hub");
-            this.transform.position = new Vector3(checkpoint.transform.position.x, checkpoint.transform.position.y + 0.55f);
+            this.transform.position = new Vector3(checkpoint.transform.position.x, checkpoint.transform.position.y);
             CheckpointActivity ca = checkpoint.GetComponent(typeof (CheckpointActivity)) as CheckpointActivity;
             StartCoroutine(stallHubSpawn(ca, PersistentManager.Instance.openingCutsceneLength));
             return;
@@ -124,8 +124,8 @@ public class BasicMovement : MonoBehaviour
                 OpenDoor od = door.GetComponent(typeof (OpenDoor)) as OpenDoor;
                 if(od.doorId == PersistentManager.Instance.lastDoorId)
                 {
-                    spawnPoint = new Vector3(door.transform.position.x - od.flipped * 1.0f, door.transform.position.y - 0.7f, 0);
-                    if(od.flipped == 1)
+                    spawnPoint = new Vector3(door.transform.position.x + od.flipped, door.transform.position.y - 0.7f, 0);
+                    if(od.flipped == -1)
                     {
                         bm.Flip();
                     }
@@ -137,7 +137,7 @@ public class BasicMovement : MonoBehaviour
             if(spawnPoint == Vector3.zero) {
                 Debug.Log("ERRRORRRR!!!!");
                 OpenDoor od = doors[0].GetComponent(typeof (OpenDoor)) as OpenDoor;
-                this.transform.position = new Vector3(doors[0].transform.position.x - od.flipped * 1.0f, doors[0].transform.position.y - 0.7f, 0);
+                this.transform.position = new Vector3(doors[0].transform.position.x + od.flipped, doors[0].transform.position.y - 0.7f, 0);
                 if(od.flipped == 1)
                 {
                     bm.Flip();
