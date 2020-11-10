@@ -313,7 +313,7 @@ public class BasicMovement : MonoBehaviour
         bodyAnimator.SetBool("grounded", false);
         // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
         // This can be done using layers instead but Sample Assets will not overwrite your project settings.
-        Collider2D[] groundColls = Physics2D.OverlapCircleAll(groundCheck.position, groundCheckRadius, whatIsGround);
+        Collider2D[] groundColls = GetGroundColliders();
         for (int i = 0; i < groundColls.Length; i++)
         {
             if (groundColls[i].gameObject != gameObject)
@@ -327,6 +327,11 @@ public class BasicMovement : MonoBehaviour
                 }
             }
         }
+    }
+
+    public Collider2D[] GetGroundColliders() 
+    {
+        return Physics2D.OverlapCircleAll(groundCheck.position, groundCheckRadius, whatIsGround);
     }
 
     void checkUnderwater()

@@ -961,6 +961,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   landingSound: {fileID: 8300000, guid: fe74118528f7e492fa4fd5d59652522c, type: 3}
+  metalStepA: {fileID: 8300000, guid: b151c3cae4753b24aae552674ae3721b, type: 3}
+  metalStepB: {fileID: 8300000, guid: 7a16f0170dd28534197d5e781a30d509, type: 3}
+  plantStepA: {fileID: 8300000, guid: dfeeb89c55a0d452c9f7e5bfd0f9861b, type: 3}
+  plantStepB: {fileID: 8300000, guid: 281ce71c9c7e8403c9e9b8366e2f3272, type: 3}
+  bm: {fileID: 3955542510501940194}
 --- !u!82 &5220737201953416954
 AudioSource:
   m_ObjectHideFlags: 0
