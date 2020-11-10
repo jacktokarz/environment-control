@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BodyAnimation : MonoBehaviour
 {
-    public AudioClip landingSound, metalStepA, metalStepB, plantStepA, plantStepB;
+    public AudioClip landingSound, metalStepA, metalStepB, plantStepA, plantStepB, climbStepA, climbStepB;
     public BasicMovement bm;
 	private Animator playerAnim;
 	private bool BLeg = false;
@@ -36,16 +36,22 @@ public class BodyAnimation : MonoBehaviour
 
     void PlayStepSound()
     {
+    	if (bm.gripping)
+    	{
+    		source.PlayOneShot(BLeg ? climbStepB : climbStepA);
+			BLeg = !BLeg;
+			return;
+    	}
     	Collider2D[] groundColls = bm.GetGroundColliders();
     	foreach (Collider2D col in groundColls)
     	{
-    		if (col.gameObject.tag == "metal")
+    		if (col.gameObject.tag == "metalGround")
     		{
     			source.PlayOneShot(BLeg ? metalStepB : metalStepA);
     			BLeg = !BLeg;
     			return;
     		}
-    		if (col.gameObject.tag == "plant")
+    		if (col.gameObject.tag == "plantGround")
     		{
     			source.PlayOneShot(BLeg ? plantStepB : plantStepA);
     			BLeg = !BLeg;

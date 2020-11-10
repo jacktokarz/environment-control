@@ -157,7 +157,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 4
     m_ConditionEvent: velocity
-    m_EventTreshold: 1.99
+    m_EventTreshold: 0.5
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -156872135890530224}
   m_Solo: 0
@@ -1039,7 +1039,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 3
     m_ConditionEvent: velocity
-    m_EventTreshold: 2.01
+    m_EventTreshold: 0.51
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4338337613069758176}
   m_Solo: 0

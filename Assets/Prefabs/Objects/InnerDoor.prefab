@@ -26,14 +26,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2376509965499329822}
-  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 6, y: -36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3685138696117769743}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!61 &8879666290464152931
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -47,7 +47,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 2.5}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -58,7 +58,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.75, y: 4.4}
+  m_Size: {x: 3.75, y: 8.5}
   m_EdgeRadius: 0
 --- !u!114 &8879666290464152930
 MonoBehaviour:
@@ -75,7 +75,7 @@ MonoBehaviour:
   doorId: 
   openDoorSound: {fileID: 8300000, guid: 810784c00039b42c280d837e60c058e8, type: 3}
   closeDoorSound: {fileID: 8300000, guid: bb55abc087d7d4c99a50dc09a3c22cd9, type: 3}
-  doorObj: {fileID: 2376509965499329890}
+  doorObj: {fileID: 3685138696117769743}
   lightsObj: {fileID: 163147666006949481}
   openColor: {r: 0.18109494, g: 0.8490566, b: 0.17621931, a: 1}
   closedColor: {r: 0.95686275, g: 0.9647059, b: 0.08235294, a: 1}
@@ -201,7 +201,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6667035771264816658}
-  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

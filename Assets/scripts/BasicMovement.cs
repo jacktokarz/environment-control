@@ -40,9 +40,10 @@ public class BasicMovement : MonoBehaviour
     float h;
     float v;
     float jumpForce;
-    private bool gripping = false;
-    public bool grounded = true;
-    public bool underwater = false;
+    private int lostGripCount = 0;
+    [HideInInspector] public bool gripping = false;
+    [HideInInspector] public bool grounded = true;
+    [HideInInspector] public bool underwater = false;
     private bool jumping = false;
     private AudioSource source;
 
@@ -213,6 +214,7 @@ public class BasicMovement : MonoBehaviour
         }
             // if they can grip
         if(canGrip) {
+            lostGripCount = 0;
                 // and press the button, they do it
             if (Input.GetKeyDown(PersistentManager.Instance.GrabKey))
             {
@@ -224,6 +226,24 @@ public class BasicMovement : MonoBehaviour
                 {       // if they were already gripping, they let go now.
                     bodyAnimator.SetTrigger("LetGo");
                     gripOff();
+                }
+            }
+        }
+            // if they cannot grip
+        else
+        {
+                //but they are...
+            if (gripping == true)
+            {
+                if (lostGripCount > 10)
+                {
+                    bodyAnimator.SetTrigger("LetGo");
+                    lostGripCount = 0;
+                    gripOff();
+                }
+                else
+                {
+                    lostGripCount++;
                 }
             }
         }
