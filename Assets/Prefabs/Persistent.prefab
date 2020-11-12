@@ -2870,9 +2870,12 @@ MonoBehaviour:
   motherPlantSongScenes: 000000000100000002000000
   elevatorSongScenes: 030000000400000008000000
   windSongScenes: 050000000600000007000000
+  musicPlayer: {fileID: 0}
   motherPlantSong: {fileID: 8300000, guid: 48768eee707ad489cb94269f07f35edf, type: 3}
   elevatorSong: {fileID: 8300000, guid: d6972b375e6d644dba2483fb87dee038, type: 3}
   windSong: {fileID: 8300000, guid: 47920c7ceac8f4f9aae67a7f05a63174, type: 3}
+  standardMusicVolume: 0.75
+  quietMusicVolume: 0.25
   TreasureList: []
   Checkpoints: 
   Collectibles: 

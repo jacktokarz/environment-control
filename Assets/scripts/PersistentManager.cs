@@ -98,10 +98,12 @@ public class PersistentManager : MonoBehaviour
     public List<int> elevatorSongScenes = new List<int>() {3, 4, 8};
     public List<int> windSongScenes = new List<int>() { 5, 6, 7 };
     private GameObject AudioChild;
-    private AudioSource musicPlayer;
+    [HideInInspector] public AudioSource musicPlayer;
     public AudioClip motherPlantSong;
     public AudioClip elevatorSong;
     public AudioClip windSong;
+    public float standardMusicVolume;
+    public float quietMusicVolume;
 
 	public List<string> TreasureList = new List<string>();
 	public List<int> Checkpoints = new List<int>();
@@ -301,6 +303,7 @@ public class PersistentManager : MonoBehaviour
     public void SelectMusic(int sn)
     {
         Debug.Log("musical scene is "+sn);
+        StartCoroutine(LerpVolume(1, standardMusicVolume));
         List<int> songList = getSongList(sn);
         if (motherPlantSongScenes == songList)
         {
@@ -326,6 +329,24 @@ public class PersistentManager : MonoBehaviour
         }
         Debug.Log("playing something");
         musicPlayer.Play();
+    }
+
+    public IEnumerator LerpVolume(float lerpTime, float end)
+    {
+        float _timeStartedLerping = Time.time;
+        float start = PersistentManager.Instance.musicPlayer.volume;
+        float timeSinceStarted = 0.0f;
+        float percentageComplete = 0.0f;
+        while (true)
+        {
+            timeSinceStarted = Time.time - _timeStartedLerping;
+            percentageComplete = timeSinceStarted / lerpTime;
+            float currentValue = Mathf.Lerp(start, end, percentageComplete);
+            musicPlayer.volume = currentValue;
+
+            if (percentageComplete >= 1) break;
+            yield return new WaitForFixedUpdate();
+        }
     }
 
     public void GetCameraAndZoom()

@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class BasicMovement : MonoBehaviour
 {
     public BrackeysMovement bm;
+    public PlayerAudio pa;
     public Vector3 spawnPoint;
 
     public float defaultGravity;
@@ -15,6 +16,8 @@ public class BasicMovement : MonoBehaviour
     public float climbSpeed;
     public float maxJumpForce;
     public float defaultDecay;
+    public float maxFallSpeed;
+    private float fastestFallSpeed;
     
     public Transform gripCheck;
     public Transform groundCheck;
@@ -45,20 +48,11 @@ public class BasicMovement : MonoBehaviour
     [HideInInspector] public bool grounded = true;
     [HideInInspector] public bool underwater = false;
     private bool jumping = false;
-    private AudioSource source;
 
     Rigidbody2D rigid;
     GameObject bodyObject;
     Animator bodyAnimator;
     SpriteRenderer bodySprite;
-
-    public AudioClip jumpSound;
-    public AudioClip landSound;
-    public AudioClip grabVine;
-    public AudioClip letgoVine;
-    public AudioClip stepA;
-    public AudioClip stepB;
-    private AudioClip crntStep;
 
     void Awake()
     {
@@ -87,8 +81,6 @@ public class BasicMovement : MonoBehaviour
         coolTopSpeed = defaultTopSpeed * 0.85f;
         coldTopSpeed = defaultTopSpeed * 0.65f;
         changePlayerStats();
-        source = GetComponent<AudioSource>();
-        crntStep = stepA;
 
         if (PersistentManager.Instance.lastDoorId == "NewGame")
         {
@@ -175,7 +167,7 @@ public class BasicMovement : MonoBehaviour
         if (Input.GetKeyDown(PersistentManager.Instance.JumpKey) && (grounded || gripping))
         {
             jumpForce = maxJumpForce;
-            playJumpSound();
+            pa.PlayJumpSound();
         }
         if (Input.GetKeyUp(PersistentManager.Instance.JumpKey))
         {
@@ -295,6 +287,7 @@ public class BasicMovement : MonoBehaviour
         else {
             bodyAnimator.SetFloat("velocity", Math.Abs(rigid.velocity.x));
         }
+        if (rigid.velocity.y < maxFallSpeed) { rigid.velocity = new Vector2(rigid.velocity.x, maxFallSpeed); }
 
     }
 
@@ -333,6 +326,7 @@ public class BasicMovement : MonoBehaviour
         bool wasGrounded = grounded;
         grounded = false;
         bodyAnimator.SetBool("grounded", false);
+        if (rigid.velocity.y < fastestFallSpeed) { fastestFallSpeed = rigid.velocity.y; }
         // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
         // This can be done using layers instead but Sample Assets will not overwrite your project settings.
         Collider2D[] groundColls = GetGroundColliders();
@@ -345,7 +339,8 @@ public class BasicMovement : MonoBehaviour
                 
                  if (!wasGrounded)
                  {
-                    playLandSound();
+                    pa.PlayLandSound(fastestFallSpeed);
+                    fastestFallSpeed = 0;
                 }
             }
         }
@@ -435,7 +430,6 @@ public class BasicMovement : MonoBehaviour
         if (moveX)
         {
             bm.Move(h * Time.fixedDeltaTime);
-            walksound(h);
         }
         if (moveY)
         {
@@ -443,41 +437,13 @@ public class BasicMovement : MonoBehaviour
         }
     }
 
-    void walksound(float walking)
-    {
-
-//        source.clip = crntStep;
-        
-//        if (walking != 0 ) // if movement is happening... Jack I'm sure there's a less clunky way of doing this
-//        {
-//            if (source.isPlaying != true)
-//            {
-//                source.pitch = UnityEngine.Random.Range(0.75F, 1.25F);
-//                if (crntStep == stepA) { source.PlayOneShot(stepA); }
-//                //if (crntStep == stepB) { source.PlayOneShot(stepB); }
-//                // alternate steps
-
-//            }
-////            else if (crntStep == stepA)
-////            { crntStep = stepB; }
-////            else if (crntStep == stepB)
-////            { crntStep = stepA; }
-            
-
-//        }
-//        else { source.Stop(); }
-
-
-
-    }
-    
-
     void death() 
     {
         rigid.velocity= new Vector2(0,0);
         PersistentManager.Instance.immobile = true;
         bodyAnimator.SetBool("dead", true);
         PersistentManager.Instance.GameOver.SetActive(true);
+        pa.PlayDeathMelody();
     }
 
     void gripOff()
@@ -485,7 +451,7 @@ public class BasicMovement : MonoBehaviour
         Debug.Log("Let go");
         gripping = false;
         bodyAnimator.SetBool("gripping", false);
-        source.PlayOneShot(letgoVine);
+        pa.PlayLetGo();
         rigid.gravityScale = defaultGravity;
     }
     void gripOn()
@@ -493,7 +459,7 @@ public class BasicMovement : MonoBehaviour
         Debug.Log("grab");
         gripping = true;
         bodyAnimator.SetBool("gripping", true);
-        source.PlayOneShot(grabVine);
+        pa.PlayGrabVine();
         rigid.gravityScale = 0f;                    
         rigid.velocity = new Vector2(0, 0);
         jumping = false;
@@ -556,16 +522,5 @@ public class BasicMovement : MonoBehaviour
         ca.spawn();
         Debug.Log("done with co routine");
     }
-
-    void playJumpSound()
-    {
-        source.PlayOneShot(jumpSound);
-    }
-
-    void playLandSound()
-    {
-        source.PlayOneShot(landSound);
-    }
-
 
 }

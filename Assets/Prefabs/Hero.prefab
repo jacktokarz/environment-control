@@ -44,7 +44,6 @@ GameObject:
   - component: {fileID: 5725032941915999845}
   - component: {fileID: 5586110174633710968}
   - component: {fileID: 3955542510501940194}
-  - component: {fileID: 5531946100506200246}
   - component: {fileID: 6827852417253111687}
   m_Layer: 8
   m_Name: Hero
@@ -67,6 +66,7 @@ Transform:
   - {fileID: 4339542757749410462}
   - {fileID: 3517635606081753182}
   - {fileID: 226270825}
+  - {fileID: 185730958569792262}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -150,12 +150,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bm: {fileID: 5586110174633710968}
+  pa: {fileID: 2553579141235055654}
   spawnPoint: {x: 0, y: 0, z: 0}
   defaultGravity: 0
   defaultTopSpeed: 40
   climbSpeed: 20
   maxJumpForce: 100
   defaultDecay: 200
+  maxFallSpeed: -24
   gripCheck: {fileID: 226270825}
   groundCheck: {fileID: 3517635606081753182}
   gripCheckRadius: 0.11
@@ -179,108 +181,6 @@ MonoBehaviour:
   gripping: 0
   grounded: 1
   underwater: 0
-  jumpSound: {fileID: 8300000, guid: 23ec4e63c33c34aa1ae09031b8a71527, type: 3}
-  landSound: {fileID: 8300000, guid: 5b7e0002ae1614ca6a110a8caf2cf386, type: 3}
-  grabVine: {fileID: 8300000, guid: 031313200578645368289a765cc1d349, type: 3}
-  letgoVine: {fileID: 8300000, guid: befade0d904d34b19a5b3878b603cdf4, type: 3}
-  stepA: {fileID: 8300000, guid: dfeeb89c55a0d452c9f7e5bfd0f9861b, type: 3}
-  stepB: {fileID: 8300000, guid: 281ce71c9c7e8403c9e9b8366e2f3272, type: 3}
---- !u!82 &5531946100506200246
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4508517035754910516}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 0.35
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!81 &6827852417253111687
 AudioListener:
   m_ObjectHideFlags: 0
@@ -474,14 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b4fe88d04ce9bd49bc469556e5634fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  landingSound: {fileID: 8300000, guid: fe74118528f7e492fa4fd5d59652522c, type: 3}
-  metalStepA: {fileID: 8300000, guid: b151c3cae4753b24aae552674ae3721b, type: 3}
-  metalStepB: {fileID: 8300000, guid: 7a16f0170dd28534197d5e781a30d509, type: 3}
-  plantStepA: {fileID: 8300000, guid: dfeeb89c55a0d452c9f7e5bfd0f9861b, type: 3}
-  plantStepB: {fileID: 8300000, guid: 281ce71c9c7e8403c9e9b8366e2f3272, type: 3}
-  climbStepA: {fileID: 8300000, guid: 8042d47fd272aa64ba5fe74ad9fcbb64, type: 3}
-  climbStepB: {fileID: 8300000, guid: dff17e85b5b99a444bd4952a9ad15f81, type: 3}
-  bm: {fileID: 3955542510501940194}
+  pa: {fileID: 2553579141235055654}
 --- !u!82 &5220737201953416954
 AudioSource:
   m_ObjectHideFlags: 0
@@ -578,6 +471,166 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &8656519625486627540
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 185730958569792262}
+  - component: {fileID: 4134829843847872405}
+  - component: {fileID: 2553579141235055654}
+  m_Layer: 8
+  m_Name: BodyAudio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &185730958569792262
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8656519625486627540}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3721111531789847145}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &4134829843847872405
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8656519625486627540}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.35
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &2553579141235055654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8656519625486627540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d31502be1b3c0dd47a24552fc59bb090, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bm: {fileID: 3955542510501940194}
+  jumpSound: {fileID: 8300000, guid: 23ec4e63c33c34aa1ae09031b8a71527, type: 3}
+  landSound: {fileID: 8300000, guid: fe74118528f7e492fa4fd5d59652522c, type: 3}
+  grabVine: {fileID: 8300000, guid: 031313200578645368289a765cc1d349, type: 3}
+  letgoVine: {fileID: 8300000, guid: befade0d904d34b19a5b3878b603cdf4, type: 3}
+  deathMelody: {fileID: 8300000, guid: bcc4fc96a1e02a1498dc94157da08ae0, type: 3}
+  metalStepA: {fileID: 8300000, guid: b151c3cae4753b24aae552674ae3721b, type: 3}
+  metalStepB: {fileID: 8300000, guid: 7a16f0170dd28534197d5e781a30d509, type: 3}
+  plantStepA: {fileID: 8300000, guid: dfeeb89c55a0d452c9f7e5bfd0f9861b, type: 3}
+  plantStepB: {fileID: 8300000, guid: 281ce71c9c7e8403c9e9b8366e2f3272, type: 3}
+  climbStepA: {fileID: 8300000, guid: 8042d47fd272aa64ba5fe74ad9fcbb64, type: 3}
+  climbStepB: {fileID: 8300000, guid: dff17e85b5b99a444bd4952a9ad15f81, type: 3}
+  jumpVol: 0.28
+  landVol: 0.15
+  grabVol: 0.3
+  letGoVol: 0.3
+  deathVol: 0.68
+  stepVol: 0.18
+  climbVol: 0.22
+  source: {fileID: 0}
 --- !u!1 &9056281529253294538
 GameObject:
   m_ObjectHideFlags: 0
