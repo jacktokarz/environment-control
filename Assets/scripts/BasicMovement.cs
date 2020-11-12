@@ -244,6 +244,8 @@ public class BasicMovement : MonoBehaviour
                 else
                 {
                     lostGripCount++;
+                    h = h*-0.01f;
+                    v = v*-0.01f;
                 }
             }
         }

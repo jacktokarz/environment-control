@@ -3429,6 +3429,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fan (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 3278003601483500258, guid: 5c2830c5237111b4ba5093978a95c538,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3278003601483500259, guid: 5c2830c5237111b4ba5093978a95c538,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4162,6 +4167,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Fan (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3278003601483500258, guid: 5c2830c5237111b4ba5093978a95c538,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3278003601483500259, guid: 5c2830c5237111b4ba5093978a95c538,
         type: 3}
@@ -5975,6 +5985,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Fan (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3278003601483500258, guid: 5c2830c5237111b4ba5093978a95c538,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3278003601483500259, guid: 5c2830c5237111b4ba5093978a95c538,
         type: 3}
@@ -9371,6 +9386,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fan (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 3278003601483500258, guid: 5c2830c5237111b4ba5093978a95c538,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3278003601483500259, guid: 5c2830c5237111b4ba5093978a95c538,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9959,6 +9979,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fan (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 3278003601483500258, guid: 5c2830c5237111b4ba5093978a95c538,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3278003601483500259, guid: 5c2830c5237111b4ba5093978a95c538,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10118,6 +10143,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fan (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 3278003601483500258, guid: 5c2830c5237111b4ba5093978a95c538,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3278003601483500259, guid: 5c2830c5237111b4ba5093978a95c538,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10177,6 +10207,61 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5279731068151715731, guid: 5c2830c5237111b4ba5093978a95c538,
+        type: 3}
+      propertyPath: rolloffMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5279731068151715731, guid: 5c2830c5237111b4ba5093978a95c538,
+        type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].time
+      value: 0.016384635
+      objectReference: {fileID: 0}
+    - target: {fileID: 5279731068151715731, guid: 5c2830c5237111b4ba5093978a95c538,
+        type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].value
+      value: 0.20000076
+      objectReference: {fileID: 0}
+    - target: {fileID: 5279731068151715731, guid: 5c2830c5237111b4ba5093978a95c538,
+        type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].inWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5279731068151715731, guid: 5c2830c5237111b4ba5093978a95c538,
+        type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].outWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5279731068151715731, guid: 5c2830c5237111b4ba5093978a95c538,
+        type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].inSlope
+      value: -0.20062123
+      objectReference: {fileID: 0}
+    - target: {fileID: 5279731068151715731, guid: 5c2830c5237111b4ba5093978a95c538,
+        type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].outSlope
+      value: -0.20062123
+      objectReference: {fileID: 0}
+    - target: {fileID: 5279731068151715731, guid: 5c2830c5237111b4ba5093978a95c538,
+        type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].inWeight
+      value: 0.28719145
+      objectReference: {fileID: 0}
+    - target: {fileID: 5279731068151715731, guid: 5c2830c5237111b4ba5093978a95c538,
+        type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].outWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5279731068151715731, guid: 5c2830c5237111b4ba5093978a95c538,
+        type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].value
+      value: 0.024993896
+      objectReference: {fileID: 0}
+    - target: {fileID: 5279731068151715731, guid: 5c2830c5237111b4ba5093978a95c538,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c2830c5237111b4ba5093978a95c538, type: 3}
@@ -14044,6 +14129,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fan (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 3278003601483500258, guid: 5c2830c5237111b4ba5093978a95c538,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3278003601483500259, guid: 5c2830c5237111b4ba5093978a95c538,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14238,6 +14328,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Fan (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3278003601483500258, guid: 5c2830c5237111b4ba5093978a95c538,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3278003601483500259, guid: 5c2830c5237111b4ba5093978a95c538,
         type: 3}
@@ -15055,6 +15150,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Fan (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3278003601483500258, guid: 5c2830c5237111b4ba5093978a95c538,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3278003601483500259, guid: 5c2830c5237111b4ba5093978a95c538,
         type: 3}
@@ -17033,6 +17133,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Fan (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3278003601483500258, guid: 5c2830c5237111b4ba5093978a95c538,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3278003601483500259, guid: 5c2830c5237111b4ba5093978a95c538,
         type: 3}
@@ -19298,6 +19403,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Fan (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3278003601483500258, guid: 5c2830c5237111b4ba5093978a95c538,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3278003601483500259, guid: 5c2830c5237111b4ba5093978a95c538,
         type: 3}

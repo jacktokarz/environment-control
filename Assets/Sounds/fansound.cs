@@ -7,21 +7,21 @@ public class fansound : MonoBehaviour
     private AudioSource source;
     public AudioClip fanwhir;
     // Start is called before the first frame update
-    void Awake()
-    {
+    // void Awake()
+    // {
         
-        source = GetComponent<AudioSource>();
-    }
+    //     source = GetComponent<AudioSource>();
+    // }
 
-    // Update is called once per frame
-    void playsound()
-    {
+    // // Update is called once per frame
+    // void playsound()
+    // {
         
-        source.pitch = UnityEngine.Random.Range(0.15F, 3.25F);
-        source.Play();
+    //     source.pitch = UnityEngine.Random.Range(0.15F, 3.25F);
+    //     source.Play();
         
 
-    }
+    // }
 
 
 

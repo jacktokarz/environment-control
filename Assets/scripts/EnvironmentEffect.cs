@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnvironmentEffect : MonoBehaviour
 {
     public static EnvironmentEffect Instance { get; private set; }
-    //public AudioSource Fansource { get => fansource; set => fansource = value; }
     public AudioClip humN3;
     public AudioClip humN2;
     public AudioClip humN1;
@@ -16,7 +15,7 @@ public class EnvironmentEffect : MonoBehaviour
     public AudioClip fanSound;
 
     private AudioSource source;
-    public AudioSource fansource;
+    private AudioSource fansource;
     //private GameObject fanparent;
 
     BasicMovement BasMov;
@@ -230,12 +229,10 @@ public class EnvironmentEffect : MonoBehaviour
             if (win!=null)
             {
                 fansource = win.transform.parent.gameObject.GetComponent<AudioSource>();
-                //Debug.Log("wind's Parent: " + win.transform.parent.name);
-                //fansource = fanparent.GetComponent<AudioSource>();
                 fansource.clip = fanSound;
-                //fansource.pitch = UnityEngine.Random.Range(0.25F, 1.25F);
                 if (PersistentManager.Instance.windLevel > 0)
                 {
+                    fansource.pitch = 0.6f + PersistentManager.Instance.windLevel * 0.2f;
                     fansource.Play();
                 }
                 else

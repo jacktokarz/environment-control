@@ -61,7 +61,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a110a7cda6b261f429f21f8b8d7f07d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorChangeSpeed: 1
   humN3: {fileID: 8300000, guid: 0d67415a0db2d4c43b2c88096b5655ec, type: 3}
   humN2: {fileID: 8300000, guid: 83ba20d4c3e024ba48e26514389a0749, type: 3}
   humN1: {fileID: 8300000, guid: 2946eb9f646834cc0bb49186cce9f941, type: 3}
@@ -69,8 +68,7 @@ MonoBehaviour:
   hum1: {fileID: 8300000, guid: fc32574bf0ad846a3a1891a1ca5bbb8e, type: 3}
   hum2: {fileID: 8300000, guid: 8d9a25a8be469458ca86a0ed27ca26ef, type: 3}
   hum3: {fileID: 8300000, guid: 53c82fe125ca24320aeb2f17452983dc, type: 3}
-  fanSound: {fileID: 0}
-  fansource: {fileID: 0}
+  fanSound: {fileID: 8300000, guid: 8e9c1765539334523b1a00128573a8b5, type: 3}
 --- !u!114 &5826518459625912661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,7 +427,7 @@ PrefabInstance:
     - target: {fileID: 2816837758856372780, guid: 70fa60af300ffce4494aa3afe26ff477,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.999999
+      value: 2.0000005
       objectReference: {fileID: 0}
     - target: {fileID: 2816837758856372780, guid: 70fa60af300ffce4494aa3afe26ff477,
         type: 3}

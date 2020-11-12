@@ -583,6 +583,11 @@ PrefabInstance:
       propertyPath: m_SortingLayer
       value: -2
       objectReference: {fileID: 0}
+    - target: {fileID: 2521139619486689877, guid: 7bc9a5355f5a43a458be9a164a0b89a6,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2521139619486689880, guid: 7bc9a5355f5a43a458be9a164a0b89a6,
         type: 3}
       propertyPath: Generate
