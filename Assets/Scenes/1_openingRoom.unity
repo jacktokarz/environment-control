@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1581,17 +1581,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2614582194768518549, guid: b8b266de95fa3cd44bf707bc8c34cc89,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1720290978309699675, guid: b8b266de95fa3cd44bf707bc8c34cc89,
         type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -2351910840784981318, guid: d21ea1f027bdc5145ba3a69a22e8cb0d,
         type: 3}
-    - target: {fileID: 2614582194768518549, guid: b8b266de95fa3cd44bf707bc8c34cc89,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8b266de95fa3cd44bf707bc8c34cc89, type: 3}
 --- !u!4 &231795356 stripped
@@ -15426,7 +15426,7 @@ GameObject:
   - component: {fileID: 1086397430}
   m_Layer: 9
   m_Name: bottomRightWall
-  m_TagString: Untagged
+  m_TagString: metalGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15480,7 +15480,7 @@ GameObject:
   - component: {fileID: 1118871397}
   m_Layer: 9
   m_Name: bottomRightFloat
-  m_TagString: Untagged
+  m_TagString: metalGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17395,7 +17395,7 @@ GameObject:
   - component: {fileID: 1572183095}
   m_Layer: 9
   m_Name: Entry
-  m_TagString: Untagged
+  m_TagString: plantGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19198,7 +19198,6 @@ MonoBehaviour:
   hum2: {fileID: 8300000, guid: 8d9a25a8be469458ca86a0ed27ca26ef, type: 3}
   hum3: {fileID: 8300000, guid: 53c82fe125ca24320aeb2f17452983dc, type: 3}
   fanSound: {fileID: 0}
-  fansource: {fileID: 0}
 --- !u!114 &1876006974
 MonoBehaviour:
   m_ObjectHideFlags: 0
