@@ -39,7 +39,7 @@ public class GameOver : MonoBehaviour
     	{
 	    	if(GOtext.color.a < 1.0f)
 	        {
-	            GOtext.color = new Color (GOcolor.r, GOcolor.g, GOcolor.b, GOtext.color.a + 0.007f);
+	            GOtext.color = new Color (GOcolor.r, GOcolor.g, GOcolor.b, GOtext.color.a + 0.004f);
 	        }
 	        else
 	        {

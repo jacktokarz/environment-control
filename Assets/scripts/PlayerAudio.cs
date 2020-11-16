@@ -10,7 +10,7 @@ public class PlayerAudio : MonoBehaviour
     public AudioClip metalStepA, metalStepB, plantStepA, plantStepB, climbStepA, climbStepB;
     public float jumpVol, landVol, grabVol, letGoVol, deathVol, stepVol, climbVol;
 
-    public AudioSource source;
+    AudioSource source;
     private bool BLeg = false;
 
 	void Start()
@@ -43,7 +43,7 @@ public class PlayerAudio : MonoBehaviour
         source.volume = jumpVol;
         source.PlayOneShot(jumpSound);
     }
-        //v is the player's y-axis velocity (so it is negative)
+        //v is the player's y-axis velocity (so it is negative) e.g. -8 to -40
     public void PlayLandSound(float yVel)
     {
         Debug.Log("landing vel "+yVel);
