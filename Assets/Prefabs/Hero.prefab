@@ -161,7 +161,7 @@ MonoBehaviour:
   gripCheck: {fileID: 226270825}
   groundCheck: {fileID: 3517635606081753182}
   gripCheckRadius: 0.11
-  groundCheckRadius: 0.15
+  groundCheckRadius: 0.05
   whatIsGrippable:
     serializedVersion: 2
     m_Bits: 1024
@@ -630,7 +630,6 @@ MonoBehaviour:
   deathVol: 0.68
   stepVol: 0.18
   climbVol: 0.22
-  source: {fileID: 0}
 --- !u!1 &9056281529253294538
 GameObject:
   m_ObjectHideFlags: 0

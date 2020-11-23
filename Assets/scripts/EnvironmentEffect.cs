@@ -240,7 +240,7 @@ public class EnvironmentEffect : MonoBehaviour
                     fansource.Stop();
                 }
                 Animator winAm = win.GetComponent<Animator>();
-                winAm.SetFloat("windSpeed", PersistentManager.Instance.windLevel);                
+                winAm.SetFloat("windSpeed", 0.25f + PersistentManager.Instance.windLevel * 0.75f);                
             }
             if (blade!=null)
             {
