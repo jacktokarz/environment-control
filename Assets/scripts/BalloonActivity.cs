@@ -22,7 +22,9 @@ public class BalloonActivity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    	Collider2D[] overlapper= Physics2D.OverlapBoxAll(this.transform.position, this.transform.localScale/2, this.transform.rotation.eulerAngles.z);
+    	Collider2D[] overlapper= Physics2D.OverlapBoxAll(this.transform.position,
+    		new Vector2(3.5f * this.transform.localScale.x, 2.5f * this.transform.localScale.y),
+    		this.transform.rotation.eulerAngles.z);
         if(overlapper.Length > 0)
         {
         	foreach (Collider2D coll in overlapper)
@@ -31,12 +33,17 @@ public class BalloonActivity : MonoBehaviour
         		{
         			getBlown(coll.transform.parent.transform.rotation.eulerAngles.z);
         		}
-        		else if(coll.CompareTag("Player"))
-        		{
-        			tethered=false;
-        		}
         	}
         }
+    }
+
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+    	if(coll.gameObject.CompareTag("Player"))
+		{
+			tethered=false;
+		}
     }
 
     void getBlown(float windAngle)
@@ -44,6 +51,7 @@ public class BalloonActivity : MonoBehaviour
     	if(tethered) {
     		return;
     	}
+    	Debug.Log("ball being blown");	
 
     	if (PersistentManager.Instance.windLevel > 0)
 		{
