@@ -303,7 +303,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -3401,7 +3401,7 @@ MonoBehaviour:
   elevatorSong: {fileID: 8300000, guid: d6972b375e6d644dba2483fb87dee038, type: 3}
   windSong: {fileID: 8300000, guid: 47920c7ceac8f4f9aae67a7f05a63174, type: 3}
   standardMusicVolume: 0.75
-  quietMusicVolume: 0.2
+  quietMusicVolume: 0.02
   TreasureList: []
   Checkpoints: 
   Collectibles: 

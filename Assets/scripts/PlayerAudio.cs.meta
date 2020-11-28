@@ -3,7 +3,20 @@ guid: d31502be1b3c0dd47a24552fc59bb090
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - bm: {instanceID: 0}
+  - jumpSound: {fileID: 8300000, guid: 23ec4e63c33c34aa1ae09031b8a71527, type: 3}
+  - landSound: {fileID: 8300000, guid: 5b7e0002ae1614ca6a110a8caf2cf386, type: 3}
+  - grabVine: {fileID: 8300000, guid: 031313200578645368289a765cc1d349, type: 3}
+  - letgoVine: {fileID: 8300000, guid: befade0d904d34b19a5b3878b603cdf4, type: 3}
+  - deathMelody: {fileID: 8300000, guid: bcc4fc96a1e02a1498dc94157da08ae0, type: 3}
+  - metalStepA: {fileID: 8300000, guid: 0684ed3b10a2a4ce984cb6e415604e32, type: 3}
+  - metalStepB: {fileID: 8300000, guid: 8b3fd2db8edd44bf09b96c16392ac6a1, type: 3}
+  - plantStepA: {fileID: 8300000, guid: f393687abc12a4b519f8fbd9959cf6e2, type: 3}
+  - plantStepB: {fileID: 8300000, guid: 78c95d69dbfac493fbfa1ad6946b0814, type: 3}
+  - climbStepA: {fileID: 8300000, guid: 1b824f8dc0de8478a9d4cc9f9ac870dd, type: 3}
+  - climbStepB: {fileID: 8300000, guid: 23ec4e63c33c34aa1ae09031b8a71527, type: 3}
+  - source: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
