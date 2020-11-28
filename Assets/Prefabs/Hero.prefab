@@ -522,7 +522,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
@@ -612,25 +612,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bm: {fileID: 3955542510501940194}
-  jumpSound: {fileID: 8300000, guid: 23ec4e63c33c34aa1ae09031b8a71527, type: 3}
-  landSound: {fileID: 8300000, guid: fe74118528f7e492fa4fd5d59652522c, type: 3}
+  plantJumpSound: {fileID: 8300000, guid: 23ec4e63c33c34aa1ae09031b8a71527, type: 3}
+  metalJumpSound: {fileID: 8300000, guid: 1b824f8dc0de8478a9d4cc9f9ac870dd, type: 3}
+  plantLandSound: {fileID: 8300000, guid: fe74118528f7e492fa4fd5d59652522c, type: 3}
+  metalLandSound: {fileID: 8300000, guid: 8b3327e402c0d48838936caad911c565, type: 3}
   grabVine: {fileID: 8300000, guid: 031313200578645368289a765cc1d349, type: 3}
   letgoVine: {fileID: 8300000, guid: befade0d904d34b19a5b3878b603cdf4, type: 3}
   deathMelody: {fileID: 8300000, guid: bcc4fc96a1e02a1498dc94157da08ae0, type: 3}
-  metalStepA: {fileID: 8300000, guid: b151c3cae4753b24aae552674ae3721b, type: 3}
-  metalStepB: {fileID: 8300000, guid: 7a16f0170dd28534197d5e781a30d509, type: 3}
-  plantStepA: {fileID: 8300000, guid: dfeeb89c55a0d452c9f7e5bfd0f9861b, type: 3}
-  plantStepB: {fileID: 8300000, guid: 281ce71c9c7e8403c9e9b8366e2f3272, type: 3}
-  climbStepA: {fileID: 8300000, guid: 8042d47fd272aa64ba5fe74ad9fcbb64, type: 3}
-  climbStepB: {fileID: 8300000, guid: dff17e85b5b99a444bd4952a9ad15f81, type: 3}
-  jumpVol: 0.28
-  landVol: 0.15
-  grabVol: 0.3
-  letGoVol: 0.3
-  deathVol: 0.68
-  stepVol: 0.18
-  climbVol: 0.22
-  source: {fileID: 0}
+  metalStepA: {fileID: 8300000, guid: 0684ed3b10a2a4ce984cb6e415604e32, type: 3}
+  metalStepB: {fileID: 8300000, guid: 8b3fd2db8edd44bf09b96c16392ac6a1, type: 3}
+  plantStepA: {fileID: 8300000, guid: f393687abc12a4b519f8fbd9959cf6e2, type: 3}
+  plantStepB: {fileID: 8300000, guid: 78c95d69dbfac493fbfa1ad6946b0814, type: 3}
+  climbStepA: {fileID: 8300000, guid: 015ee98fc254a48938c21e36f5ca82ae, type: 3}
+  climbStepB: {fileID: 8300000, guid: a86ec2aebd0784ff9a36bc14ee4b261f, type: 3}
+  jumpVol: 0.2
+  landVol: 0
+  grabVol: 0.2
+  letGoVol: 0.2
+  deathVol: 1
+  stepVol: 0.07
+  climbVol: 0.07
+  source: {fileID: 4134829843847872405}
 --- !u!1 &9056281529253294538
 GameObject:
   m_ObjectHideFlags: 0

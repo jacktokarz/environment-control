@@ -6,7 +6,7 @@ public class PlayerAudio : MonoBehaviour
 {
     public BasicMovement bm;
 
-    public AudioClip jumpSound, landSound, grabVine, letgoVine, deathMelody;
+    public AudioClip plantJumpSound, metalJumpSound, plantLandSound, metalLandSound, grabVine, letgoVine, deathMelody;
     public AudioClip metalStepA, metalStepB, plantStepA, plantStepB, climbStepA, climbStepB;
     public float jumpVol, landVol, grabVol, letGoVol, deathVol, stepVol, climbVol;
 
@@ -18,7 +18,7 @@ public class PlayerAudio : MonoBehaviour
         source = GetComponent<AudioSource>();
 	}
 
-	public void PlayDeathMelody()
+    public void PlayDeathMelody()
 	{
         source.pitch = 1.0f;
         source.volume = deathVol;
@@ -39,17 +39,41 @@ public class PlayerAudio : MonoBehaviour
 	}
     public void PlayJumpSound()
     {
-        source.pitch = 1;
+        Collider2D[] groundColls = bm.GetGroundColliders();
+        foreach (Collider2D col in groundColls)
+        {
+            if (col.gameObject.tag == "metalGround")
+            {
+                source.pitch = 0.5f + ModulatePitch();
+                source.volume = jumpVol;
+                source.PlayOneShot(metalJumpSound);
+            }
+            if (col.gameObject.tag == "plantGround")
+            {
+                source.pitch = ModulatePitch();
         source.volume = jumpVol;
-        source.PlayOneShot(jumpSound);
+        source.PlayOneShot(plantJumpSound);
+            }
+        }
     }
-        //v is the player's y-axis velocity (so it is negative)
+    //v is the player's y-axis velocity (so it is negative)
     public void PlayLandSound(float yVel)
     {
         Debug.Log("landing vel "+yVel);
-        source.pitch = 1 + yVel/240.0f;
-        source.volume = landVol - yVel/50.0f;
-        source.PlayOneShot(landSound);
+        source.pitch = 1.2f + yVel/240.0f;
+        source.volume = landVol - yVel/100.0f;
+        Collider2D[] groundColls = bm.GetGroundColliders();
+        foreach (Collider2D col in groundColls)
+        {
+            if (col.gameObject.tag == "metalGround")
+            {
+                source.PlayOneShot(metalLandSound);
+            }
+            if (col.gameObject.tag == "plantGround")
+            {
+                source.PlayOneShot(plantLandSound);
+            }
+        }
     }
     public void PlayStepSound()
     {

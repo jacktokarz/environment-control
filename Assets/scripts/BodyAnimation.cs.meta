@@ -3,7 +3,15 @@ guid: 4b4fe88d04ce9bd49bc469556e5634fa
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - landingSound: {fileID: 8300000, guid: fe74118528f7e492fa4fd5d59652522c, type: 3}
+  - metalStepA: {fileID: 8300000, guid: de7d250df923a408691eefe730d11844, type: 3}
+  - metalStepB: {fileID: 8300000, guid: 718c7497f27a641d0b4221978245d44e, type: 3}
+  - plantStepA: {fileID: 8300000, guid: 427c7fca3a17e4d469cd9b0dc1e093e6, type: 3}
+  - plantStepB: {fileID: 8300000, guid: 6500ea61be75b41f2abecd38cbc0563e, type: 3}
+  - climbStepA: {fileID: 8300000, guid: 8042d47fd272aa64ba5fe74ad9fcbb64, type: 3}
+  - climbStepB: {fileID: 8300000, guid: dff17e85b5b99a444bd4952a9ad15f81, type: 3}
+  - bm: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

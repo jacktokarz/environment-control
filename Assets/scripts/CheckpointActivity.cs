@@ -52,6 +52,7 @@ public class CheckpointActivity : MonoBehaviour
 		flowerGrowAnim.SetBool("grow", true);
         playerAnim.SetBool("activating", true);
         PersistentManager.Instance.immobile = true;
+        source.volume = 0.9f;
         source.PlayOneShot(flowerGrowSound);
 		PersistentManager.Instance.Checkpoints.Add(SceneManager.GetActiveScene().buildIndex);
 		setCheckpoint();
@@ -70,6 +71,7 @@ public class CheckpointActivity : MonoBehaviour
         petalAnim.SetBool("active", true);
         petalAnim.SetTrigger("spawn");
         flowerGrowAnim.SetTrigger("spawn");
+        source.volume = 0.7f;
         source.PlayOneShot(spawnsound);
     }
 }
