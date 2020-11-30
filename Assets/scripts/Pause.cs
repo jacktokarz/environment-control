@@ -84,12 +84,19 @@ public class Pause : MonoBehaviour
 			CloseLore();
 			initialButton.Select();
 			initialButton.OnSelect(null);
+			Time.timeScale = 0;
+			PersistentManager.Instance.musicPlayer.volume = PersistentManager.Instance.quietMusicVolume;
 		}
+		else
+		{
+			Time.timeScale = 1;
+			StartCoroutine(PersistentManager.Instance.LerpVolume(1f, PersistentManager.Instance.standardMusicVolume));
+		}
+
 		for (int childIndex = 0; childIndex < this.transform.childCount; childIndex++)
 		{
 			this.transform.GetChild(childIndex).gameObject.SetActive(!paused);
 		}
-		Time.timeScale = paused ? 1 : 0;
 	}
 
 	public void OpenLore(int entry)

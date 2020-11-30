@@ -97,8 +97,7 @@ public class PersistentManager : MonoBehaviour
     public List<int> motherPlantSongScenes = new List<int>() {0, 1, 2};
     public List<int> elevatorSongScenes = new List<int>() {3, 4, 8};
     public List<int> windSongScenes = new List<int>() { 5, 6, 7 };
-    private GameObject AudioChild;
-    [HideInInspector] public AudioSource musicPlayer;
+    public AudioSource musicPlayer;
     public AudioClip motherPlantSong;
     public AudioClip elevatorSong;
     public AudioClip windSong;
@@ -130,8 +129,6 @@ public class PersistentManager : MonoBehaviour
 	private void Start()
 	{
 		CheckTextVis();
-        AudioChild = this.transform.Find("Audio").gameObject;
-        musicPlayer = AudioChild.GetComponent<AudioSource>();
         SelectMusic(SceneManager.GetActiveScene().buildIndex);
 	}
 
@@ -333,6 +330,7 @@ public class PersistentManager : MonoBehaviour
 
     public IEnumerator LerpVolume(float lerpTime, float end)
     {
+        Debug.Log("lerping volume to "+end);
         float _timeStartedLerping = Time.time;
         float start = PersistentManager.Instance.musicPlayer.volume;
         float timeSinceStarted = 0.0f;
