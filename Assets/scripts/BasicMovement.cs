@@ -23,6 +23,8 @@ public class BasicMovement : MonoBehaviour
     public Transform groundCheck;
     public float gripCheckRadius;
     public float groundCheckRadius;
+    private float gripTimeWindow;
+    private float gripTime;
     public LayerMask whatIsGrippable;
     public LayerMask whatIsDeadly;
     public LayerMask whatIsPlatform;
@@ -69,6 +71,7 @@ public class BasicMovement : MonoBehaviour
         PersistentManager.Instance.immobile = true;
         bool difficult = PersistentManager.Instance.difficulty=="challenging"; //otherwise, "relaxed"
         Debug.Log("is it difficult? "+difficult);
+        gripTimeWindow = difficult ? 0.15f : 0.2f;
         defaultGravity = difficult ? 5f : 2.5f;
         rigid = GetComponent<Rigidbody2D>();
         rigid.gravityScale = defaultGravity;
@@ -193,54 +196,7 @@ public class BasicMovement : MonoBehaviour
             }
         }
 
-
-
-        bool canGrip= false;
-        Collider2D[] grippableColliders = Physics2D.OverlapCircleAll(gripCheck.position, gripCheckRadius, whatIsGrippable);
-        for (int i = 0; i < grippableColliders.Length; i++)
-        {
-            if (grippableColliders[i].gameObject != gameObject)
-            {
-                canGrip= true;
-            }
-        }
-            // if they can grip
-        if(canGrip) {
-            lostGripCount = 0;
-                // and press the button, they do it
-            if (Input.GetKeyDown(PersistentManager.Instance.GrabKey))
-            {
-                if (gripping == false)
-                {
-                    gripOn();
-                }   
-                else
-                {       // if they were already gripping, they let go now.
-                    bodyAnimator.SetTrigger("LetGo");
-                    gripOff();
-                }
-            }
-        }
-            // if they cannot grip
-        else
-        {
-                //but they are...
-            if (gripping == true)
-            {
-                if (lostGripCount > 10)
-                {
-                    bodyAnimator.SetTrigger("LetGo");
-                    lostGripCount = 0;
-                    gripOff();
-                }
-                else
-                {
-                    lostGripCount++;
-                    h = h*-0.01f;
-                    v = v*-0.01f;
-                }
-            }
-        }
+        CheckGrip();
         
         if (PersistentManager.Instance.tempLevel >= 2)
         {
@@ -434,6 +390,60 @@ public class BasicMovement : MonoBehaviour
         if (moveY)
         {
             bm.VerticalMove(v * Time.fixedDeltaTime);
+        }
+    }
+
+    void CheckGrip()
+    {
+        if(gripping && Input.GetKeyDown(PersistentManager.Instance.GrabKey))
+        {       // if they were already gripping, they let go now.
+            bodyAnimator.SetTrigger("LetGo");
+            gripOff();
+            return;
+        }
+
+        bool canGrip= false;
+        Collider2D[] grippableColliders = Physics2D.OverlapCircleAll(gripCheck.position, gripCheckRadius, whatIsGrippable);
+        for (int i = 0; i < grippableColliders.Length; i++)
+        {
+            if (grippableColliders[i].gameObject != gameObject)
+            {
+                canGrip= true;
+            }
+        }
+        if(Input.GetKeyDown(PersistentManager.Instance.GrabKey))
+        {
+            gripTime = Time.time + gripTimeWindow;
+        }
+
+            // if they can grip
+        if(canGrip) {
+            lostGripCount = 0;
+                // and press the button, they do it
+            if (gripTime > Time.time && gripping == false)
+            {
+                gripOn();
+            }
+        }
+            // if they cannot grip
+        else
+        {
+                //but they are...
+            if (gripping == true)
+            {
+                if (lostGripCount > 10)
+                {
+                    bodyAnimator.SetTrigger("LetGo");
+                    lostGripCount = 0;
+                    gripOff();
+                }
+                else
+                {
+                    lostGripCount++;
+                    h = h*-0.02f;
+                    v = v*-0.02f;
+                }
+            }
         }
     }
 

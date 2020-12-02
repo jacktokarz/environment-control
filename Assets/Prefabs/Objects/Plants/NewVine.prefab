@@ -82,13 +82,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fdac2d361b6e8f4891ad85b81ee901a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  side: right
+  blocked: n
   defaultGrowRate: 0.7
+  shrinkRate: 0.7
   growDirection: {x: 0, y: 0.9}
   turbulenceStrength: 2
   turbulenceWavelength: 2.75
   maxHeight: 8.5
   distancePerLine: 0.2
   currentHeight: 0
+  otherVine: {fileID: 7586026344825088138}
+  secondVine: {fileID: 1632453194510299775}
 --- !u!114 &7586026344825088138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,13 +106,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fdac2d361b6e8f4891ad85b81ee901a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  side: left
+  blocked: n
   defaultGrowRate: 0.7
+  shrinkRate: 0.7
   growDirection: {x: 0, y: 0.9}
   turbulenceStrength: 2
   turbulenceWavelength: 2.75
   maxHeight: 8.5
   distancePerLine: 0.2
   currentHeight: 0
+  otherVine: {fileID: 7586026346073236527}
+  secondVine: {fileID: 1632453194510299775}
 --- !u!114 &1632453194510299775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,13 +130,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fdac2d361b6e8f4891ad85b81ee901a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  side: center
+  blocked: n
   defaultGrowRate: 0.7
+  shrinkRate: 0.575
   growDirection: {x: 0, y: 0.9}
   turbulenceStrength: 0
   turbulenceWavelength: 0
   maxHeight: 8.5
   distancePerLine: 0.2
   currentHeight: 0
+  otherVine: {fileID: 7586026344825088138}
+  secondVine: {fileID: 7586026346073236527}
 --- !u!1 &7586026345809687393
 GameObject:
   m_ObjectHideFlags: 0
