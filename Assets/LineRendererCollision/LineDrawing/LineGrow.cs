@@ -5,7 +5,10 @@ using UnityEngine;
 public class LineGrow : MonoBehaviour
 {
 
+    public string side;
+    [HideInInspector] public string blocked = "n";
     public float defaultGrowRate;
+    public float shrinkRate;
     private float growRate;
     public Vector2 growDirection = Vector2.up;
 
@@ -14,8 +17,9 @@ public class LineGrow : MonoBehaviour
 
     public float maxHeight;
     public float distancePerLine;
-    public float currentHeight;
-
+    [HideInInspector] public float currentHeight;
+    public LineGrow otherVine;
+    public LineGrow secondVine;
     private LineCollision lineCollision;
     private LineRenderer lineRenderer;
 
@@ -31,7 +35,7 @@ public class LineGrow : MonoBehaviour
     void Update()
     {
         growRate = PersistentManager.Instance.humidityLevel * defaultGrowRate;
-        currentHeight = (lineRenderer.GetPosition(lineRenderer.positionCount - 1).y);
+        currentHeight = lineRenderer.positionCount < 1 ? 0 : (lineRenderer.GetPosition(lineRenderer.positionCount - 1).y);
 
         if (growRate > 0)
         {
@@ -75,15 +79,15 @@ public class LineGrow : MonoBehaviour
             (sideways||inverseSideways ? currentPosition.y : currentPosition.x) * xSkew,
             (sideways||inverseSideways ? currentPosition.x : currentPosition.y) * ySkew
         ) + new Vector2(this.transform.position.x, this.transform.position.y);
-        bool blocked = false;
         Collider2D[] overlapper= Physics2D.OverlapBoxAll(
             worldPosition,
-            new Vector2(1, 0.09f),
+            new Vector2(0.06f, 0.06f),
             this.transform.rotation.eulerAngles.z,
             PersistentManager.Instance.whatBlocksVines
         );
         // Debug.Log("world pos of "+this.name+" is "+worldPosition+" with x "+xSkew+" y "+ySkew);
         // Debug.Log(" overlapping "+overlapper.Length);
+        string blocking = "n";
         if(overlapper.Length > 0)
         {
             foreach (Collider2D overlap in overlapper)
@@ -106,21 +110,30 @@ public class LineGrow : MonoBehaviour
                 else {
                     if(!overlap.CompareTag("vine") && (!overlap.CompareTag("vinePiece"))) {
                         // Debug.Log("running into "+overlap.name+" at "+worldPosition);
-                        blocked = true;
+                        blocking = side;
+                        blocked = side;
+                        otherVine.blocked = side;
+                        secondVine.blocked = side;
                         break;
                     }
                 }
             }
         }
+        if (blocked == side && blocking != side)
+        {
+            blocked = "n";
+            otherVine.blocked = "n";
+            secondVine.blocked = "n";
+        }
 
         //set new line position
-        if (!blocked) {
+        if (blocked == "n") {
             lineRenderer.SetPosition(lineRenderer.positionCount - 1, newPosition);
         }
 
-        float distance = Vector2.Distance(
-            lineRenderer.GetPosition(lineRenderer.positionCount - 2),
-            lineRenderer.GetPosition(lineRenderer.positionCount - 1)
+        float distance = Mathf.Abs(
+            lineRenderer.GetPosition(lineRenderer.positionCount - 2).y -
+            lineRenderer.GetPosition(lineRenderer.positionCount - 1).y
         );
 
         //add a new point
@@ -164,15 +177,15 @@ public class LineGrow : MonoBehaviour
             Vector3 reverseDirection = (currentPosition - previousPosition).normalized;
 
             //grow direction influence
-            Vector3 newPosition = currentPosition + (growRate * reverseDirection * Time.deltaTime);
+            Vector3 newPosition = currentPosition + (PersistentManager.Instance.humidityLevel * shrinkRate * reverseDirection * Time.deltaTime);
 
             //set new line position 
             lineRenderer.SetPosition(lineRenderer.positionCount - 1, newPosition);
 
 
-            float distance = Vector3.Distance(
-                lineRenderer.GetPosition(lineRenderer.positionCount - 2),
-                lineRenderer.GetPosition(lineRenderer.positionCount - 1)
+            float distance = Mathf.Abs(
+                lineRenderer.GetPosition(lineRenderer.positionCount - 2).y -
+                lineRenderer.GetPosition(lineRenderer.positionCount - 1).y
             );
 
             //remove point 
