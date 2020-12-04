@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 250249898fdf18b4fa08fe1df0bd576e
+guid: ff7944726cb9ab542867fd27fe1b57ac
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7502107512661449043
-    second: powerUpTreasureChest_0
+      213: -4326072635411673125
+    second: treasureParts_0
   - first:
-      213: 8552369869274602977
-    second: powerUpTreasureChest_1
+      213: 7175718967470003358
+    second: treasureParts_1
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -92,34 +92,34 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: powerUpTreasureChest_0
+      name: treasureParts_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 236
-        width: 419
-        height: 308
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 81
+        y: 282
+        width: 219
+        height: 260
+      alignment: 9
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 62375f9cc065c46499b8f138be218bf8
-      internalID: 7502107512661449043
+      spriteID: 1565fbbe595e2ff41981408a3a2c9403
+      internalID: -4326072635411673125
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: powerUpTreasureChest_1
+      name: treasureParts_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 419
-        height: 241
+        x: 73
+        y: 245
+        width: 266
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,8 +127,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 501bb63f65cc9b2439e0db22be149f6e
-      internalID: 8552369869274602977
+      spriteID: 079e37665d44d664ebc52e7c093c683f
+      internalID: 7175718967470003358
       vertices: []
       indices: 
       edges: []

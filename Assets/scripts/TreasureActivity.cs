@@ -5,21 +5,22 @@ using UnityEngine.UI;
 
 public class TreasureActivity : MonoBehaviour
 {
-    public AudioClip treasureSound;
+    public Animator explosionAnimator;
 	public string treasureId;
-	//private Animator openChestAnim;
+	private Animator openAnim;
 	public bool alreadyGotten;
-    private AudioSource source;
+    public AudioClip treasureSound;
     public AudioClip labsounds;
+    private AudioSource source;
 
     void Start()
     {
         source = GetComponent<AudioSource>();
-        //openChestAnim = this.GetComponent(typeof (Animator)) as Animator;
+        openAnim = this.GetComponent(typeof (Animator)) as Animator;
     	if( PersistentManager.Instance.TreasureList.Contains(treasureId))
     	{
     		alreadyGotten = true;
-    		//openChestAnim.SetBool("opened", true);
+    		openAnim.SetBool("opened", true);
     	}
     }
 
@@ -34,7 +35,8 @@ public class TreasureActivity : MonoBehaviour
     void getTreasure()
     {
         source.PlayOneShot(treasureSound, 2.0f);
-		//openChestAnim.SetBool("opening", true);
+		openAnim.SetBool("opening", true);
+		explosionAnimator.SetBool("exploding", true);
 		PersistentManager.Instance.TreasureList.Add(treasureId);
 		Queue<string> nextMessages = new Queue<string>();
 		switch (treasureId)
