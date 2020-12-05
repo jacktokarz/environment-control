@@ -935,9 +935,9 @@ MonoBehaviour:
   jumpText: {fileID: 74310419}
   grabText: {fileID: 1566907503}
   bgList:
-  - {fileID: 21300000, guid: bf2cb3c476560164eb879e5fdea3fec6, type: 3}
-  - {fileID: 21300000, guid: a9c3746f47bbd2647a4ef159e6faba16, type: 3}
-  - {fileID: 21300000, guid: fca179ced33335b4b91266210c69077c, type: 3}
+  - {fileID: 21300000, guid: b6a082c972b69f24bb57b34fa7ec775b, type: 3}
+  - {fileID: 21300000, guid: 64abcf105f08ec54ea57dd840062225e, type: 3}
+  - {fileID: 21300000, guid: f2fe7ace4755b93449827ccc33658c95, type: 3}
   availableBgs: []
 --- !u!4 &312153147
 Transform:
@@ -2883,7 +2883,7 @@ PrefabInstance:
     - target: {fileID: 3477365879915599186, guid: ac94d165cebaf4a488f3bb1f3a64f9af,
         type: 3}
       propertyPath: Checkpoints.Array.size
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3477365879915599186, guid: ac94d165cebaf4a488f3bb1f3a64f9af,
         type: 3}
