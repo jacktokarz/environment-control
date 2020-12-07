@@ -21,11 +21,6 @@ public class VineBaseActivity : MonoBehaviour
     void Update()
     {
     	float vineHeight = siblingScript.currentHeight;
-    	if ( vineHeight < 0.75f )
-    	{
-	        baseAnim.SetBool("open", false);
-	        if (source.isPlaying) { source.Stop(); }
-    	}
     	
     	if ( PersistentManager.Instance.humidityLevel > 0 )
     	{
@@ -33,13 +28,23 @@ public class VineBaseActivity : MonoBehaviour
             if (PersistentManager.Instance.humidityLevel == 1) { source.pitch = 1.0F; }
             if (PersistentManager.Instance.humidityLevel == 2) { source.pitch = 1.2F; }
             if (PersistentManager.Instance.humidityLevel == 3) { source.pitch = 1.4F; }
+            if (!source.isPlaying) { source.Play(); }
+    	}
+        else if ( PersistentManager.Instance.humidityLevel < 0 )
+        {
             if (PersistentManager.Instance.humidityLevel == -1 ) {source.pitch = 0.75F;}
             if (PersistentManager.Instance.humidityLevel == -2) { source.pitch = 0.55F; }
             if (PersistentManager.Instance.humidityLevel == -3) { source.pitch = 0.35F; }
             if (!source.isPlaying) { source.Play(); }
-    	}
-    	else {
+        }
+        else {
     		if (source.isPlaying) { source.Stop(); }
+    	}
+
+    	if ( vineHeight < 0.75f )
+    	{
+	        baseAnim.SetBool("open", false);
+	        if (source.isPlaying) { source.Stop(); }
     	}
     }
 }

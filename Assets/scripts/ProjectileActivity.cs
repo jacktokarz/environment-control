@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ProjectileActivity : MonoBehaviour
 {
-	public float speed;
+	[HideInInspector] public float speed;
 	private Rigidbody2D rigid;
 	private GameObject playerObject;
     
@@ -54,6 +54,7 @@ public class ProjectileActivity : MonoBehaviour
         else 
         {
             rigid.velocity = Vector3.zero;
+            UIFader.Instance.fadeOut(this.gameObject.GetComponent<CanvasGroup>());
         }
     }
 

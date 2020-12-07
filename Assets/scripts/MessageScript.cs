@@ -47,7 +47,7 @@ public class MessageScript : MonoBehaviour
     public IEnumerator disappear()
     {
     	escapeKey = null;
-		PersistentManager.Instance.uiFader.fadeOut(cg);
+		UIFader.Instance.fadeOut(cg);
     	if(nextMessages.Count==0)
     	{
     		PersistentManager.Instance.immobile=false;

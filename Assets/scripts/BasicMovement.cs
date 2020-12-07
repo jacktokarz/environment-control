@@ -449,11 +449,14 @@ public class BasicMovement : MonoBehaviour
 
     void death() 
     {
-        rigid.velocity= new Vector2(0,0);
-        PersistentManager.Instance.immobile = true;
-        bodyAnimator.SetBool("dead", true);
-        PersistentManager.Instance.GameOver.SetActive(true);
-        pa.PlayDeathMelody();
+        if (!PersistentManager.Instance.immobile)
+        {
+            rigid.velocity= new Vector2(0,0);
+            PersistentManager.Instance.immobile = true;
+            bodyAnimator.SetBool("dead", true);
+            PersistentManager.Instance.GameOver.SetActive(true);
+            pa.PlayDeathMelody();
+        }
     }
 
     void gripOff()

@@ -9,6 +9,9 @@ public class EnemyActivity : MonoBehaviour
     public AudioClip slowbeep;
     public AudioClip fastbeep;
     public AudioClip shoot;
+    public float slowVolume;
+    public float fastVolume;
+
 
     private AudioSource source;
 	private GameObject playerObject;
@@ -55,15 +58,13 @@ public class EnemyActivity : MonoBehaviour
         else 
         {
 			RaycastHit2D hit = Physics2D.Raycast(transform.position, (playerObject.transform.position - this.transform.position).normalized, vision, PersistentManager.Instance.blocksProjectiles);
-			if (hit.transform!=null && hit.transform.CompareTag("Player"))
+			if (hit.transform!=null && hit.transform.CompareTag("Player") && !PersistentManager.Instance.immobile)
 			{ //if cansee == false then activates sound
                 if (canSee == false)
                 {
-                    if(source)
-                    {
-                        source.clip = fastbeep;
-                        source.Play();                        
-                    }
+                    source.volume = fastVolume;
+                    source.clip = fastbeep;
+                    source.Play();                        
                 }
 				canSee = true;
 				Quaternion q = Quaternion.AngleAxis(clampAngle, Vector3.forward);
@@ -81,13 +82,9 @@ public class EnemyActivity : MonoBehaviour
 		}
 		if (canSee == false)
 		{
-            if(source) {
-                source.clip = slowbeep;
-                if (!source.isPlaying)
-                {
-                    source.Play();
-                }           
-            }
+            source.volume = slowVolume;
+            source.clip = slowbeep;
+            if (!source.isPlaying) { source.Play(); }
 		}
 
         if (counter >= rate && canSee)

@@ -20,12 +20,6 @@ public class VineActivity : MonoBehaviour
         baseAnim = this.transform.GetChild(0).GetComponent(typeof (Animator)) as Animator;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void changeVine() {
         activeChildCount = 0;
         for(int i = 0; i < this.transform.childCount; i++)

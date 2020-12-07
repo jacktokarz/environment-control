@@ -4,7 +4,21 @@ using UnityEngine;
 
 public class UIFader : MonoBehaviour {
 
+    public static UIFader Instance { get; private set; }
     public CanvasGroup uiElement;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     public void fadeIn(CanvasGroup selectedElement)
     {

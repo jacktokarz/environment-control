@@ -3699,7 +3699,6 @@ MonoBehaviour:
   blackCover: {fileID: 1601072234570824128}
   difficulty: challenging
   vcam: {fileID: 0}
-  uiFader: {fileID: 0}
   zoomOptions:
   - 6.5
   - 8
@@ -3737,7 +3736,7 @@ MonoBehaviour:
   balloonTravelSpeed: 1.4
   dumbEnemyFireRate: 180
   dumbEnemyVision: 11
-  dumbProjectileSpeed: 2.25
+  dumbProjectileSpeed: 2.6
   iceEnemyFireRate: 220
   iceEnemyVision: 10
   iceProjectileSpeed: 2
@@ -3759,7 +3758,7 @@ MonoBehaviour:
   musicPlayer: {fileID: 536044751}
   motherPlantSong: {fileID: 8300000, guid: 48768eee707ad489cb94269f07f35edf, type: 3}
   elevatorSong: {fileID: 8300000, guid: d6972b375e6d644dba2483fb87dee038, type: 3}
-  windSong: {fileID: 8300000, guid: 47920c7ceac8f4f9aae67a7f05a63174, type: 3}
+  windSong: {fileID: 8300000, guid: 87523e16efb31904290c1031fb60226e, type: 3}
   standardMusicVolume: 0.75
   quietMusicVolume: 0.02
   TreasureList: []
@@ -6266,7 +6265,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -180}
+  m_AnchoredPosition: {x: 0, y: -230}
   m_SizeDelta: {x: 540, y: 320}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4382798727438208701

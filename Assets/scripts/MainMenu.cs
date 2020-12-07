@@ -9,7 +9,6 @@ public class MainMenu : MonoBehaviour
 {
 	private Transform PersistentUI;
 	private GameData loadGame;
-    private UIFader uiFader;
     public GameObject firstScreen;
     public CanvasGroup firstCanvas;
     public GameObject difficultyScreen;
@@ -36,8 +35,6 @@ public class MainMenu : MonoBehaviour
 
         PersistentUI = PersistentManager.Instance.transform.GetChild(0);
         PersistentUI.gameObject.SetActive(false);
-
-        uiFader = this.GetComponent(typeof (UIFader)) as UIFader;
     }
 
     void Update()
@@ -122,7 +119,7 @@ public class MainMenu : MonoBehaviour
         grabText.text = PersistentManager.Instance.GrabKey.ToString();
         jumpText.text = PersistentManager.Instance.JumpKey.ToString();
 
-        uiFader.fadeIn(setKeysCanvas);
+        UIFader.Instance.fadeIn(setKeysCanvas);
         firstScreen.SetActive(false);
         pauseButton.Select();
         pauseButton.OnSelect(null);
@@ -131,7 +128,7 @@ public class MainMenu : MonoBehaviour
     public void saveKeysClicked()
     {
         Debug.Log("gonna fade in difficulty");
-        uiFader.fadeIn(difficultyCanvas);
+        UIFader.Instance.fadeIn(difficultyCanvas);
         setKeysScreen.SetActive(false);
         defaultDifficulty.Select();
         defaultDifficulty.OnSelect(null);
@@ -139,7 +136,7 @@ public class MainMenu : MonoBehaviour
 
     public void backSelected()
     {
-        uiFader.fadeIn(firstCanvas);
+        UIFader.Instance.fadeIn(firstCanvas);
         difficultyScreen.SetActive(false);
         newButton.Select();
         newButton.OnSelect(null);

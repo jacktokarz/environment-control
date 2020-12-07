@@ -22,7 +22,6 @@ public class PersistentManager : MonoBehaviour
     public string difficulty;
     	//Camera
     public CinemachineVirtualCamera vcam;
-    public UIFader uiFader;
     public List<float> zoomOptions = new List<float>() {6.5f, 8f, 5f};
     [HideInInspector] 
     public float currentZoom;
@@ -122,7 +121,6 @@ public class PersistentManager : MonoBehaviour
 			Destroy(gameObject);
 		}
         GetCameraAndZoom();
-        uiFader = this.GetComponent(typeof (UIFader)) as UIFader;
         SetKeys();
 	}
 
@@ -167,7 +165,7 @@ public class PersistentManager : MonoBehaviour
         if (!getSongList(SceneManager.GetActiveScene().buildIndex).Contains(sceneNumber)) {
             SelectMusic(-1);
         }
-        uiFader.fadeIn(blackCover);
+        UIFader.Instance.fadeIn(blackCover);
         yield return new WaitForSeconds(0.75f);
         SelectMusic(sceneNumber);
         yield return new WaitForSeconds(0.75f);
@@ -176,7 +174,7 @@ public class PersistentManager : MonoBehaviour
         {
             GameOver.SetActive(false);
         }
-        uiFader.fadeOut(blackCover);
+        UIFader.Instance.fadeOut(blackCover);
     }
 
     // re-using fadeSpeed here, might not be good?
@@ -217,7 +215,7 @@ public class PersistentManager : MonoBehaviour
         Message.GetComponent<Text>().text = nextMessages.Dequeue();
         Debug.Log("doing a message from "+nextMessages.Count);
         MessageScript ms = Message.GetComponent(typeof (MessageScript)) as MessageScript;
-        uiFader.fadeIn(ms.cg);
+        UIFader.Instance.fadeIn(ms.cg);
 
         yield return new WaitForSeconds(fadeSpeed);
         Debug.Log("done waiting");
