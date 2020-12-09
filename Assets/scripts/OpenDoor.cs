@@ -97,7 +97,5 @@ public class OpenDoor : MonoBehaviour
     public void spawn(GameObject player) {
         player.SetActive(true);
         PersistentManager.Instance.immobile = false;
-        Debug.Log("door makes player");
-
     }
 }

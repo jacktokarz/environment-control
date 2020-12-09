@@ -87,7 +87,6 @@ public class BasicMovement : MonoBehaviour
 
         if (PersistentManager.Instance.lastDoorId == "NewGame")
         {
-            Debug.Log("showing cutscene");
             GameObject checkpoint = GameObject.FindWithTag("hub");
             this.transform.position = new Vector3(checkpoint.transform.position.x, checkpoint.transform.position.y);
             CheckpointActivity ca = checkpoint.GetComponent(typeof (CheckpointActivity)) as CheckpointActivity;
@@ -96,7 +95,6 @@ public class BasicMovement : MonoBehaviour
         }
         if (PersistentManager.Instance.lastDoorId == "Respawn")
         {
-            Debug.Log("respawning");
             if (!PersistentManager.Instance.Checkpoints.Contains(SceneManager.GetActiveScene().buildIndex))
             {
                 SceneManager.LoadScene(PersistentManager.Instance.lastCheckpoint, LoadSceneMode.Single);
@@ -109,7 +107,6 @@ public class BasicMovement : MonoBehaviour
             }
             this.transform.position = new Vector3(checkpoint.transform.position.x, checkpoint.transform.position.y + 0.55f);
             CheckpointActivity ca = checkpoint.GetComponent(typeof (CheckpointActivity)) as CheckpointActivity;
-            Debug.Log("calling spawn anim "+ca);
             ca.spawn();
             return;
         }
@@ -147,7 +144,7 @@ public class BasicMovement : MonoBehaviour
     {
         foreach(KeyCode vKey in System.Enum.GetValues(typeof(KeyCode))){
              if(Input.GetKeyDown(vKey)){
-                Debug.Log("input "+vKey);
+                // Debug.Log("input "+vKey);
             }
         }
 
@@ -461,7 +458,6 @@ public class BasicMovement : MonoBehaviour
 
     void gripOff()
     {
-        Debug.Log("Let go");
         gripping = false;
         bodyAnimator.SetBool("gripping", false);
         pa.PlayLetGo();
@@ -469,7 +465,6 @@ public class BasicMovement : MonoBehaviour
     }
     void gripOn()
     {
-        Debug.Log("grab");
         gripping = true;
         bodyAnimator.SetBool("gripping", true);
         pa.PlayGrabVine();
@@ -529,11 +524,8 @@ public class BasicMovement : MonoBehaviour
 
     IEnumerator stallHubSpawn(CheckpointActivity ca, float sec)
     {
-        Debug.Log("Started Coroutine at timestamp : " + Time.time);
-
         yield return new WaitForSeconds(sec);
         ca.spawn();
-        Debug.Log("done with co routine");
     }
 
 }

@@ -22,20 +22,17 @@ public class UIFader : MonoBehaviour {
 
     public void fadeIn(CanvasGroup selectedElement)
     {
-        Debug.Log("starting to fade in");
         selectedElement.alpha = 0;
         StartCoroutine(FadeCanvasGroup(selectedElement, selectedElement.alpha, 1, PersistentManager.Instance.fadeSpeed));
     }
 
     public void fadeOut(CanvasGroup uiElement)
     {
-        Debug.Log("starting to fade out");
         StartCoroutine(FadeCanvasGroup(uiElement, uiElement.alpha, 0, PersistentManager.Instance.fadeSpeed));
     }
 
     public IEnumerator FadeCanvasGroup(CanvasGroup cg, float start, float end, float lerpTime = 1)
 	{
-        Debug.Log("fading");
 		float _timeStartedLerping = Time.time;
 		float timeSinceStarted = Time.time - _timeStartedLerping;
 		float percentageComplete = timeSinceStarted / lerpTime;
@@ -57,6 +54,5 @@ public class UIFader : MonoBehaviour {
 
 			yield return new WaitForFixedUpdate();
 		}
-        Debug.Log("done fading");
 	}
 }

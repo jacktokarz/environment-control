@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2918,7 +2918,7 @@ PrefabInstance:
     - target: {fileID: 7970982052978879036, guid: e6b9a9c3a0b27ec478e38f46b9c49253,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7970982052978879039, guid: e6b9a9c3a0b27ec478e38f46b9c49253,
         type: 3}
@@ -4319,7 +4319,7 @@ PrefabInstance:
     - target: {fileID: 6419788569177328297, guid: a14673ab201ebe24e8a1fff180b9c76b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 45.5
+      value: 48
       objectReference: {fileID: 0}
     - target: {fileID: 6419788569177328297, guid: a14673ab201ebe24e8a1fff180b9c76b,
         type: 3}
@@ -9372,7 +9372,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.14, y: 0.87}
+  m_Size: {x: 0.1, y: 0.87}
   m_EdgeRadius: 0
 --- !u!1 &675705697
 GameObject:

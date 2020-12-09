@@ -13,9 +13,7 @@ public class HidingSprite : MonoBehaviour
     {
     	if(col.CompareTag("Player"))
     	{
-    		Debug.Log("setting color");
-    		sr.color = new Color (sr.color.r, sr.color.g, sr.color.b, 0.2f);
-    		Debug.Log("color is "+sr.color);
+    		sr.color = new Color (sr.color.r, sr.color.g, sr.color.b, 0.35f);
     	}
     }
 

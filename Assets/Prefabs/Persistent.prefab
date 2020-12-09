@@ -1425,7 +1425,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7424459643760014415
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2637,7 +2637,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.7735849, g: 0.61272216, b: 0.46707013, a: 1}
-    m_HighlightedColor: {r: 0.5538723, g: 0.7075472, b: 0.39382342, a: 1}
+    m_HighlightedColor: {r: 0.654902, g: 0.77254903, b: 0.45882353, a: 1}
     m_PressedColor: {r: 0.6981132, g: 0.6981132, b: 0.6981132, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -2765,8 +2765,8 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 0.77254903, g: 0.6117647, b: 0.46666667, a: 1}
+    m_HighlightedColor: {r: 0.654902, g: 0.77254903, b: 0.45882353, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -3854,7 +3854,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: JOURNAL ENTRIES
+  m_Text: ZEBRILLE'S REPORTS
 --- !u!114 &2606620475578420037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5740,8 +5740,8 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.7830189, g: 0.48015308, b: 0.48015308, a: 1}
-    m_HighlightedColor: {r: 0.4033569, g: 0.735849, b: 0.22908509, a: 1}
+    m_NormalColor: {r: 0.77254903, g: 0.6117647, b: 0.46666667, a: 1}
+    m_HighlightedColor: {r: 0.654902, g: 0.77254903, b: 0.45882353, a: 1}
     m_PressedColor: {r: 0.6981132, g: 0.6981132, b: 0.6981132, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -6510,7 +6510,7 @@ MonoBehaviour:
     m_Bottom: 20
   m_ChildAlignment: 4
   m_StartCorner: 0
-  m_StartAxis: 1
+  m_StartAxis: 0
   m_CellSize: {x: 80, y: 70}
   m_Spacing: {x: 50, y: 30}
   m_Constraint: 0

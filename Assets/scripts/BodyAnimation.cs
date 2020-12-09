@@ -14,14 +14,12 @@ public class BodyAnimation : MonoBehaviour
 
     void endActivationAnimation()
     {
-    	Debug.Log("freeing body");
     	PersistentManager.Instance.immobile = false;
 		playerAnim.SetBool("activating", false);
     }
 
     void CreatePollen()
     {
-        Debug.Log("pollenating");
         PersistentManager.Instance.SeePollen();
     }
 

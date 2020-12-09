@@ -45,7 +45,6 @@ public class ChangeScene : MonoBehaviour
         	float direction = (bm.m_FacingRight ? 1 : -1);
             timeSinceStarted = Time.time - _timeStartedLerping;
             percentageComplete = timeSinceStarted / lerpTime;
-            Debug.Log("percentage light moving "+percentageComplete);
 
             float currentValue = Mathf.Lerp(start, start + (direction*10f), percentageComplete);
 

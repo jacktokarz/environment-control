@@ -12,7 +12,6 @@ public class GameOver : MonoBehaviour
 
     void OnEnable()
     {
-    	Debug.Log("gaming over");
     	active = true;
         GOtext = GetComponentInChildren<Text>();
         GOcolor = GOtext.color;
@@ -30,7 +29,6 @@ public class GameOver : MonoBehaviour
     		child.gameObject.SetActive(false);
     	}
     	GOtext.gameObject.SetActive(true);
-    	Debug.Log("bye bye");
     }
 
     void Update()
@@ -56,7 +54,6 @@ public class GameOver : MonoBehaviour
     {
     	PersistentManager.Instance.lastDoorId = "Respawn";
         StartCoroutine(PersistentManager.Instance.GoToScene(PersistentManager.Instance.lastCheckpoint));
-	    Debug.Log("this is "+this.gameObject);
     }
     public void Quit()
     {

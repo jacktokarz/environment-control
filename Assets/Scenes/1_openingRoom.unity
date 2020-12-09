@@ -291,7 +291,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1064327361}
+    m_TransformParent: {fileID: 819058659}
     m_Modifications:
     - target: {fileID: 2328194828515570625, guid: 0cc69311cbdb69b469c1da63d5ab1a43,
         type: 3}
@@ -316,12 +316,12 @@ PrefabInstance:
     - target: {fileID: 2328194828515570621, guid: 0cc69311cbdb69b469c1da63d5ab1a43,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2328194828515570621, guid: 0cc69311cbdb69b469c1da63d5ab1a43,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2328194828515570621, guid: 0cc69311cbdb69b469c1da63d5ab1a43,
         type: 3}
@@ -336,7 +336,7 @@ PrefabInstance:
     - target: {fileID: 2328194828515570621, guid: 0cc69311cbdb69b469c1da63d5ab1a43,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 2328194828515570621, guid: 0cc69311cbdb69b469c1da63d5ab1a43,
         type: 3}
@@ -7967,7 +7967,7 @@ PrefabInstance:
     - target: {fileID: 4716485986572984658, guid: 8c194b5a0e2527446850355bc5e4b7ef,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 65
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 4716485986572984658, guid: 8c194b5a0e2527446850355bc5e4b7ef,
         type: 3}
@@ -8027,7 +8027,7 @@ PrefabInstance:
     - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
         type: 3}
       propertyPath: m_Lens.OrthographicSize
-      value: 6.5
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
         type: 3}
@@ -8483,6 +8483,8 @@ Transform:
   - {fileID: 640750638}
   - {fileID: 1062220904}
   - {fileID: 1749053759}
+  - {fileID: 49654193}
+  - {fileID: 1327001086}
   m_Father: {fileID: 1022124052}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15885,8 +15887,6 @@ Transform:
   - {fileID: 3849421594504787196}
   - {fileID: 1040263290}
   - {fileID: 1851952569}
-  - {fileID: 49654193}
-  - {fileID: 1327001086}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16887,7 +16887,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1064327361}
+    m_TransformParent: {fileID: 819058659}
     m_Modifications:
     - target: {fileID: 2328194828515570625, guid: 0cc69311cbdb69b469c1da63d5ab1a43,
         type: 3}
@@ -16912,12 +16912,12 @@ PrefabInstance:
     - target: {fileID: 2328194828515570621, guid: 0cc69311cbdb69b469c1da63d5ab1a43,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2328194828515570621, guid: 0cc69311cbdb69b469c1da63d5ab1a43,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2328194828515570621, guid: 0cc69311cbdb69b469c1da63d5ab1a43,
         type: 3}
@@ -16932,7 +16932,7 @@ PrefabInstance:
     - target: {fileID: 2328194828515570621, guid: 0cc69311cbdb69b469c1da63d5ab1a43,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 2328194828515570621, guid: 0cc69311cbdb69b469c1da63d5ab1a43,
         type: 3}
@@ -18210,21 +18210,21 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 0.5, y: 0}
-  - {x: 16.25, y: 0}
-  - {x: 16.25, y: 2}
-  - {x: 21.5, y: 2}
-  - {x: 22, y: 5}
-  - {x: 33, y: 5}
+  - {x: 0.5, y: -0.2}
+  - {x: 16.25, y: -0.2}
+  - {x: 16.25, y: 2.1}
+  - {x: 21.5, y: 2.1}
+  - {x: 22, y: 4.9}
+  - {x: 33, y: 4.9}
   - {x: 33, y: 3.75}
   - {x: 36, y: 3.75}
-  - {x: 36.5, y: 1.5}
-  - {x: 40, y: 1.5}
-  - {x: 40, y: 0.5}
-  - {x: 52.5, y: 0.5}
+  - {x: 36.5, y: 1.4}
+  - {x: 40.2, y: 1.4}
+  - {x: 40.2, y: 0.3}
+  - {x: 52.5, y: 0.35}
   - {x: 52.5, y: -2}
   - {x: 0.5, y: -2}
-  - {x: 0.5, y: 0}
+  - {x: 0.5, y: -0.2}
 --- !u!1 &1577688239
 GameObject:
   m_ObjectHideFlags: 0

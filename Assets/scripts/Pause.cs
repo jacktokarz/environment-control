@@ -74,7 +74,6 @@ public class Pause : MonoBehaviour
 		//uses the p button to pause and unpause the game
 		if (Input.GetKeyDown(PersistentManager.Instance.PauseKey))
 		{
-			Debug.Log("Time scale is "+Time.timeScale);
 			ActivatePause();
 		}
 	}
@@ -122,7 +121,6 @@ public class Pause : MonoBehaviour
 
 	public void OpenLore(int entry)
 	{
-		Debug.Log("opening "+entry);
 		loreReader.transform.GetChild(0).GetComponent<Text>().text = loreBook[entry];
 		loreReader.SetActive(true);
 		escapeReaderButton.Select();

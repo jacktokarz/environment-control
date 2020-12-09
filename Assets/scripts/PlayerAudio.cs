@@ -59,7 +59,6 @@ public class PlayerAudio : MonoBehaviour
         //v is the player's y-axis velocity (so it is negative) e.g. -8 to -40
     public void PlayLandSound(float yVel)
     {
-        Debug.Log("landing vel "+yVel);
         source.pitch = 1.2f + yVel/240.0f;
         source.volume = landVol - yVel/100.0f;
         Collider2D[] groundColls = bm.GetGroundColliders();

@@ -51,7 +51,6 @@ public class BalloonActivity : MonoBehaviour
     	if(tethered) {
     		return;
     	}
-    	Debug.Log("ball being blown");	
 
     	if (PersistentManager.Instance.windLevel > 0)
 		{

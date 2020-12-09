@@ -51,10 +51,7 @@ public class MainMenu : MonoBehaviour
             {
                 FillAvailableBgs();
             }
-            // Debug.Log("new started at "+newBg.transform.position.y);
-            // Debug.Log("went down "+bc.size.y/2);
             Vector2 srSize = sr.bounds.size;
-            Debug.Log("and "+ srSize);
             newBg.transform.position = new Vector3(newBg.transform.position.x,
                 newBg.transform.position.y - (srSize.y/2) + bgResetSpot.y + 0.25f,
                 newBg.transform.position.z);
@@ -80,7 +77,6 @@ public class MainMenu : MonoBehaviour
 
     public GameData Load() 
     {
-    	Debug.Log("loading...");
         if(File.Exists(Application.persistentDataPath + "/save.gd")) {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/save.gd", FileMode.Open);
@@ -96,7 +92,6 @@ public class MainMenu : MonoBehaviour
 
     public void loadClicked()
     {
-    	Debug.Log("clicked load game");
         PersistentManager.Instance.TreasureList = new List<string>(loadGame.TreasureList);
         PersistentManager.Instance.CheckTextVis();
         PersistentManager.Instance.lastCheckpoint = loadGame.lastCheckpoint;
@@ -113,7 +108,6 @@ public class MainMenu : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
         PersistentManager.Instance.SetKeys();
-        Debug.Log("getting keys");
         pauseText.text = PersistentManager.Instance.PauseKey.ToString();
         zoomText.text = PersistentManager.Instance.ZoomKey.ToString();
         grabText.text = PersistentManager.Instance.GrabKey.ToString();
@@ -127,7 +121,6 @@ public class MainMenu : MonoBehaviour
 
     public void saveKeysClicked()
     {
-        Debug.Log("gonna fade in difficulty");
         UIFader.Instance.fadeIn(difficultyCanvas);
         setKeysScreen.SetActive(false);
         defaultDifficulty.Select();
@@ -144,7 +137,6 @@ public class MainMenu : MonoBehaviour
 
     public void difficultyClicked(string difficulty)
     {
-        Debug.Log("clicked difficulty with "+difficulty);
     	PersistentUI.gameObject.SetActive(true);
         PersistentManager.Instance.difficulty=difficulty;
         PersistentManager.Instance.lastDoorId="NewGame";

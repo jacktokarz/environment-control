@@ -14,7 +14,6 @@ public class EventActivity : MonoBehaviour
 
     public void Birth(int visible)
     {
-        Debug.Log("birthing...");
         playerChild.SetActive(visible==1);
         Animator playerAnim = playerChild.GetComponent(typeof (Animator)) as Animator;
         playerAnim.SetBool("grounded", true);
@@ -23,13 +22,11 @@ public class EventActivity : MonoBehaviour
 
     public void Visualize(int visible)
     {
-    	Debug.Log("visualizing...");
         playerChild.SetActive(visible==1);
     }
 
     public void Mobilize(int mobile)
     {
-    	Debug.Log("mobilizing...");
         PersistentManager.Instance.immobile = mobile==0;
     }
 

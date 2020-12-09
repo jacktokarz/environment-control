@@ -67,7 +67,6 @@ public class EnvironmentEffect : MonoBehaviour
         waterLines = GameObject.FindGameObjectsWithTag("waterLine");
         if (waterLines.Length > 0)
         {
-            Debug.Log("water lines length: "+waterLines.Length);
             waterColliders = new BoxCollider2D[waterLines.Length];
             waterColliderSizeOriginals = new Vector2[waterLines.Length];
             waterColliderSizeStarts = new Vector2[waterLines.Length];
@@ -79,7 +78,6 @@ public class EnvironmentEffect : MonoBehaviour
             for (int i = 0; i < waterLines.Length; i++) {
                 BoxCollider2D wbc = waterColliderHolders[i].GetComponent<BoxCollider2D>();
                 waterColliders[i] = wbc;
-                Debug.Log("first original "+wbc.size);
                 waterColliderSizeOriginals[i] = wbc.size;
                 waterColliderSizeStarts[i] = wbc.size;
                 waterColliderOffsetOriginals[i] = wbc.offset;
@@ -128,7 +126,6 @@ public class EnvironmentEffect : MonoBehaviour
 
     public bool setHumidity(int value, bool muted = false)
     {
-        Debug.Log("trying to set humidity to "+value);
         if ((value>=PersistentManager.Instance.minHumidity) && (value<=PersistentManager.Instance.maxHumidity))
         {
             if (!muted)
@@ -197,7 +194,6 @@ public class EnvironmentEffect : MonoBehaviour
 
     public bool setWind(int value)
     {
-        Debug.Log("changing wind by "+value);
         if ((value >= PersistentManager.Instance.minWind) && (value <= PersistentManager.Instance.maxWind))
         {
             PersistentManager.Instance.windLevel = value;
@@ -330,7 +326,6 @@ public class EnvironmentEffect : MonoBehaviour
     {
         foreach (GameObject bush in bushes)
         {
-            Debug.Log("freezing");
             StartCoroutine(changeChildColor(bush.transform, new Color(1f, 1f, 1f, 0.3f), Time.time));
             BoxCollider2D bc = bush.GetComponent<BoxCollider2D>();
             bc.isTrigger = true;
@@ -341,14 +336,11 @@ public class EnvironmentEffect : MonoBehaviour
         foreach (GameObject bush in bushes)
         {
             BoxCollider2D bc = bush.GetComponent<BoxCollider2D>();
-            Debug.Log("thawing...");
             while (bc.IsTouchingLayers(playerLayer))
             {
                 yield return new WaitForFixedUpdate();
-                Debug.Log("..");
             }
             // yield return new WaitForSeconds(0.1);
-            Debug.Log("done thawing");
             bc.isTrigger = false;
             StartCoroutine(changeChildColor(bush.transform, Color.white, Time.time));
         }
@@ -511,7 +503,6 @@ public class EnvironmentEffect : MonoBehaviour
     public void setToxicity(int toxicLevel)
     {
         PersistentManager.Instance.toxicLevel = toxicLevel;
-        Debug.Log("toxic set to "+toxicLevel);
         if (PersistentManager.Instance.tempLevel > -2)
         {
             if (toxicLevel >= 1)
@@ -520,7 +511,6 @@ public class EnvironmentEffect : MonoBehaviour
             }
             else
             {
-                Debug.Log("cleaning");
                 cleanWater();
             }
         }
@@ -559,7 +549,6 @@ public class EnvironmentEffect : MonoBehaviour
         var stack = new Stack<T>(array);
         stack.Push(element);
         T[] arr = stack.ToArray();
-        //Debug.Log("added to bottom?");
         return arr;
     }
 

@@ -37,7 +37,6 @@ public class CheckpointActivity : MonoBehaviour
     {
     	if(col.CompareTag("Player"))
     	{
-            Debug.Log("checkpoint hit player");
             if (!alreadyChecked) {
         		activateCheckpoint();
             }
@@ -66,7 +65,6 @@ public class CheckpointActivity : MonoBehaviour
 
     public void spawn()
     {
-        Debug.Log("checkpoint makes player");
         petalObj.SetActive(true);
         petalAnim.SetBool("active", true);
         petalAnim.SetTrigger("spawn");

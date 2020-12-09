@@ -28,10 +28,10 @@ public class PersistentManager : MonoBehaviour
     public bool zooming = false;
     public float openingCutsceneLength = 13f;
 
-    public KeyCode PauseKey = KeyCode.Escape;
+    public KeyCode PauseKey = KeyCode.P;
     public KeyCode ZoomKey = KeyCode.Z;
     public KeyCode JumpKey = KeyCode.Space;
-    public KeyCode GrabKey = KeyCode.G;
+    public KeyCode GrabKey = KeyCode.RightShift;
     public KeyCode HumidityKey = KeyCode.Alpha1;
     public KeyCode WindKey = KeyCode.Alpha2;
     public KeyCode TemperatureKey = KeyCode.Alpha3;
@@ -210,15 +210,12 @@ public class PersistentManager : MonoBehaviour
 
     public IEnumerator MakeMessage(Queue<string> nextMessages)
     {
-        Debug.Log("making a message from "+nextMessages.Count);
         immobile = true;
         Message.GetComponent<Text>().text = nextMessages.Dequeue();
-        Debug.Log("doing a message from "+nextMessages.Count);
         MessageScript ms = Message.GetComponent(typeof (MessageScript)) as MessageScript;
         UIFader.Instance.fadeIn(ms.cg);
 
         yield return new WaitForSeconds(fadeSpeed);
-        Debug.Log("done waiting");
         ms.escapeKey = nextMessages.Dequeue();
 
         ms.nextMessages = nextMessages;
@@ -258,23 +255,19 @@ public class PersistentManager : MonoBehaviour
         bool xBox = false;
         for (int x = 0; x < controllers.Length; x++)
         {
-            Debug.Log("controller "+controllers[x]);
             if (controllers[x].Contains("Xbox One"))
             {
                 xBox = true;
             }
         }
-        Debug.Log("xbox? "+xBox);
-        Debug.Log("pref? "+PlayerPrefs.GetString("PauseButton"));
 
-        PauseKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("PauseButton", xBox ? "JoystickButton7" : "L"));
+        PauseKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("PauseButton", xBox ? "JoystickButton7" : "P"));
         ZoomKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ZoomButton", xBox ? "JoystickButton8" : "Z"));
         JumpKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("JumpButton", xBox ? "JoystickButton5" : "Space"));
-        GrabKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("GrabButton", xBox ? "JoystickButton4" : "G"));
+        GrabKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("GrabButton", xBox ? "JoystickButton4" : "RightShift"));
         HumidityKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("HumidityButton", xBox ? "JoystickButton1" : "Alpha1"));
         WindKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("WindButton", xBox ? "JoystickButton3" : "Alpha2"));
         TemperatureKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("TemperatureButton", xBox ? "JoystickButton2" : "Alpha3"));
-        Debug.Log("pause set to "+PauseKey.ToString());
     }
 
     public List<int> getSongList(int sn)
@@ -297,7 +290,6 @@ public class PersistentManager : MonoBehaviour
 
     public void SelectMusic(int sn)
     {
-        Debug.Log("musical scene is "+sn);
         StartCoroutine(LerpVolume(1, standardMusicVolume));
         List<int> songList = getSongList(sn);
         if (motherPlantSongScenes == songList)
@@ -317,18 +309,15 @@ public class PersistentManager : MonoBehaviour
         }
         else 
         {
-            Debug.Log("playing nothing");
             musicPlayer.clip = null;
             musicPlayer.Stop(); 
             return;
         }
-        Debug.Log("playing something");
         musicPlayer.Play();
     }
 
     public IEnumerator LerpVolume(float lerpTime, float end)
     {
-        Debug.Log("lerping volume to "+end);
         float _timeStartedLerping = Time.time;
         float start = PersistentManager.Instance.musicPlayer.volume;
         float timeSinceStarted = 0.0f;

@@ -69,7 +69,6 @@ public class KeyBinder : MonoBehaviour
             // Debug.Log("pressed "+pressed.ToString());
             foreach(KeyCode vKey in System.Enum.GetValues(typeof(KeyCode))){
                  if(Input.GetKeyDown(vKey)){
-                    Debug.Log("GUI "+vKey);
                     preString = vKey.ToString();
                     break;
                 }
@@ -91,7 +90,7 @@ public class KeyBinder : MonoBehaviour
 
     public void ChangeKey(GameObject clicked)
     {
-    	Debug.Log("clicked on "+clicked);
+    	// Debug.Log("clicked on "+clicked);
      	if (currentKey != null)
     	{
     		currentKey.GetComponent<Image>().color = normal;

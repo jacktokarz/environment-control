@@ -59,7 +59,6 @@ public class TreasureActivity : MonoBehaviour
 			nextMessages.Enqueue(PersistentManager.Instance.PauseKey.ToString());
 			break;
 		}
-        Debug.Log("passing a message from "+nextMessages.Count);
 
 		PersistentManager.Instance.CheckTextVis();
 		StartCoroutine(PersistentManager.Instance.MakeMessage(nextMessages));

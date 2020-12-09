@@ -13,7 +13,6 @@ public class CollectibleActivity : MonoBehaviour
     void Start()
     {
         source = GetComponent<AudioSource>();
-        Debug.Log("this scene is: "+SceneManager.GetActiveScene().buildIndex);
     	if( PersistentManager.Instance.Collectibles.Contains(SceneManager.GetActiveScene().buildIndex))
     	{
     		this.gameObject.SetActive(false);

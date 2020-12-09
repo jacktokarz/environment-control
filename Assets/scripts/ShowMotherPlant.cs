@@ -7,9 +7,6 @@ public class ShowMotherPlant : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (PersistentManager.Instance.TreasureList.Contains("wind"))
-        {
-        	this.transform.GetChild(0).gameObject.SetActive(true);
-        }
+    	this.transform.GetChild(0).gameObject.SetActive(PersistentManager.Instance.TreasureList.Contains("wind"));
     }
 }

@@ -45,9 +45,7 @@ public class ProjectileActivity : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        Debug.Log("colliding");
         AudioSource.PlayClipAtPoint(hitsound, this.gameObject.transform.position, 0.4f);
-        Debug.Log("exploding");
         if (coll.gameObject != playerObject) {
             Destroy(this.gameObject);
         }
