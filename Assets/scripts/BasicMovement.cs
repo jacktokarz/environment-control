@@ -156,7 +156,7 @@ public class BasicMovement : MonoBehaviour
         checkUnderwater();
 
         h = gripping ? Input.GetAxis("Horizontal") * climbSpeed : Input.GetAxis("Horizontal") * topHSpeed;
-        
+        bodyAnimator.SetBool("walking", h!=0);
         checkFlip();
 
         if (gripping && !(Input.GetKey(PersistentManager.Instance.HumidityKey) || Input.GetKey("2")))
@@ -192,7 +192,7 @@ public class BasicMovement : MonoBehaviour
             Rigidbody2D groundRig = platCollider.gameObject.GetComponent<Rigidbody2D>();
             if (groundRig != null)
             {
-                h += groundRig.velocity.x * Mathf.Clamp(PersistentManager.Instance.windLevel, 1, 3);
+                h += groundRig.velocity.x * 4f;
             }
         }
 

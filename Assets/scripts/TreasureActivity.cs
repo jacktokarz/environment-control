@@ -54,6 +54,10 @@ public class TreasureActivity : MonoBehaviour
 			nextMessages.Enqueue("Hold 2 + Press up / down\nto Alter the Wind Level");
 			nextMessages.Enqueue("wind");
 			break;
+		case "thanks":
+			nextMessages.Enqueue("Thank you for playing this demo! Please give Jack your feedback so he can enhance and expand this game :)");
+			nextMessages.Enqueue(PersistentManager.Instance.PauseKey.ToString());
+			break;
 		}
         Debug.Log("passing a message from "+nextMessages.Count);
 

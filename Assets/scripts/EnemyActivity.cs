@@ -92,7 +92,10 @@ public class EnemyActivity : MonoBehaviour
             if(source) {
                 source.PlayOneShot(shoot, 1f);
             }
-        	GameObject projectile = Instantiate(enemyProjectile, transform.position, Quaternion.identity);// projectile sound
+            Transform childTransform = this.transform.GetChild(0).transform;
+        	GameObject projectile = Instantiate(enemyProjectile,
+                new Vector2(transform.position.x + childTransform.rotation.x, childTransform.position.y + transform.rotation.y),
+                Quaternion.identity);// projectile sound
         	ProjectileActivity pa = projectile.GetComponent<ProjectileActivity>();
         	pa.speed = projectileSpeed;
 

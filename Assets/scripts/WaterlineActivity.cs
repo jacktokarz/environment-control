@@ -25,27 +25,28 @@ public class WaterlineActivity : MonoBehaviour
 	    }
 	}
 
-    void OnTriggerStay2D(Collider2D coll)
-    {
-    	// dynamic loudness of bubbling sound?
-    	if(coll.gameObject == playerObject)
-    	{
-    		float halfWaterWidth = thisColl.size.x/2 - 10;
-    		float halfWaterHeight = thisColl.size.y/2 - 6;
-    		Vector2 thisPos = this.transform.position;
-    		Vector2 playPos = playerObject.transform.position;
-    		float xDiff = Mathf.Abs(playPos.x - thisPos.x);
-    		float yDiff = Mathf.Abs(playPos.y - thisPos.y);
-    		if(xDiff <= halfWaterWidth+2.5f && yDiff <= halfWaterHeight+2.5f)
-    		{
-    			source.volume = 1;
-    		}
-    		else
-    		{
-    			source.volume = Mathf.Min(Mathf.Abs(thisColl.size.x/2 - xDiff) / 7.5f, Mathf.Abs(thisColl.size.y/2 - yDiff) / 3.5f);
-    		}
-    	}
-    }
+    // void OnTriggerStay2D(Collider2D coll)
+    		// trying to get the volume to respond to if the player is near the water at any point along it, not just near the center
+    // {
+    // 	// dynamic loudness of bubbling sound?
+    // 	if(coll.gameObject == playerObject)
+    // 	{
+    // 		float halfWaterWidth = thisColl.size.x/2 - 10;
+    // 		float halfWaterHeight = thisColl.size.y/2 - 6;
+    // 		Vector2 thisPos = this.transform.position;
+    // 		Vector2 playPos = playerObject.transform.position;
+    // 		float xDiff = Mathf.Abs(playPos.x - thisPos.x);
+    // 		float yDiff = Mathf.Abs(playPos.y - thisPos.y);
+    // 		// if(xDiff <= halfWaterWidth+2.5f && yDiff <= halfWaterHeight+2.5f)
+    // 		// {
+    // 		// 	source.volume = 1;
+    // 		// }
+    // 		// else
+    // 		// {
+    // 			source.volume = Mathf.Min(Mathf.Abs(thisColl.size.x/2 - xDiff) / 7.5f, Mathf.Abs(thisColl.size.y/2 - yDiff) / 3.5f);
+    // 		// }
+    // 	}
+    // }
 
     void OnTriggerExit2D(Collider2D coll)
     {
