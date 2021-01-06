@@ -9,6 +9,7 @@ public class Pause : MonoBehaviour
 	public GameObject screens;
 	public GameObject loreReader;
 	public GameObject loreList;
+	public GameObject menuButtons;
 	public Button escapeReaderButton;
 	public Button initialButton;
 	public int lorePage;
@@ -36,16 +37,16 @@ public class Pause : MonoBehaviour
 			+ "\nBut so far, the data matches the sets we were provided for the plant specimens. The environment appears safe to work in."
 			+ "\nSpeaking of, on a personal note I am still getting used to living here. The decor is… lacking. The food is equally bland. The gravity is… close, but not quite right. A surprising positive, however, has been my conversations with Brendle. They are sharp and inquisitive in a way that I have not seen before. Others may mark it as youthful energy, but I see a passion in them that will not extinguish. I wouldn’t be surprised if they are able to take increasing control over the direction of the project if their writing is as articulate and stimulating as their loquation."
 			);
-
+		loreBook.Add(3, "");
 		loreBook.Add(4, "The moisture adaptations of F301-308 are remarkable. They need a few tweaks for temperature susceptibility, but are already more resilient than any recorded plant species! I knew we’d be testing the boundaries of the possible here, but this is beyond what I’d hoped we could accomplish. Brendle finished prepping the F400s’ splicing today and we can grow them tomorrow, with testing starting a few days after."
 			+ "\nIf our theory is correct, by combining what we’ve grown here with the R800s’ enhanced logical reasoning and the B400s’ physical malleability, the F400 could be the first batch of the last plants we ever need to create. A new species that self-preserves, evolving in real-time to aid itself, and the environment around it."
 			+ "\nThis is why I came here. This is why I had to come. We will literally change the face of the planet! Of course, as Kolb keeps saying, the real work will begin once the development is complete, and we have to control what is done with it. But I will allow myself to relish this delight now. We’ve earned it."
 			);
-		// loreBook.Add(5, "I know I shouldn’t pick favorites. Forgive the informal language here, reviewing my entries lately, I see my passion has taken over while writing in here, and I won’t be able to publish this. Which is fine, I need somewhere to record my thoughts anyway, unfiltered."
+		loreBook.Add(5, ""); //"I know I shouldn’t pick favorites. Forgive the informal language here, reviewing my entries lately, I see my passion has taken over while writing in here, and I won’t be able to publish this. Which is fine, I need somewhere to record my thoughts anyway, unfiltered."
 		// 	+ "\nF402 is… remarkable. A flora on a level of mental acuity even I didn’t think could be reached. Yes, mental acuity, at this point there is no denying that there is a conscious process in that body delivering messages, making choices, possibly even having thoughts? Brendle is attempting to communicate with it. I’ve allowed it, out of curiosity. They are attempting to teach the plant how to conceptualize language, through sensory stimulation. Brendle admits that they do not have a specific hypothesis or plan for how to capitalize on this experiment, just optimism. That’s why I love them."
 		// 	+ "\nOh, wow. Hmm, I was going to erase it, but… it feels nice to read. To see it declared. Yes, I love them."
 		// 	);
-
+		loreBook.Add(6, "");
 		loreBook.Add(7, "Mixed success this week. No I haven’t written recently, it’s become taxing. The writing here. When I need to be monitoring all of the F specimens. When this won’t be published anyway. When the progress is not so much progress anymore, but developments."
 			+ "\nA development today, the water supply got cut off from the stress test chamber of the humidity wing. Yenn opened up the floor and we found roots that had broken the pipe. Roots wrapped around the pipe, crushing it open, and shaped to re-direct the water elsewhere. Deeper."
 			+ "\nWell, a mixture of roots and vines. With so many novel discoveries, it’s frustratingly difficult to maintain thorough comprehension of everything happening. In my own lab."
@@ -125,6 +126,7 @@ public class Pause : MonoBehaviour
 		loreReader.SetActive(true);
 		escapeReaderButton.Select();
 		escapeReaderButton.OnSelect(null);
+		menuButtons.SetActive(false);
 	}
 
 	public void CloseLore()
@@ -132,5 +134,6 @@ public class Pause : MonoBehaviour
 		loreReader.SetActive(false);
 		initialButton.Select();
 		initialButton.OnSelect(null);
+		menuButtons.SetActive(true);
 	}
 }
