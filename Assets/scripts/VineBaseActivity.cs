@@ -41,7 +41,7 @@ public class VineBaseActivity : MonoBehaviour
     		if (source.isPlaying) { source.Stop(); }
     	}
 
-    	if ( vineHeight < 0.75f )
+    	if ( vineHeight < 0.35f )
     	{
 	        baseAnim.SetBool("open", false);
 	        if (source.isPlaying) { source.Stop(); }
