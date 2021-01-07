@@ -159,6 +159,12 @@ public class PersistentManager : MonoBehaviour
         go.SetActive(setting);
     }
 
+    public IEnumerator WaitToPlay(AudioSource source, AudioClip clip, float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        source.PlayOneShot(clip);
+    }    
+
 	public IEnumerator GoToScene(int sceneNumber)
     {
         Debug.Log("going to scene "+sceneNumber);

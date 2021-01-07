@@ -52,10 +52,10 @@ public class CheckpointActivity : MonoBehaviour
         playerAnim.SetBool("activating", true);
         PersistentManager.Instance.immobile = true;
         source.volume = 0.9f;
-        source.PlayOneShot(flowerGrowSound);
 		PersistentManager.Instance.Checkpoints.Add(SceneManager.GetActiveScene().buildIndex);
 		setCheckpoint();
 		alreadyChecked = true;
+        StartCoroutine(PersistentManager.Instance.WaitToPlay(source, flowerGrowSound, 0.4f));
     }
 
     void setCheckpoint() {
