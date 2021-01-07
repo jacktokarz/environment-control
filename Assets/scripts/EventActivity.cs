@@ -51,4 +51,12 @@ public class EventActivity : MonoBehaviour
         }
         StartCoroutine(PersistentManager.Instance.MakeMessage(messages));
     }
+
+    void HideChildren()
+    {
+        for (int i = 0; i < this.transform.childCount; i++)
+        {
+            this.transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
 }

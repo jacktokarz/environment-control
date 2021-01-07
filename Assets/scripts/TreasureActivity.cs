@@ -65,5 +65,4 @@ public class TreasureActivity : MonoBehaviour
 		bool saved = PersistentManager.Instance.Save();
 		alreadyGotten = true;
     }
-
 }
