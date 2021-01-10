@@ -1368,6 +1368,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2614582194768518549, guid: b8b266de95fa3cd44bf707bc8c34cc89,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1720290978309699675, guid: b8b266de95fa3cd44bf707bc8c34cc89,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2351910840784981318, guid: d21ea1f027bdc5145ba3a69a22e8cb0d,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8b266de95fa3cd44bf707bc8c34cc89, type: 3}
 --- !u!4 &231795356 stripped
@@ -7948,6 +7959,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: vcam TopShot
       objectReference: {fileID: 0}
+    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
+        type: 3}
+      propertyPath: m_Follow
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
+        type: 3}
+      propertyPath: m_ComponentOwner
+      value: 
+      objectReference: {fileID: 1774476935}
+    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
+        type: 3}
+      propertyPath: m_Lens.OrthographicSize
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
+        type: 3}
+      propertyPath: m_Priority
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4716485986572984658, guid: 8c194b5a0e2527446850355bc5e4b7ef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8002,26 +8033,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
-        type: 3}
-      propertyPath: m_Follow
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
-        type: 3}
-      propertyPath: m_ComponentOwner
-      value: 
-      objectReference: {fileID: 1774476935}
-    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
-        type: 3}
-      propertyPath: m_Lens.OrthographicSize
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
-        type: 3}
-      propertyPath: m_Priority
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4716485986572984659, guid: 8c194b5a0e2527446850355bc5e4b7ef,
         type: 3}
@@ -8796,6 +8807,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: vcam MiddleShot
       objectReference: {fileID: 0}
+    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
+        type: 3}
+      propertyPath: m_Follow
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
+        type: 3}
+      propertyPath: m_ComponentOwner
+      value: 
+      objectReference: {fileID: 1595094548}
+    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
+        type: 3}
+      propertyPath: m_Lens.OrthographicSize
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
+        type: 3}
+      propertyPath: m_Priority
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4716485986572984658, guid: 8c194b5a0e2527446850355bc5e4b7ef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8850,26 +8881,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
-        type: 3}
-      propertyPath: m_Follow
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
-        type: 3}
-      propertyPath: m_ComponentOwner
-      value: 
-      objectReference: {fileID: 1595094548}
-    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
-        type: 3}
-      propertyPath: m_Lens.OrthographicSize
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
-        type: 3}
-      propertyPath: m_Priority
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4716485986572984659, guid: 8c194b5a0e2527446850355bc5e4b7ef,
         type: 3}
@@ -9537,6 +9548,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: CM vcam1
       objectReference: {fileID: 0}
+    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
+        type: 3}
+      propertyPath: m_Follow
+      value: 
+      objectReference: {fileID: 87637799}
+    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
+        type: 3}
+      propertyPath: m_ComponentOwner
+      value: 
+      objectReference: {fileID: 370297684}
+    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
+        type: 3}
+      propertyPath: m_Lens.OrthographicSize
+      value: 6.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4716485986572984658, guid: 8c194b5a0e2527446850355bc5e4b7ef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9591,21 +9617,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
-        type: 3}
-      propertyPath: m_Follow
-      value: 
-      objectReference: {fileID: 87637799}
-    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
-        type: 3}
-      propertyPath: m_ComponentOwner
-      value: 
-      objectReference: {fileID: 370297684}
-    - target: {fileID: 4716485986572984657, guid: 8c194b5a0e2527446850355bc5e4b7ef,
-        type: 3}
-      propertyPath: m_Lens.OrthographicSize
-      value: 6.5
       objectReference: {fileID: 0}
     - target: {fileID: 4716485986572984659, guid: 8c194b5a0e2527446850355bc5e4b7ef,
         type: 3}
