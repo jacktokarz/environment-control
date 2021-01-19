@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -7593,11 +7593,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-    - target: {fileID: 8416594794505174884, guid: b8b266de95fa3cd44bf707bc8c34cc89,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 1720290978309699675, guid: b8b266de95fa3cd44bf707bc8c34cc89,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -7628,6 +7623,11 @@ PrefabInstance:
       propertyPath: m_SortingLayer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8416594794505174884, guid: b8b266de95fa3cd44bf707bc8c34cc89,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8b266de95fa3cd44bf707bc8c34cc89, type: 3}
 --- !u!4 &267168769 stripped
@@ -10084,16 +10084,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4289109194316770906, guid: 454d46eeab78d214b96bc9094b99aeb7,
-        type: 3}
-      propertyPath: loreID
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5128017062467048814, guid: 454d46eeab78d214b96bc9094b99aeb7,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+    - target: {fileID: 4289109194316770906, guid: 454d46eeab78d214b96bc9094b99aeb7,
+        type: 3}
+      propertyPath: loreID
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 454d46eeab78d214b96bc9094b99aeb7, type: 3}
 --- !u!4 &514703823 stripped
@@ -24988,16 +24988,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4289109194316770906, guid: 454d46eeab78d214b96bc9094b99aeb7,
-        type: 3}
-      propertyPath: loreID
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 5128017062467048814, guid: 454d46eeab78d214b96bc9094b99aeb7,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+    - target: {fileID: 4289109194316770906, guid: 454d46eeab78d214b96bc9094b99aeb7,
+        type: 3}
+      propertyPath: loreID
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 454d46eeab78d214b96bc9094b99aeb7, type: 3}
 --- !u!1 &1688076667
@@ -32368,6 +32368,16 @@ PrefabInstance:
         type: 3}
       propertyPath: Collectibles.Array.data[5]
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2970951254315108724, guid: ac94d165cebaf4a488f3bb1f3a64f9af,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 12.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 2970951254315108724, guid: ac94d165cebaf4a488f3bb1f3a64f9af,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -2.92
       objectReference: {fileID: 0}
     - target: {fileID: 4898996853052457917, guid: ac94d165cebaf4a488f3bb1f3a64f9af,
         type: 3}
