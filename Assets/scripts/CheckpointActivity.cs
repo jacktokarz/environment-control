@@ -11,6 +11,7 @@ public class CheckpointActivity : MonoBehaviour
     private Animator petalAnim;
     private Animator playerAnim;
 	public bool alreadyChecked;
+    public string checkpointMessage;
     public AudioClip flowerGrowSound;
     public AudioClip spawnsound;
 
@@ -56,6 +57,22 @@ public class CheckpointActivity : MonoBehaviour
 		setCheckpoint();
 		alreadyChecked = true;
         StartCoroutine(PersistentManager.Instance.WaitToPlay(source, flowerGrowSound, 0.4f));
+        if (checkpointMessage.Length > 0)
+        {
+            Queue<string> nextMessages = new Queue<string>();
+            switch (checkpointMessage)
+            {
+                case "firstCheckpoint":
+                    nextMessages.Enqueue("We awoke a sleeping portion of ourself! Alas, our mind is still not connected.");
+                    nextMessages.Enqueue(PersistentManager.Instance.JumpKey.ToString());
+                    nextMessages.Enqueue("Still, we shared our composition, and this stalk now knows how to form us again.");
+                    nextMessages.Enqueue(PersistentManager.Instance.JumpKey.ToString());
+                    break;
+            }
+
+            PersistentManager.Instance.CheckTextVis();
+            StartCoroutine(PersistentManager.Instance.MakeMessage(nextMessages));
+        }
     }
 
     void setCheckpoint() {

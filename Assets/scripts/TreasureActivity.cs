@@ -56,7 +56,7 @@ public class TreasureActivity : MonoBehaviour
 			break;
 		case "thanks":
 			nextMessages.Enqueue("Thank you for playing this demo! Please give Jack your feedback so he can enhance and expand this game :)");
-			nextMessages.Enqueue(PersistentManager.Instance.PauseKey.ToString());
+			nextMessages.Enqueue(PersistentManager.Instance.JumpKey.ToString());
 			break;
 		}
 
